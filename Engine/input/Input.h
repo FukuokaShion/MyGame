@@ -4,8 +4,7 @@
 #include <dinput.h>
 #include "WinApp.h"
 #include"Controller.h"
-
-#define DIRECTINPUT_VERSION 0x0800 // DirectInputのバージョン指定
+//#define DIRECTINPUT_VERSION 0x0800 // DirectInputのバージョン指定
 
 
 // 入力

@@ -61,7 +61,7 @@ private: //ƒƒ“ƒo•Ï” (ŒÅ’è)
 	SpriteCommon* spriteCommon = nullptr;
 	Audio* audio = nullptr;
 
-	const float PI = 3.141592;
+	const float PI = 3.141592f;
 
 private://ƒƒ“ƒo•Ï”
 	//ƒJƒƒ‰
