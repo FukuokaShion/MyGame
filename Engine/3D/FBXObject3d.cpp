@@ -280,8 +280,7 @@ void FBXObject3d::Draw(ID3D12GraphicsCommandList* cmdList)
 }
 
 void FBXObject3d::PlayAnimation(float speed, bool isLoop){
-	//animationTime = frameTime * speed;
-	animationTime = frameTime;
+	animationTime = static_cast<FbxLongLong>(frameTime.Get() * speed);
 	FbxScene* fbxScene = fbxmodel->GetFbxScene();
 	//0番のアニメーションを取得
 	FbxAnimStack* animstack = fbxScene->GetSrcObject<FbxAnimStack>(0);
