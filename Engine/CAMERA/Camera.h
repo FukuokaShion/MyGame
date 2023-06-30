@@ -4,6 +4,7 @@
 #include "Matrix4.h"
 #include "Affin.h"
 #include"Transform.h"
+#include "ConvertXM.h"
 
 /// <summary>
 /// カメラ基本機能
@@ -30,19 +31,9 @@ public: // メンバ関数
 	virtual void Update();
 
 	/// <summary>
-	/// 毎フレーム更新
-	/// </summary>
-	virtual void Update(Transform wtf);
-
-	/// <summary>
 	/// ビュー行列を更新
 	/// </summary>
 	void UpdateViewMatrix();
-
-	/// <summary>
-	/// ビュー行列を更新
-	/// </summary>
-	void UpdateViewMatrix(Vector3 newEye);
 
 	/// <summary>
 	/// 射影行列を更新
@@ -159,31 +150,43 @@ public: // メンバ関数
 
 	float FieldOfViewY();
 
+	//親子関係
+	void SetParent(Transform* parent) { this->parent = parent; };
+	
+	//親との回転同期
+	bool isSyncRota;
+
+	Transform* wtf = nullptr;
+
 protected: // メンバ変数
 	// ビュー行列
-	Matrix4 matView = Affin::matUnit();
+	Matrix4 matView = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビルボード行列
-	Matrix4 matBillboard = Affin::matUnit();
+	Matrix4 matBillboard = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// Y軸回りビルボード行列
-	Matrix4 matBillboardY = Affin::matUnit();
+	Matrix4 matBillboardY = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// 射影行列
-	Matrix4 matProjection = Affin::matUnit();
+	Matrix4 matProjection = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビュー射影行列
-	Matrix4 matViewProjection = Affin::matUnit();
+	Matrix4 matViewProjection = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビュー行列ダーティフラグ
 	bool viewDirty = false;
 	// 射影行列ダーティフラグ
 	bool projectionDirty = false;
 	// 視点座標
-	Vector3 eye = {0, 0, -1};
+	Vector3 eye = { 0, 0, -10 };
 	// 注視点座標
-	Vector3 target = {0, 0, 0};
+	Vector3 target = { 0, 0, 1 };
 	// 上方向ベクトル
-	Vector3 up = {0, 1, 0};
+	Vector3 up = { 0, 1, 0 };
 	// アスペクト比
 	float aspectRatio = 1.0f;
 
-	float focalLengs = 50 ;
+
+	//親座標
+	Transform* parent = nullptr;
+
+	float focalLengs = 50;
 	float sensor = 35;
 };
 

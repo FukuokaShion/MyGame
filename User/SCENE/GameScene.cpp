@@ -40,8 +40,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 
 	// カメラ生成
 	camera = new Camera(WinApp::window_width, WinApp::window_height);
-	camera->SetEye({0,3,-10});
-	camera->SetTarget({ 0,3,0 });
+	camera->wtf->position = { 0,3,-10 };
 
 	//カメラセット
 	ParticleManager::SetCamera(camera);
@@ -72,6 +71,10 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	fbxObject3d_->wtf.rotation = { 0,PI,0 };
 	animeSpeed = 1.0f;
 
+	//カメラの設定
+	camera->SetParent(&fbxObject3d_->wtf);
+	camera->isSyncRota = true;
+
 	Reset();
 }
 
@@ -83,22 +86,28 @@ void GameScene::Reset() {
 /// 毎フレーム処理
 /// </summary>
 void GameScene::Update() {
-	camera->Update();
-	floor->Update();
-	skydome->Update();
-
-
-	if(input->TriggerKey(DIK_D)){
-		animeSpeed += 0.05f;
-	}else if (input->TriggerKey(DIK_A)) {
-		animeSpeed -= 0.05f;
+	if(input->PushKey(DIK_D)){
+		fbxObject3d_->wtf.position += {0.3f, 0, 0};
+	}else if (input->PushKey(DIK_A)) {
+		fbxObject3d_->wtf.position += {-0.3f, 0, 0};
+	}
+	
+	if (input->PushKey(DIK_E)) {
+		fbxObject3d_->wtf.rotation += {0, PI/180, 0};
+	}else if (input->PushKey(DIK_Q)) {
+		fbxObject3d_->wtf.rotation += {0, -PI/180, 0};
 	}
 
 	if (input->TriggerKey(DIK_SPACE)) {
 		fbxObject3d_->PlayAnimation(animeSpeed, false);
 	}
-	fbxObject3d_->Update();
 
+	//カメラ更新後にオブジェクト更新
+	camera->Update();
+
+	fbxObject3d_->Update();
+	floor->Update();
+	skydome->Update();
 }
 
 /// <summary>
