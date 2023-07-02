@@ -13,6 +13,7 @@ ID3D12Device* FBXObject3d::device = nullptr;
 Camera* FBXObject3d::camera = nullptr;
 ComPtr<ID3D12RootSignature> FBXObject3d::rootsignature;
 ComPtr<ID3D12PipelineState> FBXObject3d::pipelinestate;
+ComPtr<ID3D12GraphicsCommandList> FBXObject3d::cmdList;
 
 
 void FBXObject3d::CreateGraphicsPipeline()
@@ -258,12 +259,10 @@ void FBXObject3d::Update(){
 	constBuffSkin->Unmap(0, nullptr);
 }
 
-void FBXObject3d::Draw(ID3D12GraphicsCommandList* cmdList)
-{
-	// モデルの割り当てがなければ描画しない
-	if (fbxmodel == nullptr) {
-		return;
-	}
+
+void FBXObject3d::PreDraw(ID3D12GraphicsCommandList* cmdList){
+	// コマンドリストをセット
+	FBXObject3d::cmdList = cmdList;
 
 	// パイプラインステートの設定
 	cmdList->SetPipelineState(pipelinestate.Get());
@@ -271,12 +270,26 @@ void FBXObject3d::Draw(ID3D12GraphicsCommandList* cmdList)
 	cmdList->SetGraphicsRootSignature(rootsignature.Get());
 	// プリミティブ形状を設定
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+}
+
+void FBXObject3d::PostDraw(){
+	// コマンドリストを解除
+	FBXObject3d::cmdList = nullptr;
+}
+
+void FBXObject3d::Draw()
+{
+	// モデルの割り当てがなければ描画しない
+	if (fbxmodel == nullptr) {
+		return;
+	}
+
 	// 定数バッファビューをセット
 	cmdList->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 	// 定数バッファビューをセット
 	cmdList->SetGraphicsRootConstantBufferView(2, constBuffSkin->GetGPUVirtualAddress());
 	// モデル描画
-	fbxmodel->Draw(cmdList);
+	fbxmodel->Draw(cmdList.Get());
 }
 
 void FBXObject3d::PlayAnimation(float speed, bool isLoop){

@@ -40,7 +40,6 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 
 	// カメラ生成
 	camera = new Camera(WinApp::window_width, WinApp::window_height);
-	camera->wtf->position = { 0,3,-10 };
 
 	//カメラセット
 	ParticleManager::SetCamera(camera);
@@ -114,20 +113,22 @@ void GameScene::Update() {
 /// 描画
 /// </summary>
 void GameScene::Draw() {
-
-	/// <summary>
-	/// 3Dオブジェクトの描画
-	/// ここに3Dオブジェクトの描画処理を追加できる
-	/// <summary>
 	//3Dオブジェクト描画前処理
 	Object3d::PreDraw(dxCommon->GetCommandList());
 	//// 3Dオブクジェクトの描画
 	floor->Draw();
 	skydome->Draw();
-	fbxObject3d_->Draw(dxCommon->GetCommandList());
-
 	//3Dオブジェクト描画後処理
 	Object3d::PostDraw();
+
+
+	///fbx描画前処理
+	FBXObject3d::PreDraw(dxCommon->GetCommandList());
+	///FBX描画
+	fbxObject3d_->Draw();
+	///FBX描画後処理
+	FBXObject3d::PostDraw();
+
 
 	//// パーティクルの描画
 

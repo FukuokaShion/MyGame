@@ -94,6 +94,12 @@
     <Filter Include="user\ヘッダー">
       <UniqueIdentifier>{1482f690-1c2b-4c21-8274-6de46df1607c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="user\ソース\PLAYER">
+      <UniqueIdentifier>{628035a0-2517-4ba9-8b8d-e4db2464bc70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ヘッダー\PLAYER">
+      <UniqueIdentifier>{4d323de8-d2a9-41a6-a143-a5b2e08080dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -184,6 +190,9 @@
     <ClCompile Include="Engine\3D\FBXObject3d.cpp">
       <Filter>Engine\ソースファイル\3D</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -272,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="Engine\3D\FBXObject3d.h">
       <Filter>Engine\ヘッダーファイル\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -57,6 +57,8 @@ public: // 静的メンバ関数
 	// setter
 	static void SetDevice(ID3D12Device* device) { FBXObject3d::device = device; }
 	static void SetCamera(Camera* camera) { FBXObject3d::camera = camera; }
+	static void PreDraw(ID3D12GraphicsCommandList* cmdList);
+	static void PostDraw();
 
 
 private: // 静的メンバ変数
@@ -68,6 +70,8 @@ private: // 静的メンバ変数
 	static ComPtr<ID3D12RootSignature> rootsignature;
 	// パイプラインステートオブジェクト
 	static ComPtr<ID3D12PipelineState> pipelinestate;
+	// コマンドリスト
+	static ComPtr<ID3D12GraphicsCommandList> cmdList;
 
 
 public: // メンバ関数
@@ -84,7 +88,7 @@ public: // メンバ関数
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw(ID3D12GraphicsCommandList* cmdList);
+	void Draw();
 
 	void SetModel(FBXModel* fbxmodel) { this->fbxmodel = fbxmodel; }
 
@@ -120,6 +124,7 @@ protected: // メンバ変数
 	bool isLoop;
 	//アニメーション終了
 	bool isFin;
+
 
 public:
 	Transform wtf;
