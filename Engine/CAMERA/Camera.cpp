@@ -6,8 +6,8 @@ Camera::Camera(int window_width, int window_height)
 {
 	aspectRatio = (float)window_width / window_height;
 
-	wtf = new Transform;
-	wtf->Initialize();
+	wtf.Initialize();
+	hasParent = false;
 
 	isSyncRota = false;
 
@@ -21,19 +21,38 @@ Camera::Camera(int window_width, int window_height)
 	matViewProjection = matView * matProjection;
 }
 
-void Camera::Update(){
+void Camera::Update() {
 	//親と同期
-	if (parent != nullptr) {
+	if (hasParent) {
 		if (isSyncRota) {
 			//回転同期
-			wtf = parent;
-		}else {
-			//非同期
-			wtf->position = parent->position;
+			wtf.position = parent->position;
+			wtf.rotation = parent->rotation;
 		}
+		else {
+			//非同期
+			wtf.position = parent->position;
+		}
+		///仮で高さを調整する
+		wtf.position.y += 2.5;
 	}
+
+	//回転の制限
+	float PI = 3.141592f;
+	if (wtf.rotation.x > PI/2) {
+		wtf.rotation.x = PI/2;
+	}else if (wtf.rotation.x < -PI/2) {
+		wtf.rotation.x = -PI/2;
+	}
+
+	if (wtf.rotation.y > 2 * PI) {
+		wtf.rotation.y = 0;
+	}else if (wtf.rotation.y < 2 * -PI) {
+		wtf.rotation.y = 0;
+	}
+	
 	//座標更新
-	wtf->UpdateMat();
+	wtf.UpdateMat();
 
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
@@ -43,9 +62,9 @@ void Camera::Update(){
 void Camera::UpdateViewMatrix() {
 
 	// 視点座標
-	Vector3 eyePosition = eye * wtf->matWorld;
+	Vector3 eyePosition = eye * wtf.matWorld;
 	// 注視点座標
-	Vector3 targetPosition = target * wtf->matWorld;
+	Vector3 targetPosition = target * wtf.matWorld;
 	// （仮の）上方向
 	Vector3 upVector = up;
 

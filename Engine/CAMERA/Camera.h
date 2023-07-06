@@ -151,12 +151,13 @@ public: // メンバ関数
 	float FieldOfViewY();
 
 	//親子関係
-	void SetParent(Transform* parent) { this->parent = parent; };
+	void SetParent(Transform* parent) { this->parent = parent; hasParent = true; };
+	void LiftParent() { hasParent = false; };
 	
 	//親との回転同期
 	bool isSyncRota;
 
-	Transform* wtf = nullptr;
+	Transform wtf;
 
 protected: // メンバ変数
 	// ビュー行列
@@ -174,7 +175,7 @@ protected: // メンバ変数
 	// 射影行列ダーティフラグ
 	bool projectionDirty = false;
 	// 視点座標
-	Vector3 eye = { 0, 0, -10 };
+	Vector3 eye = { 0, 0, -6 };
 	// 注視点座標
 	Vector3 target = { 0, 0, 1 };
 	// 上方向ベクトル
@@ -183,8 +184,9 @@ protected: // メンバ変数
 	float aspectRatio = 1.0f;
 
 
-	//親座標
-	Transform* parent = nullptr;
+	//親子関係
+	Transform* parent;
+	bool hasParent;
 
 	float focalLengs = 50;
 	float sensor = 35;

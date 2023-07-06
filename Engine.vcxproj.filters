@@ -10,9 +10,6 @@
     <Filter Include="user\ソース">
       <UniqueIdentifier>{bb87f54d-424d-484c-b691-d27dafcb6d31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="user\リソース">
-      <UniqueIdentifier>{26d63d6e-b651-482f-8169-73344dd8c2f6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="user\シーン">
       <UniqueIdentifier>{4349b04e-3d06-488a-9b41-bd725a5b9100}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,18 @@
     </Filter>
     <Filter Include="user\ヘッダー\PLAYER">
       <UniqueIdentifier>{4d323de8-d2a9-41a6-a143-a5b2e08080dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ソース\ENEMY">
+      <UniqueIdentifier>{6bfde38e-92fe-498f-9a44-5c058c580f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ヘッダー\ENEMY">
+      <UniqueIdentifier>{1de9dfb5-d1ba-4b1f-9978-95c10cfbdcb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ソース\FIELD">
+      <UniqueIdentifier>{21b5912b-a2ac-4e8c-808e-eeff69ad6f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ヘッダー\FIELD">
+      <UniqueIdentifier>{3061c46d-cb3b-48d5-94a8-8a0a21ba1279}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -190,8 +199,29 @@
     <ClCompile Include="Engine\3D\FBXObject3d.cpp">
       <Filter>Engine\ソースファイル\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="User\PLAYER\Player.cpp">
       <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\Enemy.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\FIELD\Field.cpp">
+      <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerHp.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\Action.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyState.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\Standby.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyAttack.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -282,8 +312,29 @@
     <ClInclude Include="Engine\3D\FBXObject3d.h">
       <Filter>Engine\ヘッダーファイル\3D</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="User\PLAYER\Player.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\Enemy.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\FIELD\Field.h">
+      <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerHp.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\Action.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyState.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\Standby.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyAttack.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

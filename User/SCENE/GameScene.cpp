@@ -12,15 +12,11 @@ GameScene::GameScene() {
 /// </summary>
 GameScene::~GameScene() {
 	delete spriteCommon;
+	delete field;
 	delete camera;
 
-	delete floor;
-	delete floorMD;
-	delete skydome;
-	delete skydomeMD;
-
-	delete fbxObject3d_;
-	delete fbxModel_;
+	delete player;
+	delete enemy;
 }
 
 /// <summary>
@@ -38,6 +34,10 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	spriteCommon = new SpriteCommon;
 	spriteCommon->Initialize(dxCommon);
 
+	//フィールド生成
+	field = new Field();
+	field->Initialize();
+
 	// カメラ生成
 	camera = new Camera(WinApp::window_width, WinApp::window_height);
 
@@ -51,33 +51,18 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	//グラフィックスパイプライン生成
 	FBXObject3d::CreateGraphicsPipeline();
 
-	//背景
-	floorMD = Model::LoadFromOBJ("floor");
-	floor = Object3d::Create();
-	floor->SetModel(floorMD);
-	floor->wtf.position = (Vector3{ 0, -10, 0 });
+	//プレイヤー生成
+	player = new Player();
+	player->Initialize(input);
+	player->SetCamera(camera);
 
-	skydomeMD = Model::LoadFromOBJ("skydome");
-	skydome = Object3d::Create();
-	skydome->SetModel(skydomeMD);
-	skydome->wtf.scale = (Vector3{ 1000, 1000, 1000 });
-
-	//fbx生成
-	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
-	fbxObject3d_ = new FBXObject3d;
-	fbxObject3d_->Initialize();
-	fbxObject3d_->SetModel(fbxModel_);
-	fbxObject3d_->wtf.rotation = { 0,PI,0 };
-	animeSpeed = 1.0f;
+	//エネミー生成
+	enemy = new Enemy();
+	enemy->Initialize();
 
 	//カメラの設定
-	camera->SetParent(&fbxObject3d_->wtf);
-	camera->isSyncRota = true;
-
-	Reset();
-}
-
-void GameScene::Reset() {
+	camera->SetParent(player->GetWtf());
+	camera->isSyncRota = false;
 
 }
 
@@ -85,28 +70,18 @@ void GameScene::Reset() {
 /// 毎フレーム処理
 /// </summary>
 void GameScene::Update() {
-	if(input->PushKey(DIK_D)){
-		fbxObject3d_->wtf.position += {0.3f, 0, 0};
-	}else if (input->PushKey(DIK_A)) {
-		fbxObject3d_->wtf.position += {-0.3f, 0, 0};
-	}
-	
-	if (input->PushKey(DIK_E)) {
-		fbxObject3d_->wtf.rotation += {0, PI/180, 0};
-	}else if (input->PushKey(DIK_Q)) {
-		fbxObject3d_->wtf.rotation += {0, -PI/180, 0};
+	//仮の処理
+	if (input->PushKey(DIK_SPACE)) {
+		player->OnCollision(50);
 	}
 
-	if (input->TriggerKey(DIK_SPACE)) {
-		fbxObject3d_->PlayAnimation(animeSpeed, false);
-	}
-
-	//カメラ更新後にオブジェクト更新
+	//カメラ更新
 	camera->Update();
 
-	fbxObject3d_->Update();
-	floor->Update();
-	skydome->Update();
+	//オブジェクト更新
+	field->Update();
+	player->Update();
+	enemy->Update();
 }
 
 /// <summary>
@@ -116,8 +91,7 @@ void GameScene::Draw() {
 	//3Dオブジェクト描画前処理
 	Object3d::PreDraw(dxCommon->GetCommandList());
 	//// 3Dオブクジェクトの描画
-	floor->Draw();
-	skydome->Draw();
+	field->Draw();
 	//3Dオブジェクト描画後処理
 	Object3d::PostDraw();
 
@@ -125,7 +99,8 @@ void GameScene::Draw() {
 	///fbx描画前処理
 	FBXObject3d::PreDraw(dxCommon->GetCommandList());
 	///FBX描画
-	fbxObject3d_->Draw();
+	player->Draw();
+	enemy->Draw();
 	///FBX描画後処理
 	FBXObject3d::PostDraw();
 

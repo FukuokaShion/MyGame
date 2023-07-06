@@ -1,14 +1,15 @@
 #pragma once
-
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 
+#include"Action.h"
 
-class Player {
+class Enemy {
 public:
-	Player();
+	Enemy();
+	~Enemy();
 
-	~Player();
+	void Initialize();
 
 	void Update();
 
@@ -19,5 +20,6 @@ private:
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
 
-
+	//çsìÆ
+	Action* action = nullptr;
 };

@@ -3,7 +3,6 @@
 #include <string>
 #include "Input.h"
 #include "Matrix4.h"
-
 #include "SpriteCommon.h"
 #include "Sprite.h"
 #include "ParticleManager.h"
@@ -13,6 +12,10 @@
 #include "Object3d.h"
 #include "Model.h"
 #include "FBXObject3d.h"
+
+#include"Field.h"
+#include"Player.h"
+#include"Enemy.h"
 
 /// <summary>
 /// ゲームシーン
@@ -37,8 +40,6 @@ public: // メンバ関数
 	/// 初期化
 	/// </summary>
 	void Initialize(DirectXCommon* dxCommon, Input* input);
-
-	void Reset();
 
 	/// <summary>
 	/// 毎フレーム処理
@@ -66,16 +67,12 @@ private: //メンバ変数 (固定)
 private://メンバ変数
 	//カメラ
 	Camera* camera = nullptr;
-
-	//背景や床
-	Object3d* floor = nullptr;
-	Model* floorMD = nullptr;
-	Object3d* skydome = nullptr;
-	Model* skydomeMD = nullptr;
-
-	//fbx
-	FBXModel* fbxModel_ = nullptr;
-	FBXObject3d* fbxObject3d_ = nullptr;
+	//フィールド
+	Field* field = nullptr;
+	//プレイヤー
+	Player* player = nullptr;
+	//エネミー
+	Enemy* enemy = nullptr;
 
 	float animeSpeed;
 };
