@@ -223,6 +223,24 @@ void Matrix4::MakeLookL(const Vector3& eye, const Vector3& target, const Vector3
 	mat.m[3][2] = eye.z;
 }
 
+Vector3 Matrix4::bVelocity(Vector3& velocity, Matrix4& mat) {
+	Vector3 result = { 0,0,0 };
+
+	//ì‡êœ
+	result.x = velocity.x * mat.m[0][0] +
+		       velocity.y * mat.m[1][0] +
+			   velocity.z * mat.m[2][0];
+
+	result.y = velocity.x * mat.m[0][1] +
+			   velocity.y * mat.m[1][1] +
+			   velocity.z * mat.m[2][1];
+
+	result.z = velocity.x * mat.m[0][2] +
+			   velocity.y * mat.m[1][2] +
+			   velocity.z * mat.m[2][2];
+
+	return result;
+}
 
 //	--		 --			--		 --
 //	| a b c d |			| A B C D |

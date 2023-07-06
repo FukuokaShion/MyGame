@@ -1,12 +1,22 @@
 #include"Action.h"
 #include"Standby.h"
 #include"EnemyAttack.h"
+#include"Approach.h"
 
-void Standby::Update(Transform* wtf){
-	{
-		wtf->position += {0.1f, 0, 0};
-		//ó‘ÔØ‚è‘Ö‚¦
-		if (wtf->position.x > 3) {
+Standby::Standby() {
+	timer = limit;
+}
+
+//‘Ò‹@
+void Standby::Update(){
+	timer--;
+	//ó‘ÔØ‚è‘Ö‚¦
+	if (timer < 0) {
+		if (EnemyWtf->position.z - playerWtf->position.z > 4.0f) {
+			//‰“‚¢‚È‚çApproach‚ÉˆÚs
+			action_->TransitionTo(new Approach);
+		}else {
+			//‹ß‚¢‚È‚çUŒ‚‚·‚é
 			action_->TransitionTo(new EnemyAttack);
 		}
 	}

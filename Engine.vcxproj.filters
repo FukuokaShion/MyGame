@@ -223,6 +223,9 @@
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\Approach.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -334,6 +337,9 @@
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyAttack.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\Approach.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>

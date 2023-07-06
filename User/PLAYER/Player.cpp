@@ -7,6 +7,7 @@ Player::Player() {
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->PlayAnimation();
 	hp = new PlayerHp;
 }
 
@@ -31,7 +32,7 @@ void Player::Update() {
 
 void Player::Move() {
 	//移動量
-	Vector3 velocity = { 0.2f,0,0 };
+	Vector3 velocity = { 0,0,0 };
 	//移動速度
 	float speed = 0.5f;
 
@@ -45,8 +46,20 @@ void Player::Move() {
 	//移動ベクトルに変換
 	velocity *= speed;
 
+	//キーボード入力
+	if (input_->PushKey(DIK_A)) {
+		velocity.x = -speed;
+	}else if (input_->PushKey(DIK_D)) {
+		velocity.x = speed;
+	}
+	if (input_->PushKey(DIK_W)) {
+		velocity.z = speed;
+	}else if (input_->PushKey(DIK_S)) {
+		velocity.z = -speed;
+	}
+
 	//カメラが向いている方向に合わせる
-	velocity = bVelocity(velocity,camera_->wtf);
+	velocity = Matrix4::bVelocity(velocity,camera_->wtf.matWorld);
 
 	fbxObject3d_->wtf.position += velocity;
 }
@@ -95,22 +108,21 @@ void Player::Draw() {
 
 }
 
-Vector3 Player::bVelocity(Vector3& velocity, Transform& worldTransform)
-{
+Vector3 Player::bVelocity(Vector3& velocity, Transform& worldTransform){
 	Vector3 result = { 0,0,0 };
 
 	//内積
-	result.z = velocity.x * worldTransform.matWorld.m[0][2] +
-		velocity.y * worldTransform.matWorld.m[1][2] +
-		velocity.z * worldTransform.matWorld.m[2][2];
-
 	result.x = velocity.x * worldTransform.matWorld.m[0][0] +
-		velocity.y * worldTransform.matWorld.m[1][0] +
-		velocity.z * worldTransform.matWorld.m[2][0];
+			   velocity.y * worldTransform.matWorld.m[1][0] +
+			   velocity.z * worldTransform.matWorld.m[2][0];
 
-	//result.y = velocity.x * worldTransform.matWorld.m[0][1] +
-	//	velocity.y * worldTransform.matWorld.m[1][1] +
-	//	velocity.z * worldTransform.matWorld.m[2][1];
+	result.y = velocity.x * worldTransform.matWorld.m[0][1] +
+			     velocity.y * worldTransform.matWorld.m[1][1] +
+			     velocity.z * worldTransform.matWorld.m[2][1];
+
+	result.z = velocity.x * worldTransform.matWorld.m[0][2] +
+		       velocity.y * worldTransform.matWorld.m[1][2] +
+			   velocity.z * worldTransform.matWorld.m[2][2];
 
 	return result;
 }

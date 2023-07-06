@@ -59,6 +59,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
+	enemy->SetPlayerTransform(player->GetWtf());
 
 	//カメラの設定
 	camera->SetParent(player->GetWtf());
@@ -92,6 +93,7 @@ void GameScene::Draw() {
 	Object3d::PreDraw(dxCommon->GetCommandList());
 	//// 3Dオブクジェクトの描画
 	field->Draw();
+
 	//3Dオブジェクト描画後処理
 	Object3d::PostDraw();
 
@@ -101,6 +103,7 @@ void GameScene::Draw() {
 	///FBX描画
 	player->Draw();
 	enemy->Draw();
+
 	///FBX描画後処理
 	FBXObject3d::PostDraw();
 

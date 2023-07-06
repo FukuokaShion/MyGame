@@ -8,12 +8,11 @@ public:
 	~Action();
 
 	void TransitionTo(EnemyState* state);
-
-	void SetTransform(Transform* wtf) { this->wtf = wtf; };
+	void SetTransform(Transform* EnemyWtf) { state_->SetEnemyTransform(EnemyWtf); };
+	void SetPlayerTransform(Transform* playerWtf) { state_->SetPlayerTransform(playerWtf); };
 
 	void Update();
 
 private:
 	EnemyState* state_ = nullptr;
-	Transform* wtf = nullptr;
 };

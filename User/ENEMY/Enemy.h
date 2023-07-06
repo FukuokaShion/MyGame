@@ -10,6 +10,7 @@ public:
 	~Enemy();
 
 	void Initialize();
+	void SetPlayerTransform(Transform* playerWtf);
 
 	void Update();
 
