@@ -5,6 +5,7 @@ class Action;
 
 class EnemyState {
 public:
+	EnemyState();
 	virtual ~EnemyState() {};
 
 	void SetAction(Action* action) { this->action_ = action; }
@@ -13,13 +14,20 @@ public:
 
 	Transform* GetPlayerTransform() { return playerWtf; };
 	Transform* GetEnemyTransform() { return EnemyWtf; };
+	bool GetIsAttack() { return isAttack; };
+	int GetPower() { return power; };
 
 public:
 	virtual void Update() = 0;
 
 protected:
-	Action* action_;
+	Action* action_ = nullptr;
 
-	Transform* playerWtf;
-	Transform* EnemyWtf;
+	//ç¿ïW
+	Transform* playerWtf = nullptr;
+	Transform* EnemyWtf = nullptr;
+
+	//çUåÇîªíË
+	bool isAttack;
+	int power;
 };

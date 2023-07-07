@@ -16,6 +16,7 @@
 #include"Field.h"
 #include"Player.h"
 #include"Enemy.h"
+#include"CollisionManager.h"
 
 /// <summary>
 /// ゲームシーン
@@ -69,10 +70,11 @@ private://メンバ変数
 	Camera* camera = nullptr;
 	//フィールド
 	Field* field = nullptr;
+
 	//プレイヤー
 	Player* player = nullptr;
 	//エネミー
 	Enemy* enemy = nullptr;
-
-	float animeSpeed;
+	//当たり判定マネージャ
+	CollisionManager* collisionManager = nullptr;
 };

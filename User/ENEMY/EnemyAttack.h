@@ -7,4 +7,9 @@ public:
 	EnemyAttack();
 
 	void Update() override;
+
+private:
+	const int limit = 40;
+	int timer = limit;
+
 };

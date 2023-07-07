@@ -7,9 +7,14 @@ EnemyAttack::EnemyAttack() {
 
 //UŒ‚
 void EnemyAttack::Update() {
-	//‰¼‚Å‰¡‚ÉˆÚ“®‚·‚é
-	EnemyWtf->position += {-0.1f, 0, 0 };
-	//if (true) {
-	//	action_->TransitionTo(new Standby);
-	//}
+	timer--;
+	if (timer > 15) {
+		EnemyWtf->position += {0, 0.08f , 0};
+	}else if(timer > 0) {
+		EnemyWtf->position += {0, -0.13f, 0};
+		isAttack = true;
+		power = 10;
+	}else {
+		action_->TransitionTo(new Standby);
+	}
 }

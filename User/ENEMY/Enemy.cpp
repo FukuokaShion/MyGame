@@ -32,7 +32,7 @@ Enemy::~Enemy() {
 void Enemy::Update() {
 	action->Update();
 	fbxObject3d_->Update();
-
+	
 }
 
 void Enemy::Draw() {

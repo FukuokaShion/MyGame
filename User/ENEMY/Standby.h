@@ -12,4 +12,7 @@ private:
 	//‘Ò‹@ŠÔ
 	const int limit = 120;
 	int timer = limit;
+
+	//Ú‹ßˆÚs‹——£
+	const float approachDistance = 4.0f;
 };

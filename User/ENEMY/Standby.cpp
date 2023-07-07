@@ -12,7 +12,7 @@ void Standby::Update(){
 	timer--;
 	//ó‘ÔØ‚è‘Ö‚¦
 	if (timer < 0) {
-		if (EnemyWtf->position.z - playerWtf->position.z > 4.0f) {
+		if (Vector3::Distance(EnemyWtf->position, playerWtf->position) > approachDistance) {
 			//‰“‚¢‚È‚çApproach‚ÉˆÚs
 			action_->TransitionTo(new Approach);
 		}else {

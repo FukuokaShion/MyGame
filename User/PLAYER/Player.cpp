@@ -104,8 +104,9 @@ void Player::OnCollision(int damage) {
 }
 
 void Player::Draw() {
-	fbxObject3d_->Draw();
-
+	if (hp->IsLive()) {
+		fbxObject3d_->Draw();
+	}
 }
 
 Vector3 Player::bVelocity(Vector3& velocity, Transform& worldTransform){
