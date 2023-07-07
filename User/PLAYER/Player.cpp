@@ -108,22 +108,3 @@ void Player::Draw() {
 		fbxObject3d_->Draw();
 	}
 }
-
-Vector3 Player::bVelocity(Vector3& velocity, Transform& worldTransform){
-	Vector3 result = { 0,0,0 };
-
-	//ì‡êœ
-	result.x = velocity.x * worldTransform.matWorld.m[0][0] +
-			   velocity.y * worldTransform.matWorld.m[1][0] +
-			   velocity.z * worldTransform.matWorld.m[2][0];
-
-	result.y = velocity.x * worldTransform.matWorld.m[0][1] +
-			     velocity.y * worldTransform.matWorld.m[1][1] +
-			     velocity.z * worldTransform.matWorld.m[2][1];
-
-	result.z = velocity.x * worldTransform.matWorld.m[0][2] +
-		       velocity.y * worldTransform.matWorld.m[1][2] +
-			   velocity.z * worldTransform.matWorld.m[2][2];
-
-	return result;
-}

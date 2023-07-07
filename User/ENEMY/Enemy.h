@@ -3,6 +3,7 @@
 #include "FBXObject3d.h"
 
 #include"Action.h"
+#include"EnemyHp.h"
 
 class Player;
 
@@ -20,6 +21,7 @@ public:
 	bool GetIsAttack() { return action->GetIsAttack(); };
 	int GetPower() { return action->GetPower(); };
 
+	void OnCollision(int damage);
 private:
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
@@ -27,4 +29,6 @@ private:
 
 	//行動
 	Action* action = nullptr;
+	//ステータス
+	EnemyHp* hp = nullptr;
 };

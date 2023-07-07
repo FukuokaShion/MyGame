@@ -13,5 +13,6 @@ private:
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
 
-	bool playerIsHit;
+	bool isPlayerHit;
+	bool isEnemyHit;
 };

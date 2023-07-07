@@ -24,8 +24,6 @@ private:
 	void Rota();
 	void CamRota();
 
-	Vector3 bVelocity(Vector3& velocity, Transform& worldTransform);
-
 private:
 	//“ü—Í
 	Input* input_ = nullptr;

@@ -182,6 +182,7 @@
     <ClCompile Include="User\ENEMY\Approach.cpp" />
     <ClCompile Include="User\ENEMY\Enemy.cpp" />
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyHp.cpp" />
     <ClCompile Include="User\ENEMY\EnemyState.cpp" />
     <ClCompile Include="User\ENEMY\Standby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="User\ENEMY\Approach.h" />
     <ClInclude Include="User\ENEMY\Enemy.h" />
     <ClInclude Include="User\ENEMY\EnemyAttack.h" />
+    <ClInclude Include="User\ENEMY\EnemyHp.h" />
     <ClInclude Include="User\ENEMY\EnemyState.h" />
     <ClInclude Include="User\ENEMY\Standby.h" />
     <ClInclude Include="User\FIELD\Field.h" />

@@ -1,13 +1,19 @@
 #include"CollisionManager.h"
 
 void CollisionManager::CheckCollision() {
+	//“G‚ÌUŒ‚
 	if (enemy->GetIsAttack()) {
-		if (playerIsHit == false) {
+		if (isPlayerHit == false) {
 			player->OnCollision(enemy->GetPower());
-			playerIsHit = true;
+			isPlayerHit = true;
 		}
 	}else {
-		playerIsHit = false;
+		isPlayerHit = false;
 	}
 
+	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
+	//if (isEnemyHit == false) {
+	//	//‰¼‚Å10ƒ_ƒ[ƒW
+	//	enemy->OnCollision(10);
+	//}
 }
