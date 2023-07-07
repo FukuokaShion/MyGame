@@ -1,8 +1,15 @@
 #pragma once
 #include"EnemyState.h"
 
-//ó‘Ô1‚ÌƒNƒ‰ƒX
+//UŒ‚
 class EnemyAttack : public EnemyState {
 public:
-	void Update(Transform* wtf) override;
+	EnemyAttack();
+
+	void Update() override;
+
+private:
+	const int limit = 40;
+	int timer = limit;
+
 };

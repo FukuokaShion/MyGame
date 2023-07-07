@@ -8,12 +8,14 @@ public:
 	~Action();
 
 	void TransitionTo(EnemyState* state);
+	void SetTransform(Transform* EnemyWtf) { state_->SetEnemyTransform(EnemyWtf); };
+	void SetPlayerTransform(Transform* playerWtf) { state_->SetPlayerTransform(playerWtf); };
 
-	void SetTransform(Transform* wtf) { this->wtf = wtf; };
+	bool GetIsAttack() { return state_->GetIsAttack(); };
+	int GetPower() { return state_->GetPower(); };
 
 	void Update();
 
 private:
 	EnemyState* state_ = nullptr;
-	Transform* wtf = nullptr;
 };

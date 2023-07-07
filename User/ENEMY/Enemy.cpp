@@ -5,7 +5,7 @@
 
 Enemy::Enemy() {
 	//ƒ‚ƒfƒ‹¶¬
-	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
+	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("enemystand");
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
@@ -13,8 +13,14 @@ Enemy::Enemy() {
 }
 
 void Enemy::Initialize() {
-	action = new Action(new EnemyAttack);
+	action = new Action(new Standby);
 	action->SetTransform(&fbxObject3d_->wtf);
+	fbxObject3d_->wtf.position = { 0,0,8 };
+	fbxObject3d_->PlayAnimation();
+}
+
+void Enemy::SetPlayerTransform(Transform* playerWtf) {
+	action->SetPlayerTransform(playerWtf);
 }
 
 Enemy::~Enemy() {
@@ -26,7 +32,7 @@ Enemy::~Enemy() {
 void Enemy::Update() {
 	action->Update();
 	fbxObject3d_->Update();
-
+	
 }
 
 void Enemy::Draw() {

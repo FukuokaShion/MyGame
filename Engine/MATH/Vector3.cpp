@@ -41,6 +41,19 @@ const Vector3 Vector3::lerp(const Vector3& start, const Vector3& end, const floa
 	return start * (1.0f - t) + end * t;
 }
 
+float Vector3::Distance(const Vector3& start, const Vector3& end) {
+	Vector3 distance;
+	distance = end - start;
+	
+	return distance.length();
+}
+
+float Vector3::Angle(const Vector3& start, const Vector3& end) {
+	float angle;
+	angle = atan2f(end.x - start.x, end.z - start.z);
+	return angle;
+}
+
 Vector3 Vector3::Vector3Zero() {
 	Vector3 a = { 0, 0, 0 };
 	return a;

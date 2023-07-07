@@ -2,12 +2,19 @@
 #include"EnemyAttack.h"
 #include"Standby.h"
 
-void EnemyAttack::Update(Transform* wtf) {
-	{
-		wtf->position += {-0.1f, 0, 0 };
-		//ó‘ÔØ‚è‘Ö‚¦
-		if (wtf->position.x < -3) {
-			action_->TransitionTo(new Standby);
-		}
+EnemyAttack::EnemyAttack() {
+}
+
+//UŒ‚
+void EnemyAttack::Update() {
+	timer--;
+	if (timer > 15) {
+		EnemyWtf->position += {0, 0.08f , 0};
+	}else if(timer > 0) {
+		EnemyWtf->position += {0, -0.13f, 0};
+		isAttack = true;
+		power = 10;
+	}else {
+		action_->TransitionTo(new Standby);
 	}
 }

@@ -4,16 +4,21 @@
 
 #include"Action.h"
 
+class Player;
+
 class Enemy {
 public:
 	Enemy();
 	~Enemy();
 
 	void Initialize();
+	void SetPlayerTransform(Transform* playerWtf);
 
 	void Update();
-
 	void Draw();
+
+	bool GetIsAttack() { return action->GetIsAttack(); };
+	int GetPower() { return action->GetPower(); };
 
 private:
 	//ƒ‚ƒfƒ‹

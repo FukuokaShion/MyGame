@@ -177,7 +177,9 @@
     <ClCompile Include="Engine\MATH\Vector3.cpp" />
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="User\CollisionManager.cpp" />
     <ClCompile Include="User\ENEMY\Action.cpp" />
+    <ClCompile Include="User\ENEMY\Approach.cpp" />
     <ClCompile Include="User\ENEMY\Enemy.cpp" />
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp" />
     <ClCompile Include="User\ENEMY\EnemyState.cpp" />
@@ -216,7 +218,9 @@
     <ClInclude Include="Engine\MATH\Vector2.h" />
     <ClInclude Include="Engine\MATH\Vector3.h" />
     <ClInclude Include="Engine\MATH\Vector4.h" />
+    <ClInclude Include="User\CollisionManager.h" />
     <ClInclude Include="User\ENEMY\Action.h" />
+    <ClInclude Include="User\ENEMY\Approach.h" />
     <ClInclude Include="User\ENEMY\Enemy.h" />
     <ClInclude Include="User\ENEMY\EnemyAttack.h" />
     <ClInclude Include="User\ENEMY\EnemyState.h" />

@@ -26,6 +26,7 @@ public:
 	static void MakeOrthogonalL(float left, float right, float bottom, float top, float near_, float far_, Matrix4& matrix);
 	static void MakeLookL(const Vector3& eye, const Vector3& target, const Vector3& up, Matrix4& mat);
 	static void MakePerspectiveL(float fovAngleY, float aspect, float near_, float far_, Matrix4& matrix);
+	static Vector3 bVelocity(Vector3& velocity, Matrix4& mat);
 	Matrix4 MakeInverse(const Matrix4* mat);
 	static Matrix4 MakeIdentity()
 	{
@@ -39,4 +40,4 @@ Matrix4& operator*=(Matrix4& m1, const Matrix4& m2);
 
 // 2項演算子オーバーロード
 const Matrix4 operator*(const Matrix4& m1, const Matrix4& m2);
-const Vector3 operator*(const Vector3& v, const Matrix4& m2);
+const Vector3 operator*(const Vector3& v, const Matrix4& m);

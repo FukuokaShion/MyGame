@@ -59,6 +59,12 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
+	enemy->SetPlayerTransform(player->GetWtf());
+
+	//当たり判定マネージャ生成
+	collisionManager = new CollisionManager();
+	collisionManager->SetPlayer(player);
+	collisionManager->SetEnemy(enemy);
 
 	//カメラの設定
 	camera->SetParent(player->GetWtf());
@@ -74,6 +80,8 @@ void GameScene::Update() {
 	if (input->PushKey(DIK_SPACE)) {
 		player->OnCollision(50);
 	}
+
+	collisionManager->CheckCollision();
 
 	//カメラ更新
 	camera->Update();
@@ -92,6 +100,7 @@ void GameScene::Draw() {
 	Object3d::PreDraw(dxCommon->GetCommandList());
 	//// 3Dオブクジェクトの描画
 	field->Draw();
+
 	//3Dオブジェクト描画後処理
 	Object3d::PostDraw();
 
@@ -101,6 +110,7 @@ void GameScene::Draw() {
 	///FBX描画
 	player->Draw();
 	enemy->Draw();
+
 	///FBX描画後処理
 	FBXObject3d::PostDraw();
 
