@@ -229,6 +229,9 @@
     <ClCompile Include="User\CollisionManager.cpp">
       <Filter>user\ソース</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyHp.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -347,6 +350,9 @@
     </ClInclude>
     <ClInclude Include="User\CollisionManager.h">
       <Filter>user\ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyHp.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

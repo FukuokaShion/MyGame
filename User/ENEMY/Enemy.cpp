@@ -9,7 +9,8 @@ Enemy::Enemy() {
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
-
+	
+	hp = new EnemyHp();
 }
 
 void Enemy::Initialize() {
@@ -17,6 +18,7 @@ void Enemy::Initialize() {
 	action->SetTransform(&fbxObject3d_->wtf);
 	fbxObject3d_->wtf.position = { 0,0,8 };
 	fbxObject3d_->PlayAnimation();
+	hp->Initialize();
 }
 
 void Enemy::SetPlayerTransform(Transform* playerWtf) {
@@ -35,7 +37,12 @@ void Enemy::Update() {
 	
 }
 
-void Enemy::Draw() {
-	fbxObject3d_->Draw();
+void Enemy::OnCollision(int damage) {
+	hp->Damage(damage);
+}
 
+void Enemy::Draw() {
+	if (hp->IsLive()) {
+		fbxObject3d_->Draw();
+	}
 }
