@@ -1,6 +1,6 @@
-#include"Action.h"
-#include"Approach.h"
-#include"Standby.h"
+#include"EnemyAction.h"
+#include"EnemyApproach.h"
+#include"EnemyStandby.h"
 
 Approach::Approach() {
 }
@@ -23,6 +23,6 @@ void Approach::Update() {
 
 	if (Vector3::Distance(EnemyWtf->position, playerWtf->position) < distance) {
 		//ˆê’è‹——£‚É‚È‚Á‚½‚ç‘Ò‹@ó‘Ô‚ÉˆÚs
-		action_->TransitionTo(new Standby);
+		action_->TransitionTo(new EnemyStandby);
 	}
 }

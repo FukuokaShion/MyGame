@@ -2,9 +2,9 @@
 #include"EnemyState.h"
 
 //‘Ò‹@
-class Standby : public EnemyState {
+class EnemyStandby : public EnemyState {
 public:
-	Standby();
+	EnemyStandby();
 
 	void Update() override;
 

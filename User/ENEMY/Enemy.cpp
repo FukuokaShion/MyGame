@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "FbxLoader.h"
-#include"Standby.h"
+#include"EnemyStandby.h"
 #include"EnemyAttack.h"
 
 Enemy::Enemy() {
@@ -14,7 +14,7 @@ Enemy::Enemy() {
 }
 
 void Enemy::Initialize() {
-	action = new Action(new Standby);
+	action = new EnemyAction(new EnemyStandby);
 	action->SetTransform(&fbxObject3d_->wtf);
 	fbxObject3d_->wtf.position = { 0,0,8 };
 	fbxObject3d_->PlayAnimation();

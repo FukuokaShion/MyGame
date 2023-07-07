@@ -1,14 +1,14 @@
-#include"Action.h"
-#include"Standby.h"
+#include"EnemyAction.h"
+#include"EnemyStandby.h"
 #include"EnemyAttack.h"
-#include"Approach.h"
+#include"EnemyApproach.h"
 
-Standby::Standby() {
+EnemyStandby::EnemyStandby() {
 	timer = limit;
 }
 
 //‘Ò‹@
-void Standby::Update(){
+void EnemyStandby::Update(){
 	timer--;
 	//ó‘ÔØ‚è‘Ö‚¦
 	if (timer < 0) {

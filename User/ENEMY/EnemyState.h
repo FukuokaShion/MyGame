@@ -1,14 +1,14 @@
 #pragma once
 #include"Transform.h"
 
-class Action;
+class EnemyAction;
 
 class EnemyState {
 public:
 	EnemyState();
 	virtual ~EnemyState() {};
 
-	void SetAction(Action* action) { this->action_ = action; }
+	void SetAction(EnemyAction* action) { this->action_ = action; }
 	void SetPlayerTransform(Transform* playerWtf) { this->playerWtf = playerWtf; };
 	void SetEnemyTransform(Transform* EnemyWtf) { this->EnemyWtf = EnemyWtf; };
 
@@ -21,7 +21,7 @@ public:
 	virtual void Update() = 0;
 
 protected:
-	Action* action_ = nullptr;
+	EnemyAction* action_ = nullptr;
 
 	//ç¿ïW
 	Transform* playerWtf = nullptr;

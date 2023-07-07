@@ -1,6 +1,6 @@
-#include"Action.h"
+#include"EnemyAction.h"
 #include"EnemyAttack.h"
-#include"Standby.h"
+#include"EnemyStandby.h"
 
 EnemyAttack::EnemyAttack() {
 }
@@ -15,6 +15,6 @@ void EnemyAttack::Update() {
 		isAttack = true;
 		power = 10;
 	}else {
-		action_->TransitionTo(new Standby);
+		action_->TransitionTo(new EnemyStandby);
 	}
 }

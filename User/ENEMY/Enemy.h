@@ -2,7 +2,7 @@
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 
-#include"Action.h"
+#include"EnemyAction.h"
 #include"EnemyHp.h"
 
 class Player;
@@ -28,7 +28,7 @@ private:
 	FBXObject3d* fbxObject3d_ = nullptr;
 
 	//行動
-	Action* action = nullptr;
+	EnemyAction* action = nullptr;
 	//ステータス
 	EnemyHp* hp = nullptr;
 };

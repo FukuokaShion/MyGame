@@ -2,10 +2,10 @@
 #include"EnemyState.h"
 
 
-class Action {
+class EnemyAction {
 public:
-	Action(EnemyState* state);
-	~Action();
+	EnemyAction(EnemyState* state);
+	~EnemyAction();
 
 	void TransitionTo(EnemyState* state);
 	void SetTransform(Transform* EnemyWtf) { state_->SetEnemyTransform(EnemyWtf); };

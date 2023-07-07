@@ -1,14 +1,14 @@
-#include"Action.h"
+#include"EnemyAction.h"
 
-Action::Action(EnemyState* state){
+EnemyAction::EnemyAction(EnemyState* state){
 	this->TransitionTo(state);
 }
-Action::~Action() {
+EnemyAction::~EnemyAction() {
 	delete state_;
 }
 
 //状態を設定する
-void Action::TransitionTo(EnemyState* state) {
+void EnemyAction::TransitionTo(EnemyState* state) {
 	if (this->state_ != nullptr) {
 		//敵とプレイヤー座標をコピー
 		Transform* playerWtf = state_->GetPlayerTransform();
@@ -29,6 +29,6 @@ void Action::TransitionTo(EnemyState* state) {
 }
 
 //今の状態の行動をする
-void Action::Update() {
+void EnemyAction::Update() {
 	state_->Update();
 }

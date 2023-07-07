@@ -211,19 +211,19 @@
     <ClCompile Include="User\PLAYER\PlayerHp.cpp">
       <Filter>user\ソース\PLAYER</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\Action.cpp">
+    <ClCompile Include="User\ENEMY\EnemyAction.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
     <ClCompile Include="User\ENEMY\EnemyState.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\Standby.cpp">
+    <ClCompile Include="User\ENEMY\EnemyStandby.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\Approach.cpp">
+    <ClCompile Include="User\ENEMY\EnemyApproach.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
     <ClCompile Include="User\CollisionManager.cpp">
@@ -333,19 +333,19 @@
     <ClInclude Include="User\PLAYER\PlayerHp.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\Action.h">
+    <ClInclude Include="User\ENEMY\EnemyAction.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyState.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\Standby.h">
+    <ClInclude Include="User\ENEMY\EnemyStandby.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyAttack.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\Approach.h">
+    <ClInclude Include="User\ENEMY\EnemyApproach.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
     <ClInclude Include="User\CollisionManager.h">
