@@ -38,13 +38,14 @@ void Camera::Update() {
 	}
 
 	//回転の制限
-	float PI = 3.141592f;
-	if (wtf.rotation.x > PI/2) {
-		wtf.rotation.x = PI/2;
-	}else if (wtf.rotation.x < -PI/2) {
-		wtf.rotation.x = -PI/2;
+	//縦回転
+	if (wtf.rotation.x > upLimit) {
+		wtf.rotation.x = upLimit;
+	}else if (wtf.rotation.x < downLimit) {
+		wtf.rotation.x = downLimit;
 	}
 
+	//横回転
 	if (wtf.rotation.y > 2 * PI) {
 		wtf.rotation.y = 0;
 	}else if (wtf.rotation.y < 2 * -PI) {

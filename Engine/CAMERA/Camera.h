@@ -190,5 +190,10 @@ protected: // メンバ変数
 
 	float focalLengs = 50;
 	float sensor = 35;
+
+	//回転制限
+	float PI = 3.141592f;
+	float upLimit = PI/2;
+	float downLimit = -PI/2;
 };
 
