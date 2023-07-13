@@ -1,6 +1,8 @@
 #include"CollisionManager.h"
 
 void CollisionManager::CheckCollision() {
+	////‹¤‚ÉÀ•W‚ÌŒvŽZ(“–‚½‚è”»’è)‚Í‚Æ‚Á‚Ä‚È‚¢
+
 	//“G‚ÌUŒ‚
 	if (enemy->GetIsAttack()) {
 		if (isPlayerHit == false) {
@@ -12,8 +14,12 @@ void CollisionManager::CheckCollision() {
 	}
 
 	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
-	//if (isEnemyHit == false) {
-	//	//‰¼‚Å10ƒ_ƒ[ƒW
-	//	enemy->OnCollision(10);
-	//}
+	if (player->GetIsAttack()) {
+		if (isEnemyHit == false) {
+			enemy->OnCollision(player->GetPower());
+			isEnemyHit = true;
+		}
+	}else {
+		isEnemyHit = false;
+	}
 }

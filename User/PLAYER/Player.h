@@ -4,6 +4,7 @@
 #include "FBXObject3d.h"
 
 #include"PlayerHp.h"
+#include"PlayerAction.h"
 
 class Player {
 public:
@@ -19,6 +20,9 @@ public:
 	Transform* GetWtf() { return &fbxObject3d_->wtf; };
 	bool IsLive() { return hp->IsLive(); };
 
+	bool GetIsAttack() { return action->GetIsAttack(); };
+	int GetPower() { return action->GetPower(); };
+
 private:
 	void Move();
 	void Rota();
@@ -33,6 +37,9 @@ private:
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
+
+	//行動
+	PlayerAction* action = nullptr;
 
 	///ステータス
 	PlayerHp* hp = nullptr;

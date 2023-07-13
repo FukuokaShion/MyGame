@@ -76,16 +76,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 /// 毎フレーム処理
 /// </summary>
 void GameScene::Update() {
-	//仮の処理
-	if (input->PushKey(DIK_SPACE)) {
-		player->OnCollision(50);
-	}
-
 	collisionManager->CheckCollision();
-
-	//カメラ更新
-	camera->Update();
-
 	//オブジェクト更新
 	field->Update();
 	player->Update();
