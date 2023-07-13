@@ -292,11 +292,11 @@ void FBXObject3d::Draw()
 	fbxmodel->Draw(cmdList.Get());
 }
 
-void FBXObject3d::PlayAnimation(float speed, bool isLoop){
-	animationTime = static_cast<FbxLongLong>(frameTime.Get() * speed);
+void FBXObject3d::PlayAnimation(int animationNum, float speed, bool isLoop) {
+	animationTime = frameTime * speed;
 	FbxScene* fbxScene = fbxmodel->GetFbxScene();
-	//0番のアニメーションを取得
-	FbxAnimStack* animstack = fbxScene->GetSrcObject<FbxAnimStack>(0);
+	//アニメーションを取得
+	FbxAnimStack* animstack = fbxScene->GetSrcObject<FbxAnimStack>(animationNum);
 	//アニメーションの名前取得
 	const char* animstackname = animstack->GetName();
 	//アニメーションの時間情報
