@@ -187,7 +187,11 @@
     <ClCompile Include="User\ENEMY\EnemyStandby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
     <ClCompile Include="User\PLAYER\Player.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerAction.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
     <ClCompile Include="User\PLAYER\PlayerHp.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerStandby.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerState.cpp" />
     <ClCompile Include="User\SCENE\GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +233,11 @@
     <ClInclude Include="User\ENEMY\EnemyStandby.h" />
     <ClInclude Include="User\FIELD\Field.h" />
     <ClInclude Include="User\PLAYER\Player.h" />
+    <ClInclude Include="User\PLAYER\PlayerAction.h" />
+    <ClInclude Include="User\PLAYER\PlayerAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerHp.h" />
+    <ClInclude Include="User\PLAYER\PlayerStandby.h" />
+    <ClInclude Include="User\PLAYER\PlayerState.h" />
     <ClInclude Include="User\SCENE\GameScene.h" />
   </ItemGroup>
   <ItemGroup>

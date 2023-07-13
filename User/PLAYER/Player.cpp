@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "FbxLoader.h"
+#include"PlayerStandby.h"
 
 Player::Player() {
 	//ƒ‚ƒfƒ‹¶¬
@@ -19,13 +20,18 @@ Player::~Player() {
 void Player::Initialize(Input* input) {
 	input_ = input;
 	hp->Initialize();
-
+	action = new PlayerAction(new PlayerStandby, input);
+	action->SetTransform(&fbxObject3d_->wtf);
 }
 
 void Player::Update() {
+	action->Update();
+
 	Move();
 	Rota();
 	CamRota();
+
+	camera_->Update();
 
 	fbxObject3d_->Update();
 }
