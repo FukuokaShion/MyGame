@@ -1,6 +1,7 @@
 #pragma once
 #include "FBXModel.h"
 #include "FBXObject3d.h"
+#include"CollisionPrimitive.h"
 
 #include"EnemyAction.h"
 #include"EnemyHp.h"
@@ -22,6 +23,14 @@ public:
 	int GetPower() { return action->GetPower(); };
 
 	void OnCollision(int damage);
+
+
+public:
+	//‘Ì“–‚½‚è”»’è
+	Cylinder bodyHitBox;
+
+	//UŒ‚“–‚½‚è”»’è
+	Sphere attackHitBox;
 private:
 	//ƒ‚ƒfƒ‹
 	FBXModel* fbxModel_ = nullptr;

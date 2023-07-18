@@ -1,6 +1,7 @@
 #pragma once
 #include"Player.h"
 #include"Enemy.h"
+#include"CollisionPrimitive.h"
 
 class CollisionManager {
 public:

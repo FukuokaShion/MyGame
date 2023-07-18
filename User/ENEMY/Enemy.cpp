@@ -11,6 +11,11 @@ Enemy::Enemy() {
 	fbxObject3d_->SetModel(fbxModel_);
 	
 	hp = new EnemyHp();
+
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	bodyHitBox.height = 5.0f;
+
+	attackHitBox.radius = 3.0f;
 }
 
 void Enemy::Initialize() {
@@ -32,6 +37,9 @@ Enemy::~Enemy() {
 }
 
 void Enemy::Update() {
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	attackHitBox.center = fbxObject3d_->wtf.position;
+
 	action->Update();
 	fbxObject3d_->Update();
 	

@@ -1,7 +1,7 @@
 #include"PlayerHp.h"
 
 PlayerHp::PlayerHp() {
-	MaxHp = 100;
+	MaxHp = 20;
 	hp = MaxHp;
 	isLive = true;
 }

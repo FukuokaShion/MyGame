@@ -10,6 +10,12 @@ Player::Player() {
 	fbxObject3d_->SetModel(fbxModel_);
 	fbxObject3d_->PlayAnimation();
 	hp = new PlayerHp;
+
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	bodyHitBox.height = 5.0f;
+
+	attackHitBox.center = { 0,0,0 };
+	attackHitBox.radius = 1.0f;
 }
 
 Player::~Player() {
@@ -26,6 +32,7 @@ void Player::Initialize(Input* input) {
 
 void Player::Update() {
 	action->Update();
+	bodyHitBox.center = fbxObject3d_->wtf.position;
 
 	Move();
 	Rota();

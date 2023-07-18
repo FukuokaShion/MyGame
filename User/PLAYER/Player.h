@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "FBXModel.h"
 #include "FBXObject3d.h"
+#include"CollisionPrimitive.h"
 
 #include"PlayerHp.h"
 #include"PlayerAction.h"
@@ -27,6 +28,14 @@ private:
 	void Move();
 	void Rota();
 	void CamRota();
+
+
+public:
+	//‘Ì“–‚½‚è”»’è
+	Cylinder bodyHitBox;
+
+	//UŒ‚“–‚½‚è”»’è
+	Sphere attackHitBox;
 
 private:
 	//“ü—Í

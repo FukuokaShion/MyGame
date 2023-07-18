@@ -1,25 +1,33 @@
 #include"CollisionManager.h"
+#include"Collision.h"
 
 void CollisionManager::CheckCollision() {
-	////‹¤‚ÉÀ•W‚ÌŒvŽZ(“–‚½‚è”»’è)‚Í‚Æ‚Á‚Ä‚È‚¢
 
 	//“G‚ÌUŒ‚
-	if (enemy->GetIsAttack()) {
-		if (isPlayerHit == false) {
-			player->OnCollision(enemy->GetPower());
-			isPlayerHit = true;
+	if (Collision::CheckSphere2Cylinder(enemy->attackHitBox, player->bodyHitBox)) {
+		//“G‚ÌUŒ‚
+		if (enemy->GetIsAttack()) {
+			if (isPlayerHit == false) {
+				player->OnCollision(enemy->GetPower());
+				isPlayerHit = true;
+			}
 		}
-	}else {
-		isPlayerHit = false;
+		else {
+			isPlayerHit = false;
+		}
 	}
 
 	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
-	if (player->GetIsAttack()) {
-		if (isEnemyHit == false) {
-			enemy->OnCollision(player->GetPower());
-			isEnemyHit = true;
+	if (Collision::CheckSphere2Cylinder(player->attackHitBox, enemy->bodyHitBox)) {
+		//ƒvƒŒƒCƒ„[‚ÌUŒ‚
+		if (player->GetIsAttack()) {
+			if (isEnemyHit == false) {
+				enemy->OnCollision(player->GetPower());
+				isEnemyHit = true;
+			}
 		}
-	}else {
-		isEnemyHit = false;
+		else {
+			isEnemyHit = false;
+		}
 	}
 }
