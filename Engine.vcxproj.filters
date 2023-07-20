@@ -211,9 +211,6 @@
     <ClCompile Include="User\PLAYER\PlayerHp.cpp">
       <Filter>user\ソース\PLAYER</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyAction.cpp">
-      <Filter>user\ソース\ENEMY</Filter>
-    </ClCompile>
     <ClCompile Include="User\ENEMY\EnemyState.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
@@ -243,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="User\PLAYER\PlayerState.cpp">
       <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyLeave.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -345,9 +345,6 @@
     <ClInclude Include="User\PLAYER\PlayerHp.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyAction.h">
-      <Filter>user\ヘッダー\ENEMY</Filter>
-    </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyState.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
@@ -377,6 +374,9 @@
     </ClInclude>
     <ClInclude Include="User\PLAYER\PlayerState.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyLeave.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -178,11 +178,11 @@
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="User\CollisionManager.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyAction.cpp" />
     <ClCompile Include="User\ENEMY\EnemyApproach.cpp" />
     <ClCompile Include="User\ENEMY\Enemy.cpp" />
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp" />
     <ClCompile Include="User\ENEMY\EnemyHp.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyLeave.cpp" />
     <ClCompile Include="User\ENEMY\EnemyState.cpp" />
     <ClCompile Include="User\ENEMY\EnemyStandby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
@@ -224,11 +224,11 @@
     <ClInclude Include="Engine\MATH\Vector3.h" />
     <ClInclude Include="Engine\MATH\Vector4.h" />
     <ClInclude Include="User\CollisionManager.h" />
-    <ClInclude Include="User\ENEMY\EnemyAction.h" />
     <ClInclude Include="User\ENEMY\EnemyApproach.h" />
     <ClInclude Include="User\ENEMY\Enemy.h" />
     <ClInclude Include="User\ENEMY\EnemyAttack.h" />
     <ClInclude Include="User\ENEMY\EnemyHp.h" />
+    <ClInclude Include="User\ENEMY\EnemyLeave.h" />
     <ClInclude Include="User\ENEMY\EnemyState.h" />
     <ClInclude Include="User\ENEMY\EnemyStandby.h" />
     <ClInclude Include="User\FIELD\Field.h" />

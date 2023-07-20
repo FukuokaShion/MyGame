@@ -16,33 +16,33 @@ Enemy::Enemy() {
 	bodyHitBox.height = 5.0f;
 
 	attackHitBox.radius = 3.0f;
+
+	isAttack = false;
+	power = 0;
 }
 
 void Enemy::Initialize() {
-	action = new EnemyAction(new EnemyStandby);
-	action->SetTransform(&fbxObject3d_->wtf);
+	TransitionTo(new Standby);
+
 	fbxObject3d_->wtf.position = { 0,0,8 };
 	fbxObject3d_->PlayAnimation();
 	hp->Initialize();
-}
 
-void Enemy::SetPlayerTransform(Transform* playerWtf) {
-	action->SetPlayerTransform(playerWtf);
 }
 
 Enemy::~Enemy() {
 	delete fbxObject3d_;
 	delete fbxModel_;
-
+	delete hp;
+	delete state_;
 }
 
 void Enemy::Update() {
+	//当たり判定更新
 	bodyHitBox.center = fbxObject3d_->wtf.position;
 	attackHitBox.center = fbxObject3d_->wtf.position;
-
-	action->Update();
+	state_->Update();
 	fbxObject3d_->Update();
-	
 }
 
 void Enemy::OnCollision(int damage) {
@@ -53,4 +53,13 @@ void Enemy::Draw() {
 	if (hp->IsLive()) {
 		fbxObject3d_->Draw();
 	}
+}
+
+//状態を変更する
+void Enemy::TransitionTo(EnemyState* state) {
+	//削除
+	delete state_;
+	//新規作成
+	state_ = state;
+	state_->SetEnemy(this);
 }

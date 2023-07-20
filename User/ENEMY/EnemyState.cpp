@@ -1,6 +1,7 @@
 #include"EnemyState.h"
 
 EnemyState::EnemyState() {
-	isAttack = false;
-	power = 0;
+	timer = 0;
+	speed = { 0,0,0 };
+	velocity = { 0,0,0 };
 }

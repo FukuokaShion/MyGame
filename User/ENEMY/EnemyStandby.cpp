@@ -1,23 +1,23 @@
-#include"EnemyAction.h"
+#include"Enemy.h"
 #include"EnemyStandby.h"
 #include"EnemyAttack.h"
 #include"EnemyApproach.h"
-
-EnemyStandby::EnemyStandby() {
-	timer = limit;
-}
+#include"EnemyLeave.h"
 
 //‘Ò‹@
-void EnemyStandby::Update(){
-	timer--;
+void Standby::Update(){
+	timer++;
 	//ó‘ÔØ‚è‘Ö‚¦
-	if (timer < 0) {
-		if (Vector3::Distance(EnemyWtf->position, playerWtf->position) > approachDistance) {
+	if (timer > limit) {
+		if (Vector3::Distance(enemy_->fbxObject3d_->wtf.position, enemy_->playerWtf->position) > approachDistance) {
 			//‰“‚¢‚È‚çApproach‚ÉˆÚs
-			action_->TransitionTo(new Approach);
+			enemy_->TransitionTo(new Approach);
 		}else {
-			//‹ß‚¢‚È‚çUŒ‚‚·‚é
-			action_->TransitionTo(new EnemyAttack);
+			if (rand() % 100 + 1 < 50) {
+				enemy_->TransitionTo(new Attack);
+			}else {
+				enemy_->TransitionTo(new Leave);
+			}
 		}
 	}
 }
