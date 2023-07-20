@@ -1,33 +1,21 @@
 #pragma once
 #include"Transform.h"
 
-class EnemyAction;
+class Enemy;
 
 class EnemyState {
 public:
 	EnemyState();
 	virtual ~EnemyState() {};
 
-	void SetAction(EnemyAction* action) { this->action_ = action; }
-	void SetPlayerTransform(Transform* playerWtf) { this->playerWtf = playerWtf; };
-	void SetEnemyTransform(Transform* EnemyWtf) { this->EnemyWtf = EnemyWtf; };
-
-	Transform* GetPlayerTransform() { return playerWtf; };
-	Transform* GetEnemyTransform() { return EnemyWtf; };
-	bool GetIsAttack() { return isAttack; };
-	int GetPower() { return power; };
+	void SetEnemy(Enemy* enemy) { this->enemy_ = enemy; }
 
 public:
 	virtual void Update() = 0;
 
 protected:
-	EnemyAction* action_ = nullptr;
-
-	//À•W
-	Transform* playerWtf = nullptr;
-	Transform* EnemyWtf = nullptr;
-
-	//UŒ‚”»’è
-	bool isAttack;
-	int power;
+	Enemy* enemy_ = nullptr;
+	int timer;
+	Vector3 speed;
+	Vector3 velocity;
 };
