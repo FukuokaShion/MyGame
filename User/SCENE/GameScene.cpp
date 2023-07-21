@@ -76,11 +76,11 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 /// 毎フレーム処理
 /// </summary>
 void GameScene::Update() {
-	collisionManager->CheckCollision();
 	//オブジェクト更新
 	field->Update();
 	player->Update();
 	enemy->Update();
+	collisionManager->CheckCollision();
 }
 
 /// <summary>

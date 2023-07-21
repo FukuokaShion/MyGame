@@ -16,6 +16,7 @@ public:
 
 	void Update();
 	void OnCollision(int damage);
+	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
 	void Draw();
 
 	Transform* GetWtf() { return &fbxObject3d_->wtf; };

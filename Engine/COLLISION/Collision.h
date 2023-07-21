@@ -69,6 +69,8 @@ public:
 
 	static bool CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder);
 
+	static bool CheckCylinder2Cylinder(Cylinder& cylinder1, Cylinder& cylinder2);
+
 	bool BoxCollision(Vector3 player, Vector3 enemy, Vector3 playerWidth, Vector3 enemyWidth);
 
 	bool BoxCircle(Vector3 boxPos, Vector3 circlePos, Vector3 boxWidth, float circleWidth);
