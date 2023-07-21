@@ -241,16 +241,28 @@ bool Collision::CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder) {
 	}
 	//‰º‘¤
 	Vector3 down = cylinder.center;
-	down.y -= cylinder.height;
 	if (Vector3::Distance(sphere.center, down) < sphere.radius + cylinder.radius) {
 		return true;
 	}
 	//‹…‚Ì’†S‚Ì‚‚³‚ª‰~’Œ‚Ì‚‚³‚Ì’†
-	if (sphere.center.y < cylinder.center.y + cylinder.radius && sphere.center.y > cylinder.center.y - cylinder.radius) {
+	if (sphere.center.y < cylinder.center.y + cylinder.height && sphere.center.y > cylinder.center.y) {
 		//‚‚³–³‹
 		Vector3 side1 = { cylinder.center.x, 0.0f,cylinder.center.z };
 		Vector3 side2 = { sphere.center.x, 0.0f,sphere.center.z };
 		if (Vector3::Distance(side1, side2) < sphere.radius + cylinder.radius) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Collision::CheckCylinder2Cylinder(Cylinder& cylinder1, Cylinder& cylinder2) {
+	Vector3 side1 = { cylinder1.center.x, 0.0f, cylinder1.center.z };
+	Vector3 side2 = { cylinder2.center.x, 0.0f, cylinder2.center.z };
+	if (Vector3::Distance(side1, side2) < cylinder1.radius + cylinder2.radius) {
+		if (cylinder1.center.y < cylinder2.center.y + cylinder2.height &&
+			cylinder1.center.y + cylinder1.height > cylinder2.center.y) {
 			return true;
 		}
 	}

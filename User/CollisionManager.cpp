@@ -1,33 +1,55 @@
 #include"CollisionManager.h"
 #include"Collision.h"
 
-void CollisionManager::CheckCollision() {
+#include"Player.h"
+#include"Enemy.h"
 
+Player* CollisionManager::player_ = nullptr;
+Enemy* CollisionManager::enemy_ = nullptr;
+
+bool CollisionManager::isPlayerHit;
+bool CollisionManager::isEnemyHit;
+
+void CollisionManager::CheckCollision() {
 	//“G‚ÌUŒ‚
-	if (Collision::CheckSphere2Cylinder(enemy->attackHitBox, player->bodyHitBox)) {
+	if (Collision::CheckSphere2Cylinder(enemy_->attackHitBox, player_->bodyHitBox)) {
 		//“G‚ÌUŒ‚
-		if (enemy->GetIsAttack()) {
+		if (enemy_->GetIsAttack()) {
 			if (isPlayerHit == false) {
-				player->OnCollision(enemy->GetPower());
+				player_->OnCollision(enemy_->GetPower());
 				isPlayerHit = true;
 			}
-		}
-		else {
+		}else {
 			isPlayerHit = false;
 		}
 	}
 
 	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
-	if (Collision::CheckSphere2Cylinder(player->attackHitBox, enemy->bodyHitBox)) {
+	if (Collision::CheckSphere2Cylinder(player_->attackHitBox, enemy_->bodyHitBox)) {
 		//ƒvƒŒƒCƒ„[‚ÌUŒ‚
-		if (player->GetIsAttack()) {
+		if (player_->GetIsAttack()) {
 			if (isEnemyHit == false) {
-				enemy->OnCollision(player->GetPower());
+				enemy_->OnCollision(player_->GetPower());
 				isEnemyHit = true;
 			}
-		}
-		else {
+		}else {
 			isEnemyHit = false;
 		}
 	}
+}
+
+Vector3 CollisionManager::Body2Body() {
+	Vector3 velocity = { 0,0,0 };
+	if (Collision::CheckCylinder2Cylinder(enemy_->bodyHitBox, player_->bodyHitBox)) {
+		//‰Ÿ‚µo‚µˆ—
+		//ˆê•û“I‚ÉƒvƒŒƒCƒ„[‚ª‰Ÿ‚³‚ê‚é
+		Vector3 distance = player_->bodyHitBox.center - enemy_->bodyHitBox.center;
+		velocity = distance;
+
+		velocity.nomalize();
+		velocity *= player_->bodyHitBox.radius + enemy_->bodyHitBox.radius;
+
+		velocity -= distance;
+	}
+	return velocity;
 }
