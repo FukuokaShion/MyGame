@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "FbxLoader.h"
 #include"PlayerStandby.h"
+#include"CollisionManager.h"
 
 Player::Player() {
 	//ƒ‚ƒfƒ‹¶¬
@@ -32,9 +33,11 @@ void Player::Initialize(Input* input) {
 
 void Player::Update() {
 	action->Update();
-	bodyHitBox.center = fbxObject3d_->wtf.position;
 
 	Move();
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	fbxObject3d_->wtf.position += CollisionManager::Body2Body();
+
 	Rota();
 	CamRota();
 

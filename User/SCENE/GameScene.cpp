@@ -62,9 +62,8 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	enemy->SetPlayerTransform(player->GetWtf());
 
 	//当たり判定マネージャ生成
-	collisionManager = new CollisionManager();
-	collisionManager->SetPlayer(player);
-	collisionManager->SetEnemy(enemy);
+	CollisionManager::SetPlayer(player);
+	CollisionManager::SetEnemy(enemy);
 
 	//カメラの設定
 	camera->SetParent(player->GetWtf());
@@ -80,7 +79,7 @@ void GameScene::Update() {
 	field->Update();
 	player->Update();
 	enemy->Update();
-	collisionManager->CheckCollision();
+	CollisionManager::CheckCollision();
 }
 
 /// <summary>

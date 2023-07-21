@@ -1,19 +1,21 @@
 #pragma once
-#include"Player.h"
-#include"Enemy.h"
 #include"CollisionPrimitive.h"
+
+class Enemy;
+class Player;
 
 class CollisionManager {
 public:
-	void CheckCollision();
+	static void CheckCollision();
+	static Vector3 Body2Body();
 
-	void SetPlayer(Player* player) { this->player = player; };
-	void SetEnemy(Enemy* enemy) { this->enemy = enemy; };
+	static void SetPlayer(Player* player) { player_ = player; };
+	static void SetEnemy(Enemy* enemy) { enemy_ = enemy; };
 
 private:
-	Player* player = nullptr;
-	Enemy* enemy = nullptr;
+	static Player* player_;
+	static Enemy* enemy_;
 
-	bool isPlayerHit;
-	bool isEnemyHit;
+	static bool isPlayerHit;
+	static bool isEnemyHit;
 };

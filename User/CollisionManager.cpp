@@ -1,28 +1,22 @@
 #include"CollisionManager.h"
 #include"Collision.h"
 
+#include"Player.h"
+#include"Enemy.h"
+
+Player* CollisionManager::player_ = nullptr;
+Enemy* CollisionManager::enemy_ = nullptr;
+
+bool CollisionManager::isPlayerHit;
+bool CollisionManager::isEnemyHit;
+
 void CollisionManager::CheckCollision() {
-	//体同士
-	if (Collision::CheckCylinder2Cylinder(enemy->bodyHitBox, player->bodyHitBox)) {
-		//押し出し処理
-		//一方的にプレイヤーが押される
-		Vector3 distance = player->bodyHitBox.center - enemy->bodyHitBox.center;
-		Vector3 velocity = distance;
-
-		velocity.nomalize();
-		velocity *= player->bodyHitBox.radius + enemy->bodyHitBox.radius;
-
-		velocity -= distance;
-
-		player->Move(velocity);
-	}
-
 	//敵の攻撃
-	if (Collision::CheckSphere2Cylinder(enemy->attackHitBox, player->bodyHitBox)) {
+	if (Collision::CheckSphere2Cylinder(enemy_->attackHitBox, player_->bodyHitBox)) {
 		//敵の攻撃
-		if (enemy->GetIsAttack()) {
+		if (enemy_->GetIsAttack()) {
 			if (isPlayerHit == false) {
-				player->OnCollision(enemy->GetPower());
+				player_->OnCollision(enemy_->GetPower());
 				isPlayerHit = true;
 			}
 		}else {
@@ -31,15 +25,31 @@ void CollisionManager::CheckCollision() {
 	}
 
 	//プレイヤーの攻撃
-	if (Collision::CheckSphere2Cylinder(player->attackHitBox, enemy->bodyHitBox)) {
+	if (Collision::CheckSphere2Cylinder(player_->attackHitBox, enemy_->bodyHitBox)) {
 		//プレイヤーの攻撃
-		if (player->GetIsAttack()) {
+		if (player_->GetIsAttack()) {
 			if (isEnemyHit == false) {
-				enemy->OnCollision(player->GetPower());
+				enemy_->OnCollision(player_->GetPower());
 				isEnemyHit = true;
 			}
 		}else {
 			isEnemyHit = false;
 		}
 	}
+}
+
+Vector3 CollisionManager::Body2Body() {
+	Vector3 velocity = { 0,0,0 };
+	if (Collision::CheckCylinder2Cylinder(enemy_->bodyHitBox, player_->bodyHitBox)) {
+		//押し出し処理
+		//一方的にプレイヤーが押される
+		Vector3 distance = player_->bodyHitBox.center - enemy_->bodyHitBox.center;
+		velocity = distance;
+
+		velocity.nomalize();
+		velocity *= player_->bodyHitBox.radius + enemy_->bodyHitBox.radius;
+
+		velocity -= distance;
+	}
+	return velocity;
 }

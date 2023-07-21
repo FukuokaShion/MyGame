@@ -75,6 +75,4 @@ private://メンバ変数
 	Player* player = nullptr;
 	//エネミー
 	Enemy* enemy = nullptr;
-	//当たり判定マネージャ
-	CollisionManager* collisionManager = nullptr;
 };
