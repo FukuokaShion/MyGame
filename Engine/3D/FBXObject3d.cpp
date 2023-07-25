@@ -297,6 +297,8 @@ void FBXObject3d::PlayAnimation(int animationNum, float speed, bool isLoop) {
 	FbxScene* fbxScene = fbxmodel->GetFbxScene();
 	//アニメーションを取得
 	FbxAnimStack* animstack = fbxScene->GetSrcObject<FbxAnimStack>(animationNum);
+	// 取得したアニメーションに変更     
+	fbxScene->SetCurrentAnimationStack(animstack);
 	//アニメーションの名前取得
 	const char* animstackname = animstack->GetName();
 	//アニメーションの時間情報

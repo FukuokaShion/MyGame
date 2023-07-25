@@ -1,5 +1,7 @@
 #include"EnemyState.h"
 
+Enemy* EnemyState::enemy_ = nullptr;
+
 EnemyState::EnemyState() {
 	timer = 0;
 	speed = { 0,0,0 };

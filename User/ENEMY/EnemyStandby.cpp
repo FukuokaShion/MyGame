@@ -4,6 +4,10 @@
 #include"EnemyApproach.h"
 #include"EnemyLeave.h"
 
+Standby::Standby() {
+	enemy_->fbxObject3d_->PlayAnimation(1);
+}
+
 //‘Ò‹@
 void Standby::Update(){
 	timer++;

@@ -55,14 +55,12 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	player = new Player();
 	player->Initialize(input);
 	player->SetCamera(camera);
+	CollisionManager::SetPlayer(player);
 
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
 	enemy->SetPlayerTransform(player->GetWtf());
-
-	//当たり判定マネージャ生成
-	CollisionManager::SetPlayer(player);
 	CollisionManager::SetEnemy(enemy);
 
 	//カメラの設定

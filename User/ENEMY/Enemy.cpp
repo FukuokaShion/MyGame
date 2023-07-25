@@ -5,7 +5,7 @@
 
 Enemy::Enemy() {
 	//ƒ‚ƒfƒ‹¶¬
-	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("enemystand");
+	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("enemy");
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
@@ -19,13 +19,13 @@ Enemy::Enemy() {
 
 	isAttack = false;
 	power = 0;
+
+	state_->SetEnemy(this);
 }
 
 void Enemy::Initialize() {
 	TransitionTo(new Standby);
-
 	fbxObject3d_->wtf.position = { 0,0,8 };
-	fbxObject3d_->PlayAnimation();
 	hp->Initialize();
 
 }
@@ -61,5 +61,4 @@ void Enemy::TransitionTo(EnemyState* state) {
 	delete state_;
 	//V‹Kì¬
 	state_ = state;
-	state_->SetEnemy(this);
 }
