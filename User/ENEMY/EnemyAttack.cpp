@@ -4,6 +4,7 @@
 
 Attack::Attack() {
 	action = Action::Antic;
+	enemy_->fbxObject3d_->PlayAnimation(0);
 }
 
 //UŒ‚

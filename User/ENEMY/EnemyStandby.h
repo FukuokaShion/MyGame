@@ -4,6 +4,7 @@
 //‘Ò‹@
 class Standby : public EnemyState {
 public:
+	Standby();
 	void Update() override;
 
 private:
