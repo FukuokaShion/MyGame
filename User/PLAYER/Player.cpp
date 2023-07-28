@@ -9,7 +9,6 @@ Player::Player() {
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
-	fbxObject3d_->PlayAnimation();
 	hp = new PlayerHp;
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
@@ -17,6 +16,8 @@ Player::Player() {
 
 	attackHitBox.center = { 0,0,0 };
 	attackHitBox.radius = 1.0f;
+
+	state_->SetPlayer(this);
 }
 
 Player::~Player() {
@@ -27,22 +28,17 @@ Player::~Player() {
 void Player::Initialize(Input* input) {
 	input_ = input;
 	hp->Initialize();
-	action = new PlayerAction(new PlayerStandby, input);
-	action->SetTransform(&fbxObject3d_->wtf);
+	TransitionTo(new PlayerStandby);
 }
 
 void Player::Update() {
-	action->Update();
+	state_->Update();
 
-	Move();
 	bodyHitBox.center = fbxObject3d_->wtf.position;
 	fbxObject3d_->wtf.position += CollisionManager::Body2Body();
-
-	Rota();
 	CamRota();
 
 	camera_->Update();
-
 	fbxObject3d_->Update();
 }
 
@@ -76,7 +72,6 @@ void Player::Move() {
 
 	//ƒJƒƒ‰‚ªŒü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
 	velocity = Matrix4::bVelocity(velocity,camera_->wtf.matWorld);
-
 	fbxObject3d_->wtf.position += velocity;
 }
 
@@ -123,4 +118,12 @@ void Player::Draw() {
 	if (hp->IsLive()) {
 		fbxObject3d_->Draw();
 	}
+}
+
+//ó‘Ô‚ğ•ÏX‚·‚é
+void Player::TransitionTo(PlayerState* state) {
+	//íœ
+	delete state_;
+	//V‹Kì¬
+	state_ = state;
 }

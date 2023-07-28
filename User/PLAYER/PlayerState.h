@@ -2,36 +2,26 @@
 #include"Transform.h"
 #include"Input.h"
 
-class PlayerAction;
+class Player;
 
 class PlayerState {
 public:
 	PlayerState();
 	virtual ~PlayerState() {};
 
-	void SetAction(PlayerAction* action) { this->action_ = action; }
-	void SetPlayerTransform(Transform* playerWtf) { this->playerWtf = playerWtf; };
-	void SetEnemyTransform(Transform* EnemyWtf) { this->enemyWtf = EnemyWtf; };
-	void SetInput(Input* input) { this->input_ = input; };
-
-	Transform* GetPlayerTransform() { return playerWtf; };
-	Transform* GetEnemyTransform() { return enemyWtf; };
-	Input* GetInput() { return input_; };
+	void SetPlayer(Player* player) { player_ = player; };
 	bool GetIsAttack() { return isAttack; };
 	int GetPower() { return power; };
 
-public:
+	//更新
 	virtual void Update() = 0;
 
 protected:
-	PlayerAction* action_ = nullptr;
+	//状態移行
+	virtual void StateTransition() = 0;
 
-	//入力
-	Input* input_ = nullptr;
-
-	//座標
-	Transform* playerWtf = nullptr;
-	Transform* enemyWtf = nullptr;
+protected:
+	static Player* player_;
 
 	//攻撃判定
 	bool isAttack;

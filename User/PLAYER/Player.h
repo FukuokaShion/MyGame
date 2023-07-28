@@ -5,7 +5,7 @@
 #include"CollisionPrimitive.h"
 
 #include"PlayerHp.h"
-#include"PlayerAction.h"
+#include"PlayerState.h"
 
 class Player {
 public:
@@ -22,35 +22,39 @@ public:
 	Transform* GetWtf() { return &fbxObject3d_->wtf; };
 	bool IsLive() { return hp->IsLive(); };
 
-	bool GetIsAttack() { return action->GetIsAttack(); };
-	int GetPower() { return action->GetPower(); };
+	bool GetIsAttack() { return state_->GetIsAttack(); };
+	int GetPower() { return state_->GetPower(); };
 
-private:
+	void TransitionTo(PlayerState* state);
+
 	void Move();
 	void Rota();
 	void CamRota();
 
 
 public:
+	//カメラ
+	Camera* camera_ = nullptr;
+
 	//体当たり判定
 	Cylinder bodyHitBox;
 
 	//攻撃当たり判定
 	Sphere attackHitBox;
 
-private:
-	//入力
-	Input* input_ = nullptr;
-	//カメラ
-	Camera* camera_ = nullptr;
-
 	//モデル
-	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
-
-	//行動
-	PlayerAction* action = nullptr;
 
 	///ステータス
 	PlayerHp* hp = nullptr;
+
+	//入力
+	Input* input_ = nullptr;
+private:
+	//モデル
+	FBXModel* fbxModel_ = nullptr;
+
+	//行動
+	PlayerState* state_ = nullptr;
+
 };

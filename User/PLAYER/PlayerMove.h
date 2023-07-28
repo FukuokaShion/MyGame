@@ -2,12 +2,15 @@
 #include"PlayerState.h"
 
 //‘Ò‹@
-class PlayerStandby : public PlayerState {
+class PlayerMove : public PlayerState {
 public:
-	PlayerStandby();
+	PlayerMove();
 	void Update() override;
 
 private:
+	void Move();
+	void Rota();
+
 	void StateTransition() override;
 
 };
