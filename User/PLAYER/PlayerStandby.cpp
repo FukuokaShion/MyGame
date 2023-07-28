@@ -1,16 +1,37 @@
-#include"PlayerAction.h"
+#include"Player.h"
+
 #include"PlayerStandby.h"
 #include"PlayerAttack.h"
+#include"PlayerAvoid.h"
+#include"PlayerMove.h"
 
 PlayerStandby::PlayerStandby() {
+	player_->fbxObject3d_->PlayAnimation(4);
 }
 
 //待機
 void PlayerStandby::Update() {
-	//状態切り替え
+	StateTransition();
+}
 
-	if (input_->PushKey(DIK_SPACE)) {
-		//仮でスペースキーで攻撃に移行
-		action_->TransitionTo(new PlayerAttack);
+void PlayerStandby::StateTransition() {
+	//回復
+	if (player_->input_->PButtonTrigger(X)) {
+		player_->hp->Heal(10);
+	}
+
+	//回避
+	if (player_->input_->PButtonTrigger(A)) {
+		player_->TransitionTo(new PlayerAvoid);
+	}
+
+	//攻撃
+	if (player_->input_->PButtonTrigger(B)) {
+		player_->TransitionTo(new PlayerAttack);
+	}
+
+	//移動
+	if (player_->input_->LeftStickInput()) {
+		player_->TransitionTo(new PlayerMove);
 	}
 }

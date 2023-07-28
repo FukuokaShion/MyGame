@@ -1,20 +1,59 @@
-#include"PlayerAction.h"
+#include"Player.h"
 #include"PlayerAttack.h"
 #include"PlayerStandby.h"
 
 PlayerAttack::PlayerAttack() {
+	action = Action::Antic;
+	timer = 0;
+	player_->fbxObject3d_->PlayAnimation(1,1.5f);
 }
 
 //UŒ‚
 void PlayerAttack::Update() {
-	timer--;
-	if (timer > 15) {
-		playerWtf->position += {0, 0.08f , 0};
-	}else if(timer > 0) {
-		playerWtf->position += {0, -0.13f, 0};
+	timer++;
+	
+	switch (action) {
+	case Action::Antic:
+		//—\”õ“®ì
+		speed = anticDistance / static_cast<float>(anticTime);
+		velocity = Matrix4::bVelocity(speed, player_->fbxObject3d_->wtf.matWorld);
+		player_->fbxObject3d_->wtf.position += velocity;
+
+		if (timer > anticTime) {
+			timer = 0;
+			action = Action::Attack;
+		}
+		break;
+	case Action::Attack:
+		//UŒ‚
+		//ˆÚ“®
+		speed = attackDistance / static_cast<float>(attackTime);
+		velocity = Matrix4::bVelocity(speed, player_->fbxObject3d_->wtf.matWorld);
+		player_->fbxObject3d_->wtf.position += velocity;
+
+		//UŒ‚“–‚½‚è”»’è
+		player_->attackHitBox.center = player_->fbxObject3d_->wtf.position;
+		player_->attackHitBox.radius = 4;
+
+		//UŒ‚”»’è
 		isAttack = true;
-		power = 10;
-	}else {
-		action_->TransitionTo(new PlayerStandby);
+		power = power_;
+
+		if (timer > attackTime) {
+			timer = 0;
+			action = Action::After;
+		}
+		break;
+	case Action::After:
+		//ŒãŒ„
+		if (timer > afterTime) {
+			isAttack = false;
+			player_->TransitionTo(new PlayerStandby);
+		}
+		break;
 	}
+}
+
+void PlayerAttack::StateTransition() {
+	player_->TransitionTo(new PlayerStandby);
 }
