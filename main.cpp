@@ -16,7 +16,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	DirectXCommon* dxCommon = nullptr;
 	FPS* fps = new FPS;
 	Input* input = nullptr;
-	ImGuiManager* imgui = nullptr;
+	//ImGuiManager* imgui = nullptr;
 
 	GameScene* gameScene = nullptr;
 
@@ -32,8 +32,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	input->Initialize(winApp);
 
 	// ImGuiの初期化
-	imgui = new ImGuiManager();
-	imgui->Initialize(winApp,dxCommon);
+	//imgui = new ImGuiManager();
+	//imgui->Initialize(winApp,dxCommon);
 
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
 #pragma endregion
@@ -86,18 +86,18 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PreDraw();
 
 		//Imgui受付開始
-		imgui->Begin();
+		//imgui->Begin();
 		//デモウィンドウの表示オン
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 
 		//ゲームシーンの描画
 		gameScene->Draw();
 
 		//Imgui受付終了
-		imgui->End();
+		//imgui->End();
 
 		//Imgui描画
-		imgui->Draw();
+		//imgui->Draw();
 
 		//描画終了
 		dxCommon->PostDraw();
@@ -112,12 +112,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	}
 #pragma region  WindowsAPI後始末
 	delete gameScene;
-	imgui->Finalize();
+	//imgui->Finalize();
 	FbxLoader::GetInstance()->Finalize();
 
 	//WindowsAPIの終了処理
 	winApp->Finalize();
-	delete imgui;
+	//delete imgui;
 
 	//入力開放
 	delete input;

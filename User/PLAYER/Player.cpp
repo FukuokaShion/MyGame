@@ -28,6 +28,13 @@ Player::~Player() {
 void Player::Initialize(Input* input) {
 	input_ = input;
 	hp->Initialize();
+	fbxObject3d_->Initialize();
+	fbxObject3d_->wtf.Initialize();
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	bodyHitBox.height = 5.0f;
+
+	attackHitBox.center = { 0,0,0 };
+	attackHitBox.radius = 1.0f;
 	TransitionTo(new PlayerStandby);
 }
 
@@ -93,10 +100,10 @@ void Player::CamRota() {
 	Vector2 camRotaSpeed = { PI / 1800.0f, PI / 1800.0f };
 	float sensitivity = 10.0f;
 
-	if (input_->StickInput(R_LEFT)) {
+	if (input_->StickInput(R_RIGHT)) {
 		theta.y = camRotaSpeed.y * sensitivity;
 	}
-	else if (input_->StickInput(R_RIGHT)) {
+	else if (input_->StickInput(R_LEFT)) {
 		theta.y = -camRotaSpeed.y * sensitivity;
 	}
 

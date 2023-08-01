@@ -28,6 +28,8 @@ public:
 
 	void TransitionTo(EnemyState* state);
 
+	bool IsLive() { return hp->IsLive(); };
+
 public:
 	//‘Ì“–‚½‚è”»’è
 	Cylinder bodyHitBox;

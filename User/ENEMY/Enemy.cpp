@@ -25,9 +25,18 @@ Enemy::Enemy() {
 
 void Enemy::Initialize() {
 	TransitionTo(new Standby);
+	fbxObject3d_->Initialize();
+	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.position = { 0,0,8 };
 	hp->Initialize();
 
+	bodyHitBox.center = fbxObject3d_->wtf.position;
+	bodyHitBox.height = 5.0f;
+
+	attackHitBox.radius = 3.0f;
+
+	isAttack = false;
+	power = 0;
 }
 
 Enemy::~Enemy() {

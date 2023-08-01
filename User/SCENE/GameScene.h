@@ -65,7 +65,18 @@ private: //メンバ変数 (固定)
 
 	const float PI = 3.141592f;
 
-private://メンバ変数
+private:
+	enum class Scene{
+		Titele,
+		Option,
+		Game,
+		Clear,
+		GAmeOver,
+	};
+	Scene scene;
+	
+	
+	//メンバ変数
 	//カメラ
 	Camera* camera = nullptr;
 	//フィールド
@@ -75,4 +86,9 @@ private://メンバ変数
 	Player* player = nullptr;
 	//エネミー
 	Enemy* enemy = nullptr;
+
+	//画像
+	Sprite* titlePic;
+	Sprite* clearPic;
+	Sprite* gameoverPic;
 };
