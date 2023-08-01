@@ -1,20 +1,5 @@
 #include "Particle.hlsli"
 
-//[maxvertexcount(1)]
-//void main(
-//	point VSOutput input[1]:SV_POSITION,
-//	//線分ストリーム
-//	inout PointStream< GSOutput > output
-//)
-//{
-//	GSOutput element;
-//	//頂点情報
-//	element.normal = input[0].normal;
-//	element.uv = input[0].uv;
-//	element.svpos = input[0].svpos;
-//	output.Append(element);
-//}
-
 //四角形の頂点数
 static const uint vnum = 4;
 

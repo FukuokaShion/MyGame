@@ -2,6 +2,7 @@
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
+#include "ParticleManager.h"
 
 #include"EnemyHp.h"
 #include"EnemyState.h"
@@ -30,6 +31,8 @@ public:
 
 	bool IsLive() { return hp->IsLive(); };
 
+	void EffDraw() { DamageParticle->Draw(); };
+
 public:
 	//体当たり判定
 	Cylinder bodyHitBox;
@@ -52,4 +55,8 @@ private:
 	//攻撃判定
 	bool isAttack;
 	int power;
+
+
+	//パーティクル
+	std::unique_ptr<ParticleManager> DamageParticle;
 };
