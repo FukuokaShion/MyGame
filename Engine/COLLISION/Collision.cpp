@@ -232,26 +232,39 @@ bool Collision::CheckRay2Sphere(const Ray& ray, const Sphere& sphere, float* dis
 	return true;
 }
 
-bool Collision::CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder) {
-	//ã‘¤
-	Vector3 up = cylinder.center;
-	up.y += cylinder.height;
-	if (Vector3::Distance(sphere.center, up) < sphere.radius + cylinder.radius) {
-		return true;
-	}
-	//‰º‘¤
-	Vector3 down = cylinder.center;
-	if (Vector3::Distance(sphere.center, down) < sphere.radius + cylinder.radius) {
-		return true;
-	}
+bool Collision::CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder, Vector3* inter) {
 	//‹…‚Ì’†S‚Ì‚‚³‚ª‰~’Œ‚Ì‚‚³‚Ì’†
 	if (sphere.center.y < cylinder.center.y + cylinder.height && sphere.center.y > cylinder.center.y) {
 		//‚‚³–³‹
 		Vector3 side1 = { cylinder.center.x, 0.0f,cylinder.center.z };
 		Vector3 side2 = { sphere.center.x, 0.0f,sphere.center.z };
 		if (Vector3::Distance(side1, side2) < sphere.radius + cylinder.radius) {
+			if (inter) {
+				*inter = cylinder.center;
+				float angle = atan2f(sphere.center.x - cylinder.center.x, sphere.center.z - cylinder.center.z);
+				*inter += {cylinder.radius * sinf(angle), sphere.center.y, cylinder.radius* cosf(angle)};
+			}
 			return true;
 		}
+	}
+	
+	//ã‘¤
+	Vector3 up = cylinder.center;
+	up.y += cylinder.height;
+	if (Vector3::Distance(sphere.center, up) < sphere.radius + cylinder.radius) {
+		if (inter){
+			*inter = up + (sphere.center - up) / 2;
+		}
+		return true;
+	}
+
+	//‰º‘¤
+	Vector3 down = cylinder.center;
+	if (Vector3::Distance(sphere.center, down) < sphere.radius + cylinder.radius) {
+		if (inter) {
+			*inter = down + (sphere.center - down) / 2;
+		}
+		return true;
 	}
 
 	return false;
@@ -381,9 +394,10 @@ bool Collision::CircleCollisionXZ(Vector3 playerPos, Vector3 enemyPos, float pla
 	return false;
 }
 
-
-bool Collision::CheckSphere2Sphere(Sphere& sphere1, Sphere& sphere2) {
+bool Collision::CheckSphere2Sphere(Sphere& sphere1, Sphere& sphere2, Vector3* inter) {
 	if (Vector3::Distance(sphere1.center, sphere2.center) <= sphere1.radius + sphere2.radius) {
+		Vector3 inter_ = sphere1.center + (sphere2.center - sphere1.center) / 2;
+		inter = &inter_;
 		return true;
 	}
 

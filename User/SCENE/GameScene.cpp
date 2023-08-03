@@ -225,14 +225,4 @@ void GameScene::Draw() {
 
 		break;
 	}
-
-
-
-	//// パーティクルの描画
-
-	// パーティクル描画前処理
-	ParticleManager::PreDraw(dxCommon->GetCommandList());
-
-	// パーティクル描画後処理
-	ParticleManager::PostDraw();
 }

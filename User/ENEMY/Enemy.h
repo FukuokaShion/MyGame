@@ -2,6 +2,7 @@
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
+#include"EnemyParticle.h"
 
 #include"EnemyHp.h"
 #include"EnemyState.h"
@@ -24,7 +25,7 @@ public:
 	void SetIsAttack(bool isAttack) { this->isAttack = isAttack; };
 	void setPower(int power) { this->power = power; };
 
-	void OnCollision(int damage);
+	void OnCollision(int damage,Vector3 hitPos);
 
 	void TransitionTo(EnemyState* state);
 
@@ -52,4 +53,6 @@ private:
 	//çUåÇîªíË
 	bool isAttack;
 	int power;
+
+	EnemyParticle* particle = nullptr;
 };

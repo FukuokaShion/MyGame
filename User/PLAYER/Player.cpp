@@ -11,12 +11,6 @@ Player::Player() {
 	fbxObject3d_->SetModel(fbxModel_);
 	hp = new PlayerHp;
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
-
-	attackHitBox.center = { 0,0,0 };
-	attackHitBox.radius = 1.0f;
-
 	state_->SetPlayer(this);
 }
 
@@ -30,11 +24,14 @@ void Player::Initialize(Input* input) {
 	hp->Initialize();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
+
 	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
+	bodyHitBox.height = 3.0f;
+	bodyHitBox.radius = 1.0f;
 
 	attackHitBox.center = { 0,0,0 };
 	attackHitBox.radius = 1.0f;
+
 	TransitionTo(new PlayerStandby);
 }
 

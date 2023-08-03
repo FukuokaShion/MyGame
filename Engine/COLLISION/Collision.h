@@ -65,9 +65,9 @@ public:
 	/// <returns>Œğ·‚µ‚Ä‚¢‚é‚©”Û‚©</returns>
 	static bool CheckRay2Sphere(const Ray& ray, const Sphere& sphere, float* distance = nullptr, Vector3* inter = nullptr);
 
-	static bool CheckSphere2Sphere(Sphere& sphere1, Sphere& sphere2);
+	static bool CheckSphere2Sphere(Sphere& sphere1, Sphere& sphere2, Vector3* inter = nullptr);
 
-	static bool CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder);
+	static bool CheckSphere2Cylinder(Sphere& sphere, Cylinder& cylinder, Vector3* inter = nullptr);
 
 	static bool CheckCylinder2Cylinder(Cylinder& cylinder1, Cylinder& cylinder2);
 

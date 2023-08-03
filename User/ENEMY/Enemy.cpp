@@ -12,15 +12,12 @@ Enemy::Enemy() {
 	
 	hp = new EnemyHp();
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
-
-	attackHitBox.radius = 3.0f;
-
 	isAttack = false;
 	power = 0;
 
 	state_->SetEnemy(this);
+
+	particle = new EnemyParticle;
 }
 
 void Enemy::Initialize() {
@@ -31,7 +28,8 @@ void Enemy::Initialize() {
 	hp->Initialize();
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
+	bodyHitBox.height = 3.0f;
+	bodyHitBox.radius = 1.7f;
 
 	attackHitBox.radius = 3.0f;
 
@@ -44,6 +42,7 @@ Enemy::~Enemy() {
 	delete fbxModel_;
 	delete hp;
 	delete state_;
+	delete particle;
 }
 
 void Enemy::Update() {
@@ -52,16 +51,19 @@ void Enemy::Update() {
 	attackHitBox.center = fbxObject3d_->wtf.position;
 	state_->Update();
 	fbxObject3d_->Update();
+	particle->Update();
 }
 
-void Enemy::OnCollision(int damage) {
+void Enemy::OnCollision(int damage, Vector3 hitPos) {
 	hp->Damage(damage);
+	particle->OnColision(hitPos);
 }
 
 void Enemy::Draw() {
 	if (hp->IsLive()) {
 		fbxObject3d_->Draw();
 	}
+	particle->Draw();
 }
 
 //ó‘Ô‚ð•ÏX‚·‚é
