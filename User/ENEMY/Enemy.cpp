@@ -12,15 +12,12 @@ Enemy::Enemy() {
 	
 	hp = new EnemyHp();
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
-
-	attackHitBox.radius = 3.0f;
-
 	isAttack = false;
 	power = 0;
 
 	state_->SetEnemy(this);
+
+	particle = new EnemyParticle;
 }
 
 void Enemy::Initialize() {
@@ -31,19 +28,13 @@ void Enemy::Initialize() {
 	hp->Initialize();
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 5.0f;
+	bodyHitBox.height = 3.0f;
+	bodyHitBox.radius = 1.7f;
 
 	attackHitBox.radius = 3.0f;
 
 	isAttack = false;
 	power = 0;
-
-
-	//パーティクル生成
-	DamageParticle = std::make_unique<ParticleManager>();
-	DamageParticle.get()->Initialize();
-	DamageParticle->LoadTexture("blod.png");
-	DamageParticle->Update();
 }
 
 Enemy::~Enemy() {
@@ -51,6 +42,7 @@ Enemy::~Enemy() {
 	delete fbxModel_;
 	delete hp;
 	delete state_;
+	delete particle;
 }
 
 void Enemy::Update() {
@@ -59,45 +51,19 @@ void Enemy::Update() {
 	attackHitBox.center = fbxObject3d_->wtf.position;
 	state_->Update();
 	fbxObject3d_->Update();
-
-	DamageParticle->Update();
+	particle->Update();
 }
 
-void Enemy::OnCollision(int damage) {
+void Enemy::OnCollision(int damage, Vector3 hitPos) {
 	hp->Damage(damage);
-	
-	for (int i = 0; i < 20; i++) {
-		//X,Y,Z全て[-5.0f,+5.0f]でランダムに分布
-		const float rnd_pos = 5.0f;
-		Vector3 pos = fbxObject3d_->wtf.position;
-		pos.x += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-		pos.y += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f + 2.0f;
-		pos.z += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-
-		//速度
-		//X,Y,Z全て[-0.05f,+0.05f]でランダムに分布
-		const float rnd_vel = 0.1f;
-		Vector3 vel{};
-		vel.x = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-		vel.y = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-		vel.z = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
-		//重力に見立ててYのみ[-0.001f,0]でランダムに分布
-		const float rnd_acc = 0.00001f;
-		Vector3 acc{};
-		acc.x = (float)rand() / RAND_MAX * rnd_acc - rnd_acc / 2.0f;
-		acc.y = (float)rand() / RAND_MAX * rnd_acc - rnd_acc / 2.0f;
-
-		//追加
-		DamageParticle->Add(60, pos, vel, acc, 1.0f, 0.0f);
-	}
-
+	particle->OnColision(hitPos);
 }
 
 void Enemy::Draw() {
 	if (hp->IsLive()) {
 		fbxObject3d_->Draw();
 	}
-	EffDraw();
+	particle->Draw();
 }
 
 //状態を変更する

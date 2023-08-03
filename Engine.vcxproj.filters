@@ -241,6 +241,9 @@
     <ClCompile Include="User\PLAYER\PlayerMove.cpp">
       <Filter>user\ソース\PLAYER</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyParticle.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -371,6 +374,9 @@
     </ClInclude>
     <ClInclude Include="User\PLAYER\PlayerMove.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyParticle.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

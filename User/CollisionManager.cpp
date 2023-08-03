@@ -23,13 +23,13 @@ void CollisionManager::CheckCollision() {
 			isPlayerHit = false;
 		}
 	}
-
+	Vector3 hitPos;
 	//プレイヤーの攻撃
-	if (Collision::CheckSphere2Cylinder(player_->attackHitBox, enemy_->bodyHitBox)) {
+	if (Collision::CheckSphere2Cylinder(player_->attackHitBox, enemy_->bodyHitBox, &hitPos)) {
 		//プレイヤーの攻撃
 		if (player_->GetIsAttack()) {
 			if (isEnemyHit == false) {
-				enemy_->OnCollision(player_->GetPower());
+				enemy_->OnCollision(player_->GetPower(), hitPos);
 				isEnemyHit = true;
 			}
 		}else {

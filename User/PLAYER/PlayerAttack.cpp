@@ -33,7 +33,8 @@ void PlayerAttack::Update() {
 
 		//UŒ‚“–‚½‚è”»’è
 		player_->attackHitBox.center = player_->fbxObject3d_->wtf.position;
-		player_->attackHitBox.radius = 4;
+		player_->attackHitBox.center.y = 2.0;
+		player_->attackHitBox.radius = 1.5;
 
 		//UŒ‚”»’è
 		isAttack = true;

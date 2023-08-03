@@ -2,7 +2,7 @@
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
-#include "ParticleManager.h"
+#include"EnemyParticle.h"
 
 #include"EnemyHp.h"
 #include"EnemyState.h"
@@ -25,13 +25,11 @@ public:
 	void SetIsAttack(bool isAttack) { this->isAttack = isAttack; };
 	void setPower(int power) { this->power = power; };
 
-	void OnCollision(int damage);
+	void OnCollision(int damage,Vector3 hitPos);
 
 	void TransitionTo(EnemyState* state);
 
 	bool IsLive() { return hp->IsLive(); };
-
-	void EffDraw() { DamageParticle->Draw(); };
 
 public:
 	//体当たり判定
@@ -56,7 +54,5 @@ private:
 	bool isAttack;
 	int power;
 
-
-	//パーティクル
-	std::unique_ptr<ParticleManager> DamageParticle;
+	EnemyParticle* particle = nullptr;
 };
