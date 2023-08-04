@@ -10,6 +10,7 @@ public:
 	virtual ~PlayerState() {};
 
 	void SetPlayer(Player* player) { player_ = player; };
+	void SetInput(Input* input) { this->input = input; };
 	bool GetIsAttack() { return isAttack; };
 	int GetPower() { return power; };
 
@@ -22,6 +23,7 @@ protected:
 
 protected:
 	static Player* player_;
+	static Input* input;
 
 	//UŒ‚”»’è
 	bool isAttack;

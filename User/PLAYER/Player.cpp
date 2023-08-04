@@ -21,6 +21,8 @@ Player::~Player() {
 
 void Player::Initialize(Input* input) {
 	input_ = input;
+	state_->SetInput(input_);
+
 	hp->Initialize();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
@@ -44,49 +46,6 @@ void Player::Update() {
 
 	camera_->Update();
 	fbxObject3d_->Update();
-}
-
-void Player::Move() {
-	//移動量
-	Vector3 velocity = { 0,0,0 };
-	//移動速度
-	float speed = 0.5f;
-
-	//スティック入力方向取得
-	Vector2 stickVec = input_->GetLeftStickVec();
-	//移動方向に変換
-	velocity.x = stickVec.x;
-	velocity.z = stickVec.y;
-	//単位ベクトル化
-	velocity = velocity.nomalize();
-	//移動ベクトルに変換
-	velocity *= speed;
-
-	//キーボード入力
-	if (input_->PushKey(DIK_A)) {
-		velocity.x = -speed;
-	}else if (input_->PushKey(DIK_D)) {
-		velocity.x = speed;
-	}
-	if (input_->PushKey(DIK_W)) {
-		velocity.z = speed;
-	}else if (input_->PushKey(DIK_S)) {
-		velocity.z = -speed;
-	}
-
-	//カメラが向いている方向に合わせる
-	velocity = Matrix4::bVelocity(velocity,camera_->wtf.matWorld);
-	fbxObject3d_->wtf.position += velocity;
-}
-
-void Player::Rota() {
-	if (input_->LeftStickInput()) {
-		Vector2 stickVec = input_->GetLeftStickVec();
-
-		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
-	
-		fbxObject3d_->wtf.rotation.y = theta + camera_->wtf.rotation.y;
-	}
 }
 
 void Player::CamRota() {

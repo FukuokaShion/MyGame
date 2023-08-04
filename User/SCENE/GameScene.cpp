@@ -64,11 +64,11 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
-	enemy->SetPlayerTransform(player->GetWtf());
+	enemy->SetPlayerTransform(player->GetWtfP());
 	CollisionManager::SetEnemy(enemy);
 
 	//カメラの設定
-	camera->SetParent(player->GetWtf());
+	camera->SetParent(player->GetWtfP());
 	camera->isSyncRota = false;
 
 	scene = Scene::Titele;

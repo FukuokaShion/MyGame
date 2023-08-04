@@ -12,7 +12,8 @@ bool CollisionManager::isEnemyHit;
 
 void CollisionManager::CheckCollision() {
 	//“G‚ÌUŒ‚
-	if (Collision::CheckSphere2Cylinder(enemy_->attackHitBox, player_->bodyHitBox)) {
+	Cylinder playerBody = player_->GetBodyHitBox();
+	if (Collision::CheckSphere2Cylinder(enemy_->attackHitBox, playerBody)) {
 		//“G‚ÌUŒ‚
 		if (enemy_->GetIsAttack()) {
 			if (isPlayerHit == false) {
@@ -23,9 +24,11 @@ void CollisionManager::CheckCollision() {
 			isPlayerHit = false;
 		}
 	}
-	Vector3 hitPos;
+
 	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
-	if (Collision::CheckSphere2Cylinder(player_->attackHitBox, enemy_->bodyHitBox, &hitPos)) {
+	Vector3 hitPos;
+	Sphere playerAttack = player_->GetAttackHitBox();
+	if (Collision::CheckSphere2Cylinder(playerAttack, enemy_->bodyHitBox, &hitPos)) {
 		//ƒvƒŒƒCƒ„[‚ÌUŒ‚
 		if (player_->GetIsAttack()) {
 			if (isEnemyHit == false) {
@@ -40,14 +43,15 @@ void CollisionManager::CheckCollision() {
 
 Vector3 CollisionManager::Body2Body() {
 	Vector3 velocity = { 0,0,0 };
-	if (Collision::CheckCylinder2Cylinder(enemy_->bodyHitBox, player_->bodyHitBox)) {
+	Cylinder playerBody = player_->GetBodyHitBox();
+	if (Collision::CheckCylinder2Cylinder(enemy_->bodyHitBox, playerBody)) {
 		//‰Ÿ‚µo‚µˆ—
 		//ˆê•û“I‚ÉƒvƒŒƒCƒ„[‚ª‰Ÿ‚³‚ê‚é
-		Vector3 distance = player_->bodyHitBox.center - enemy_->bodyHitBox.center;
+		Vector3 distance = playerBody.center - enemy_->bodyHitBox.center;
 		velocity = distance;
 
 		velocity.nomalize();
-		velocity *= player_->bodyHitBox.radius + enemy_->bodyHitBox.radius;
+		velocity *= playerBody.radius + enemy_->bodyHitBox.radius;
 
 		velocity -= distance;
 	}

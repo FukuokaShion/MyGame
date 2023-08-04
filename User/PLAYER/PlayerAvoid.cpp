@@ -3,9 +3,10 @@
 #include"PlayerAvoid.h"
 
 PlayerAvoid::PlayerAvoid() {
-	player_->fbxObject3d_->PlayAnimation(3, 1.7f);
+	player_->AnimationChange(3, 1.7f);
 	speed = { 0,0,0.8f };
-	velocity = Matrix4::bVelocity(speed, player_->fbxObject3d_->wtf.matWorld);
+	Matrix4 playerMat = player_->GetWtf().matWorld;
+	velocity = Matrix4::bVelocity(speed, playerMat);
 	timer = limit;
 }
 
@@ -13,7 +14,7 @@ PlayerAvoid::PlayerAvoid() {
 void PlayerAvoid::Update() {
 	timer--;
 
-	player_->fbxObject3d_->wtf.position += velocity;
+	player_->Move(velocity);
 
 	if (timer < 0) {
 	StateTransition();

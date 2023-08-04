@@ -5,19 +5,20 @@
 PlayerAttack::PlayerAttack() {
 	action = Action::Antic;
 	timer = 0;
-	player_->fbxObject3d_->PlayAnimation(1,1.5f);
+	player_->AnimationChange(1,1.5f);
 }
 
 //UŒ‚
 void PlayerAttack::Update() {
 	timer++;
-	
+	Transform playerWtf = player_->GetWtf();
+
 	switch (action) {
 	case Action::Antic:
 		//—\”õ“®ì
 		speed = anticDistance / static_cast<float>(anticTime);
-		velocity = Matrix4::bVelocity(speed, player_->fbxObject3d_->wtf.matWorld);
-		player_->fbxObject3d_->wtf.position += velocity;
+		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
+		player_->Move(velocity);
 
 		if (timer > anticTime) {
 			timer = 0;
@@ -28,13 +29,12 @@ void PlayerAttack::Update() {
 		//UŒ‚
 		//ˆÚ“®
 		speed = attackDistance / static_cast<float>(attackTime);
-		velocity = Matrix4::bVelocity(speed, player_->fbxObject3d_->wtf.matWorld);
-		player_->fbxObject3d_->wtf.position += velocity;
+		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
+		player_->Move(velocity);
 
 		//UŒ‚“–‚½‚è”»’è
-		player_->attackHitBox.center = player_->fbxObject3d_->wtf.position;
-		player_->attackHitBox.center.y = 2.0;
-		player_->attackHitBox.radius = 1.5;
+		player_->SetAttackPos({ playerWtf.position.x, 2.0f, playerWtf.position.z });
+		player_->SetAttackRad(1.5f);
 
 		//UŒ‚”»’è
 		isAttack = true;
