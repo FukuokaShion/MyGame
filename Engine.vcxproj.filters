@@ -244,6 +244,9 @@
     <ClCompile Include="User\ENEMY\EnemyParticle.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\MATH\Easing.cpp">
+      <Filter>Engine\ソースファイル\MATH</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -377,6 +380,9 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyParticle.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\MATH\Easing.h">
+      <Filter>Engine\ヘッダーファイル\MATH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

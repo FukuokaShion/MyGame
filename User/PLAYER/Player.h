@@ -49,6 +49,7 @@ public:
 	
 	//ステータス
 	bool IsLive() { return hp->IsLive(); };
+	int GetHp() { return hp->GetHp(); };
 	bool GetIsAttack() { return state_->GetIsAttack(); };
 	int GetPower() { return state_->GetPower(); };
 

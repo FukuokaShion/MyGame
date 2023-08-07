@@ -21,6 +21,10 @@ GameScene::~GameScene() {
 	delete titlePic;
 	delete clearPic;
 	delete gameoverPic;
+
+	delete UIBase;
+	delete hpGauge;
+	delete enemyHpGauge;
 }
 
 /// <summary>
@@ -88,12 +92,37 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input) {
 	gameoverPic->SetPozition({ 0,0 });
 	gameoverPic->SetSize({ 1280,720 });
 
+	UIBase = new Sprite();
+	UIBase->Initialize(spriteCommon);
+	UIBase->SetPozition({ 0,0 });
+	UIBase->SetSize({ 1280,720 });
+
+	hpGauge = new Sprite();
+	hpGauge->Initialize(spriteCommon);
+	hpGauge->SetPozition({ 128,38 });
+	hpGauge->SetSize({ 400,26 });
+	hpGauge->SetColor({ 106.0f/255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
+
+	enemyHpGauge = new Sprite();
+	enemyHpGauge->Initialize(spriteCommon);
+	enemyHpGauge->SetPozition({ 309,576 });
+	enemyHpGauge->SetSize({ 671,11 });
+	enemyHpGauge->SetColor({ 172.0f / 255.0f,50.0f / 255.0f,50.0f / 255.0f,1.0f });
+
 	spriteCommon->LoadTexture(0, "title.png");
 	titlePic->SetTextureIndex(0);
 	spriteCommon->LoadTexture(1, "clear.png");
 	clearPic->SetTextureIndex(1);
 	spriteCommon->LoadTexture(2, "gameOver.png");
 	gameoverPic->SetTextureIndex(2);
+
+	spriteCommon->LoadTexture(3, "UIBase.png");
+	UIBase->SetTextureIndex(3);
+	spriteCommon->LoadTexture(4, "white.png");
+	hpGauge->SetTextureIndex(4);
+	spriteCommon->LoadTexture(5, "white.png");
+	enemyHpGauge->SetTextureIndex(5);
+
 }
 
 
@@ -111,6 +140,7 @@ void GameScene::Update() {
 			camera->wtf.Initialize();
 		}
 
+
 		break;
 	case Scene::Option:
 		if (input->PButtonTrigger(B)) {
@@ -124,6 +154,9 @@ void GameScene::Update() {
 		player->Update();
 		enemy->Update();
 		CollisionManager::CheckCollision();
+
+		hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
+		enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
 
 
 		if (enemy->IsLive() == false) {
@@ -209,11 +242,15 @@ void GameScene::Draw() {
 	case Scene::Titele:
 		titlePic->Draw();
 
+
 		break;
 	case Scene::Option:
 
 		break;
 	case Scene::Game:
+		UIBase->Draw();
+		hpGauge->Draw();
+		enemyHpGauge->Draw();
 
 		break;
 	case Scene::Clear:

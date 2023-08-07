@@ -30,6 +30,7 @@ public:
 	void TransitionTo(EnemyState* state);
 
 	bool IsLive() { return hp->IsLive(); };
+	int GetHp() { return hp->GetHp(); };
 
 public:
 	//‘Ì“–‚½‚è”»’è

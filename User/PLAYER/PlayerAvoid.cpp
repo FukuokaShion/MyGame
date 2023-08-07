@@ -2,6 +2,8 @@
 #include"PlayerStandby.h"
 #include"PlayerAvoid.h"
 
+#include"Easing.h"
+
 PlayerAvoid::PlayerAvoid() {
 	player_->AnimationChange(3, 1.7f);
 	speed = { 0,0,0.8f };
@@ -14,7 +16,11 @@ PlayerAvoid::PlayerAvoid() {
 void PlayerAvoid::Update() {
 	timer--;
 
-	player_->Move(velocity);
+	float t = static_cast<float>(timer) / static_cast<float>(limit);
+
+	Vector3 add = Easing::OutQuadVec3({ 0,0,0 }, velocity, t);
+
+	player_->Move(add);
 
 	if (timer < 0) {
 	StateTransition();

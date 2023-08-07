@@ -21,4 +21,5 @@ private:
 	int hp;
 	//¶‘¶ƒtƒ‰ƒO
 	bool isLive;
+
 };

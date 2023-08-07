@@ -91,4 +91,9 @@ private:
 	Sprite* titlePic;
 	Sprite* clearPic;
 	Sprite* gameoverPic;
+
+	Sprite* UIBase;
+
+	Sprite* hpGauge;
+	Sprite* enemyHpGauge;
 };
