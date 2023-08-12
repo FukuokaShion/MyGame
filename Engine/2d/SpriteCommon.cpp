@@ -6,12 +6,10 @@
 
 //デフォルトテクスチャ格納ディレクトリ
 std::string SpriteCommon::kDefaultTextureDirectoryPath = "Resources/";
+DirectXCommon* SpriteCommon::dxcommon_ = nullptr;
 
-void SpriteCommon::Initialize(DirectXCommon* dxcommon)
+void SpriteCommon::Initialize()
 {
-	assert(dxcommon);
-	dxcommon_ = dxcommon;
-
 	// 頂点データ全体のサイズ = 頂点データ一つ分のサイズ * 頂点データの要素数
 	sizeVB = static_cast<UINT>(sizeof(vertices[0]) * _countof(vertices));
 

@@ -31,7 +31,7 @@ public:
 	};
 public:
 	//初期化
-	void Initialize(DirectXCommon* dxcommon);
+	void Initialize();
 
 	DirectXCommon* GetDxCommon() { return dxcommon_; }
 
@@ -51,6 +51,8 @@ public:
 
 	void SetTextureCommands(uint32_t index);
 
+	static void SetDxCommon(DirectXCommon* dxcommon) { dxcommon_ = dxcommon; };
+
 	//Microsoft::WRL::ComPtr<ID3D12Resource> GetTexBuff(uint32_t index) { return texBuff[index]; }
 
 	Microsoft::WRL::ComPtr<ID3D12Resource> GetTextureBuffer(uint32_t index)const { return texBuff[index].Get(); }
@@ -69,7 +71,7 @@ private:
 	// SRVの最大個数
 	static const size_t kMaxSRVCount = 2056;
 
-	DirectXCommon* dxcommon_;
+	static DirectXCommon* dxcommon_;
 	ComPtr<ID3DBlob> vsBlob; // 頂点シェーダオブジェクト
 	ComPtr<ID3DBlob> psBlob; // ピクセルシェーダオブジェクト
 	ComPtr<ID3DBlob> errorBlob; // エラーオブジェクト

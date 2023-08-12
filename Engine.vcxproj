@@ -194,6 +194,9 @@
     <ClCompile Include="User\PLAYER\PlayerStandby.cpp" />
     <ClCompile Include="User\PLAYER\PlayerState.cpp" />
     <ClCompile Include="User\SCENE\GameScene.cpp" />
+    <ClCompile Include="User\SCENE\SceneManager.cpp" />
+    <ClCompile Include="User\SCENE\SceneState.cpp" />
+    <ClCompile Include="User\SCENE\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\2D\Sprite.h" />
@@ -241,6 +244,9 @@
     <ClInclude Include="User\PLAYER\PlayerStandby.h" />
     <ClInclude Include="User\PLAYER\PlayerState.h" />
     <ClInclude Include="User\SCENE\GameScene.h" />
+    <ClInclude Include="User\SCENE\SceneManager.h" />
+    <ClInclude Include="User\SCENE\SceneState.h" />
+    <ClInclude Include="User\SCENE\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
