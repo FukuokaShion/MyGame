@@ -160,6 +160,7 @@
     <ClCompile Include="Engine\AUDIO\Audio.cpp" />
     <ClCompile Include="Engine\BASE\DirectXCommon.cpp" />
     <ClCompile Include="Engine\BASE\FPS.cpp" />
+    <ClCompile Include="Engine\base\Framework .cpp" />
     <ClCompile Include="Engine\BASE\WinApp.cpp" />
     <ClCompile Include="Engine\CAMERA\Camera.cpp" />
     <ClCompile Include="Engine\COLLISION\Collision.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="User\ENEMY\EnemyState.cpp" />
     <ClCompile Include="User\ENEMY\EnemyStandby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
+    <ClCompile Include="User\GameMain.cpp" />
     <ClCompile Include="User\PLAYER\Player.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAvoid.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Engine\AUDIO\Audio.h" />
     <ClInclude Include="Engine\BASE\DirectXCommon.h" />
     <ClInclude Include="Engine\BASE\FPS.h" />
+    <ClInclude Include="Engine\base\Framework .h" />
     <ClInclude Include="Engine\BASE\WinApp.h" />
     <ClInclude Include="Engine\CAMERA\Camera.h" />
     <ClInclude Include="Engine\COLLISION\Collision.h" />
@@ -236,6 +239,7 @@
     <ClInclude Include="User\ENEMY\EnemyState.h" />
     <ClInclude Include="User\ENEMY\EnemyStandby.h" />
     <ClInclude Include="User\FIELD\Field.h" />
+    <ClInclude Include="User\GameMain.h" />
     <ClInclude Include="User\PLAYER\Player.h" />
     <ClInclude Include="User\PLAYER\PlayerAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerAvoid.h" />

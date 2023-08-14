@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include"TitleScene.h"
-#include "FbxLoader.h"
+#include"Object3d.h"
+#include"FBXObject3d.h"
 
 /// <summary>
 /// コンストクラタ
@@ -12,9 +13,6 @@ SceneManager::SceneManager() {
 /// デストラクタ
 /// </summary>
 SceneManager::~SceneManager() {
-	delete spriteCommon;
-	delete camera;
-
 	delete state_;
 }
 
@@ -24,26 +22,9 @@ SceneManager::~SceneManager() {
 void SceneManager::Initialize(DirectXCommon* dxCommon) {
 	// nullチェック
 	assert(dxCommon);
-
 	this->dxCommon = dxCommon;
 
-	//スプライト共通部分の初期化
-	spriteCommon = new SpriteCommon;
-	spriteCommon->Initialize();
-
-	// カメラ生成
-	camera = new Camera(WinApp::window_width, WinApp::window_height);
-
-	//カメラセット
-	ParticleManager::SetCamera(camera);
-	Object3d::SetCamera(camera);
-	FBXObject3d::SetCamera(camera);
-
-	//デバイスをセット
-	FBXObject3d::SetDevice(dxCommon->GetDevice());
-	//グラフィックスパイプライン生成
-	FBXObject3d::CreateGraphicsPipeline();
-
+	//シーン初期
 	SceneState::SetSceneManager(this);
 	state_ = new TitleScene;
 	state_->Initialize();

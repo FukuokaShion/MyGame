@@ -1,19 +1,6 @@
 #pragma once
-#pragma once
 #include "SceneState.h"
 #include "DirectXCommon.h"
-#include <string>
-#include "Input.h"
-#include "Matrix4.h"
-#include "SpriteCommon.h"
-#include "Sprite.h"
-#include "ParticleManager.h"
-#include "Audio.h"
-
-#include "Camera.h"
-#include "Object3d.h"
-#include "Model.h"
-#include "FBXObject3d.h"
 
 /// <summary>
 /// ゲームシーン
@@ -51,21 +38,10 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
-
-public:
-	//音を止める関数
-	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
-
 private: //メンバ変数 (固定)
 	DirectXCommon* dxCommon = nullptr;
 
-	SpriteCommon* spriteCommon = nullptr;
-	Audio* audio = nullptr;
-
 private:
-	//カメラ
-	Camera* camera = nullptr;
-
 	//シーン
 	SceneState* state_ = nullptr;
 	

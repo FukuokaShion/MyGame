@@ -1,8 +1,7 @@
 #include "FBXModel.h"
 
 
-FBXModel::~FBXModel()
-{
+FBXModel::~FBXModel(){
     fbxScene->Destroy();
 }
 

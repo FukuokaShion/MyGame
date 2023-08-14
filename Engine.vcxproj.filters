@@ -259,6 +259,12 @@
     <ClCompile Include="User\SCENE\TitleScene.cpp">
       <Filter>user\ソース\SCENE</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\base\Framework .cpp">
+      <Filter>Engine\ソースファイル\BASE</Filter>
+    </ClCompile>
+    <ClCompile Include="User\GameMain.cpp">
+      <Filter>user\ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -404,6 +410,12 @@
     </ClInclude>
     <ClInclude Include="User\SCENE\TitleScene.h">
       <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\base\Framework .h">
+      <Filter>Engine\ヘッダーファイル\BASE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameMain.h">
+      <Filter>user\ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
