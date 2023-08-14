@@ -10,9 +10,6 @@
     <Filter Include="user\ソース">
       <UniqueIdentifier>{bb87f54d-424d-484c-b691-d27dafcb6d31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="user\シーン">
-      <UniqueIdentifier>{4349b04e-3d06-488a-9b41-bd725a5b9100}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\ソースファイル">
       <UniqueIdentifier>{d98e2870-a7ff-4443-8b08-673ea8c16c19}</UniqueIdentifier>
     </Filter>
@@ -109,6 +106,12 @@
     <Filter Include="user\ヘッダー\FIELD">
       <UniqueIdentifier>{3061c46d-cb3b-48d5-94a8-8a0a21ba1279}</UniqueIdentifier>
     </Filter>
+    <Filter Include="user\ヘッダー\SCENE">
+      <UniqueIdentifier>{30509ed0-ceb3-4348-80b4-d587819c3884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ソース\SCENE">
+      <UniqueIdentifier>{4349b04e-3d06-488a-9b41-bd725a5b9100}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -116,7 +119,7 @@
       <Filter>Engine\ソースファイル\BASE</Filter>
     </ClCompile>
     <ClCompile Include="User\SCENE\GameScene.cpp">
-      <Filter>user\シーン</Filter>
+      <Filter>user\ソース\SCENE</Filter>
     </ClCompile>
     <ClCompile Include="Engine\INPUT\Input.cpp">
       <Filter>Engine\ソースファイル\INPUT</Filter>
@@ -247,13 +250,25 @@
     <ClCompile Include="Engine\MATH\Easing.cpp">
       <Filter>Engine\ソースファイル\MATH</Filter>
     </ClCompile>
+    <ClCompile Include="User\SCENE\SceneManager.cpp">
+      <Filter>user\ソース\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="User\SCENE\SceneState.cpp">
+      <Filter>user\ソース\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="User\SCENE\TitleScene.cpp">
+      <Filter>user\ソース\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\base\Framework .cpp">
+      <Filter>Engine\ソースファイル\BASE</Filter>
+    </ClCompile>
+    <ClCompile Include="User\GameMain.cpp">
+      <Filter>user\ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
       <Filter>Engine\ヘッダーファイル\BASE</Filter>
-    </ClInclude>
-    <ClInclude Include="User\SCENE\GameScene.h">
-      <Filter>user\シーン</Filter>
     </ClInclude>
     <ClInclude Include="Engine\INPUT\Input.h">
       <Filter>Engine\ヘッダーファイル\INPUT</Filter>
@@ -383,6 +398,24 @@
     </ClInclude>
     <ClInclude Include="Engine\MATH\Easing.h">
       <Filter>Engine\ヘッダーファイル\MATH</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\GameScene.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\SceneManager.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\SceneState.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\TitleScene.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\base\Framework .h">
+      <Filter>Engine\ヘッダーファイル\BASE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\GameMain.h">
+      <Filter>user\ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
