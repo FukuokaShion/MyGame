@@ -6,6 +6,7 @@
 
 #include"EnemyHp.h"
 #include"EnemyState.h"
+#include"EnemyBullet.h"
 
 class Player;
 
@@ -19,6 +20,7 @@ public:
 
 	void Update();
 	void Draw();
+	void ObjDraw();
 
 	bool GetIsAttack() { return isAttack; };
 	int GetPower() { return power; };
@@ -32,6 +34,8 @@ public:
 	bool IsLive() { return hp->IsLive(); };
 	int GetHp() { return hp->GetHp(); };
 
+	void CreatBullet(Vector3 pos,Vector3 velocity, int liveLimit);
+
 public:
 	//体当たり判定
 	Cylinder bodyHitBox;
@@ -42,6 +46,9 @@ public:
 	//オブジェクト
 	FBXObject3d* fbxObject3d_ = nullptr;
 
+
+	//球
+	std::list<std::unique_ptr<EnemyBullet>> bullets;
 private:
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
@@ -56,4 +63,7 @@ private:
 	int power;
 
 	EnemyParticle* particle = nullptr;
+
+	//球
+	//std::list<std::unique_ptr<EnemyBullet>> bullets;
 };

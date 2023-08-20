@@ -41,6 +41,31 @@ void CollisionManager::CheckCollision() {
 	}
 }
 
+CollisionManager* CollisionManager::GetInstance()
+{
+	static CollisionManager instance;
+	return &instance;
+}
+
+void CollisionManager::CheakCol() {
+	//“G’e‚ÆŽ©‹@
+	Cylinder playerBody = player_->GetBodyHitBox();
+
+	std::forward_list<Sphere*>::iterator itA;
+	
+	itA = colliders.begin();
+
+	for (; itA != colliders.end(); ++itA) {
+		Sphere* colA = *itA;
+
+		if (Collision::CheckSphere2Cylinder(*colA, playerBody)) {
+			//“G‚ÌUŒ‚
+			player_->OnCollision(10);
+			colA->isHit = true;
+		}
+	}
+}
+
 Vector3 CollisionManager::Body2Body() {
 	Vector3 velocity = { 0,0,0 };
 	Cylinder playerBody = player_->GetBodyHitBox();

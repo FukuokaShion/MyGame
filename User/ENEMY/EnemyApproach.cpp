@@ -3,9 +3,12 @@
 #include"EnemyStandby.h"
 
 Approach::Approach() {
+	limit = 180;
+	timer = limit;
 }
 
 void Approach::Update() {
+	timer--;
 	//プレイヤーの方を向く
 	Vector3 angle;
 	angle.y = Vector3::Angle(enemy_->playerWtf->position, enemy_->fbxObject3d_->wtf.position);
@@ -23,6 +26,9 @@ void Approach::Update() {
 
 	if (Vector3::Distance(enemy_->fbxObject3d_->wtf.position, enemy_->playerWtf->position) < distance) {
 		//一定距離になったら待機状態に移行
+		enemy_->TransitionTo(new Standby);
+	}
+	if (timer < 0) {
 		enemy_->TransitionTo(new Standby);
 	}
 }
