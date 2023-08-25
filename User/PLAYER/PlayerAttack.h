@@ -27,7 +27,7 @@ private:
 	//ŠÔ
 	const int anticTime = 16;
 	//ˆÚ“®‹——£
-	const Vector3 anticDistance = { 0,0,2 };
+	const Vector3 anticDistance = { 0,0,1 };
 
 	///UŒ‚
 	//ŠÔ

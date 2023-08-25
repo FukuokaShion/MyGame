@@ -86,9 +86,9 @@ void Enemy::ObjDraw() {
 	particle->Draw();
 }
 
-void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit) {
+void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
 	std::unique_ptr<EnemyBullet> newBullet = std::make_unique<EnemyBullet>();
-	newBullet->Initialize(pos,velocity,liveLimit);
+	newBullet->Initialize(pos, velocity, liveLimit, stayTime);
 	bullets.push_back(std::move(newBullet));
 }
 

@@ -34,7 +34,7 @@ public:
 	bool IsLive() { return hp->IsLive(); };
 	int GetHp() { return hp->GetHp(); };
 
-	void CreatBullet(Vector3 pos,Vector3 velocity, int liveLimit);
+	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 public:
 	//‘Ì“–‚½‚è”»’è

@@ -271,6 +271,9 @@
     <ClCompile Include="User\ENEMY\EnemyBullet.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyRoundShooting.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -427,6 +430,9 @@
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyBullet.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyRoundShooting.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
