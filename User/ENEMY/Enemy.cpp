@@ -2,6 +2,7 @@
 #include "FbxLoader.h"
 #include"EnemyStandby.h"
 #include"EnemyAttack.h"
+#include"EnemyShooting.h"
 
 Enemy::Enemy() {
 	//モデル生成
@@ -35,6 +36,7 @@ void Enemy::Initialize() {
 
 	isAttack = false;
 	power = 0;
+	EnemyBullet::StaticInitialize();
 }
 
 Enemy::~Enemy() {
@@ -43,14 +45,28 @@ Enemy::~Enemy() {
 	delete hp;
 	delete state_;
 	delete particle;
+	bullets.clear();
+	EnemyBullet::StaticFinalize();
 }
 
 void Enemy::Update() {
-	//当たり判定更新
+	//当たり判定
 	bodyHitBox.center = fbxObject3d_->wtf.position;
 	attackHitBox.center = fbxObject3d_->wtf.position;
+
+	//行動
 	state_->Update();
+	
+	//オブジェクト
 	fbxObject3d_->Update();
+
+	//弾
+	bullets.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
+	for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
+		bullet->Update();
+	}
+
+	//パーティクル
 	particle->Update();
 }
 
@@ -60,10 +76,20 @@ void Enemy::OnCollision(int damage, Vector3 hitPos) {
 }
 
 void Enemy::Draw() {
-	if (hp->IsLive()) {
-		fbxObject3d_->Draw();
+	fbxObject3d_->Draw();
+}
+
+void Enemy::ObjDraw() {
+	for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
+		bullet->Draw();
 	}
 	particle->Draw();
+}
+
+void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
+	std::unique_ptr<EnemyBullet> newBullet = std::make_unique<EnemyBullet>();
+	newBullet->Initialize(pos, velocity, liveLimit, stayTime);
+	bullets.push_back(std::move(newBullet));
 }
 
 //状態を変更する

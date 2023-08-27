@@ -3,7 +3,6 @@
 #include"TitleScene.h"
 
 #include"FbxLoader.h"
-#include"CollisionManager.h"
 
 GameScene::GameScene() {
 }
@@ -66,6 +65,8 @@ void GameScene::Initialize() {
 	hpGauge->SetTextureIndex(1);
 	spriteCommon->LoadTexture(2, "white.png");
 	enemyHpGauge->SetTextureIndex(2);
+
+	collisionManager = CollisionManager::GetInstance();
 }
 
 GameScene::~GameScene() {
@@ -89,6 +90,7 @@ void GameScene::Update() {
 	player->Update();
 	enemy->Update();
 	CollisionManager::CheckCollision();
+	collisionManager->CheakCol();
 
 	hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
 	enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
@@ -99,6 +101,7 @@ void GameScene::Update() {
 
 void GameScene::ObjectDraw() {
 	field->Draw();
+	enemy->ObjDraw();
 }
 
 void GameScene::FbxDraw() {
