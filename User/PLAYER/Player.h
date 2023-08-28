@@ -31,6 +31,7 @@ public:
 
 	//À•W
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
+	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
