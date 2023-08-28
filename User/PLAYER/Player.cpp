@@ -31,6 +31,8 @@ void Player::Initialize(Input* input) {
 	bodyHitBox.height = 3.0f;
 	bodyHitBox.radius = 1.0f;
 
+	gaugeLimit = 60;
+
 	attackHitBox.center = { 0,0,0 };
 	attackHitBox.radius = 1.0f;
 
@@ -46,6 +48,14 @@ void Player::Update() {
 
 	camera_->Update();
 	fbxObject3d_->Update();
+
+	if (gaugeTimer < 0) {
+		if (damageGauge > hp->GetHp()) {
+			damageGauge--;
+		}
+	}else {
+		gaugeTimer--;
+	}
 }
 
 void Player::CamRota() {
@@ -75,6 +85,8 @@ void Player::CamRota() {
 
 void Player::OnCollision(int damage) {
 	hp->Damage(damage);
+	gaugeTimer = gaugeLimit;
+	damageGauge = hp->GetOldHp();
 }
 
 void Player::Draw() {

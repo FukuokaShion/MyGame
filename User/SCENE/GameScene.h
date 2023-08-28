@@ -43,6 +43,7 @@ private:
 	Sprite* UIBase;
 
 	Sprite* hpGauge;
+	Sprite* damageGauge;
 	Sprite* enemyHpGauge;
 
 	CollisionManager* collisionManager = nullptr;

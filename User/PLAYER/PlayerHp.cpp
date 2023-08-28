@@ -3,6 +3,7 @@
 PlayerHp::PlayerHp() {
 	MaxHp = 100;
 	hp = MaxHp;
+	oldHp = MaxHp;
 	isLive = true;
 }
 
@@ -11,10 +12,12 @@ PlayerHp::~PlayerHp() {
 
 void PlayerHp::Initialize() {
 	hp = MaxHp;
+	oldHp = MaxHp;
 	isLive = true;
 }
 
 void PlayerHp::Damage(int damage) {
+	oldHp = hp;
 	hp -= damage;
 	if (hp <= 0) {
 		isLive = false;
