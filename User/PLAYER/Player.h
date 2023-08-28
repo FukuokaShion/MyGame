@@ -31,6 +31,7 @@ public:
 
 	//座標
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
+	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
@@ -50,6 +51,7 @@ public:
 	//ステータス
 	bool IsLive() { return hp->IsLive(); };
 	int GetHp() { return hp->GetHp(); };
+	int GetDamage() { return damageGauge; };
 	bool GetIsAttack() { return state_->GetIsAttack(); };
 	int GetPower() { return state_->GetPower(); };
 
@@ -67,6 +69,10 @@ private:
 	Sphere attackHitBox;
 	//体当たり判定
 	Cylinder bodyHitBox;
+	//HPゲージ管理
+	int gaugeTimer;
+	int gaugeLimit;
+	int damageGauge;
 
 	//モデル
 	FBXModel* fbxModel_ = nullptr;

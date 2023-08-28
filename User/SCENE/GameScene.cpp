@@ -3,6 +3,7 @@
 #include"TitleScene.h"
 
 #include"FbxLoader.h"
+#include"Easing.h"
 
 GameScene::GameScene() {
 }
@@ -52,6 +53,12 @@ void GameScene::Initialize() {
 	hpGauge->SetSize({ 400,26 });
 	hpGauge->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
 
+	damageGauge = new Sprite();
+	damageGauge->Initialize(spriteCommon);
+	damageGauge->SetPozition({ 128,38 });
+	damageGauge->SetSize({ 400,26 });
+	damageGauge->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
+
 	enemyHpGauge = new Sprite();
 	enemyHpGauge->Initialize(spriteCommon);
 	enemyHpGauge->SetPozition({ 309,576 });
@@ -64,7 +71,9 @@ void GameScene::Initialize() {
 	spriteCommon->LoadTexture(1, "white.png");
 	hpGauge->SetTextureIndex(1);
 	spriteCommon->LoadTexture(2, "white.png");
-	enemyHpGauge->SetTextureIndex(2);
+	damageGauge->SetTextureIndex(2);
+	spriteCommon->LoadTexture(3, "white.png");
+	enemyHpGauge->SetTextureIndex(3);
 
 	collisionManager = CollisionManager::GetInstance();
 }
@@ -80,6 +89,7 @@ GameScene::~GameScene() {
 
 	delete UIBase;
 	delete hpGauge;
+	delete damageGauge;
 	delete enemyHpGauge;
 }
 
@@ -92,6 +102,7 @@ void GameScene::Update() {
 	CollisionManager::CheckCollision();
 	collisionManager->CheakCol();
 
+	damageGauge->SetSize({ static_cast<float>(4 * player->GetDamage()),26 });
 	hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
 	enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
 
@@ -111,6 +122,7 @@ void GameScene::FbxDraw() {
 
 void GameScene::SpriteDraw() {
 	UIBase->Draw();
+	damageGauge->Draw();
 	hpGauge->Draw();
 	enemyHpGauge->Draw();
 }

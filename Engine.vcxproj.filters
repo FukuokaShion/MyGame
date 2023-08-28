@@ -274,6 +274,12 @@
     <ClCompile Include="User\ENEMY\EnemyRoundShooting.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerJump.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerJumpAttack.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -434,6 +440,12 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyRoundShooting.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerJump.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerJumpAttack.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

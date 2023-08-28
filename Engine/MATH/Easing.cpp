@@ -1,4 +1,45 @@
 #include "Easing.h"
+float Easing::InQuad(const float& start, const float& end, const float time)
+{
+	float t = powf(time, 2);
+	float A, B;
+	A = start * (1.0f - t);
+	B = end * t;
+
+	float position;
+	position = A + B;
+	return position;
+}
+
+float Easing::OutQuad(const float& start, const float& end, const float time)
+{
+	float t = (1 - powf(1 - time, 2));
+	float A, B;
+	A = start * (1.0f - t);
+	B = end * t;
+
+	float position;
+	position = A + B;
+	return position;
+}
+
+float Easing::InOutQuad(const float& start, const float& end, const float time)
+{
+	float t;
+	if (time < 0.5f){
+		t = 2 * powf(time, 2);
+	}else{
+		t = (1 - powf(-2 * time + 2, 2) / 2);
+	}
+
+	float A, B;
+	A = start * (1.0f - t);
+	B = end * t;
+
+	float position;
+	position = A + B;
+	return position;
+}
 
 Vector3 Easing::InQuadVec3(const Vector3& start, const Vector3& end, const float time)
 {

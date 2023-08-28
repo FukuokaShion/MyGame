@@ -4,6 +4,7 @@
 #include"PlayerAttack.h"
 #include"PlayerAvoid.h"
 #include"PlayerMove.h"
+#include"PlayerJump.h"
 
 PlayerStandby::PlayerStandby() {
 	player_->AnimationChange(4);
@@ -16,8 +17,11 @@ void PlayerStandby::Update() {
 
 void PlayerStandby::StateTransition() {
 	//‰ñ”ğ
+	//if (input->PButtonTrigger(A)) {
+	//	player_->TransitionTo(new PlayerAvoid);
+	//}
 	if (input->PButtonTrigger(A)) {
-		player_->TransitionTo(new PlayerAvoid);
+		player_->TransitionTo(new PlayerJump);
 	}
 
 	//UŒ‚
