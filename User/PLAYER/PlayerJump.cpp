@@ -1,6 +1,7 @@
 #include"Player.h"
 #include"PlayerStandby.h"
 #include"PlayerJump.h"
+#include"PlayerJumpAttack.h"
 
 #include"Easing.h"
 
@@ -27,12 +28,16 @@ void PlayerJump::Update() {
 
 	player_->SetPosY(newPos);
 
-	if (player_->GetWtf().position.y <= 0) {
-		player_->SetPosY(0);
-		StateTransition();
-	}
+	StateTransition();
 }
 
 void PlayerJump::StateTransition() {
-	player_->TransitionTo(new PlayerStandby);
+	if (player_->GetWtf().position.y <= 0) {
+		player_->SetPosY(0);
+		player_->TransitionTo(new PlayerStandby);
+	}else {
+		if (input->ButtonInput(B)) {
+			player_->TransitionTo(new PlayerJumpAttack);
+		}
+	}
 }
