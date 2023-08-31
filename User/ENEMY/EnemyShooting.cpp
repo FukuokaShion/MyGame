@@ -3,7 +3,7 @@
 #include"EnemyStandby.h"
 
 EnemyShooting::EnemyShooting() {
-	enemy_->fbxObject3d_->PlayAnimation(0);
+	enemy_->AnimationChange(0);
 	interval = 25;
 	ShotTimer = interval;
 	shotMax = 3;
@@ -14,10 +14,10 @@ EnemyShooting::EnemyShooting() {
 
 void EnemyShooting::Update() {
 	//ƒvƒŒƒCƒ„[‚Ì•û‚ðŒü‚­
-	Vector3 angle;
-	angle.y = Vector3::Angle(enemy_->playerWtf->position, enemy_->fbxObject3d_->wtf.position);
-	enemy_->fbxObject3d_->wtf.rotation = angle;
-	
+	float angle;
+	angle = Vector3::Angle(enemy_->playerWtf->position, enemy_->GetWtf().position);
+	enemy_->RotaY(angle);
+
 	ShotTimer--;
 	if (ShotTimer < 0) {
 		
@@ -26,10 +26,11 @@ void EnemyShooting::Update() {
 		velocity += {0, 0, -speed};
 
 		//Œü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
-		velocity = Matrix4::bVelocity(velocity, enemy_->fbxObject3d_->wtf.matWorld);
+		Matrix4 enemyMat = enemy_->GetWtf().matWorld;
+		velocity = Matrix4::bVelocity(velocity, enemyMat);
 
 		//’e¶¬
-		enemy_->CreatBullet(enemy_->fbxObject3d_->wtf.position, velocity , bulletLiveLimit);
+		enemy_->CreatBullet(enemy_->GetWtf().position, velocity, bulletLiveLimit);
 		
 		//ŽŸ‚Ì”­ŽË‚Ü‚Å‚ÌŽžŠÔ
 		ShotTimer = interval;

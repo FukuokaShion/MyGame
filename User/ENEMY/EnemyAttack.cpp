@@ -4,19 +4,21 @@
 
 Attack::Attack() {
 	action = Action::Antic;
-	enemy_->fbxObject3d_->PlayAnimation(0);
+	enemy_->AnimationChange(0);
 }
 
 //UŒ‚
 void Attack::Update() {
 	timer++;
 
+	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
+
 	switch (action){
 	case Action::Antic:
 		//—\”õ“®ì
 		speed = anticDistance / static_cast<float>(anticTime);
-		velocity = Matrix4::bVelocity(speed, enemy_->fbxObject3d_->wtf.matWorld);
-		enemy_->fbxObject3d_->wtf.position += velocity;
+		velocity = Matrix4::bVelocity(speed, enemyMat);
+		enemy_->Move(velocity);
 
 		if (timer>anticTime) {
 			timer = 0;
@@ -26,8 +28,8 @@ void Attack::Update() {
 	case Action::Attack:
 		//UŒ‚
 		speed = attackDistance / static_cast<float>(attackTime);
-		velocity = Matrix4::bVelocity(speed, enemy_->fbxObject3d_->wtf.matWorld);
-		enemy_->fbxObject3d_->wtf.position += velocity;
+		velocity = Matrix4::bVelocity(speed, enemyMat);
+		enemy_->Move(velocity);
 
 		enemy_->SetIsAttack(true);
 		enemy_->setPower(power);
