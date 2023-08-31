@@ -7,11 +7,11 @@ Approach::Approach() {
 	timer = limit;
 }
 
-void Approach::Update() {
+void Approach::Update(Vector3 playerPos) {
 	timer--;
 	//プレイヤーの方を向く
 	float angle;
-	angle = Vector3::Angle(enemy_->playerWtf->position, enemy_->GetWtf().position);
+	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 
 	//速度設定
@@ -25,7 +25,7 @@ void Approach::Update() {
 	//座標に足す
 	enemy_->Move(velocity);
 
-	if (Vector3::Distance(enemy_->GetWtf().position, enemy_->playerWtf->position) < distance) {
+	if (Vector3::Distance(enemy_->GetWtf().position, playerPos) < distance) {
 		//一定距離になったら待機状態に移行
 		enemy_->TransitionTo(new Standby);
 	}

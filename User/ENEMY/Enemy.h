@@ -18,7 +18,7 @@ public:
 	void Initialize();
 
 	//更新
-	void Update();
+	void Update(Vector3 playerPos);
 
 	//描画
 	void Draw();
@@ -34,9 +34,6 @@ public:
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };
-	
-	//プレイヤー座標
-	void SetPlayerTransform(Transform* playerWtf) { this->playerWtf = playerWtf; };
 
 	//攻撃当たり判定
 	Sphere GetAttackHitBox() { return attackHitBox; };
@@ -61,10 +58,7 @@ public:
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 public:
-	//プレイヤー座標
-	Transform* playerWtf = nullptr;
 	
-
 	//球
 	std::list<std::unique_ptr<EnemyBullet>> bullets;
 private:

@@ -2,7 +2,7 @@
 #include"EnemyLeave.h"
 #include"EnemyStandby.h"
 
-void Leave::Update() {
+void Leave::Update(Vector3 playerPos) {
 	timer++;
 
 	speed = distance / static_cast<float>(limit);

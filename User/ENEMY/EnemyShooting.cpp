@@ -12,10 +12,10 @@ EnemyShooting::EnemyShooting() {
 	speed = 2;
 }
 
-void EnemyShooting::Update() {
+void EnemyShooting::Update(Vector3 playerPos) {
 	//ƒvƒŒƒCƒ„[‚Ì•û‚ðŒü‚­
 	float angle;
-	angle = Vector3::Angle(enemy_->playerWtf->position, enemy_->GetWtf().position);
+	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 
 	ShotTimer--;

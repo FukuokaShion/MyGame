@@ -8,7 +8,7 @@ Attack::Attack() {
 }
 
 //UŒ‚
-void Attack::Update() {
+void Attack::Update(Vector3 playerPos) {
 	timer++;
 
 	Matrix4 enemyMat = enemy_->GetWtf().matWorld;

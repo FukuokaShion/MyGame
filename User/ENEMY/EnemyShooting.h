@@ -6,7 +6,7 @@ class EnemyShooting : public EnemyState {
 public:
 	EnemyShooting();
 
-	void Update() override;
+	void Update(Vector3 playerPos) override;
 
 private:
 	int interval;

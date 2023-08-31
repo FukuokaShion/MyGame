@@ -6,7 +6,7 @@ class Approach : public EnemyState {
 public:
 	Approach();
 
-	void Update() override;
+	void Update(Vector3 playerPos) override;
 
 private:
 	//ˆÚ“®‘¬“x

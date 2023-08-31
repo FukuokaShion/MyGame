@@ -5,7 +5,7 @@
 class Standby : public EnemyState {
 public:
 	Standby();
-	void Update() override;
+	void Update(Vector3 playerPos) override;
 
 private:
 	//‘Ò‹@ŽžŠÔ

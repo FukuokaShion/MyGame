@@ -49,13 +49,13 @@ Enemy::~Enemy() {
 	EnemyBullet::StaticFinalize();
 }
 
-void Enemy::Update() {
+void Enemy::Update(Vector3 playerPos) {
 	//当たり判定
 	bodyHitBox.center = fbxObject3d_->wtf.position;
 	attackHitBox.center = fbxObject3d_->wtf.position;
 
 	//行動
-	state_->Update();
+	state_->Update(playerPos);
 	
 	//オブジェクト
 	fbxObject3d_->Update();
