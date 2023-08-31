@@ -8,8 +8,6 @@
 #include"EnemyState.h"
 #include"EnemyBullet.h"
 
-class Player;
-
 class Enemy {
 public:
 	//İ’è
@@ -56,11 +54,7 @@ public:
 
 	//’e¶¬
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
-
-public:
 	
-	//‹…
-	std::list<std::unique_ptr<EnemyBullet>> bullets;
 private:
 	//s“®
 	EnemyState* state_ = nullptr;
@@ -77,6 +71,9 @@ private:
 	//ƒ‚ƒfƒ‹
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
+	
+	//’eƒŠƒXƒg
+	std::list<std::unique_ptr<EnemyBullet>> bullets;
 
 	//UŒ‚”»’è
 	bool isAttack;
