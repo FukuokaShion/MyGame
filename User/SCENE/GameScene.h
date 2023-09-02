@@ -1,6 +1,7 @@
 #pragma once
 #include"SceneState.h"
 #include"Sprite.h"
+#include"Audio.h"
 
 #include"Field.h"
 #include"Player.h"
@@ -27,6 +28,9 @@ private:
 private:
 	//画像
 	SpriteCommon* spriteCommon = nullptr;
+	//サウンド
+	Audio* audio = nullptr;
+	IXAudio2SourceVoice* pSourceVoice = nullptr;
 
 	//メンバ変数
 	//カメラ

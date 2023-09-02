@@ -10,6 +10,7 @@ PlayerJump::PlayerJump() {
 	limit = 20;
 	timer = 0;
 	up = true;
+	player_->PlayWav("jump.wav");
 }
 
 void PlayerJump::Update() {
@@ -33,6 +34,7 @@ void PlayerJump::Update() {
 
 void PlayerJump::StateTransition() {
 	if (player_->GetWtf().position.y <= 0) {
+		player_->PlayWav("landing.wav");
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);
 	}else {

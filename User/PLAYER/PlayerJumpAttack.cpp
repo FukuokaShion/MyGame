@@ -3,6 +3,7 @@
 #include"PlayerStandby.h"
 
 PlayerJumpAttack::PlayerJumpAttack() {
+	player_->PlayWav("jumpAttack.wav");
 	player_->AnimationChange(1, 1.5f);
 	attackFallSpeed = -0.2f;
 
@@ -47,5 +48,6 @@ void PlayerJumpAttack::Update() {
 }
 
 void PlayerJumpAttack::StateTransition() {
+	player_->PlayWav("landing.wav");
 	player_->TransitionTo(new PlayerStandby);
 }

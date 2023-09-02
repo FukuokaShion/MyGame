@@ -13,4 +13,7 @@ private:
 
 	void StateTransition() override;
 
+private:
+	int timer;
+	int limit;
 };

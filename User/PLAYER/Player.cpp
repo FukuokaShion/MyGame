@@ -23,6 +23,17 @@ void Player::Initialize(Input* input) {
 	input_ = input;
 	state_->SetInput(input_);
 
+	//サウンド
+	audio = new Audio();
+	audio->Initialize();
+	audio->LoadWave("col.wav");
+	audio->LoadWave("jump.wav");
+	audio->LoadWave("landing.wav");
+	audio->LoadWave("attack.wav");
+	audio->LoadWave("jumpAttack.wav");
+	audio->LoadWave("avoid.wav");
+	audio->LoadWave("run.wav");
+
 	hp->Initialize();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
@@ -84,6 +95,7 @@ void Player::CamRota() {
 }
 
 void Player::OnCollision(int damage) {
+	PlayWav("col.wav");
 	hp->Damage(damage);
 	gaugeTimer = gaugeLimit;
 	damageGauge = hp->GetOldHp();
@@ -101,4 +113,26 @@ void Player::TransitionTo(PlayerState* state) {
 	delete state_;
 	//新規作成
 	state_ = state;
+}
+
+void Player::PlayWav(const std::string& filename) {
+	if (filename == "col.wav") {
+		pSourceVoice[0] = audio->PlayWave("col.wav");
+	}else if (filename == "jump.wav") {
+		pSourceVoice[1] = audio->PlayWave("jump.wav");
+	}else if (filename == "landing.wav") {
+		pSourceVoice[2] = audio->PlayWave("landing.wav");
+	}else if (filename == "attack.wav") {
+		pSourceVoice[3] = audio->PlayWave("attack.wav");
+	}else if (filename == "jumpAttack.wav") {
+		pSourceVoice[4] = audio->PlayWave("jumpAttack.wav");
+	}else if (filename == "avoid.wav") {
+		pSourceVoice[5] = audio->PlayWave("avoid.wav");
+	}else if (filename == "run.wav") {
+		pSourceVoice[6] = audio->PlayWave("run.wav");
+	}
+}
+
+void Player::StopWav() {
+	 audio->StopWave(pSourceVoice[6]);
 }

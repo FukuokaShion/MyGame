@@ -6,6 +6,9 @@
 
 PlayerMove::PlayerMove() {
 	player_->AnimationChange(2);
+	limit = 600;
+	timer = 0;
+	player_->PlayWav("run.wav");
 }
 
 void PlayerMove::Update() {
@@ -15,6 +18,13 @@ void PlayerMove::Update() {
 }
 
 void PlayerMove::Move() {
+	timer++;
+	if (timer > limit) {
+		timer = 0;
+		player_->StopWav();
+		player_->PlayWav("run.wav");
+	}
+
 	//ˆÚ“®—Ê
 	Vector3 velocity = { 0,0,0 };
 	//ˆÚ“®‘¬“x
@@ -50,8 +60,10 @@ void PlayerMove::Rota() {
 }
 
 void PlayerMove::StateTransition() {
+	//‘Ò‹@ó‘Ô
 	if (input->LeftStickInput() == false) {
 		player_->TransitionTo(new PlayerStandby);
+		player_->StopWav();
 	}
 
 	//‰ñ”ð
