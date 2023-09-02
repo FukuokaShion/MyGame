@@ -34,7 +34,6 @@ void GameScene::Initialize() {
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
-	enemy->SetPlayerTransform(player->GetWtfP());
 	CollisionManager::SetEnemy(enemy);
 
 	//カメラの設定
@@ -98,7 +97,7 @@ void GameScene::Update() {
 	//オブジェクト更新
 	field->Update();
 	player->Update();
-	enemy->Update();
+	enemy->Update(player->GetWtf().position);
 	CollisionManager::CheckCollision();
 	collisionManager->CheakCol();
 

@@ -6,7 +6,7 @@ class Attack : public EnemyState {
 public:
 	Attack();
 
-	void Update() override;
+	void Update(Vector3 playerPos) override;
 
 private:
 	enum class Action {

@@ -2,14 +2,15 @@
 #include"EnemyLeave.h"
 #include"EnemyStandby.h"
 
-void Leave::Update() {
+void Leave::Update(Vector3 playerPos) {
 	timer++;
 
 	speed = distance / static_cast<float>(limit);
-	velocity = Matrix4::bVelocity(speed, enemy_->fbxObject3d_->wtf.matWorld);
+	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
+	velocity = Matrix4::bVelocity(speed, enemyMat);
 
 	//À•W‚É‘«‚·
-	enemy_->fbxObject3d_->wtf.position += velocity;
+	enemy_->Move(velocity);
 
 	if (timer > limit) {
 		//‘Ò‹@ó‘Ô‚É–ß‚é

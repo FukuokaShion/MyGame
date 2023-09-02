@@ -5,7 +5,7 @@
 class Leave : public EnemyState {
 public:
 
-	void Update() override;
+	void Update(Vector3 playerPos) override;
 
 private:
 	//ŽžŠÔ
