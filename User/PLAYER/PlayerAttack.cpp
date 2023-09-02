@@ -6,7 +6,7 @@ PlayerAttack::PlayerAttack() {
 	player_->PlayWav("attack.wav");
 	action = Action::Antic;
 	timer = 0;
-	player_->AnimationChange(1,1.5f);
+	player_->AnimationChange(0,1.5f);
 }
 
 //UŒ‚

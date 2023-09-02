@@ -6,7 +6,7 @@
 #include"Easing.h"
 
 PlayerJump::PlayerJump() {
-	player_->AnimationChange(4);
+	player_->AnimationChange(0);
 	limit = 20;
 	timer = 0;
 	up = true;
