@@ -4,6 +4,7 @@
 #include"EnemyApproach.h"
 #include"EnemyLeave.h"
 #include"EnemyShooting.h"
+#include"EnemyRoundShooting.h"
 
 Standby::Standby() {
 	enemy_->AnimationChange(1);
