@@ -5,6 +5,7 @@
 #include"Easing.h"
 
 PlayerAvoid::PlayerAvoid() {
+	player_->PlayWav("avoid.wav");
 	player_->AnimationChange(3, 1.7f);
 	speed = { 0,0,0.8f };
 	Matrix4 playerMat = player_->GetWtf().matWorld;

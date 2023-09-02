@@ -40,6 +40,14 @@ void GameScene::Initialize() {
 	camera->SetParent(player->GetWtfP());
 	camera->isSyncRota = false;
 
+	//サウンド
+	audio = new Audio();
+	audio->Initialize();
+	audio->LoadWave("bb.wav");
+
+	pSourceVoice = audio->PlayWave("bb.wav");
+	pSourceVoice->SetVolume(0.03f);
+
 	//スプライト
 	UIBase = new Sprite();
 	UIBase->Initialize(spriteCommon);
@@ -80,6 +88,7 @@ void GameScene::Initialize() {
 GameScene::~GameScene() {
 	delete spriteCommon;
 	delete camera;
+	delete audio;
 
 	delete field;
 

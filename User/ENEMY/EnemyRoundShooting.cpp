@@ -20,7 +20,8 @@ void EnemyRoundShooting::Update(Vector3 playerPos) {
 	
 	ShotTimer--;
 	if (ShotTimer < 0) {
-
+		enemy_->PlayWave("fire.wav");
+	
 		//ë¨ìxê›íË
 		Vector3 velocity = { 0,0,0 };
 		velocity += {0, 0, -speed};

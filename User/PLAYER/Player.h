@@ -3,6 +3,7 @@
 #include "FBXModel.h"
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
+#include"Audio.h"
 
 #include"PlayerHp.h"
 #include"PlayerState.h"
@@ -24,6 +25,10 @@ public:
 
 	//状態移行
 	void TransitionTo(PlayerState* state);
+
+	//サウンド
+	void PlayWav(const std::string& filename);
+	void StopWav();
 
 	//FBX
 	//アニメーション切り替え
@@ -61,6 +66,9 @@ private:
 	Camera* camera_ = nullptr;
 	//入力
 	Input* input_ = nullptr;
+	//サウンド
+	Audio* audio = nullptr;
+	IXAudio2SourceVoice* pSourceVoice[10] = {0};
 
 	//体力
 	PlayerHp* hp = nullptr;

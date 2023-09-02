@@ -27,6 +27,7 @@ void Attack::Update(Vector3 playerPos) {
 		break;
 	case Action::Attack:
 		//UŒ‚
+		enemy_->PlayWave("enemyat.wav");
 		speed = attackDistance / static_cast<float>(attackTime);
 		velocity = Matrix4::bVelocity(speed, enemyMat);
 		enemy_->Move(velocity);

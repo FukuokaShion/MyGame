@@ -3,6 +3,7 @@
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
 #include"EnemyParticle.h"
+#include"Audio.h"
 
 #include"EnemyHp.h"
 #include"EnemyState.h"
@@ -24,6 +25,9 @@ public:
 
 	//状態以降
 	void TransitionTo(EnemyState* state);
+
+	//サウンド
+	void PlayWave(const std::string& filename);
 
 	//アニメーション切り替え
 	void AnimationChange(int animationNum = 0, float speed = 1.0f) { fbxObject3d_->PlayAnimation(animationNum, speed); };
@@ -56,6 +60,10 @@ public:
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 	
 private:
+	//サウンド
+	Audio* audio = nullptr;
+	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
+
 	//行動
 	EnemyState* state_ = nullptr;
 	

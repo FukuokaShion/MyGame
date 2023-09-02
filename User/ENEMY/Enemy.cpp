@@ -10,7 +10,7 @@ Enemy::Enemy() {
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
-	
+
 	hp = new EnemyHp();
 
 	isAttack = false;
@@ -22,6 +22,12 @@ Enemy::Enemy() {
 }
 
 void Enemy::Initialize() {
+	//サウンド
+	audio = new Audio();
+	audio->Initialize();
+	audio->LoadWave("fire.wav");
+	audio->LoadWave("enemyat.wav");
+
 	TransitionTo(new Standby);
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
@@ -56,7 +62,7 @@ void Enemy::Update(Vector3 playerPos) {
 
 	//行動
 	state_->Update(playerPos);
-	
+
 	//オブジェクト
 	fbxObject3d_->Update();
 
@@ -98,4 +104,12 @@ void Enemy::TransitionTo(EnemyState* state) {
 	delete state_;
 	//新規作成
 	state_ = state;
+}
+
+void Enemy::PlayWave(const std::string& filename) {
+	if (filename == "fire.wav") {
+		pSourceVoice[0] = audio->PlayWave("fire.wav");
+	}else if (filename == "enemyat.wav") {
+		pSourceVoice[1] = audio->PlayWave("enemyat.wav");
+	}
 }
