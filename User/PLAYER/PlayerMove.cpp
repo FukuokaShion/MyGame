@@ -5,7 +5,7 @@
 #include"PlayerMove.h"
 
 PlayerMove::PlayerMove() {
-	player_->AnimationChange(0);
+	player_->AnimationChange(2);
 	limit = 600;
 	timer = 0;
 	player_->PlayWav("run.wav");

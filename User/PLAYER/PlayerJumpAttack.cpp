@@ -4,7 +4,7 @@
 
 PlayerJumpAttack::PlayerJumpAttack() {
 	player_->PlayWav("jumpAttack.wav");
-	player_->AnimationChange(0, 1.5f);
+	player_->AnimationChange(1, 1.5f);
 	attackFallSpeed = -0.2f;
 
 	action = Action::Attack;

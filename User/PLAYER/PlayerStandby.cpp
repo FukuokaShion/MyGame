@@ -7,7 +7,7 @@
 #include"PlayerJump.h"
 
 PlayerStandby::PlayerStandby() {
-	player_->AnimationChange(0);
+	player_->AnimationChange(5);
 }
 
 //‘Ò‹@
