@@ -25,7 +25,14 @@ public:
 private:
 	void StateTransition() override;
 
+	enum class State {
+		game,
+		clear,
+		death,
+	};
 private:
+	State state;
+
 	//‰æ‘œ
 	SpriteCommon* spriteCommon = nullptr;
 	//ƒTƒEƒ“ƒh
@@ -49,6 +56,9 @@ private:
 	Sprite* hpGauge;
 	Sprite* damageGauge;
 	Sprite* enemyHpGauge;
+
+	Sprite* clear;
+	Sprite* gameOver;
 
 	CollisionManager* collisionManager = nullptr;
 };
