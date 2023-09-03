@@ -37,6 +37,7 @@ void Player::Initialize(Input* input) {
 	hp->Initialize();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
+	fbxObject3d_->wtf.scale = { 0.8f,0.8f,0.8f };
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
 	bodyHitBox.height = 3.0f;
