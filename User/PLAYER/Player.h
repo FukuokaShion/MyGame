@@ -35,7 +35,7 @@ public:
 	void AnimationChange(int animationNum = 0, float speed = 1.0f) { fbxObject3d_->PlayAnimation(animationNum, speed); };
 
 	//À•W
-	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
+	void Move(Vector3 velocity);
 	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };

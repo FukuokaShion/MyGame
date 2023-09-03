@@ -55,9 +55,10 @@ void Player::Update() {
 	state_->Update();
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
-	fbxObject3d_->wtf.position += CollisionManager::Body2Body();
-	CamRota();
 
+	Move(CollisionManager::Body2Body());
+	CamRota();
+	fbxObject3d_->wtf.UpdateMat();
 	camera_->Update();
 	fbxObject3d_->Update();
 
@@ -137,3 +138,25 @@ void Player::PlayWav(const std::string& filename) {
 void Player::StopWav() {
 	 audio->StopWave(pSourceVoice[6]);
 }
+
+void Player::Move(Vector3 velocity) {
+	//新しい座標
+	Vector3 newPos = fbxObject3d_->wtf.position + velocity;
+	
+	//中心からの距離
+	float distance = sqrt((newPos.x * newPos.x) + (newPos.z * newPos.z));
+
+	int limit = 49;
+
+	//範囲外なら
+	if (distance > limit) {
+		//角度
+		float theta = atan2f(newPos.z, newPos.x);
+
+		Vector3 limitPos = { limit * cosf(theta),newPos.y ,limit* sinf(theta) };
+
+		newPos = limitPos;
+	}
+
+	fbxObject3d_->wtf.position = newPos;
+};
