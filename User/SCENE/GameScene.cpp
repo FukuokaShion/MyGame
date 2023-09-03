@@ -21,9 +21,17 @@ void GameScene::Initialize() {
 	Object3d::SetCamera(camera);
 	FBXObject3d::SetCamera(camera);
 
+	state = State::game;
+
 	//フィールド生成
 	field = new Field();
 	field->Initialize();
+
+
+	//エネミー生成
+	enemy = new Enemy();
+	enemy->Initialize();
+	CollisionManager::SetEnemy(enemy);
 
 	//プレイヤー生成
 	player = new Player();
@@ -31,10 +39,6 @@ void GameScene::Initialize() {
 	player->SetCamera(camera);
 	CollisionManager::SetPlayer(player);
 
-	//エネミー生成
-	enemy = new Enemy();
-	enemy->Initialize();
-	CollisionManager::SetEnemy(enemy);
 
 	//カメラの設定
 	camera->SetParent(player->GetWtfP());
@@ -72,6 +76,15 @@ void GameScene::Initialize() {
 	enemyHpGauge->SetSize({ 671,11 });
 	enemyHpGauge->SetColor({ 172.0f / 255.0f,50.0f / 255.0f,50.0f / 255.0f,1.0f });
 
+	clear = new Sprite();
+	clear->Initialize(spriteCommon);
+	clear->SetPozition({ 0,0 });
+	clear->SetSize({ 1280,720 });
+
+	gameOver = new Sprite();
+	gameOver->Initialize(spriteCommon);
+	gameOver->SetPozition({ 0,0 });
+	gameOver->SetSize({ 1280,720 });
 
 	spriteCommon->LoadTexture(0, "UIBase.png");
 	UIBase->SetTextureIndex(0);
@@ -81,6 +94,10 @@ void GameScene::Initialize() {
 	damageGauge->SetTextureIndex(2);
 	spriteCommon->LoadTexture(3, "white.png");
 	enemyHpGauge->SetTextureIndex(3);
+	spriteCommon->LoadTexture(4, "clear.png");
+	clear->SetTextureIndex(4);
+	spriteCommon->LoadTexture(5, "gameOver.png");
+	gameOver->SetTextureIndex(5);
 
 	collisionManager = CollisionManager::GetInstance();
 }
@@ -99,22 +116,43 @@ GameScene::~GameScene() {
 	delete hpGauge;
 	delete damageGauge;
 	delete enemyHpGauge;
+	delete clear;
+	delete gameOver;
 }
 
 //更新
 void GameScene::Update() {
-	//オブジェクト更新
-	field->Update();
-	player->Update();
-	enemy->Update(player->GetWtf().position);
-	CollisionManager::CheckCollision();
-	collisionManager->CheakCol();
+	switch (state) {
+	case State::game:
+		//オブジェクト更新
+		field->Update();
+		player->Update();
+		enemy->Update(player->GetWtf().position);
+		CollisionManager::CheckCollision();
+		collisionManager->CheakCol();
 
-	damageGauge->SetSize({ static_cast<float>(4 * player->GetDamage()),26 });
-	hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
-	enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
+		damageGauge->SetSize({ static_cast<float>(4 * player->GetDamage()),26 });
+		hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
+		enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
 
-	StateTransition();
+		if (enemy->IsLive() == false) {
+			state = State::clear;
+		}
+		else if (player->IsLive() == false) {
+			state = State::death;
+		}
+		break;
+	case State::clear:
+		if (input->PButtonTrigger(B)) {
+			sceneManager->TransitionTo(new TitleScene);
+		}
+		break;
+	case State::death:
+		if (input->PButtonTrigger(B)) {
+			sceneManager->TransitionTo(new TitleScene);
+		}
+		break;
+	}
 }
 
 
@@ -129,10 +167,23 @@ void GameScene::FbxDraw() {
 }
 
 void GameScene::SpriteDraw() {
-	UIBase->Draw();
-	damageGauge->Draw();
-	hpGauge->Draw();
-	enemyHpGauge->Draw();
+	switch (state) {
+	case State::game:
+		UIBase->Draw();
+		damageGauge->Draw();
+		hpGauge->Draw();
+		enemyHpGauge->Draw();
+
+		break;
+	case State::clear:
+
+		clear->Draw();
+		break;
+	case State::death:
+
+		gameOver->Draw();
+		break;
+	}
 }
 
 void GameScene::StateTransition() {

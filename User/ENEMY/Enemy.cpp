@@ -56,22 +56,23 @@ Enemy::~Enemy() {
 }
 
 void Enemy::Update(Vector3 playerPos) {
-	//当たり判定
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	attackHitBox.center = fbxObject3d_->wtf.position;
+	if (hp->IsLive()) {
+		//当たり判定
+		bodyHitBox.center = fbxObject3d_->wtf.position;
+		attackHitBox.center = fbxObject3d_->wtf.position;
 
-	//行動
-	state_->Update(playerPos);
+		//行動
+		state_->Update(playerPos);
 
-	//オブジェクト
-	fbxObject3d_->Update();
+		//オブジェクト
+		fbxObject3d_->Update();
 
-	//弾
-	bullets.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
-	for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
-		bullet->Update();
+		//弾
+		bullets.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
+		for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
+			bullet->Update();
+		}
 	}
-
 	//パーティクル
 	particle->Update();
 }
@@ -82,7 +83,9 @@ void Enemy::OnCollision(int damage, Vector3 hitPos) {
 }
 
 void Enemy::Draw() {
-	fbxObject3d_->Draw();
+	if (hp->IsLive()) {
+		fbxObject3d_->Draw();
+	}
 }
 
 void Enemy::ObjDraw() {
