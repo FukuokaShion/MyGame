@@ -8,6 +8,8 @@
 #include"PlayerHp.h"
 #include"PlayerState.h"
 
+#include "Object3d.h"
+
 class Player {
 public:
 	//ê›íË
@@ -88,4 +90,8 @@ private:
 
 	//çsìÆ
 	PlayerState* state_ = nullptr;
+
+public:
+	Object3d* skydome = nullptr;
+	Model* skydomeMD = nullptr;
 };

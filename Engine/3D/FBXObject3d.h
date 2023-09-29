@@ -101,12 +101,16 @@ public: // メンバ関数
 
 	bool GetAnimationFin() { return isFin; };
 
+	Vector3 GetBonWorldPos(uint32_t& BoneNum);
+
 protected: // メンバ変数
 	ComPtr<ID3D12Resource> constBuffB0; // 定数バッファ
 	// 定数バッファ(スキン)
 	ComPtr<ID3D12Resource> constBuffSkin;
 	// モデル
 	FBXModel* fbxmodel = nullptr;
+
+	std::vector<Matrix4> bonesMat;
 
 	//1フレームの時間
 	FbxTime frameTime;

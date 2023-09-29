@@ -11,12 +11,19 @@ Player::Player() {
 	fbxObject3d_->SetModel(fbxModel_);
 	hp = new PlayerHp;
 
+	skydomeMD = Model::LoadFromOBJ("boll");
+	skydome = Object3d::Create();
+	skydome->SetModel(skydomeMD);
+
 	state_->SetPlayer(this);
 }
 
 Player::~Player() {
 	delete fbxObject3d_;
 	delete fbxModel_;
+
+	delete skydome;
+	delete skydomeMD;
 }
 
 void Player::Initialize(Input* input) {
@@ -69,11 +76,16 @@ void Player::Update() {
 	}else {
 		gaugeTimer--;
 	}
+
+	uint32_t sowrdNum = 34;
+	skydome->wtf.position = fbxObject3d_->GetBonWorldPos(sowrdNum);
+
+	skydome->Update();
 }
 
 void Player::CamRota() {
 	//¶‰E
-	Vector3 theta;
+	Vector3 theta = { 0,0,0 };
 
 	float PI = 3.1415f;
 	Vector2 camRotaSpeed = { PI / 1800.0f, PI / 1800.0f };
@@ -86,10 +98,10 @@ void Player::CamRota() {
 		theta.y = -camRotaSpeed.y * sensitivity;
 	}
 
-	if (input_->StickInput(R_UP)) {
+	if (input_->StickInput(R_DOWN)) {
 		theta.x = camRotaSpeed.x * sensitivity;
 	}
-	else if (input_->StickInput(R_DOWN)) {
+	else if (input_->StickInput(R_UP)) {
 		theta.x = -camRotaSpeed.x * sensitivity;
 	}
 
