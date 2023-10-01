@@ -11,19 +11,12 @@ Player::Player() {
 	fbxObject3d_->SetModel(fbxModel_);
 	hp = new PlayerHp;
 
-	skydomeMD = Model::LoadFromOBJ("boll");
-	skydome = Object3d::Create();
-	skydome->SetModel(skydomeMD);
-
 	state_->SetPlayer(this);
 }
 
 Player::~Player() {
 	delete fbxObject3d_;
 	delete fbxModel_;
-
-	delete skydome;
-	delete skydomeMD;
 }
 
 void Player::Initialize(Input* input) {
@@ -77,10 +70,8 @@ void Player::Update() {
 		gaugeTimer--;
 	}
 
-	uint32_t sowrdNum = 34;
-	skydome->wtf.position = fbxObject3d_->GetBonWorldPos(sowrdNum);
-
-	skydome->Update();
+	//uint32_t sowrdNum = 34;
+	//skydome->wtf.position = fbxObject3d_->GetBonWorldPos(sowrdNum);
 }
 
 void Player::CamRota() {

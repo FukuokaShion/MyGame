@@ -157,7 +157,6 @@ void GameScene::Update() {
 
 
 void GameScene::ObjectDraw() {
-	player->skydome->Draw();
 	field->Draw();
 	enemy->ObjDraw();
 }
