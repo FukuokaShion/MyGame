@@ -11,12 +11,19 @@ Player::Player() {
 	fbxObject3d_->SetModel(fbxModel_);
 	hp = new PlayerHp;
 
+	skydomeMD = Model::LoadFromOBJ("boll");
+	skydome = Object3d::Create();
+	skydome->SetModel(skydomeMD);
+
 	state_->SetPlayer(this);
 }
 
 Player::~Player() {
 	delete fbxObject3d_;
 	delete fbxModel_;
+
+	delete skydome;
+	delete skydomeMD;
 }
 
 void Player::Initialize(Input* input) {
@@ -55,9 +62,10 @@ void Player::Update() {
 	state_->Update();
 
 	bodyHitBox.center = fbxObject3d_->wtf.position;
-	fbxObject3d_->wtf.position += CollisionManager::Body2Body();
-	CamRota();
 
+	Move(CollisionManager::Body2Body());
+	CamRota();
+	fbxObject3d_->wtf.UpdateMat();
 	camera_->Update();
 	fbxObject3d_->Update();
 
@@ -68,11 +76,16 @@ void Player::Update() {
 	}else {
 		gaugeTimer--;
 	}
+
+	uint32_t sowrdNum = 34;
+	skydome->wtf.position = fbxObject3d_->GetBonWorldPos(sowrdNum);
+
+	skydome->Update();
 }
 
 void Player::CamRota() {
 	//左右
-	Vector3 theta;
+	Vector3 theta = { 0,0,0 };
 
 	float PI = 3.1415f;
 	Vector2 camRotaSpeed = { PI / 1800.0f, PI / 1800.0f };
@@ -85,10 +98,10 @@ void Player::CamRota() {
 		theta.y = -camRotaSpeed.y * sensitivity;
 	}
 
-	if (input_->StickInput(R_UP)) {
+	if (input_->StickInput(R_DOWN)) {
 		theta.x = camRotaSpeed.x * sensitivity;
 	}
-	else if (input_->StickInput(R_DOWN)) {
+	else if (input_->StickInput(R_UP)) {
 		theta.x = -camRotaSpeed.x * sensitivity;
 	}
 
@@ -137,3 +150,25 @@ void Player::PlayWav(const std::string& filename) {
 void Player::StopWav() {
 	 audio->StopWave(pSourceVoice[6]);
 }
+
+void Player::Move(Vector3 velocity) {
+	//新しい座標
+	Vector3 newPos = fbxObject3d_->wtf.position + velocity;
+	
+	//中心からの距離
+	float distance = sqrt((newPos.x * newPos.x) + (newPos.z * newPos.z));
+
+	int limit = 49;
+
+	//範囲外なら
+	if (distance > limit) {
+		//角度
+		float theta = atan2f(newPos.z, newPos.x);
+
+		Vector3 limitPos = { limit * cosf(theta),newPos.y ,limit* sinf(theta) };
+
+		newPos = limitPos;
+	}
+
+	fbxObject3d_->wtf.position = newPos;
+};

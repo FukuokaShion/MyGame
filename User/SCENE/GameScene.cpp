@@ -47,10 +47,10 @@ void GameScene::Initialize() {
 	//サウンド
 	audio = new Audio();
 	audio->Initialize();
-	audio->LoadWave("bb.wav");
+	audio->LoadWave("game.wav");
 
-	pSourceVoice = audio->PlayWave("bb.wav");
-	pSourceVoice->SetVolume(0.03f);
+	pSourceVoice = audio->PlayWave("game.wav");
+	pSourceVoice->SetVolume(0.8f);
 
 	//スプライト
 	UIBase = new Sprite();
@@ -157,6 +157,7 @@ void GameScene::Update() {
 
 
 void GameScene::ObjectDraw() {
+	player->skydome->Draw();
 	field->Draw();
 	enemy->ObjDraw();
 }

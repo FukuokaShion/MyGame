@@ -15,7 +15,6 @@ ComPtr<ID3D12RootSignature> FBXObject3d::rootsignature;
 ComPtr<ID3D12PipelineState> FBXObject3d::pipelinestate;
 ComPtr<ID3D12GraphicsCommandList> FBXObject3d::cmdList;
 
-
 void FBXObject3d::CreateGraphicsPipeline()
 {
 	HRESULT result = S_FALSE;
@@ -243,6 +242,10 @@ void FBXObject3d::Update(){
 		}
 	}
 
+	if (bones.size() != bonesMat.size()) {
+		bonesMat.resize(bones.size());
+	}
+
 	//定数バッファへのデータ転送
 	ConstBufferDataSkin* constMapSkin = nullptr;
 	result = constBuffSkin->Map(0, nullptr, (void**)&constMapSkin);
@@ -255,6 +258,8 @@ void FBXObject3d::Update(){
 		FbxLoader::ConvertMatrixFromFbx(&matCurrentPose, fbxCurrentPose);
 		//合成してスキニング行列に
 		constMapSkin->bones[i] = bones[i].invInitialPose * matCurrentPose;
+		//ボーン座標記憶(ローカル座標)
+		bonesMat[i] = ConvertXM::ConvertXMMATtoMat4(matCurrentPose);
 	}
 	constBuffSkin->Unmap(0, nullptr);
 }
@@ -315,4 +320,14 @@ void FBXObject3d::PlayAnimation(int animationNum, float speed, bool isLoop) {
 	isFin = false;
 	//ループ再生する
 	this->isLoop = isLoop;
+}
+
+Vector3 FBXObject3d::GetBonWorldPos(uint32_t& BoneNum) {
+	Vector3 result;
+
+	result.x = (bonesMat[BoneNum] * wtf.matWorld).m[3][0];
+	result.y = (bonesMat[BoneNum] * wtf.matWorld).m[3][1];
+	result.z = (bonesMat[BoneNum] * wtf.matWorld).m[3][2];
+
+	return result;
 }
