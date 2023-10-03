@@ -32,6 +32,7 @@ private:
 	//画像
 	SpriteCommon* spriteCommon = nullptr;
 	Sprite* basePic;
+	std::unique_ptr<Sprite> black;
 
 	//obj
 	Object3d* skydome = nullptr;
@@ -45,4 +46,17 @@ private:
 	Model* rock01MD = nullptr;
 	Object3d* rock02[2];
 	Model* rock02MD = nullptr;
+
+	//船
+	Object3d* ship = nullptr;
+	Model* shipMD = nullptr;
+	float shipAngle;
+	bool isMoveShip;
+	float shipSpeed;
+	int timer;
+	int limit;
+
+	//プレイヤー
+	Object3d* player = nullptr;
+	Model* playerMD = nullptr;
 };
