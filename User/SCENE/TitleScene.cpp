@@ -2,6 +2,9 @@
 #include"SceneManager.h"
 #include"GameScene.h"
 
+
+#include"Easing.h"
+
 TitleScene::TitleScene() {
 }
 
@@ -30,8 +33,16 @@ void TitleScene::Initialize() {
 	basePic->SetPozition({ 0,0 });
 	basePic->SetSize({ 1280,720 });
 
+	black = std::make_unique<Sprite>();
+	black->Initialize(spriteCommon);
+	black->SetPozition({ 0,0 });
+	black->SetSize({ 1280,720 });
+	black->SetColor({ 0,0,0,0 });
+
 	spriteCommon->LoadTexture(0, "title.png");
 	basePic->SetTextureIndex(0);
+	spriteCommon->LoadTexture(1, "white.png");
+	black->SetTextureIndex(1);
 
 	//obj
 	skydomeMD = Model::LoadFromOBJ("skydome");
@@ -75,6 +86,20 @@ void TitleScene::Initialize() {
 	rock02[1]->wtf.position = { -40,0,240 };
 	rock02[1]->wtf.scale = { 1.5f,1.5f,1.5f };
 	rock02[1]->wtf.rotation = { 0,220 * PI/180,0 };
+
+	shipMD = Model::LoadFromOBJ("ship");
+	ship = Object3d::Create();
+	ship->SetModel(shipMD);
+	ship->wtf.position = { -20,0,28 };
+	shipAngle = 0.04f * 3.141592f / 180.0f;
+	shipSpeed = 0.3f;
+	timer = 0;
+	limit = 90;
+
+	playerMD = Model::LoadFromOBJ("playerObj");
+	player = Object3d::Create();
+	player->SetModel(playerMD);
+	player->wtf.position = { -20,0.5f,28 };
 }
 
 TitleScene::~TitleScene() {
@@ -95,6 +120,12 @@ TitleScene::~TitleScene() {
 	delete rock01MD;
 	delete rock02MD;
 
+	delete ship;
+	delete shipMD;
+
+	delete player;
+	delete playerMD;
+
 	audio->StopWave(pSourceVoice);
 }
 
@@ -104,10 +135,19 @@ void TitleScene::Update() {
 	skydome->Update();
 	water->Update();
 	coast->Update();
+	
+	if (abs(ship->wtf.rotation.x) > 4 * 3.141592f/180) {
+		shipAngle *= -1;
+	}
+	ship->wtf.rotation.x += shipAngle;
+
+	ship->Update();
 	for (int i = 0; i < 2; i++) {
 		rock01[i]->Update();
 		rock02[i]->Update();
 	}
+
+	player->Update();
 
 	StateTransition();
 }
@@ -115,6 +155,8 @@ void TitleScene::Update() {
 
 void TitleScene::ObjectDraw() {
 	skydome->Draw();
+	player->Draw();
+	ship->Draw();
 	water->Draw();
 	coast->Draw();
 	for (int i = 0; i < 2; i++) {
@@ -129,10 +171,32 @@ void TitleScene::FbxDraw() {
 
 void TitleScene::SpriteDraw() {
 	basePic->Draw();
+	black->Draw();
 }
 
 void TitleScene::StateTransition() {
-	if (input->PButtonTrigger(B)) {
+	if (input->TriggerKey(DIK_SPACE)) {
+		isMoveShip = true;
+	}
+	
+	if (isMoveShip) {
+		if (timer < limit) {
+			timer++;
+		}
+
+		float t = static_cast<float>(timer) / static_cast<float>(limit);
+
+		float add = Easing::OutQuad(0, shipSpeed, t);
+
+		ship->wtf.position.z += add;
+		player->wtf.position.z += add;
+	}
+
+	if (ship->wtf.position.z > 60.0f) {
+		black->SetColor({ 0,0,0,black->GetColor().w + 0.04f });
+	}
+	
+	if (ship->wtf.position.z > 120) {
 		sceneManager->TransitionTo(new GameScene);
 	}
 }

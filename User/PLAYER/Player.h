@@ -90,8 +90,4 @@ private:
 
 	//çsìÆ
 	PlayerState* state_ = nullptr;
-
-public:
-	Object3d* skydome = nullptr;
-	Model* skydomeMD = nullptr;
 };
