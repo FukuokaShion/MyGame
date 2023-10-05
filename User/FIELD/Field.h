@@ -12,7 +12,7 @@ public:
 
 	void Draw();
 private:
-	//”wŒi‚â°
+	//èƒŒæ™¯ã‚„åºŠ
 	Object3d* skydome = nullptr;
 	Model* skydomeMD = nullptr;
 

@@ -13,7 +13,7 @@ EnemyShooting::EnemyShooting() {
 }
 
 void EnemyShooting::Update(Vector3 playerPos) {
-	//ƒvƒŒƒCƒ„[‚Ì•û‚ðŒü‚­
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹ã‚’å‘ã
 	float angle;
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
@@ -22,25 +22,25 @@ void EnemyShooting::Update(Vector3 playerPos) {
 	if (ShotTimer < 0) {
 		enemy_->PlayWave("fire.wav");
 
-		//‘¬“xÝ’è
-		Vector3 velocity = { 0,0,0 };
+		//é€Ÿåº¦è¨­å®š
+		velocity = { 0,0,0 };
 		velocity += {0, 0, -speed};
 
-		//Œü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
+		//å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«åˆã‚ã›ã‚‹
 		Matrix4 enemyMat = enemy_->GetWtf().matWorld;
 		velocity = Matrix4::bVelocity(velocity, enemyMat);
 
-		//’e¶¬
+		//å¼¾ç”Ÿæˆ
 		enemy_->CreatBullet(enemy_->GetWtf().position, velocity, bulletLiveLimit);
-		
-		//ŽŸ‚Ì”­ŽË‚Ü‚Å‚ÌŽžŠÔ
+
+		//æ¬¡ã®ç™ºå°„ã¾ã§ã®æ™‚é–“
 		ShotTimer = interval;
 
-		//”­ŽË”
+		//ç™ºå°„æ•°
 		shotNum++;
 	}
-	
-	//ó‘ÔˆÚs
+
+	//çŠ¶æ…‹ç§»è¡Œ
 	if (shotNum >= shotMax) {
 		enemy_->TransitionTo(new Standby);
 	}

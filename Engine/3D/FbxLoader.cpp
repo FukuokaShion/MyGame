@@ -1,4 +1,4 @@
-﻿#include "FbxLoader.h"
+#include "FbxLoader.h"
 
 #include <cassert>
 
@@ -23,7 +23,7 @@ void FbxLoader::Initialize(ID3D12Device* device)
     assert(fbxManager == nullptr);
 
     // 引数からメンバ変数に代入
-    this->device = device;
+    this->device_ = device;
 
     // FBXマネージャの生成
     fbxManager = FbxManager::Create();
@@ -75,7 +75,7 @@ FBXModel* FbxLoader::LoadModelFromFile(const string& modelName)
     // FBXシーン解放
     fbxmodel->fbxScene = fbxScene;
     // バッファ生成
-    fbxmodel->CreateBuffers(device);
+    fbxmodel->CreateBuffers(device_);
 
     return fbxmodel;
 }
@@ -349,7 +349,7 @@ void FbxLoader::ParseMeshFaces(FBXModel* fbxmodel, FbxMesh* fbxMesh)
             // 3頂点目までなら
             if (j < 3) {
                 // 1点追加し、他の2点と三角形を構築する
-                indices.push_back(index);
+                indices.push_back(static_cast<short>(index));
             }
             // 4頂点目
             else {
@@ -357,9 +357,9 @@ void FbxLoader::ParseMeshFaces(FBXModel* fbxmodel, FbxMesh* fbxMesh)
                 int index2 = indices[indices.size() - 1];
                 int index3 = index;
                 int index0 = indices[indices.size() - 3];
-                indices.push_back(index2);
-                indices.push_back(index3);
-                indices.push_back(index0);
+                indices.push_back(static_cast<short>(index2));
+                indices.push_back(static_cast<short>(index3));
+                indices.push_back(static_cast<short>(index0));
             }
 
 

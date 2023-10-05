@@ -14,7 +14,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	afterTime = 20;
 }
 
-//UŒ‚
+//æ”»æ’ƒ
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;
 
@@ -23,11 +23,11 @@ void PlayerJumpAttack::Update() {
 		velocity = { 0,attackFallSpeed,0 };
 		player_->Move(velocity);
 
-		//UŒ‚“–‚½‚è”»’è
+		//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 		player_->SetAttackPos({ player_->GetWtf().position.x, player_->GetWtf().position.y + 2.0f, player_->GetWtf().position.z });
 		player_->SetAttackRad(2.0f);
 
-		//UŒ‚”»’è
+		//æ”»æ’ƒåˆ¤å®š
 		isAttack = true;
 		power = power_;
 

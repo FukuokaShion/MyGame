@@ -4,7 +4,7 @@
 #include"CollisionManager.h"
 
 Player::Player() {
-	//ƒ‚ƒfƒ‹¶¬
+	//ãƒ¢ãƒ‡ãƒ«ç”Ÿæˆ
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
@@ -23,7 +23,7 @@ void Player::Initialize(Input* input) {
 	input_ = input;
 	state_->SetInput(input_);
 
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	audio = new Audio();
 	audio->Initialize();
 	audio->LoadWave("col.wav");
@@ -66,7 +66,8 @@ void Player::Update() {
 		if (damageGauge > hp->GetHp()) {
 			damageGauge--;
 		}
-	}else {
+	}
+	else {
 		gaugeTimer--;
 	}
 
@@ -75,7 +76,7 @@ void Player::Update() {
 }
 
 void Player::CamRota() {
-	//¶‰E
+	//å·¦å³
 	Vector3 theta = { 0,0,0 };
 
 	float PI = 3.1415f;
@@ -112,51 +113,57 @@ void Player::Draw() {
 	}
 }
 
-//ó‘Ô‚ð•ÏX‚·‚é
+//çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 void Player::TransitionTo(PlayerState* state) {
-	//íœ
+	//å‰Šé™¤
 	delete state_;
-	//V‹Kì¬
+	//æ–°è¦ä½œæˆ
 	state_ = state;
 }
 
 void Player::PlayWav(const std::string& filename) {
 	if (filename == "col.wav") {
 		pSourceVoice[0] = audio->PlayWave("col.wav");
-	}else if (filename == "jump.wav") {
+	}
+	else if (filename == "jump.wav") {
 		pSourceVoice[1] = audio->PlayWave("jump.wav");
-	}else if (filename == "landing.wav") {
+	}
+	else if (filename == "landing.wav") {
 		pSourceVoice[2] = audio->PlayWave("landing.wav");
-	}else if (filename == "attack.wav") {
+	}
+	else if (filename == "attack.wav") {
 		pSourceVoice[3] = audio->PlayWave("attack.wav");
-	}else if (filename == "jumpAttack.wav") {
+	}
+	else if (filename == "jumpAttack.wav") {
 		pSourceVoice[4] = audio->PlayWave("jumpAttack.wav");
-	}else if (filename == "avoid.wav") {
+	}
+	else if (filename == "avoid.wav") {
 		pSourceVoice[5] = audio->PlayWave("avoid.wav");
-	}else if (filename == "run.wav") {
+	}
+	else if (filename == "run.wav") {
 		pSourceVoice[6] = audio->PlayWave("run.wav");
 	}
 }
 
 void Player::StopWav() {
-	 audio->StopWave(pSourceVoice[6]);
+	audio->StopWave(pSourceVoice[6]);
 }
 
 void Player::Move(Vector3 velocity) {
-	//V‚µ‚¢À•W
+	//æ–°ã—ã„åº§æ¨™
 	Vector3 newPos = fbxObject3d_->wtf.position + velocity;
-	
-	//’†S‚©‚ç‚Ì‹——£
+
+	//ä¸­å¿ƒã‹ã‚‰ã®è·é›¢
 	float distance = sqrt((newPos.x * newPos.x) + (newPos.z * newPos.z));
 
 	int limit = 49;
 
-	//”ÍˆÍŠO‚È‚ç
+	//ç¯„å›²å¤–ãªã‚‰
 	if (distance > limit) {
-		//Šp“x
+		//è§’åº¦
 		float theta = atan2f(newPos.z, newPos.x);
 
-		Vector3 limitPos = { limit * cosf(theta),newPos.y ,limit* sinf(theta) };
+		Vector3 limitPos = { limit * cosf(theta),newPos.y ,limit * sinf(theta) };
 
 		newPos = limitPos;
 	}

@@ -64,8 +64,8 @@ Vector2& Vector2::operator/=(float s) {
 	return *this;
 }
 
-//Vector2D@ƒNƒ‰ƒX‚É‘®‚³‚È‚¢ŠÖ”ŒQ
-//“ñ€‰‰Zq
+//Vector2Dã€€ã‚¯ãƒ©ã‚¹ã«å±ã•ãªã„é–¢æ•°ç¾¤
+//äºŒé …æ¼”ç®—å­
 const Vector2 operator+(const Vector2& v1, const Vector2& v2) {
 	Vector2 temp(v1);
 	temp.x += v2.x;

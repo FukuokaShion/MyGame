@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Windows.h>
 #include <wrl.h>
@@ -178,7 +178,7 @@ public: // メンバ関数
 	///	<param name="accel">加速度</param>
 	void Add(int life, Vector3 position, Vector3 velociy, Vector3 accel, float start_scale, float end_scale);
 
-	static void SetCamera(Camera* camera) { ParticleManager::camera = camera; }
+	static void SetCamera(Camera* camera) { ParticleManager::camera_ = camera; }
 
 	void SetTransform(Transform wtf) { wtf_ = wtf; };
 
@@ -187,7 +187,7 @@ public: // メンバ関数
 	void Setrotation(Vector3 rotation) { wtf_.rotation = rotation; };
 
 private: // メンバ変数
-	static Camera* camera;
+	static Camera* camera_;
 	// ローカルスケール
 	Transform wtf_;
 

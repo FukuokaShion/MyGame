@@ -1,4 +1,4 @@
-﻿#include "Camera.h"
+#include "Camera.h"
 
 using namespace DirectX;
 
@@ -26,12 +26,12 @@ void Camera::Update() {
 	if (hasParent) {
 		if (isSyncRota) {
 			//回転同期
-			wtf.position = parent->position;
-			wtf.rotation = parent->rotation;
+			wtf.position = parent_->position;
+			wtf.rotation = parent_->rotation;
 		}
 		else {
 			//非同期
-			wtf.position = parent->position;
+			wtf.position = parent_->position;
 		}
 		///仮で高さを調整する
 		wtf.position.y += 2.5;
@@ -41,17 +41,19 @@ void Camera::Update() {
 	//縦回転
 	if (wtf.rotation.x > upLimit) {
 		wtf.rotation.x = upLimit;
-	}else if (wtf.rotation.x < downLimit) {
+	}
+	else if (wtf.rotation.x < downLimit) {
 		wtf.rotation.x = downLimit;
 	}
 
 	//横回転
 	if (wtf.rotation.y > 2 * PI) {
 		wtf.rotation.y = 0;
-	}else if (wtf.rotation.y < 2 * -PI) {
+	}
+	else if (wtf.rotation.y < 2 * -PI) {
 		wtf.rotation.y = 0;
 	}
-	
+
 	//座標更新
 	wtf.UpdateMat();
 
@@ -63,11 +65,11 @@ void Camera::Update() {
 void Camera::UpdateViewMatrix() {
 
 	// 視点座標
-	Vector3 eyePosition = eye * wtf.matWorld;
+	Vector3 eyePosition = eye_ * wtf.matWorld;
 	// 注視点座標
-	Vector3 targetPosition = target * wtf.matWorld;
+	Vector3 targetPosition = target_ * wtf.matWorld;
 	// （仮の）上方向
-	Vector3 upVector = up;
+	Vector3 upVector = up_;
 
 	// カメラZ軸（視線方向）
 	Vector3 cameraAxisZ = targetPosition - eyePosition;
@@ -222,5 +224,5 @@ void Camera::MoveVector(const Vector3& move)
 }
 
 float Camera::FieldOfViewY() {
-	return static_cast<float>(2 * atan(sensor / (2 * focalLengs)));
+	return static_cast<float>(2 * atan(sensor_ / (2 * focalLengs_)));
 }

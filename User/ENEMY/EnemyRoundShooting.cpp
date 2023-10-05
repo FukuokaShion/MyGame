@@ -13,56 +13,60 @@ EnemyRoundShooting::EnemyRoundShooting() {
 }
 
 void EnemyRoundShooting::Update(Vector3 playerPos) {
-	//ƒvƒŒƒCƒ„[‚Ì•û‚ðŒü‚­
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹ã‚’å‘ã
 	float angle;
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
-	
+
 	ShotTimer--;
 	if (ShotTimer < 0) {
 		enemy_->PlayWave("fire.wav");
-	
-		//‘¬“xÝ’è
-		Vector3 velocity = { 0,0,0 };
+
+		//é€Ÿåº¦è¨­å®š
+		velocity = { 0,0,0 };
 		velocity += {0, 0, -speed};
 
-		//Œü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
+		//å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«åˆã‚ã›ã‚‹
 		Matrix4 enemyMat = enemy_->GetWtf().matWorld;
 		velocity = Matrix4::bVelocity(velocity, enemyMat);
 
 		Vector3 creatPos;
-		//’e¶¬
+		//å¼¾ç”Ÿæˆ
 		if (shotNum == 0) {
 			creatPos = { 1.9f,2.6f,2 };
 			creatPos = creatPos * enemyMat;
 			enemy_->CreatBullet(creatPos, velocity, bulletLiveLimit, interval * 4);
-		}else if (shotNum == 1) {
+		}
+		else if (shotNum == 1) {
 			creatPos = { 1.17f,0.4f,2 };
 			creatPos = creatPos * enemyMat;
 			enemy_->CreatBullet(creatPos, velocity, bulletLiveLimit, interval * 3);
-		}else if (shotNum == 2) {
+		}
+		else if (shotNum == 2) {
 			creatPos = { -1.17f,0.4f,2 };
 			creatPos = creatPos * enemyMat;
 			enemy_->CreatBullet(creatPos, velocity, bulletLiveLimit, interval * 2);
-		}else if (shotNum == 3) {
+		}
+		else if (shotNum == 3) {
 			creatPos = { -1.9f,2.6f,2 };
 			creatPos = creatPos * enemyMat;
 			enemy_->CreatBullet(creatPos, velocity, bulletLiveLimit, interval * 1);
-		}else if (shotNum == 4) {
+		}
+		else if (shotNum == 4) {
 			creatPos = { 0,4,2 };
 			creatPos = creatPos * enemyMat;
 			enemy_->CreatBullet(creatPos, velocity, bulletLiveLimit);
 		}
 
 
-		//ŽŸ‚Ì”­ŽË‚Ü‚Å‚ÌŽžŠÔ
+		//æ¬¡ã®ç™ºå°„ã¾ã§ã®æ™‚é–“
 		ShotTimer = interval;
 
-		//”­ŽË”
+		//ç™ºå°„æ•°
 		shotNum++;
 	}
 
-	//ó‘ÔˆÚs
+	//çŠ¶æ…‹ç§»è¡Œ
 	if (shotNum >= shotMax) {
 		enemy_->TransitionTo(new Standby);
 	}

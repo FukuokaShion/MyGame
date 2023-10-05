@@ -1,7 +1,7 @@
 #pragma once
 #include"EnemyState.h"
 
-//ŽËŒ‚
+//å°„æ’ƒ
 class EnemyRoundShooting : public EnemyState {
 public:
 	EnemyRoundShooting();

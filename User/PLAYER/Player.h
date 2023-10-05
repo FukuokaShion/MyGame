@@ -12,31 +12,31 @@
 
 class Player {
 public:
-	//İ’è
+	//è¨­å®š
 	Player();
 	~Player();
 	void Initialize(Input* input);
 	void SetCamera(Camera* camera) { camera_ = camera; };
 
-	//XV
+	//æ›´æ–°
 	void Update();
 	void CamRota();
 
-	//•`‰æ
+	//æç”»
 	void Draw();
 
-	//ó‘ÔˆÚs
+	//çŠ¶æ…‹ç§»è¡Œ
 	void TransitionTo(PlayerState* state);
 
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	void PlayWav(const std::string& filename);
 	void StopWav();
 
 	//FBX
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Ø‚è‘Ö‚¦
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	void AnimationChange(int animationNum = 0, float speed = 1.0f) { fbxObject3d_->PlayAnimation(animationNum, speed); };
 
-	//À•W
+	//åº§æ¨™
 	void Move(Vector3 velocity);
 	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
@@ -44,18 +44,18 @@ public:
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
 	Transform GetCamWtf() { return camera_->wtf; };
 
-	//UŒ‚“–‚½‚è”»’è
+	//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 	Sphere GetAttackHitBox() { return attackHitBox; };
 	void SetAttackRad(float newRad) { attackHitBox.radius = newRad; };
 	void SetAttackPos(Vector3 newPos) { attackHitBox.center = newPos; };
 
-	//‘Ì“–‚½‚è”»’è
+	//ä½“å½“ãŸã‚Šåˆ¤å®š
 	Cylinder GetBodyHitBox() { return bodyHitBox; };
 
-	//”íƒ_ƒˆ—
+	//è¢«ãƒ€ãƒ¡å‡¦ç†
 	void OnCollision(int damage);
-	
-	//ƒXƒe[ƒ^ƒX
+
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	bool IsLive() { return hp->IsLive(); };
 	int GetHp() { return hp->GetHp(); };
 	int GetDamage() { return damageGauge; };
@@ -64,30 +64,30 @@ public:
 
 
 private:
-	//ƒJƒƒ‰
+	//ã‚«ãƒ¡ãƒ©
 	Camera* camera_ = nullptr;
-	//“ü—Í
+	//å…¥åŠ›
 	Input* input_ = nullptr;
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	Audio* audio = nullptr;
-	IXAudio2SourceVoice* pSourceVoice[10] = {0};
+	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
 
-	//‘Ì—Í
+	//ä½“åŠ›
 	PlayerHp* hp = nullptr;
 
-	//UŒ‚“–‚½‚è”»’è
+	//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 	Sphere attackHitBox;
-	//‘Ì“–‚½‚è”»’è
+	//ä½“å½“ãŸã‚Šåˆ¤å®š
 	Cylinder bodyHitBox;
-	//HPƒQ[ƒWŠÇ—
+	//HPã‚²ãƒ¼ã‚¸ç®¡ç†
 	int gaugeTimer;
 	int gaugeLimit;
 	int damageGauge;
 
-	//ƒ‚ƒfƒ‹
+	//ãƒ¢ãƒ‡ãƒ«
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
 
-	//s“®
+	//è¡Œå‹•
 	PlayerState* state_ = nullptr;
 };

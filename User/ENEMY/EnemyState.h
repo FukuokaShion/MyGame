@@ -16,9 +16,9 @@ public:
 protected:
 	static Enemy* enemy_;
 	int timer;
-	//ƒvƒŒƒCƒ„[À•W
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
 	Transform* playerWtf = nullptr;
-	
+
 	Vector3 speed;
 	Vector3 velocity;
 };

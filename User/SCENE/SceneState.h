@@ -5,29 +5,29 @@ class SceneManager;
 
 class SceneState {
 public:
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	SceneState();
 	virtual void Initialize() = 0;
 	virtual ~SceneState() = default;
 
-	//XV
+	//æ›´æ–°
 	virtual void Update() = 0;
 
-	//•`‰æ
+	//æç”»
 	virtual void ObjectDraw() = 0;
 	virtual void FbxDraw() = 0;
 	virtual void SpriteDraw() = 0;
 
-	//ƒZƒbƒ^[
+	//ã‚»ãƒƒã‚¿ãƒ¼
 	static void SetSceneManager(SceneManager* sceneManager_) { sceneManager = sceneManager_; };
 	static void SetInput(Input* input_) { input = input_; };
 
 protected:
-	//ó‘ÔˆÚs
+	//çŠ¶æ…‹ç§»è¡Œ
 	virtual void StateTransition() = 0;
 
 protected:
-	//ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
+	//ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	static SceneManager* sceneManager;
 
 	static Input* input;

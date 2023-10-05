@@ -3,46 +3,46 @@
 #include "DirectXCommon.h"
 
 /// <summary>
-/// ƒQ[ƒ€ƒV[ƒ“
+/// ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³
 /// </summary>
 class SceneManager
 {
-private: // Ã“Iƒƒ“ƒo•Ï”
+private: // é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°
 
-public: // ƒƒ“ƒoŠÖ”
+public: // ãƒ¡ãƒ³ãƒé–¢æ•°
 
 	/// <summary>
-	/// ƒRƒ“ƒXƒgƒNƒ‰ƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆã‚¯ãƒ©ã‚¿
 	/// </summary>
 	SceneManager();
 
 	/// <summary>
-	/// ƒfƒXƒgƒ‰ƒNƒ^
+	/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	/// </summary>
 	~SceneManager();
 
 	/// <summary>
-	/// ‰Šú‰»
+	/// åˆæœŸåŒ–
 	/// </summary>
 	void Initialize(DirectXCommon* dxCommon);
 
-	//ó‘ÔˆÚs
+	//çŠ¶æ…‹ç§»è¡Œ
 	void TransitionTo(SceneState* state);
 
 	/// <summary>
-	/// –ˆƒtƒŒ[ƒ€ˆ—
+	/// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
 	/// </summary>
 	void Update();
 
 	/// <summary>
-	/// •`‰æ
+	/// æç”»
 	/// </summary>
 	void Draw();
-private: //ƒƒ“ƒo•Ï” (ŒÅ’è)
-	DirectXCommon* dxCommon = nullptr;
+private: //ãƒ¡ãƒ³ãƒå¤‰æ•° (å›ºå®š)
+	DirectXCommon* dxCommon_ = nullptr;
 
 private:
-	//ƒV[ƒ“
+	//ã‚·ãƒ¼ãƒ³
 	SceneState* state_ = nullptr;
-	
+
 };

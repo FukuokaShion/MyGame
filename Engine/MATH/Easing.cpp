@@ -26,9 +26,10 @@ float Easing::OutQuad(const float& start, const float& end, const float time)
 float Easing::InOutQuad(const float& start, const float& end, const float time)
 {
 	float t;
-	if (time < 0.5f){
+	if (time < 0.5f) {
 		t = 2 * powf(time, 2);
-	}else{
+	}
+	else {
 		t = (1 - powf(-2 * time + 2, 2) / 2);
 	}
 

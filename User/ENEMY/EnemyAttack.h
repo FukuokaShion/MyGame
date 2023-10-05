@@ -1,12 +1,12 @@
 #pragma once
 #include"EnemyState.h"
 
-//UŒ‚
+//æ”»æ’ƒ
 class Attack : public EnemyState {
 public:
 	Attack();
 
-	void Update(Vector3 playerPos) override;
+	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:
 	enum class Action {
@@ -16,21 +16,21 @@ private:
 	};
 	Action action;
 
-	///—\”õ“®ì
-	//ŠÔ
+	///äºˆå‚™å‹•ä½œ
+	//æ™‚é–“
 	const int anticTime = 20;
-	//ˆÚ“®‹——£
+	//ç§»å‹•è·é›¢
 	const Vector3 anticDistance = { 0,0,1 };
 
-	///UŒ‚
-	//ŠÔ
+	///æ”»æ’ƒ
+	//æ™‚é–“
 	const int attackTime = 15;
-	//ˆÚ“®‹——£
+	//ç§»å‹•è·é›¢
 	const Vector3 attackDistance = { 0,0,-3 };
-	//UŒ‚—Í
+	//æ”»æ’ƒåŠ›
 	const int power = 10;
 
-	///ŒãŒ„
+	///å¾Œéš™
 	const int afterTime = 5;
 
 };

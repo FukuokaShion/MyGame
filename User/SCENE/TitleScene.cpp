@@ -9,7 +9,7 @@ TitleScene::TitleScene() {
 }
 
 void TitleScene::Initialize() {
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	audio = new Audio();
 	audio->Initialize();
 	audio->LoadWave("ocean.wav");
@@ -17,14 +17,14 @@ void TitleScene::Initialize() {
 	pSourceVoice = audio->PlayWave("ocean.wav");
 
 	float PI = 3.1415f;
-	// ƒJƒƒ‰¶¬
+	// ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 	camera = new Camera(WinApp::window_width, WinApp::window_height);
 	camera->wtf.position = { 0,6,-7 };
 	camera->wtf.rotation = { 10 * PI / 180.0f , -25 * PI / 180.0f,0 };
 
 	Object3d::SetCamera(camera);
 
-	//ƒXƒvƒ‰ƒCƒg‹¤’Ê•”•ª‚Ì‰Šú‰»
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå…±é€šéƒ¨åˆ†ã®åˆæœŸåŒ–
 	spriteCommon = new SpriteCommon;
 	spriteCommon->Initialize();
 
@@ -77,15 +77,15 @@ void TitleScene::Initialize() {
 
 	rock01[1]->wtf.position = { -60,0,250 };
 	rock01[1]->wtf.scale = { 1,1.3f,1.2f };
-	rock01[1]->wtf.rotation = { 0,PI/2,0 };
-	
+	rock01[1]->wtf.rotation = { 0,PI / 2,0 };
+
 	rock02[0]->wtf.position = { -70,0,250 };
 	rock02[0]->wtf.scale = { 2,2,2 };
 	rock02[0]->wtf.rotation = { 0,0,0 };
 
 	rock02[1]->wtf.position = { -40,0,240 };
 	rock02[1]->wtf.scale = { 1.5f,1.5f,1.5f };
-	rock02[1]->wtf.rotation = { 0,220 * PI/180,0 };
+	rock02[1]->wtf.rotation = { 0,220 * PI / 180,0 };
 
 	shipMD = Model::LoadFromOBJ("ship");
 	ship = Object3d::Create();
@@ -129,14 +129,14 @@ TitleScene::~TitleScene() {
 	audio->StopWave(pSourceVoice);
 }
 
-//XV
+//æ›´æ–°
 void TitleScene::Update() {
 	camera->Update();
 	skydome->Update();
 	water->Update();
 	coast->Update();
-	
-	if (abs(ship->wtf.rotation.x) > 4 * 3.141592f/180) {
+
+	if (abs(ship->wtf.rotation.x) > 4 * 3.141592f / 180) {
 		shipAngle *= -1;
 	}
 	ship->wtf.rotation.x += shipAngle;
@@ -178,7 +178,7 @@ void TitleScene::StateTransition() {
 	if (input->TriggerKey(DIK_SPACE)) {
 		isMoveShip = true;
 	}
-	
+
 	if (isMoveShip) {
 		if (timer < limit) {
 			timer++;
@@ -195,7 +195,7 @@ void TitleScene::StateTransition() {
 	if (ship->wtf.position.z > 60.0f) {
 		black->SetColor({ 0,0,0,black->GetColor().w + 0.04f });
 	}
-	
+
 	if (ship->wtf.position.z > 120) {
 		sceneManager->TransitionTo(new GameScene);
 	}

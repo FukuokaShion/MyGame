@@ -19,12 +19,13 @@ void PlayerJump::Update() {
 		if (timer > limit) {
 			up = false;
 		}
-	}else {
+	}
+	else {
 		timer--;
 	}
 
 	float t = static_cast<float>(timer) / static_cast<float>(limit);
-	
+
 	float newPos = Easing::OutQuad(0, 2, t);
 
 	player_->SetPosY(newPos);
@@ -37,8 +38,9 @@ void PlayerJump::StateTransition() {
 		player_->PlayWav("landing.wav");
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);
-	}else {
-		if (input->ButtonInput(B)) {
+	}
+	else {
+		if (input_->ButtonInput(B)) {
 			player_->TransitionTo(new PlayerJumpAttack);
 		}
 	}

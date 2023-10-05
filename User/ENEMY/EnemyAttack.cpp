@@ -7,26 +7,26 @@ Attack::Attack() {
 	enemy_->AnimationChange(0);
 }
 
-//UŒ‚
-void Attack::Update(Vector3 playerPos) {
+//æ”»æ’ƒ
+void Attack::Update([[maybe_unused]] Vector3 playerPos) {
 	timer++;
 
 	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
 
-	switch (action){
+	switch (action) {
 	case Action::Antic:
-		//—\”õ“®ì
+		//äºˆå‚™å‹•ä½œ
 		speed = anticDistance / static_cast<float>(anticTime);
 		velocity = Matrix4::bVelocity(speed, enemyMat);
 		enemy_->Move(velocity);
 
-		if (timer>anticTime) {
+		if (timer > anticTime) {
 			timer = 0;
 			action = Action::Attack;
 		}
 		break;
 	case Action::Attack:
-		//UŒ‚
+		//æ”»æ’ƒ
 		enemy_->PlayWave("enemyat.wav");
 		speed = attackDistance / static_cast<float>(attackTime);
 		velocity = Matrix4::bVelocity(speed, enemyMat);
@@ -34,14 +34,14 @@ void Attack::Update(Vector3 playerPos) {
 
 		enemy_->SetIsAttack(true);
 		enemy_->setPower(power);
-		
+
 		if (timer > attackTime) {
 			timer = 0;
 			action = Action::After;
 		}
 		break;
 	case Action::After:
-		//ŒãŒ„
+		//å¾Œéš™
 		if (timer > afterTime) {
 			enemy_->SetIsAttack(false);
 			enemy_->TransitionTo(new Standby);

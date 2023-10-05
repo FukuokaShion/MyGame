@@ -14,10 +14,10 @@ public:
 	void Initialize();
 	~GameScene();
 
-	//XV
+	//æ›´æ–°
 	void Update() override;
 
-	//•`‰æ
+	//æç”»
 	void ObjectDraw() override;
 	void FbxDraw() override;
 	void SpriteDraw() override;
@@ -33,24 +33,24 @@ private:
 private:
 	State state;
 
-	//‰æ‘œ
+	//ç”»åƒ
 	SpriteCommon* spriteCommon = nullptr;
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	Audio* audio = nullptr;
 	IXAudio2SourceVoice* pSourceVoice = nullptr;
 
-	//ƒƒ“ƒo•Ï”
-	//ƒJƒƒ‰
+	//ãƒ¡ãƒ³ãƒå¤‰æ•°
+	//ã‚«ãƒ¡ãƒ©
 	Camera* camera = nullptr;
-	//ƒtƒB[ƒ‹ƒh
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	Field* field = nullptr;
 
-	//ƒvƒŒƒCƒ„[
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	Player* player = nullptr;
-	//ƒGƒlƒ~[
+	//ã‚¨ãƒãƒŸãƒ¼
 	Enemy* enemy = nullptr;
 
-	//‰æ‘œ
+	//ç”»åƒ
 	Sprite* UIBase;
 
 	Sprite* hpGauge;

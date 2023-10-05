@@ -1,4 +1,4 @@
-﻿#include "Object3d.h"
+#include "Object3d.h"
 
 #include <d3dcompiler.h>
 #include <DirectXTex.h>
@@ -19,7 +19,7 @@ using namespace std;
 const float Object3d::radius = 5.0f;				// 底面の半径
 const float Object3d::prizmHeight = 8.0f;			// 柱の高さ
 ComPtr<ID3D12Device> Object3d::device;
-ComPtr<ID3D12GraphicsCommandList> Object3d::cmdList;
+ComPtr<ID3D12GraphicsCommandList> Object3d::cmdList_;
 ComPtr<ID3D12RootSignature> Object3d::rootsignature;
 ComPtr<ID3D12PipelineState> Object3d::pipelinestate;
 Matrix4 Object3d::matView = Affin::matUnit();
@@ -29,38 +29,35 @@ Vector3 Object3d::target = { 0, 0, 0 };
 Vector3 Object3d::up = { 0, 1, 0 };
 float Object3d::focalLengs = 50.0f;
 
-Camera* Object3d::camera = nullptr;
+Camera* Object3d::camera_ = nullptr;
 
 Object3d::Object3d() {
 
 }
 Object3d::~Object3d() {
-	
+
 }
 
-void Object3d::StaticInitialize(ID3D12Device* device, int window_width, int window_height)
+void Object3d::StaticInitialize(ID3D12Device* device_)
 {
 	// nullptrチェック
-	assert(device);
+	assert(device_);
 
-	Object3d::device = device;
+	Object3d::device = device_;
 
-	Model::SetDevice(device);
+	Model::SetDevice(device_);
 
 	// パイプライン初期化
 	InitializeGraphicsPipeline();
-
-
-
 }
 
 void Object3d::PreDraw(ID3D12GraphicsCommandList* cmdList)
 {
 	// PreDrawとPostDrawがペアで呼ばれていなければエラー
-	assert(Object3d::cmdList == nullptr);
+	assert(Object3d::cmdList_ == nullptr);
 
 	// コマンドリストをセット
-	Object3d::cmdList = cmdList;
+	Object3d::cmdList_ = cmdList;
 
 	// パイプラインステートの設定
 	cmdList->SetPipelineState(pipelinestate.Get());
@@ -73,7 +70,7 @@ void Object3d::PreDraw(ID3D12GraphicsCommandList* cmdList)
 void Object3d::PostDraw()
 {
 	// コマンドリストを解除
-	Object3d::cmdList = nullptr;
+	Object3d::cmdList_ = nullptr;
 }
 
 Object3d* Object3d::Create()
@@ -94,7 +91,7 @@ Object3d* Object3d::Create()
 	return homeOBJ;
 }
 
-void Object3d::InitializeCamera(int window_width, int window_height)
+void Object3d::InitializeCamera()
 {
 	//ビュー行列の算出
 	matView.MakeLookL(eye, target, up, matView);
@@ -300,7 +297,7 @@ bool Object3d::Initialize()
 	return true;
 }
 
-void Object3d::UpdateMat () {
+void Object3d::UpdateMat() {
 	Matrix4 matScale, matRot, matTrans;
 	// スケール、回転、平行移動行列の計算
 	matScale = Affin::matScale(wtf.scale.x, wtf.scale.y, wtf.scale.z);
@@ -315,13 +312,13 @@ void Object3d::UpdateMat () {
 	wtf.matWorld *= matTrans; // ワールド行列に平行移動を反映
 
 	// 親オブジェクトがあれば
-	if (parent != nullptr) {
+	if (parent_ != nullptr) {
 		// 親オブジェクトのワールド行列を掛ける
-		wtf.matWorld *= parent->wtf.matWorld;
+		wtf.matWorld *= parent_->wtf.matWorld;
 	}
 }
 
-void Object3d::Update(){
+void Object3d::Update() {
 
 	HRESULT result;
 	Matrix4 resultMat;
@@ -332,7 +329,7 @@ void Object3d::Update(){
 	// 定数バッファへデータ転送
 	ConstBufferDataB0* constMap = nullptr;
 	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
-	resultMat = wtf.matWorld * camera->GetViewProjectionMatrix();	// 行列の合成
+	resultMat = wtf.matWorld * camera_->GetViewProjectionMatrix();	// 行列の合成
 
 	constMap->mat = resultMat;
 	constBuffB0->Unmap(0, nullptr);
@@ -352,7 +349,7 @@ void Object3d::Update(Transform* parentWtf) {
 	// 定数バッファへデータ転送
 	ConstBufferDataB0* constMap = nullptr;
 	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
-	resultMat = wtf.matWorld * camera->GetViewProjectionMatrix();	// 行列の合成
+	resultMat = wtf.matWorld * camera_->GetViewProjectionMatrix();	// 行列の合成
 
 	constMap->mat = resultMat;
 	constBuffB0->Unmap(0, nullptr);
@@ -366,13 +363,13 @@ void Object3d::Draw()
 	//assert(Object3d::cmdList);
 
 	//モデルがセットされてなければ描画をスキップ
-	if (model == nullptr) return;
+	if (model_ == nullptr) return;
 
 	// 定数バッファビューをセット
-	cmdList->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
+	cmdList_->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 
 	//モデルを描画
-	model->Draw(cmdList.Get(), 1);
+	model_->Draw(cmdList_.Get(), 1);
 }
 
 

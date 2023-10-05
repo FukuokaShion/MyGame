@@ -2,8 +2,8 @@
 #include <assert.h>
 #include <winerror.h>
 
-Controller::Controller(){}
-Controller::~Controller(){}
+Controller::Controller() {}
+Controller::~Controller() {}
 
 bool Controller::StickInDeadZone(Vector2& Thumb, const Vector2& DeadRate)
 {
@@ -36,12 +36,12 @@ void Controller::Update()
 	oldXinputState = xinputState;
 	ZeroMemory(&xinputState, sizeof(XINPUT_STATE));
 
-	//ƒRƒ“ƒgƒ[ƒ‰[æ“¾
+	//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼å–å¾—
 	DWORD dwResult = XInputGetState(0, &xinputState);
 
 	if (dwResult == ERROR_SUCCESS)
 	{
-		//ƒRƒ“ƒgƒ[ƒ‰[‚ªÚ‘±‚³‚ê‚Ä‚¢‚é
+		//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒæ¥ç¶šã•ã‚Œã¦ã„ã‚‹
 		if (0 < shakeTimer)
 		{
 			shakeTimer--;
@@ -64,13 +64,13 @@ void Controller::Update()
 	}
 	else
 	{
-		//ƒRƒ“ƒgƒ[ƒ‰[‚ªÚ‘±‚³‚ê‚Ä‚¢‚È‚¢
+		//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒæ¥ç¶šã•ã‚Œã¦ã„ãªã„
 	}
 }
 
 bool Controller::ButtonTrigger(ControllerButton button)
 {
-	//ƒgƒŠƒK[
+	//ãƒˆãƒªã‚¬ãƒ¼
 	if (button == LT)
 	{
 		return oldXinputState.Gamepad.bLeftTrigger <= XINPUT_GAMEPAD_TRIGGER_THRESHOLD && ButtonInput(button);
@@ -192,7 +192,7 @@ bool Controller::StickInput(ControllerStick stickInput, const float& deadRange, 
 
 bool Controller::LeftStickInput(const float& deadRange) {
 	Vector2 stickVec = { float(xinputState.Gamepad.sThumbLX),float(xinputState.Gamepad.sThumbLY) };
-	
+
 	float depth = stickVec.length();
 
 	if (depth > STICK_INPUT_MAX * deadRange) {
@@ -204,7 +204,7 @@ bool Controller::LeftStickInput(const float& deadRange) {
 
 bool Controller::ButtonOffTrigger(ControllerButton button)
 {
-	//ƒgƒŠƒK[
+	//ãƒˆãƒªã‚¬ãƒ¼
 	if (button == LT)
 	{
 		return XINPUT_GAMEPAD_TRIGGER_THRESHOLD < oldXinputState.Gamepad.bLeftTrigger && !ButtonInput(button);
@@ -213,7 +213,7 @@ bool Controller::ButtonOffTrigger(ControllerButton button)
 	{
 		return XINPUT_GAMEPAD_TRIGGER_THRESHOLD < oldXinputState.Gamepad.bRightTrigger && !ButtonInput(button);
 	}
-	//ƒ{ƒ^ƒ“
+	//ãƒœã‚¿ãƒ³
 	else
 	{
 		return (oldXinputState.Gamepad.wButtons & button) && !ButtonInput(button);

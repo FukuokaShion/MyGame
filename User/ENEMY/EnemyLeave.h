@@ -1,15 +1,15 @@
 #pragma once
 #include"EnemyState.h"
 
-//Ú‹ß
+//æ¥è¿‘
 class Leave : public EnemyState {
 public:
 
-	void Update(Vector3 playerPos) override;
+	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:
-	//ŠÔ
+	//æ™‚é–“
 	const int limit = 10;
-	//ˆÚ“®‹——£
+	//ç§»å‹•è·é›¢
 	const Vector3 distance = { 0,0,7 };
 };

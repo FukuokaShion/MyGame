@@ -1,19 +1,19 @@
 #pragma once
 /// <summary>
-///“–‚½‚è”»’èƒvƒŠƒ~ƒeƒBƒu
+///å½“ãŸã‚Šåˆ¤å®šãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–
 /// </summary>
 
 #include"Vector3.h"
 #include<DirectXMath.h>
 
 struct Sphere {
-	Vector3 center = { 0,0,0};
+	Vector3 center = { 0,0,0 };
 
 	float radius = 1.0f;
 	bool isHit = false;
 };
 
-struct Cylinder{
+struct Cylinder {
 	Vector3 center = { 0,0,0 };
 	float radius = 1.0f;
 	float height = 1.0f;
@@ -47,6 +47,6 @@ struct Ray
 
 class CollisionPrimitive
 {
-	
+
 };
 

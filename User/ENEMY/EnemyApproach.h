@@ -1,7 +1,7 @@
 #pragma once
 #include"EnemyState.h"
 
-//Ú‹ß
+//æ¥è¿‘
 class Approach : public EnemyState {
 public:
 	Approach();
@@ -9,9 +9,9 @@ public:
 	void Update(Vector3 playerPos) override;
 
 private:
-	//ˆÚ“®‘¬“x
+	//ç§»å‹•é€Ÿåº¦
 	const float speed = 0.3f;
-	//ÅI“I‚È‹——£
+	//æœ€çµ‚çš„ãªè·é›¢
 	const float distance = 4.0f;
 	//
 	int limit;

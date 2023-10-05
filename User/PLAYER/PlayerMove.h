@@ -1,7 +1,7 @@
 #pragma once
 #include"PlayerState.h"
 
-//�ҋ@
+//待機
 class PlayerMove : public PlayerState {
 public:
 	PlayerMove();

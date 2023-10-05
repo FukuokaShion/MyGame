@@ -9,24 +9,24 @@ Approach::Approach() {
 
 void Approach::Update(Vector3 playerPos) {
 	timer--;
-	//ƒvƒŒƒCƒ„[‚Ì•û‚ðŒü‚­
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹ã‚’å‘ã
 	float angle;
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 
-	//‘¬“xÝ’è
-	Vector3 velocity = { 0,0,0 };
+	//é€Ÿåº¦è¨­å®š
+	velocity = { 0,0,0 };
 	velocity += {0, 0, -speed};
 
-	//Œü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
+	//å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«åˆã‚ã›ã‚‹
 	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
 	velocity = Matrix4::bVelocity(velocity, enemyMat);
 
-	//À•W‚É‘«‚·
+	//åº§æ¨™ã«è¶³ã™
 	enemy_->Move(velocity);
 
 	if (Vector3::Distance(enemy_->GetWtf().position, playerPos) < distance) {
-		//ˆê’è‹——£‚É‚È‚Á‚½‚ç‘Ò‹@ó‘Ô‚ÉˆÚs
+		//ä¸€å®šè·é›¢ã«ãªã£ãŸã‚‰å¾…æ©ŸçŠ¶æ…‹ã«ç§»è¡Œ
 		enemy_->TransitionTo(new Standby);
 	}
 	if (timer < 0) {

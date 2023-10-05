@@ -25,22 +25,22 @@ void PlayerMove::Move() {
 		player_->PlayWav("run.wav");
 	}
 
-	//ˆÚ“®—Ê
+	//ç§»å‹•é‡
 	Vector3 velocity = { 0,0,0 };
-	//ˆÚ“®‘¬“x
+	//ç§»å‹•é€Ÿåº¦
 	float speed = 0.5f;
 
-	//ƒXƒeƒBƒbƒN“ü—Í•ûŒüŽæ“¾
-	Vector2 stickVec = input->GetLeftStickVec();
-	//ˆÚ“®•ûŒü‚É•ÏŠ·
+	//ã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›æ–¹å‘å–å¾—
+	Vector2 stickVec = input_->GetLeftStickVec();
+	//ç§»å‹•æ–¹å‘ã«å¤‰æ›
 	velocity.x = stickVec.x;
 	velocity.z = stickVec.y;
-	//’PˆÊƒxƒNƒgƒ‹‰»
+	//å˜ä½ãƒ™ã‚¯ãƒˆãƒ«åŒ–
 	velocity = velocity.nomalize();
-	//ˆÚ“®ƒxƒNƒgƒ‹‚É•ÏŠ·
+	//ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›
 	velocity *= speed;
 
-	//ƒJƒƒ‰‚ªŒü‚¢‚Ä‚¢‚é•ûŒü‚É‡‚í‚¹‚é
+	//ã‚«ãƒ¡ãƒ©ãŒå‘ã„ã¦ã„ã‚‹æ–¹å‘ã«åˆã‚ã›ã‚‹
 	Transform direction = player_->GetCamWtf();
 	direction.rotation.x = 0;
 	direction.UpdateMat();
@@ -49,8 +49,8 @@ void PlayerMove::Move() {
 }
 
 void PlayerMove::Rota() {
-	if (input->LeftStickInput()) {
-		Vector2 stickVec = input->GetLeftStickVec();
+	if (input_->LeftStickInput()) {
+		Vector2 stickVec = input_->GetLeftStickVec();
 
 		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
 
@@ -60,19 +60,19 @@ void PlayerMove::Rota() {
 }
 
 void PlayerMove::StateTransition() {
-	//‘Ò‹@ó‘Ô
-	if (input->LeftStickInput() == false) {
+	//å¾…æ©ŸçŠ¶æ…‹
+	if (input_->LeftStickInput() == false) {
 		player_->TransitionTo(new PlayerStandby);
 		player_->StopWav();
 	}
 
-	//‰ñ”ð
-	if (input->PButtonTrigger(A)) {
+	//å›žé¿
+	if (input_->PButtonTrigger(A)) {
 		player_->TransitionTo(new PlayerAvoid);
 	}
 
-	//UŒ‚
-	if (input->PButtonTrigger(B)) {
+	//æ”»æ’ƒ
+	if (input_->PButtonTrigger(B)) {
 		player_->TransitionTo(new PlayerAttack);
 	}
 }

@@ -13,7 +13,7 @@ PlayerAvoid::PlayerAvoid() {
 	timer = limit;
 }
 
-//�ҋ@
+//待機
 void PlayerAvoid::Update() {
 	timer--;
 
@@ -24,7 +24,7 @@ void PlayerAvoid::Update() {
 	player_->Move(add);
 
 	if (timer < 0) {
-	StateTransition();
+		StateTransition();
 	}
 }
 

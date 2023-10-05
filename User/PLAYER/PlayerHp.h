@@ -16,14 +16,14 @@ public:
 	void Heal(int heal);
 
 private:
-	//最大HP
+	//譛螟ｧHP
 	int MaxHp;
-	//現在のHP
+	//迴ｾ蝨ｨ縺ｮHP
 	int hp;
-	//ダメージを受ける前の体力
+	//繝繝｡繝ｼ繧ｸ繧貞女縺代ｋ蜑阪�ｮ菴灘鴨
 	int oldHp;
-	
-	//生存フラグ
+
+	//逕溷ｭ倥ヵ繝ｩ繧ｰ
 	bool isLive;
 
 };

@@ -5,7 +5,7 @@ Field::Field() {
 }
 
 void Field::Initialize() {
-	//”wŒi
+	//èƒŒæ™¯
 	skydomeMD = Model::LoadFromOBJ("skydome");
 	skydome = Object3d::Create();
 	skydome->SetModel(skydomeMD);
@@ -29,16 +29,16 @@ void Field::Initialize() {
 		rock02[i] = Object3d::Create();
 		rock02[i]->SetModel(rock02MD);
 	}
-	
+
 	float PI = 3.141592f;
 
 	rock01[0]->wtf.position = { 42,0,65 };
 	rock01[0]->wtf.scale = { 5,5,5 };
 	rock01[0]->wtf.rotation = { 0,0,0 };
-	
+
 	rock01[1]->wtf.position = { 122,0,10 };
 	rock01[1]->wtf.scale = { 5,5,5 };
-	rock01[1]->wtf.rotation = { PI/4,0,0 };
+	rock01[1]->wtf.rotation = { PI / 4,0,0 };
 
 	rock01[2]->wtf.position = { -26,0,-73 };
 	rock01[2]->wtf.scale = { 5,5,5 };
@@ -60,12 +60,12 @@ void Field::Initialize() {
 Field::~Field() {
 	delete skydome;
 	delete skydomeMD;
-	
+
 	delete floor;
 	delete floorMD;
 	delete water;
 	delete waterMD;
-	
+
 	for (int i = 0; i < 3; i++) {
 		delete rock01[i];
 		delete rock02[i];
@@ -90,7 +90,7 @@ void Field::Draw() {
 
 	floor->Draw();
 	water->Draw();
-	
+
 	for (int i = 0; i < 3; i++) {
 		rock01[i]->Draw();
 		rock02[i]->Draw();
