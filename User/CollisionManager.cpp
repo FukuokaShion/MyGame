@@ -52,20 +52,36 @@ CollisionManager* CollisionManager::GetInstance()
 }
 
 void CollisionManager::CheakCol() {
-	//敵弾と自機
-	Cylinder playerBody = player_->GetBodyHitBox();
-
 	std::forward_list<Sphere*>::iterator itA;
-
+	std::forward_list<Sphere*>::iterator itB;
 	itA = colliders.begin();
-
 	for (; itA != colliders.end(); ++itA) {
-		Sphere* colA = *itA;
-
-		if (Collision::CheckSphere2Cylinder(*colA, playerBody)) {
-			//敵の攻撃
-			player_->OnCollision(10);
-			colA->isHit = true;
+		itB = itA;
+		++itB;
+		for (; itB != colliders.end(); ++itB) {
+			Sphere* colA = *itA;
+			Sphere* colB = *itB;
+			//自機と敵突進
+			if (colA->attribute == Attribute::PlyerBody && colB->attribute == Attribute::EnemyAttack) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB)) {
+					colA->isHit.enemyAttack = true;
+					colB->isHit.playerBody = true;
+				}
+			}
+			//自機と敵弾
+			if (colA->attribute == Attribute::PlyerBody && colB->attribute == Attribute::EnemyBullet) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB)) {
+					colA->isHit.enemyBullet = true;
+					colB->isHit.playerBody = true;
+				}
+			}
+			//自機攻撃と敵機
+			if (colA->attribute == Attribute::PlayerAttack && colB->attribute == Attribute::EnemyBody) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB)) {
+					colA->isHit.enemyBody = true;
+					colB->isHit.playerAttack = true;
+				}
+			}
 		}
 	}
 }

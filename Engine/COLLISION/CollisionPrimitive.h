@@ -1,16 +1,14 @@
 #pragma once
-/// <summary>
-///当たり判定プリミティブ
-/// </summary>
-
 #include"Vector3.h"
 #include<DirectXMath.h>
+#include"CollisionAttribute.h"
 
 struct Sphere {
 	Vector3 center = { 0,0,0 };
-
 	float radius = 1.0f;
-	bool isHit = false;
+
+	Attribute attribute;
+	HitTarget isHit;
 };
 
 struct Cylinder {
@@ -49,4 +47,3 @@ class CollisionPrimitive
 {
 
 };
-

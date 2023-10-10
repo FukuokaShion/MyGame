@@ -173,6 +173,7 @@
     <ClInclude Include="Engine\BASE\WinApp.h" />
     <ClInclude Include="Engine\CAMERA\Camera.h" />
     <ClInclude Include="Engine\COLLISION\Collision.h" />
+    <ClInclude Include="Engine\COLLISION\CollisionAttribute.h" />
     <ClInclude Include="Engine\COLLISION\CollisionPrimitive.h" />
     <ClInclude Include="Engine\IMGUI\ImGuiManager.h" />
     <ClInclude Include="Engine\input\Controller.h" />
