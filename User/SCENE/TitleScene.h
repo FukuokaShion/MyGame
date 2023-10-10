@@ -9,27 +9,27 @@ public:
 	TitleScene();
 	void Initialize();
 	~TitleScene();
-	
-	//XV
+
+	//æ›´æ–°
 	void Update() override;
 
-	//•`‰æ
+	//æç”»
 	void ObjectDraw() override;
 	void FbxDraw() override;
 	void SpriteDraw() override;
 
 private:
 	void StateTransition() override;
-	
+
 private:
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	Audio* audio = nullptr;
 	IXAudio2SourceVoice* pSourceVoice = nullptr;
 
-	//ƒJƒƒ‰
+	//ã‚«ãƒ¡ãƒ©
 	Camera* camera = nullptr;
 
-	//‰æ‘œ
+	//ç”»åƒ
 	SpriteCommon* spriteCommon = nullptr;
 	Sprite* basePic;
 	std::unique_ptr<Sprite> black;
@@ -47,7 +47,7 @@ private:
 	Object3d* rock02[2];
 	Model* rock02MD = nullptr;
 
-	//‘D
+	//èˆ¹
 	Object3d* ship = nullptr;
 	Model* shipMD = nullptr;
 	float shipAngle;
@@ -56,7 +56,7 @@ private:
 	int timer;
 	int limit;
 
-	//ƒvƒŒƒCƒ„[
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	Object3d* player = nullptr;
 	Model* playerMD = nullptr;
 };

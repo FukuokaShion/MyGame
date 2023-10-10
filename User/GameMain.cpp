@@ -6,28 +6,28 @@ GameMain::GameMain() {
 GameMain::~GameMain() {
 }
 
-void GameMain::Initialize(){
+void GameMain::Initialize() {
 	Framework::Initialize();
 
-	//ƒV[ƒ“‚Ì‰Šú‰»
+	//ã‚·ãƒ¼ãƒ³ã®åˆæœŸåŒ–
 	SceneState::SetInput(input);
 	sceneManager = new SceneManager();
 	sceneManager->Initialize(dxCommon);
 }
 
-void GameMain::Finalize(){
+void GameMain::Finalize() {
 	delete sceneManager;
 
 	Framework::Finalize();
 }
 
-void GameMain::Update(){
+void GameMain::Update() {
 	Framework::Update();
 
 	sceneManager->Update();
 }
 
-void GameMain::Draw(){
+void GameMain::Draw() {
 	Framework::Draw();
 
 	sceneManager->Draw();

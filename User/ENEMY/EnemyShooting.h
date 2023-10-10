@@ -1,7 +1,7 @@
 #pragma once
 #include"EnemyState.h"
 
-//ŽËŒ‚
+//å°„æ’ƒ
 class EnemyShooting : public EnemyState {
 public:
 	EnemyShooting();
@@ -11,7 +11,7 @@ public:
 private:
 	int interval;
 	int ShotTimer;
-	
+
 	int shotMax;
 	int shotNum;
 

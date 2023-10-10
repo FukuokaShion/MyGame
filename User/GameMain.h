@@ -5,8 +5,8 @@
 
 class GameMain : public Framework {
 public:
-	 GameMain();
-	 ~GameMain();
+	GameMain();
+	~GameMain();
 
 	virtual void Initialize();
 

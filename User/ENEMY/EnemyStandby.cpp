@@ -10,21 +10,24 @@ Standby::Standby() {
 	enemy_->AnimationChange(1);
 }
 
-//�ҋ@
-void Standby::Update(Vector3 playerPos){
+//待機
+void Standby::Update(Vector3 playerPos) {
 	timer++;
-	//��Ԑ؂�ւ�
+	//状態切り替え
 	if (timer > limit) {
 		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance) {
 			if (rand() % 100 + 1 < 50) {
 				enemy_->TransitionTo(new Approach);
-			}else {
+			}
+			else {
 				enemy_->TransitionTo(new EnemyShooting);
 			}
-		}else {
+		}
+		else {
 			if (rand() % 100 + 1 < 50) {
 				enemy_->TransitionTo(new Attack);
-			}else {
+			}
+			else {
 				enemy_->TransitionTo(new Leave);
 			}
 		}

@@ -30,7 +30,7 @@ ComPtr<ID3D12PipelineState> ParticleManager::pipelinestate;
 //D3D12_VERTEX_BUFFER_VIEW ParticleManager::vbView{};
 //ParticleManager::VertexPos ParticleManager::vertices[vertexCount];
 //
-Camera* ParticleManager::camera = nullptr;
+Camera* ParticleManager::camera_ = nullptr;
 //
 //std::array<ComPtr<ID3D12Resource>, 2050> ParticleManager::texbuff;
 
@@ -573,8 +573,8 @@ void ParticleManager::Update()
 
 	wtf_.UpdateMat();
 
-	constMap->mat = (wtf_.matWorld * camera->GetViewProjectionMatrix());
-	constMap->matBillboard = (camera->GetBillboardMatrix());	// 行列の合成
+	constMap->mat = (wtf_.matWorld * camera_->GetViewProjectionMatrix());
+	constMap->matBillboard = (camera_->GetBillboardMatrix());	// 行列の合成
 	constBuff->Unmap(0, nullptr);
 }
 

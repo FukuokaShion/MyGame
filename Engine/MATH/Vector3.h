@@ -27,8 +27,8 @@ public:
 	static float Angle(const Vector3& start, const Vector3& end);
 
 	static Vector3 Vector3Zero();
-	static bool Vector3Equal(Vector3 v1,Vector3 v2);
-	 bool Vector3IsInfinite();
+	static bool Vector3Equal(Vector3 v1, Vector3 v2);
+	bool Vector3IsInfinite();
 
 	Vector3 operator+() const;
 	Vector3 operator-() const;

@@ -5,7 +5,7 @@
 #include"EnemyShooting.h"
 
 Enemy::Enemy() {
-	//ƒ‚ƒfƒ‹¶¬
+	//ãƒ¢ãƒ‡ãƒ«ç”Ÿæˆ
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("enemy");
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
@@ -13,8 +13,8 @@ Enemy::Enemy() {
 
 	hp = new EnemyHp();
 
-	isAttack = false;
-	power = 0;
+	isAttack_ = false;
+	power_ = 0;
 
 	state_->SetEnemy(this);
 
@@ -22,7 +22,7 @@ Enemy::Enemy() {
 }
 
 void Enemy::Initialize() {
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	audio = new Audio();
 	audio->Initialize();
 	audio->LoadWave("fire.wav");
@@ -40,8 +40,8 @@ void Enemy::Initialize() {
 
 	attackHitBox.radius = 3.0f;
 
-	isAttack = false;
-	power = 0;
+	isAttack_ = false;
+	power_ = 0;
 	EnemyBullet::StaticInitialize();
 }
 
@@ -57,23 +57,23 @@ Enemy::~Enemy() {
 
 void Enemy::Update(Vector3 playerPos) {
 	if (hp->IsLive()) {
-		//“–‚½‚è”»’è
+		//å½“ãŸã‚Šåˆ¤å®š
 		bodyHitBox.center = fbxObject3d_->wtf.position;
 		attackHitBox.center = fbxObject3d_->wtf.position;
 
-		//s“®
+		//è¡Œå‹•
 		state_->Update(playerPos);
 
-		//ƒIƒuƒWƒFƒNƒg
+		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		fbxObject3d_->Update();
 
-		//’e
+		//å¼¾
 		bullets.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
 		for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
 			bullet->Update();
 		}
 	}
-	//ƒp[ƒeƒBƒNƒ‹
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	particle->Update();
 }
 
@@ -101,18 +101,19 @@ void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTi
 	bullets.push_back(std::move(newBullet));
 }
 
-//ó‘Ô‚ð•ÏX‚·‚é
+//çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 void Enemy::TransitionTo(EnemyState* state) {
-	//íœ
+	//å‰Šé™¤
 	delete state_;
-	//V‹Kì¬
+	//æ–°è¦ä½œæˆ
 	state_ = state;
 }
 
 void Enemy::PlayWave(const std::string& filename) {
 	if (filename == "fire.wav") {
 		pSourceVoice[0] = audio->PlayWave("fire.wav");
-	}else if (filename == "enemyat.wav") {
+	}
+	else if (filename == "enemyat.wav") {
 		pSourceVoice[1] = audio->PlayWave("enemyat.wav");
 	}
 }

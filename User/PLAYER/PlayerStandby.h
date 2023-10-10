@@ -1,7 +1,7 @@
 #pragma once
 #include"PlayerState.h"
 
-//�ҋ@
+//待機
 class PlayerStandby : public PlayerState {
 public:
 	PlayerStandby();

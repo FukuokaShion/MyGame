@@ -10,22 +10,22 @@ public:
 	virtual ~PlayerState() {};
 
 	void SetPlayer(Player* player) { player_ = player; };
-	void SetInput(Input* input) { this->input = input; };
+	void SetInput(Input* input) { this->input_ = input; };
 	bool GetIsAttack() { return isAttack; };
 	int GetPower() { return power; };
 
-	//XV
+	//æ›´æ–°
 	virtual void Update() = 0;
 
 protected:
-	//ó‘ÔˆÚs
+	//çŠ¶æ…‹ç§»è¡Œ
 	virtual void StateTransition() = 0;
 
 protected:
 	static Player* player_;
-	static Input* input;
+	static Input* input_;
 
-	//UŒ‚”»’è
+	//æ”»æ’ƒåˆ¤å®š
 	bool isAttack;
 	int power;
 };

@@ -13,6 +13,6 @@ public:
 	void Draw();
 
 public:
-	//パーティクル
+	//繝代�ｼ繝�繧｣繧ｯ繝ｫ
 	std::unique_ptr<ParticleManager> DamageParticle;
 };

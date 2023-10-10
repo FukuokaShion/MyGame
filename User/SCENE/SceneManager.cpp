@@ -4,64 +4,64 @@
 #include"FBXObject3d.h"
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒNƒ‰ƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆã‚¯ãƒ©ã‚¿
 /// </summary>
 SceneManager::SceneManager() {
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 SceneManager::~SceneManager() {
 	delete state_;
 }
 
 /// <summary>
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 /// </summary>
 void SceneManager::Initialize(DirectXCommon* dxCommon) {
-	// nullƒ`ƒFƒbƒN
+	// nullãƒã‚§ãƒƒã‚¯
 	assert(dxCommon);
-	this->dxCommon = dxCommon;
+	this->dxCommon_ = dxCommon;
 
-	//ƒV[ƒ“‰Šú
+	//ã‚·ãƒ¼ãƒ³åˆæœŸ
 	SceneState::SetSceneManager(this);
 	state_ = new TitleScene;
 	state_->Initialize();
 }
 
 void SceneManager::TransitionTo(SceneState* state) {
-	//íœ
+	//å‰Šé™¤
 	delete state_;
-	//V‹Kì¬
+	//æ–°è¦ä½œæˆ
 	state_ = state;
 	state_->Initialize();
 }
 
 /// <summary>
-/// –ˆƒtƒŒ[ƒ€ˆ—
+/// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
 /// </summary>
 void SceneManager::Update() {
 	state_->Update();
 }
 
 /// <summary>
-/// •`‰æ
+/// æç”»
 /// </summary>
 void SceneManager::Draw() {
-	///3DƒIƒuƒWƒFƒNƒg•`‰æ‘Oˆ—
-	Object3d::PreDraw(dxCommon->GetCommandList());
-	///3DƒIƒuƒNƒWƒFƒNƒg‚Ì•`‰æ 
+	///3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»å‰å‡¦ç†
+	Object3d::PreDraw(dxCommon_->GetCommandList());
+	///3Dã‚ªãƒ–ã‚¯ã‚¸ã‚§ã‚¯ãƒˆã®æç”» 
 	state_->ObjectDraw();
-	///3DƒIƒuƒWƒFƒNƒg•`‰æŒãˆ—
+	///3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»å¾Œå‡¦ç†
 	Object3d::PostDraw();
 
 
-	///fbx•`‰æ‘Oˆ—
-	FBXObject3d::PreDraw(dxCommon->GetCommandList());
-	///FBX•`‰æ
+	///fbxæç”»å‰å‡¦ç†
+	FBXObject3d::PreDraw(dxCommon_->GetCommandList());
+	///FBXæç”»
 	state_->FbxDraw();
-	///FBX•`‰æŒãˆ—
+	///FBXæç”»å¾Œå‡¦ç†
 	FBXObject3d::PostDraw();
 
 	state_->SpriteDraw();

@@ -44,7 +44,7 @@ const Vector3 Vector3::lerp(const Vector3& start, const Vector3& end, const floa
 float Vector3::Distance(const Vector3& start, const Vector3& end) {
 	Vector3 distance;
 	distance = end - start;
-	
+
 	return distance.length();
 }
 

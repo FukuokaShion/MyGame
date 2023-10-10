@@ -10,27 +10,27 @@ PlayerStandby::PlayerStandby() {
 	player_->AnimationChange(5);
 }
 
-//‘Ò‹@
+//å¾…æ©Ÿ
 void PlayerStandby::Update() {
 	StateTransition();
 }
 
 void PlayerStandby::StateTransition() {
-	//‰ñ”ð
+	//å›žé¿
 	//if (input->PButtonTrigger(A)) {
 	//	player_->TransitionTo(new PlayerAvoid);
 	//}
-	if (input->PButtonTrigger(A)) {
+	if (input_->PButtonTrigger(A)) {
 		player_->TransitionTo(new PlayerJump);
 	}
 
-	//UŒ‚
-	if (input->PButtonTrigger(B)) {
+	//æ”»æ’ƒ
+	if (input_->PButtonTrigger(B)) {
 		player_->TransitionTo(new PlayerAttack);
 	}
 
-	//ˆÚ“®
-	if (input->LeftStickInput()) {
+	//ç§»å‹•
+	if (input_->LeftStickInput()) {
 		player_->TransitionTo(new PlayerMove);
 	}
 }

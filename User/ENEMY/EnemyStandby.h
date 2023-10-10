@@ -1,16 +1,16 @@
 #pragma once
 #include"EnemyState.h"
 
-//‘Ò‹@
+//å¾…æ©Ÿ
 class Standby : public EnemyState {
 public:
 	Standby();
 	void Update(Vector3 playerPos) override;
 
 private:
-	//‘Ò‹@ŠÔ
+	//å¾…æ©Ÿæ™‚é–“
 	const int limit = 120;
 
-	//Ú‹ßˆÚs‹——£
+	//æ¥è¿‘ç§»è¡Œè·é›¢
 	const float approachDistance = 4.0f;
 };

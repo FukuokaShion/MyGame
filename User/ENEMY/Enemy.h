@@ -11,81 +11,81 @@
 
 class Enemy {
 public:
-	//İ’è
+	//è¨­å®š
 	Enemy();
 	~Enemy();
 	void Initialize();
 
-	//XV
+	//æ›´æ–°
 	void Update(Vector3 playerPos);
 
-	//•`‰æ
+	//æç”»
 	void Draw();
 	void ObjDraw();
 
-	//ó‘ÔˆÈ~
+	//çŠ¶æ…‹ä»¥é™
 	void TransitionTo(EnemyState* state);
 
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	void PlayWave(const std::string& filename);
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Ø‚è‘Ö‚¦
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	void AnimationChange(int animationNum = 0, float speed = 1.0f) { fbxObject3d_->PlayAnimation(animationNum, speed); };
 
-	//À•W
+	//åº§æ¨™
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };
 
-	//UŒ‚“–‚½‚è”»’è
+	//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 	Sphere GetAttackHitBox() { return attackHitBox; };
 	void SetAttackRad(float newRad) { attackHitBox.radius = newRad; };
 	void SetAttackPos(Vector3 newPos) { attackHitBox.center = newPos; };
 
-	//‘Ì“–‚½‚è”»’è
+	//ä½“å½“ãŸã‚Šåˆ¤å®š
 	Cylinder GetBodyHitBox() { return bodyHitBox; };
 
-	//”íƒ_ƒˆ—
+	//è¢«ãƒ€ãƒ¡å‡¦ç†
 	void OnCollision(int damage, Vector3 hitPos);
 
-	//ƒXƒe[ƒ^ƒX
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	bool IsLive() { return hp->IsLive(); };
 	int GetHp() { return hp->GetHp(); };
-	bool GetIsAttack() { return isAttack; };
-	int GetPower() { return power; };
-	void SetIsAttack(bool isAttack) { this->isAttack = isAttack; };
-	void setPower(int power) { this->power = power; };
+	bool GetIsAttack() { return isAttack_; };
+	int GetPower() { return power_; };
+	void SetIsAttack(bool isAttack) { this->isAttack_ = isAttack; };
+	void setPower(int power) { this->power_ = power; };
 
-	//’e¶¬
+	//å¼¾ç”Ÿæˆ
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
-	
+
 private:
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	Audio* audio = nullptr;
 	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
 
-	//s“®
+	//è¡Œå‹•
 	EnemyState* state_ = nullptr;
-	
-	//‘Ì—Í
+
+	//ä½“åŠ›
 	EnemyHp* hp = nullptr;
 
-	//‘Ì“–‚½‚è”»’è
+	//ä½“å½“ãŸã‚Šåˆ¤å®š
 	Cylinder bodyHitBox;
 
-	//UŒ‚“–‚½‚è”»’è
+	//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 	Sphere attackHitBox;
 
-	//ƒ‚ƒfƒ‹
+	//ãƒ¢ãƒ‡ãƒ«
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
-	
-	//’eƒŠƒXƒg
+
+	//å¼¾ãƒªã‚¹ãƒˆ
 	std::list<std::unique_ptr<EnemyBullet>> bullets;
 
-	//UŒ‚”»’è
-	bool isAttack;
-	int power;
+	//æ”»æ’ƒåˆ¤å®š
+	bool isAttack_;
+	int power_;
 
 	EnemyParticle* particle = nullptr;
 };

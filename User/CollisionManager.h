@@ -16,7 +16,7 @@ public:
 
 	inline void AddCollider(Sphere* collide) { colliders.push_front(collide); };
 	inline void RemoveCollider(Sphere* collide) { colliders.remove(collide); };
-	
+
 
 	static CollisionManager* GetInstance();
 	void CheakCol();

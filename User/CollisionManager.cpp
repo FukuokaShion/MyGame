@@ -11,33 +11,35 @@ bool CollisionManager::isPlayerHit;
 bool CollisionManager::isEnemyHit;
 
 void CollisionManager::CheckCollision() {
-	//“G‚ÌUŒ‚
+	//æ•µã®æ”»æ’ƒ
 	Cylinder playerBody = player_->GetBodyHitBox();
 	Sphere enemyAttack = enemy_->GetAttackHitBox();
 	if (Collision::CheckSphere2Cylinder(enemyAttack, playerBody)) {
-		//“G‚ÌUŒ‚
+		//æ•µã®æ”»æ’ƒ
 		if (enemy_->GetIsAttack()) {
 			if (isPlayerHit == false) {
 				player_->OnCollision(enemy_->GetPower());
 				isPlayerHit = true;
 			}
-		}else {
+		}
+		else {
 			isPlayerHit = false;
 		}
 	}
 
-	//ƒvƒŒƒCƒ„[‚ÌUŒ‚
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒ
 	Vector3 hitPos;
 	Sphere playerAttack = player_->GetAttackHitBox();
 	Cylinder enemyBody = enemy_->GetBodyHitBox();
 	if (Collision::CheckSphere2Cylinder(playerAttack, enemyBody, &hitPos)) {
-		//ƒvƒŒƒCƒ„[‚ÌUŒ‚
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒ
 		if (player_->GetIsAttack()) {
 			if (isEnemyHit == false) {
 				enemy_->OnCollision(player_->GetPower(), hitPos);
 				isEnemyHit = true;
 			}
-		}else {
+		}
+		else {
 			isEnemyHit = false;
 		}
 	}
@@ -50,18 +52,18 @@ CollisionManager* CollisionManager::GetInstance()
 }
 
 void CollisionManager::CheakCol() {
-	//“G’e‚Æ©‹@
+	//æ•µå¼¾ã¨è‡ªæ©Ÿ
 	Cylinder playerBody = player_->GetBodyHitBox();
 
 	std::forward_list<Sphere*>::iterator itA;
-	
+
 	itA = colliders.begin();
 
 	for (; itA != colliders.end(); ++itA) {
 		Sphere* colA = *itA;
 
 		if (Collision::CheckSphere2Cylinder(*colA, playerBody)) {
-			//“G‚ÌUŒ‚
+			//æ•µã®æ”»æ’ƒ
 			player_->OnCollision(10);
 			colA->isHit = true;
 		}
@@ -74,8 +76,8 @@ Vector3 CollisionManager::Body2Body() {
 	Cylinder enemyBody = enemy_->GetBodyHitBox();
 
 	if (Collision::CheckCylinder2Cylinder(enemyBody, playerBody)) {
-		//‰Ÿ‚µo‚µˆ—
-		//ˆê•û“I‚ÉƒvƒŒƒCƒ„[‚ª‰Ÿ‚³‚ê‚é
+		//æŠ¼ã—å‡ºã—å‡¦ç†
+		//ä¸€æ–¹çš„ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹
 		Vector3 distance = playerBody.center - enemyBody.center;
 		velocity = distance;
 

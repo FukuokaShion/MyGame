@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Windows.h>
 #include <wrl.h>
@@ -35,7 +35,7 @@ private: // エイリアス
 		Matrix4 mat;	// ３Ｄ変換行列
 	};
 
-	
+
 
 private: // 定数
 	static const int division = 50;					// 分割数
@@ -51,7 +51,7 @@ public: // 静的メンバ関数
 	/// <param name="device">デバイス</param>
 	/// <param name="window_width">画面幅</param>
 	/// <param name="window_height">画面高さ</param>
-	static void StaticInitialize(ID3D12Device* device, int window_width, int window_height);
+	static void StaticInitialize(ID3D12Device* device);
 
 	/// <summary>
 	/// 描画前処理
@@ -72,21 +72,21 @@ public: // 静的メンバ関数
 
 	bool IsDead() const { return  isDead_; }
 
-	
+
 
 private: // 静的メンバ変数
 	// デバイス
 	static ComPtr<ID3D12Device> device;
-	
+
 	// コマンドリスト
-	static ComPtr<ID3D12GraphicsCommandList> cmdList;
+	static ComPtr<ID3D12GraphicsCommandList> cmdList_;
 	// ルートシグネチャ
 	static ComPtr<ID3D12RootSignature> rootsignature;
 	// パイプラインステートオブジェクト
 	static ComPtr<ID3D12PipelineState> pipelinestate;
 
 
-	
+
 
 	// ビュー行列
 	static Matrix4 matView;
@@ -109,7 +109,7 @@ private:// 静的メンバ関数
 	/// </summary>
 	/// <param name="window_width">画面横幅</param>
 	/// <param name="window_height">画面縦幅</param>
-	static void InitializeCamera(int window_width, int window_height);
+	static void InitializeCamera();
 
 	/// <summary>
 	/// グラフィックパイプライン生成
@@ -126,7 +126,7 @@ public: // メンバ関数
 
 	Object3d();
 	~Object3d();
-	
+
 	bool Initialize();
 	/// <summary>
 	/// 毎フレーム処理
@@ -139,30 +139,30 @@ public: // メンバ関数
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();	
+	void Draw();
 
-	Object3d* GetParent() const { return parent; }
+	Object3d* GetParent() const { return parent_; }
 
-	void SetParent(Object3d* parent) { this->parent = parent; }
-	static void SetCamera(Camera* camera) { Object3d::camera = camera; }
+	void SetParent(Object3d* parent) { this->parent_ = parent; }
+	static void SetCamera(Camera* camera) { Object3d::camera_ = camera; }
 
 	//setter
-	void SetModel(Model* model) { this->model = model; }
+	void SetModel(Model* model) { this->model_ = model; }
 
 private: // メンバ変数
-	public:
+public:
 	ComPtr<ID3D12Resource> constBuffB0; // 定数バッファ
 
 	bool isDead_ = false;
 
 	// 色
-	Vector4 color ={ 1,1,1,1 };	
+	Vector4 color = { 1,1,1,1 };
 
 	// 親オブジェクト
-	Object3d* parent = nullptr;
+	Object3d* parent_ = nullptr;
 	//モデル
-	Model* model = nullptr;
-	static Camera* camera;
+	Model* model_ = nullptr;
+	static Camera* camera_;
 
 	static float win_wi, win_hi;
 public:

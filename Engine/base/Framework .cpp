@@ -5,26 +5,26 @@
 #include "ParticleManager.h"
 
 void Framework::Initialize() {
-	//windowsAPI‚Ì‰Šú‰»
+	//windowsAPIã®åˆæœŸåŒ–
 	winApp = new WinApp();
 	winApp->Initialize();
 
 	dxCommon = new DirectXCommon();
 	dxCommon->Initialize(winApp);
 
-	//“ü—Í‚Ì‰Šú‰»
+	//å…¥åŠ›ã®åˆæœŸåŒ–
 	input = new Input();
 	input->Initialize(winApp);
 
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
 	FBXObject3d::SetDevice(dxCommon->GetDevice());
 	FBXObject3d::CreateGraphicsPipeline();
-	Object3d::StaticInitialize(dxCommon->GetDevice(), WinApp::window_width, WinApp::window_height);
+	Object3d::StaticInitialize(dxCommon->GetDevice());
 
 	ParticleManager::StaticInitialize(dxCommon->GetDevice(), dxCommon->GetCommandList());
 	SpriteCommon::SetDxCommon(dxCommon);
 
-	//FPSŒÅ’è
+	//FPSå›ºå®š
 	fps->SetFrameRate(60);
 }
 
@@ -37,40 +37,40 @@ void  Framework::Finalize() {
 }
 
 void  Framework::Run() {
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	Initialize();
 
-	//ƒQ[ƒ€ƒ‹[ƒv
+	//ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—
 	while (true) {
-		//ƒQ[ƒ€I—¹
+		//ã‚²ãƒ¼ãƒ çµ‚äº†
 		if (IsEndRequst()) {
 			break;
 		}
 
-		//fpsŠÇ—
+		//fpsç®¡ç†
 		fps->FpsControlBegin();
 
-		//XVˆ—
+		//æ›´æ–°å‡¦ç†
 		Update();
 
-		//•`‰æŠJŽn
+		//æç”»é–‹å§‹
 		dxCommon->PreDraw();
-		//•`‰æˆ—
+		//æç”»å‡¦ç†
 		Draw();
-		//•`‰æI—¹
+		//æç”»çµ‚äº†
 		dxCommon->PostDraw();
-		
-		//fpsŠÇ—
+
+		//fpsç®¡ç†
 		fps->FpsControlEnd();
 	}
 
-	//”jŠü
+	//ç ´æ£„
 	Finalize();
 }
 
 
 void  Framework::Update() {
-	//“ü—Í‚ÌXV
+	//å…¥åŠ›ã®æ›´æ–°
 	input->Update();
 }
 
@@ -80,7 +80,8 @@ void  Framework::Draw() {
 bool  Framework::IsEndRequst() {
 	if (winApp->ProcessMessage()) {
 		return true;
-	}else if (input->PushKey(DIK_ESCAPE)) {
+	}
+	else if (input->PushKey(DIK_ESCAPE)) {
 		return true;
 	}
 

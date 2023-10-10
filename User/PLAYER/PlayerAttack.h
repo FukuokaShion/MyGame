@@ -1,7 +1,7 @@
 #pragma once
 #include"PlayerState.h"
 
-//UŒ‚
+//æ”»æ’ƒ
 class PlayerAttack : public PlayerState {
 public:
 	PlayerAttack();
@@ -23,20 +23,20 @@ private:
 
 	int timer;
 
-	///—\”õ“®ì
-	//ŠÔ
+	///äºˆå‚™å‹•ä½œ
+	//æ™‚é–“
 	const int anticTime = 16;
-	//ˆÚ“®‹——£
+	//ç§»å‹•è·é›¢
 	const Vector3 anticDistance = { 0,0,1 };
 
-	///UŒ‚
-	//ŠÔ
+	///æ”»æ’ƒ
+	//æ™‚é–“
 	const int attackTime = 11;
-	//ˆÚ“®‹——£
+	//ç§»å‹•è·é›¢
 	const Vector3 attackDistance = { 0,0,1 };
-	//UŒ‚—Í
+	//æ”»æ’ƒåŠ›
 	const int power_ = 10;
 
-	///ŒãŒ„
+	///å¾Œéš™
 	const int afterTime = 6;
 };

@@ -11,7 +11,7 @@ public:
 
 	static void StaticInitialize();
 	static void StaticFinalize();
-	void Initialize(Vector3 pos, Vector3 velocity, int liveLimit,int stayTime = 0);
+	void Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 	void Update();
 
@@ -24,8 +24,8 @@ private:
 	static Model* model;
 
 	int liveTimer;
-	Vector3 velocity;
-	int stayTime;
+	Vector3 velocity_;
+	int stayTime_;
 	bool isDead;
 
 	Sphere* sphere;

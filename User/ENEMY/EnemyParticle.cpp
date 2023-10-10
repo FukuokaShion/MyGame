@@ -2,7 +2,7 @@
 
 
 EnemyParticle::EnemyParticle() {
-	//ƒp[ƒeƒBƒNƒ‹¶¬
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”Ÿæˆ
 	DamageParticle = std::make_unique<ParticleManager>();
 	DamageParticle.get()->Initialize();
 	DamageParticle->LoadTexture("blod.png");
@@ -19,20 +19,20 @@ void EnemyParticle::OnColision(Vector3 hitPos) {
 		pos.y += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
 		pos.z += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
 
-		//‘¬“x
+		//é€Ÿåº¦
 		const float rnd_vel = 0.1f;
 		Vector3 vel = { 0,0,0 };
 		vel.x = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
 		vel.y = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
 		vel.z = (float)rand() / RAND_MAX * rnd_vel - rnd_vel / 2.0f;
 
-		//‰Á‘¬“x
+		//åŠ é€Ÿåº¦
 		const float rnd_acc = 0.00001f;
 		Vector3 acc = { 0,0,0 };
 		acc.x = (float)rand() / RAND_MAX * rnd_acc - rnd_acc / 2.0f;
 		acc.y = (float)rand() / RAND_MAX * rnd_acc - rnd_acc / 2.0f;
 
-		//’Ç‰Á
+		//è¿½åŠ 
 		DamageParticle->Add(30, pos, vel, acc, 0.3f, 0.0f);
 	}
 }

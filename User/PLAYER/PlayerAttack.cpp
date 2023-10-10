@@ -6,17 +6,17 @@ PlayerAttack::PlayerAttack() {
 	player_->PlayWav("attack.wav");
 	action = Action::Antic;
 	timer = 0;
-	player_->AnimationChange(4,1.5f);
+	player_->AnimationChange(4, 1.5f);
 }
 
-//UŒ‚
+//æ”»æ’ƒ
 void PlayerAttack::Update() {
 	timer++;
 	Transform playerWtf = player_->GetWtf();
 
 	switch (action) {
 	case Action::Antic:
-		//—\”õ“®ì
+		//äºˆå‚™å‹•ä½œ
 		speed = anticDistance / static_cast<float>(anticTime);
 		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
 		player_->Move(velocity);
@@ -27,17 +27,17 @@ void PlayerAttack::Update() {
 		}
 		break;
 	case Action::Attack:
-		//UŒ‚
-		//ˆÚ“®
+		//æ”»æ’ƒ
+		//ç§»å‹•
 		speed = attackDistance / static_cast<float>(attackTime);
 		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
 		player_->Move(velocity);
 
-		//UŒ‚“–‚½‚è”»’è
+		//æ”»æ’ƒå½“ãŸã‚Šåˆ¤å®š
 		player_->SetAttackPos({ playerWtf.position.x, 2.0f, playerWtf.position.z });
 		player_->SetAttackRad(1.5f);
 
-		//UŒ‚”»’è
+		//æ”»æ’ƒåˆ¤å®š
 		isAttack = true;
 		power = power_;
 
@@ -47,7 +47,7 @@ void PlayerAttack::Update() {
 		}
 		break;
 	case Action::After:
-		//ŒãŒ„
+		//å¾Œéš™
 		if (timer > afterTime) {
 			isAttack = false;
 			player_->TransitionTo(new PlayerStandby);

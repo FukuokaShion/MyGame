@@ -15,10 +15,10 @@ public:
 	void Heal(int heal);
 
 private:
-	//Å‘åHP
+	//æœ€å¤§HP
 	int MaxHp;
-	//Œ»İ‚ÌHP
+	//ç¾åœ¨ã®HP
 	int hp;
-	//¶‘¶ƒtƒ‰ƒO
+	//ç”Ÿå­˜ãƒ•ãƒ©ã‚°
 	bool isLive;
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include"PlayerState.h"
 
-//UŒ‚
+//æ”»æ’ƒ
 class PlayerJumpAttack : public PlayerState {
 public:
 	PlayerJumpAttack();
@@ -17,11 +17,11 @@ private:
 	};
 	Action action;
 	int timer;
-	
-	//UŒ‚
+
+	//æ”»æ’ƒæ™‚
 	float attackFallSpeed;
 	int power_;
 
-	//ŒãŒ„
+	//å¾Œéš™
 	int afterTime;
 };
