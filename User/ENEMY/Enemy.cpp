@@ -34,15 +34,13 @@ void Enemy::Initialize() {
 	fbxObject3d_->wtf.position = { 0,0,8 };
 	hp->Initialize();
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 3.0f;
-	bodyHitBox.radius = 1.7f;
-
-	attackHitBox.radius = 3.0f;
-
 	isAttack_ = false;
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
+
+	body = new BaseCollider;
+	body->SetAttribute(Attribute::EnemyBody);
+	CollisionManager::GetInstance()->AddCollider(body);
 }
 
 Enemy::~Enemy() {
@@ -58,8 +56,8 @@ Enemy::~Enemy() {
 void Enemy::Update(Vector3 playerPos) {
 	if (hp->IsLive()) {
 		//当たり判定
-		bodyHitBox.center = fbxObject3d_->wtf.position;
-		attackHitBox.center = fbxObject3d_->wtf.position;
+		body->SetCenter(fbxObject3d_->wtf.position);
+		OnCollision();
 
 		//行動
 		state_->Update(playerPos);
@@ -77,9 +75,11 @@ void Enemy::Update(Vector3 playerPos) {
 	particle->Update();
 }
 
-void Enemy::OnCollision(int damage, Vector3 hitPos) {
-	hp->Damage(damage);
-	particle->OnColision(hitPos);
+void Enemy::OnCollision() {
+	if (body->GetIsHit().playerAttack) {
+		hp->Damage(10);
+		particle->OnColision(body->GetHitPos().playerAttack);
+	}
 }
 
 void Enemy::Draw() {

@@ -1,6 +1,5 @@
 #pragma once
-
-//‘®«
+//属性
 enum class Attribute {
 	PlyerBody,
 	PlayerAttack,
@@ -9,11 +8,20 @@ enum class Attribute {
 	EnemyBullet
 };
 
-//Õ“Ë‘ÎÛ
+//何に当たっているか
 struct HitTarget {
 	bool playerBody = false;
 	bool playerAttack = false;
 	bool enemyBody = false;
 	bool enemyAttack = false;
 	bool enemyBullet = false;
+};
+
+//どこで当たっているか
+struct HitPos {
+	Vector3 playerBody = { 0,0,0 };
+	Vector3 playerAttack = { 0,0,0 };
+	Vector3 enemyBody = { 0,0,0 };
+	Vector3 enemyAttack = { 0,0,0 };
+	Vector3 enemyBullet = { 0,0,0 };
 };

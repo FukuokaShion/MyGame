@@ -39,4 +39,6 @@ private:
 
 	///後隙
 	const int afterTime = 6;
+
+	BaseCollider* sowrd;
 };

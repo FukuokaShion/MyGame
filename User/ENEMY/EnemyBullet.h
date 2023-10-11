@@ -28,5 +28,5 @@ private:
 	int stayTime_;
 	bool isDead;
 
-	Sphere* sphere;
+	BaseCollider* sphere;
 };

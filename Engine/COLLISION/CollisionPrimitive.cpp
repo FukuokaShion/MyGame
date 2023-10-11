@@ -2,6 +2,25 @@
 
 using namespace DirectX;
 
+void BaseCollider::IsHit(Attribute attribute, Vector3 hitPos) {
+	if (attribute == Attribute::PlayerAttack) {
+		isHit_.playerAttack;
+		hitPos_.playerAttack = hitPos;
+	}else if (attribute == Attribute::PlyerBody) {
+		isHit_.playerBody;
+		hitPos_.playerBody = hitPos;
+	}else if (attribute == Attribute::EnemyAttack) {
+		isHit_.enemyAttack;
+		hitPos_.enemyAttack = hitPos;
+	}else if (attribute == Attribute::EnemyBody) {
+		isHit_.enemyBody;
+		hitPos_.enemyBody = hitPos;
+	}else if (attribute == Attribute::EnemyBullet) {
+		isHit_.enemyBullet;
+		hitPos_.enemyBullet = hitPos;
+	}
+}
+
 void Triangle::ComputeNormal()
 {
 

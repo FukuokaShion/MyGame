@@ -31,13 +31,11 @@ void GameScene::Initialize() {
 	//エネミー生成
 	enemy = new Enemy();
 	enemy->Initialize();
-	CollisionManager::SetEnemy(enemy);
 
 	//プレイヤー生成
 	player = new Player();
 	player->Initialize(input);
 	player->SetCamera(camera);
-	CollisionManager::SetPlayer(player);
 
 
 	//カメラの設定
@@ -128,7 +126,6 @@ void GameScene::Update() {
 		field->Update();
 		player->Update();
 		enemy->Update(player->GetWtf().position);
-		CollisionManager::CheckCollision();
 		collisionManager->CheakCol();
 
 		damageGauge->SetSize({ static_cast<float>(4 * player->GetDamage()),26 });

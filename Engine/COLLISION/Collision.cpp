@@ -394,9 +394,9 @@ bool Collision::CircleCollisionXZ(Vector3 playerPos, Vector3 enemyPos, float pla
 	return false;
 }
 
-bool Collision::CheckSphere2Sphere(Sphere& sphere1, Sphere& sphere2, Vector3* inter) {
-	if (Vector3::Distance(sphere1.center, sphere2.center) <= sphere1.radius + sphere2.radius) {
-		Vector3 inter_ = sphere1.center + (sphere2.center - sphere1.center) / 2;
+bool Collision::CheckSphere2Sphere(BaseCollider& sphere1, BaseCollider& sphere2, Vector3* inter) {
+	if (Vector3::Distance(sphere1.GetCenter(), sphere2.GetCenter()) <= sphere1.GetRad() + sphere2.GetRad()) {
+		Vector3 inter_ = sphere1.GetCenter() + (sphere2.GetCenter() - sphere1.GetCenter()) / 2;
 		inter = &inter_;
 		return true;
 	}

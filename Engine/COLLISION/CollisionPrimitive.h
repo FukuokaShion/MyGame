@@ -3,6 +3,29 @@
 #include<DirectXMath.h>
 #include"CollisionAttribute.h"
 
+class BaseCollider {
+public:
+	//セッター
+	void SetCenter(Vector3 center) { center_ = center; };
+	void SetRad(float rad) { radius_ = rad; };
+	void SetAttribute(Attribute attribute) { attribute_ = attribute; };
+	void IsHit(Attribute attribute, Vector3 hitPos);
+
+	//ゲッター
+	Vector3 GetCenter() { return center_; };
+	float GetRad() { return radius_; };
+	Attribute GetAttribute() { return attribute_; };
+	HitTarget GetIsHit() { return isHit_; };
+	HitPos GetHitPos() { return hitPos_; };
+
+protected:
+	Vector3 center_ = { 0,0,0 };
+	float radius_ = 1.0f;
+	Attribute attribute_;
+	HitTarget isHit_;
+	HitPos hitPos_;
+};
+
 struct Sphere {
 	Vector3 center = { 0,0,0 };
 	float radius = 1.0f;
