@@ -1,10 +1,33 @@
 #include"CollisionManager.h"
 #include"Collision.h"
 
+void CollisionManager::Initialize() {
+	model_ = Model::LoadFromOBJ("collider");
+	for (int i = 0; i < maxCol; i++) {
+		objects_[i] = Object3d::Create();
+		objects_[i]->SetModel(model_);
+	}
+}
+
+CollisionManager::~CollisionManager() {
+	for (int i = 0; i < maxCol; i++) {
+		delete objects_[i];
+	}
+	delete model_;
+}
+
 CollisionManager* CollisionManager::GetInstance(){
 	static CollisionManager instance;
 	return &instance;
 }
+
+void CollisionManager::AddCollider(BaseCollider* collide){
+	colliders.push_front(collide);
+};
+
+void CollisionManager::RemoveCollider(BaseCollider* collide){
+	colliders.remove(collide);
+};
 
 void CollisionManager::CheakCol() {
 	std::forward_list<BaseCollider*>::iterator itA;
@@ -12,10 +35,11 @@ void CollisionManager::CheakCol() {
 	Vector3 hitPos;
 	itA = colliders.begin();
 	for (; itA != colliders.end(); ++itA) {
+		BaseCollider* colA = *itA;
 		itB = itA;
 		++itB;
+
 		for (; itB != colliders.end(); ++itB) {
-			BaseCollider* colA = *itA;
 			BaseCollider* colB = *itB;
 			//自機と敵突進
 			if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyAttack) {
@@ -58,5 +82,20 @@ void CollisionManager::CheakCol() {
 				}
 			}
 		}
+	}
+}
+
+void CollisionManager::DrawCollider() {
+	std::forward_list<BaseCollider*>::iterator it;
+	it = colliders.begin();
+	int i = 0;
+
+	for (; it != colliders.end(); ++it) {
+		BaseCollider* col = *it;
+		objects_[i]->wtf.position = col->GetCenter();
+		objects_[i]->wtf.scale = { col->GetRad(),col->GetRad() ,col->GetRad() };
+		objects_[i]->Update();
+		objects_[i]->Draw();
+		i++;
 	}
 }

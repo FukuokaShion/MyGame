@@ -98,6 +98,7 @@ void GameScene::Initialize() {
 	gameOver->SetTextureIndex(5);
 
 	collisionManager = CollisionManager::GetInstance();
+	collisionManager->Initialize();
 }
 
 GameScene::~GameScene() {
@@ -155,6 +156,7 @@ void GameScene::Update() {
 
 void GameScene::ObjectDraw() {
 	field->Draw();
+	collisionManager->DrawCollider();
 	enemy->ObjDraw();
 }
 
