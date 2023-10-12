@@ -44,16 +44,8 @@ public:
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
 	Transform GetCamWtf() { return camera_->wtf; };
 
-	//攻撃当たり判定
-	Sphere GetAttackHitBox() { return attackHitBox; };
-	void SetAttackRad(float newRad) { attackHitBox.radius = newRad; };
-	void SetAttackPos(Vector3 newPos) { attackHitBox.center = newPos; };
-
-	//体当たり判定
-	Cylinder GetBodyHitBox() { return bodyHitBox; };
-
 	//被ダメ処理
-	void OnCollision(int damage);
+	void OnCollision();
 
 	//ステータス
 	bool IsLive() { return hp->IsLive(); };
@@ -75,10 +67,9 @@ private:
 	//体力
 	PlayerHp* hp = nullptr;
 
-	//攻撃当たり判定
-	Sphere attackHitBox;
-	//体当たり判定
-	Cylinder bodyHitBox;
+	//当たり判定
+	BaseCollider* body;
+
 	//HPゲージ管理
 	int gaugeTimer;
 	int gaugeLimit;

@@ -1,12 +1,16 @@
 #include"Player.h"
 #include"PlayerAttack.h"
 #include"PlayerStandby.h"
+#include"CollisionManager.h"
 
 PlayerAttack::PlayerAttack() {
 	player_->PlayWav("attack.wav");
 	action = Action::Antic;
 	timer = 0;
 	player_->AnimationChange(4, 1.5f);
+	
+	sowrd = new BaseCollider;
+	sowrd->SetAttribute(Attribute::PlayerAttack);
 }
 
 //攻撃
@@ -23,6 +27,7 @@ void PlayerAttack::Update() {
 
 		if (timer > anticTime) {
 			timer = 0;
+			CollisionManager::GetInstance()->AddCollider(sowrd);
 			action = Action::Attack;
 		}
 		break;
@@ -33,16 +38,14 @@ void PlayerAttack::Update() {
 		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
 		player_->Move(velocity);
 
-		//攻撃当たり判定
-		player_->SetAttackPos({ playerWtf.position.x, 2.0f, playerWtf.position.z });
-		player_->SetAttackRad(1.5f);
-
 		//攻撃判定
+		sowrd->SetCenter({ 0,0,0 });
 		isAttack = true;
 		power = power_;
 
 		if (timer > attackTime) {
 			timer = 0;
+			CollisionManager::GetInstance()->RemoveCollider(sowrd);
 			action = Action::After;
 		}
 		break;

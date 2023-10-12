@@ -1,90 +1,101 @@
 #include"CollisionManager.h"
 #include"Collision.h"
 
-#include"Player.h"
-#include"Enemy.h"
-
-Player* CollisionManager::player_ = nullptr;
-Enemy* CollisionManager::enemy_ = nullptr;
-
-bool CollisionManager::isPlayerHit;
-bool CollisionManager::isEnemyHit;
-
-void CollisionManager::CheckCollision() {
-	//敵の攻撃
-	Cylinder playerBody = player_->GetBodyHitBox();
-	Sphere enemyAttack = enemy_->GetAttackHitBox();
-	if (Collision::CheckSphere2Cylinder(enemyAttack, playerBody)) {
-		//敵の攻撃
-		if (enemy_->GetIsAttack()) {
-			if (isPlayerHit == false) {
-				player_->OnCollision(enemy_->GetPower());
-				isPlayerHit = true;
-			}
-		}
-		else {
-			isPlayerHit = false;
-		}
-	}
-
-	//プレイヤーの攻撃
-	Vector3 hitPos;
-	Sphere playerAttack = player_->GetAttackHitBox();
-	Cylinder enemyBody = enemy_->GetBodyHitBox();
-	if (Collision::CheckSphere2Cylinder(playerAttack, enemyBody, &hitPos)) {
-		//プレイヤーの攻撃
-		if (player_->GetIsAttack()) {
-			if (isEnemyHit == false) {
-				enemy_->OnCollision(player_->GetPower(), hitPos);
-				isEnemyHit = true;
-			}
-		}
-		else {
-			isEnemyHit = false;
-		}
+void CollisionManager::Initialize() {
+	model_ = Model::LoadFromOBJ("collider");
+	for (int i = 0; i < maxCol; i++) {
+		objects_[i] = Object3d::Create();
+		objects_[i]->SetModel(model_);
 	}
 }
 
-CollisionManager* CollisionManager::GetInstance()
-{
+CollisionManager::~CollisionManager() {
+	for (int i = 0; i < maxCol; i++) {
+		delete objects_[i];
+	}
+	delete model_;
+}
+
+CollisionManager* CollisionManager::GetInstance(){
 	static CollisionManager instance;
 	return &instance;
 }
 
+void CollisionManager::AddCollider(BaseCollider* collide){
+	colliders.push_front(collide);
+};
+
+void CollisionManager::RemoveCollider(BaseCollider* collide){
+	colliders.remove(collide);
+};
+
 void CollisionManager::CheakCol() {
-	//敵弾と自機
-	Cylinder playerBody = player_->GetBodyHitBox();
-
-	std::forward_list<Sphere*>::iterator itA;
-
+	std::forward_list<BaseCollider*>::iterator itA;
+	std::forward_list<BaseCollider*>::iterator itB;
+	Vector3 hitPos;
 	itA = colliders.begin();
-
 	for (; itA != colliders.end(); ++itA) {
-		Sphere* colA = *itA;
+		BaseCollider* colA = *itA;
+		itB = itA;
+		++itB;
 
-		if (Collision::CheckSphere2Cylinder(*colA, playerBody)) {
-			//敵の攻撃
-			player_->OnCollision(10);
-			colA->isHit = true;
+		for (; itB != colliders.end(); ++itB) {
+			BaseCollider* colB = *itB;
+			//自機と敵突進
+			if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyAttack) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					colA->IsHit(Attribute::EnemyAttack, hitPos);
+					colB->IsHit(Attribute::PlyerBody, hitPos);
+				}
+			}else if(colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyAttack) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					colB->IsHit(Attribute::EnemyAttack, hitPos);
+					colA->IsHit(Attribute::PlyerBody, hitPos);
+				}
+			}
+			//自機と敵弾
+			else if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyBullet) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					colA->IsHit(Attribute::EnemyBullet, hitPos);
+					colB->IsHit(Attribute::PlyerBody, hitPos);
+				}
+			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyBullet) {
+				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					colB->IsHit(Attribute::EnemyBullet, hitPos);
+					colA->IsHit(Attribute::PlyerBody, hitPos);
+				}
+			}
+			//自機攻撃と敵機
+			else if (colA->GetAttribute() == Attribute::PlayerAttack && colB->GetAttribute() == Attribute::EnemyBody) {
+				if (isEnemyHit == false) {
+					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+						colA->IsHit(Attribute::EnemyBody, hitPos);
+						colB->IsHit(Attribute::PlayerAttack , hitPos);
+					}
+				}
+			}else if (colB->GetAttribute() == Attribute::PlayerAttack && colA->GetAttribute() == Attribute::EnemyBody) {
+				if (isEnemyHit == false) {
+					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+						colB->IsHit(Attribute::EnemyBody, hitPos);
+						colA->IsHit(Attribute::PlayerAttack, hitPos);
+					}
+				}
+			}
 		}
 	}
 }
 
-Vector3 CollisionManager::Body2Body() {
-	Vector3 velocity = { 0,0,0 };
-	Cylinder playerBody = player_->GetBodyHitBox();
-	Cylinder enemyBody = enemy_->GetBodyHitBox();
+void CollisionManager::DrawCollider() {
+	std::forward_list<BaseCollider*>::iterator it;
+	it = colliders.begin();
+	int i = 0;
 
-	if (Collision::CheckCylinder2Cylinder(enemyBody, playerBody)) {
-		//押し出し処理
-		//一方的にプレイヤーが押される
-		Vector3 distance = playerBody.center - enemyBody.center;
-		velocity = distance;
-
-		velocity.nomalize();
-		velocity *= playerBody.radius + enemyBody.radius;
-
-		velocity -= distance;
+	for (; it != colliders.end(); ++it) {
+		BaseCollider* col = *it;
+		objects_[i]->wtf.position = col->GetCenter();
+		objects_[i]->wtf.scale = { col->GetRad(),col->GetRad() ,col->GetRad() };
+		objects_[i]->Update();
+		objects_[i]->Draw();
+		i++;
 	}
-	return velocity;
 }

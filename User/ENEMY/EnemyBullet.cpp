@@ -20,15 +20,17 @@ void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int s
 	obj = Object3d::Create();
 	obj->SetModel(model);
 	obj->wtf.position = pos;
-	this->velocity_ = velocity;
+	velocity_ = velocity;
 
 	liveTimer = liveLimit;
-	this->stayTime_ = stayTime;
+	stayTime_ = stayTime;
 	isDead = false;
 
-	sphere = new Sphere;
-	sphere->radius = 1.0f;
-	sphere->center = pos;
+	sphere = new BaseCollider;
+	sphere->SetRad(1.0f);
+	sphere->SetCenter(pos);
+	sphere->SetAttribute(Attribute::EnemyBullet);
+
 	CollisionManager::GetInstance()->AddCollider(sphere);
 }
 
@@ -45,11 +47,11 @@ void EnemyBullet::Update() {
 		stayTime_--;
 	}
 
-	if (sphere->isHit == true) {
+	if (sphere->GetIsHit().playerBody == true) {
 		isDead = true;
 		CollisionManager::GetInstance()->RemoveCollider(sphere);
 	}
-	sphere->center = obj->wtf.position;
+	sphere->SetCenter(obj->wtf.position);
 	obj->Update();
 }
 

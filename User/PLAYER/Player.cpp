@@ -39,28 +39,25 @@ void Player::Initialize(Input* input) {
 	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.scale = { 0.8f,0.8f,0.8f };
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-	bodyHitBox.height = 3.0f;
-	bodyHitBox.radius = 1.0f;
-
 	gaugeLimit = 60;
 
-	attackHitBox.center = { 0,0,0 };
-	attackHitBox.radius = 1.0f;
-
 	TransitionTo(new PlayerStandby);
+
+	body = new BaseCollider;
+	body->SetAttribute(Attribute::PlyerBody);
+	CollisionManager::GetInstance()->AddCollider(body);
 }
 
 void Player::Update() {
 	state_->Update();
 
-	bodyHitBox.center = fbxObject3d_->wtf.position;
-
-	Move(CollisionManager::Body2Body());
 	CamRota();
 	fbxObject3d_->wtf.UpdateMat();
+	body->SetCenter(fbxObject3d_->wtf.position);
 	camera_->Update();
 	fbxObject3d_->Update();
+
+	OnCollision();
 
 	if (gaugeTimer < 0) {
 		if (damageGauge > hp->GetHp()) {
@@ -100,11 +97,13 @@ void Player::CamRota() {
 	camera_->wtf.rotation += theta;
 }
 
-void Player::OnCollision(int damage) {
-	PlayWav("col.wav");
-	hp->Damage(damage);
-	gaugeTimer = gaugeLimit;
-	damageGauge = hp->GetOldHp();
+void Player::OnCollision() {
+	if (body->GetIsHit().enemyAttack || body->GetIsHit().enemyBullet) {
+		PlayWav("col.wav");
+		hp->Damage(10);
+		gaugeTimer = gaugeLimit;
+		damageGauge = hp->GetOldHp();
+	}
 }
 
 void Player::Draw() {

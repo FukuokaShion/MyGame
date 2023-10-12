@@ -23,10 +23,6 @@ void PlayerJumpAttack::Update() {
 		velocity = { 0,attackFallSpeed,0 };
 		player_->Move(velocity);
 
-		//攻撃当たり判定
-		player_->SetAttackPos({ player_->GetWtf().position.x, player_->GetWtf().position.y + 2.0f, player_->GetWtf().position.z });
-		player_->SetAttackRad(2.0f);
-
 		//攻撃判定
 		isAttack = true;
 		power = power_;

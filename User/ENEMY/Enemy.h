@@ -37,16 +37,8 @@ public:
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
 	Transform GetWtf() { return fbxObject3d_->wtf; };
 
-	//攻撃当たり判定
-	Sphere GetAttackHitBox() { return attackHitBox; };
-	void SetAttackRad(float newRad) { attackHitBox.radius = newRad; };
-	void SetAttackPos(Vector3 newPos) { attackHitBox.center = newPos; };
-
-	//体当たり判定
-	Cylinder GetBodyHitBox() { return bodyHitBox; };
-
 	//被ダメ処理
-	void OnCollision(int damage, Vector3 hitPos);
+	void OnCollision();
 
 	//ステータス
 	bool IsLive() { return hp->IsLive(); };
@@ -70,11 +62,8 @@ private:
 	//体力
 	EnemyHp* hp = nullptr;
 
-	//体当たり判定
-	Cylinder bodyHitBox;
-
-	//攻撃当たり判定
-	Sphere attackHitBox;
+	//当たり判定
+	BaseCollider* body;
 
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
@@ -88,4 +77,5 @@ private:
 	int power_;
 
 	EnemyParticle* particle = nullptr;
+
 };

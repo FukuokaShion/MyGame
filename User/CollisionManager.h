@@ -1,32 +1,31 @@
 #pragma once
 #include"CollisionPrimitive.h"
 #include<forward_list>
-
-class Enemy;
-class Player;
+#include"Model.h"
+#include"Object3d.h"
 
 class CollisionManager {
 public:
-	static void CheckCollision();
-	static Vector3 Body2Body();
+	~CollisionManager();
 
-	static void SetPlayer(Player* player) { player_ = player; };
-	static void SetEnemy(Enemy* enemy) { enemy_ = enemy; };
-
-
-	inline void AddCollider(Sphere* collide) { colliders.push_front(collide); };
-	inline void RemoveCollider(Sphere* collide) { colliders.remove(collide); };
-
+	void Initialize();
 
 	static CollisionManager* GetInstance();
+
+	void AddCollider(BaseCollider* collide);
+	void RemoveCollider(BaseCollider* collide);
+
 	void CheakCol();
 private:
-	static Player* player_;
-	static Enemy* enemy_;
+	bool isPlayerHit;
+	bool isEnemyHit;
+	std::forward_list<BaseCollider*> colliders;
 
-	static bool isPlayerHit;
-	static bool isEnemyHit;
+public://可視化関数
+	void DrawCollider();
 
-
-	std::forward_list<Sphere*> colliders;
+private://可視化変数
+	Model* model_ = nullptr;
+	int maxCol = 20;
+	Object3d* objects_[20];
 };
