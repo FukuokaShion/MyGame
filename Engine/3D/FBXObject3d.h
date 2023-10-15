@@ -61,8 +61,17 @@ public: // 静的メンバ関数
 	/// </summary>
 	// setter
 	static void SetDevice(ID3D12Device* device) { FBXObject3d::device_ = device; }
+	/**
+	 * @brief カメラ設定
+	*/
 	static void SetCamera(Camera* camera) { FBXObject3d::camera_ = camera; }
+	/**
+	 * @brief 描画前処理
+	*/
 	static void PreDraw(ID3D12GraphicsCommandList* cmdList);
+	/**
+	 * @brief 描画後処理
+	*/
 	static void PostDraw();
 
 
@@ -102,10 +111,19 @@ public: // メンバ関数
 	/// </summary>
 	void PlayAnimation(int animationNum = 0, float speed = 1.0f, bool isLoop = true);
 
+	/**
+	 * @brief アニメーション停止
+	*/
 	void StopAnimation() { isPlay = false; };
 
+	/**
+	 * @brief アニメーション終了しているか
+	*/
 	bool GetAnimationFin() { return isFin; };
 
+	/**
+	 * @brief ボーンのワールド座標取得
+	*/
 	Vector3 GetBonWorldPos(uint32_t& BoneNum);
 
 protected: // メンバ変数

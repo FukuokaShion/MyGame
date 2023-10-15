@@ -6,11 +6,13 @@
 #pragma once
 #include"EnemyState.h"
 
-//接近
 class Approach : public EnemyState {
 public:
 	Approach();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update(Vector3 playerPos) override;
 
 private:

@@ -11,9 +11,16 @@
 class PlayerStandby : public PlayerState {
 public:
 	PlayerStandby();
+	
+	/**
+	 * @brief 更新
+	*/
 	void Update() override;
 
 private:
+	/**
+	 * @brief 状態移行
+	*/
 	void StateTransition() override;
 
 };

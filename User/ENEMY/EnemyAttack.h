@@ -11,6 +11,9 @@ class Attack : public EnemyState {
 public:
 	Attack();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:

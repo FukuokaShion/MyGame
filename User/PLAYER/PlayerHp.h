@@ -10,14 +10,35 @@ public:
 	PlayerHp();
 	~PlayerHp();
 
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
+	/**
+	 * @brief 最大体力設定
+	*/
 	void SetMaxHp(int maxHp) { this->MaxHp = maxHp; };
 
+	/**
+	 * @brief 現在の体力取得
+	*/
 	int GetHp() { return hp; };
+	/**
+	 * @brief 被ダメ前体力取得
+	*/
 	int GetOldHp() { return oldHp; };
+	/**
+	 * @brief 生存フラグ
+	*/
 	bool IsLive() { return isLive; };
 
+	/**
+	 * @brief ダメージを受ける
+	*/
 	void Damage(int damage);
+	/**
+	 * @brief 回復
+	*/
 	void Heal(int heal);
 
 private:

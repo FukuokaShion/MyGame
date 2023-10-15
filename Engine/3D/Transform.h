@@ -12,7 +12,14 @@ class Transform
 public:
 	Transform();
 	~Transform();
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
+
+	/**
+	 * @brief Matrix4更新
+	*/
 	void UpdateMat();
 public:
 	// ローカルスケール

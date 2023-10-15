@@ -16,44 +16,85 @@
 
 class Enemy {
 public:
-	//設定
 	Enemy();
 	~Enemy();
+	
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
 
-	//更新
+	/**
+	 * @brief 更新
+	*/
 	void Update(Vector3 playerPos);
 
-	//描画
+	/**
+	 * @brief FBX描画
+	*/
 	void Draw();
+
+	/**
+	 * @brief Obj描画
+	*/
 	void ObjDraw();
 
-	//状態以降
+	/**
+	 * @brief 状態移行
+	*/
 	void TransitionTo(EnemyState* state);
 
-	//サウンド
+	/**
+	 * @brief サウンド再生
+	*/
 	void PlayWave(const std::string& filename);
 
-	//アニメーション切り替え
+	/**
+	 * @brief アニメーション切り替え
+	*/
 	void AnimationChange(int animationNum = 0, float speed = 1.0f) { fbxObject3d_->PlayAnimation(animationNum, speed); };
 
-	//座標
+	/**
+	 * @brief 座標移動
+	*/
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
+	
+	/**
+	 * @brief Y軸回転
+	*/
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
+	
+	/**
+	 * @brief 座標取得
+	*/
 	Transform GetWtf() { return fbxObject3d_->wtf; };
 
-	//被ダメ処理
+	/**
+	 * @brief 被ダメ処理
+	*/
 	void OnCollision();
 
-	//ステータス
+	/**
+	 * @brief 生存フラグ
+	 */
 	bool IsLive() { return hp->IsLive(); };
+
+	/**
+	 * @brief ゲッター
+	 */
 	int GetHp() { return hp->GetHp(); };
 	bool GetIsAttack() { return isAttack_; };
 	int GetPower() { return power_; };
+
+	/**
+	 * @brief セッター
+	 */
 	void SetIsAttack(bool isAttack) { this->isAttack_ = isAttack; };
 	void setPower(int power) { this->power_ = power; };
 
-	//弾生成
+	/**
+	 * @brief弾生成
+	 */
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 private:

@@ -10,17 +10,42 @@
 
 class BaseCollider {
 public:
-	//セッター
+	/**
+	 * @brief 中心座標設定
+	*/
 	void SetCenter(Vector3 center) { center_ = center; };
+	/**
+	 * @brief 半径設定
+	*/
 	void SetRad(float rad) { radius_ = rad; };
+	/**
+	 * @brief 属性設定
+	*/
 	void SetAttribute(Attribute attribute) { attribute_ = attribute; };
+	/**
+	 * @brief 衝突判定付与
+	*/
 	void IsHit(Attribute attribute, Vector3 hitPos);
 
-	//ゲッター
+	/**
+	 * @brief 中心座標取得
+	*/
 	Vector3 GetCenter() { return center_; };
+	/**
+	 * @brief 半径取得
+	*/
 	float GetRad() { return radius_; };
+	/**
+	 * @brief 属性取得
+	*/
 	Attribute GetAttribute() { return attribute_; };
+	/**
+	 * @brief 衝突判定取得
+	*/
 	HitTarget GetIsHit() { return isHit_; };
+	/**
+	 * @brief 衝突位置取得
+	*/
 	HitPos GetHitPos() { return hitPos_; };
 
 protected:
@@ -60,6 +85,9 @@ public:
 
 	Vector3 normal;
 
+	/**
+	 * @brief 正規化
+	*/
 	void ComputeNormal();
 };
 

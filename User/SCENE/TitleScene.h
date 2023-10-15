@@ -12,18 +12,37 @@
 class TitleScene : public SceneState {
 public:
 	TitleScene();
-	void Initialize();
 	~TitleScene();
 
-	//更新
+	/**
+	 * @brief 初期化
+	*/
+	void Initialize();
+	
+	/**
+	 * @brief 更新
+	*/
 	void Update() override;
 
-	//描画
+	/**
+	 * @brief obj描画
+	*/
 	void ObjectDraw() override;
+	
+	/**
+	 * @brief fbx描画
+	*/
 	void FbxDraw() override;
+	
+	/**
+	 * @brief スプライト描画
+	*/
 	void SpriteDraw() override;
 
 private:
+	/**
+	 * @brief シーン移行
+	*/
 	void StateTransition() override;
 
 private:

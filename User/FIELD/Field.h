@@ -11,10 +11,19 @@ public:
 	Field();
 	~Field();
 
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
+	/**
+	 * @brief 描画
+	*/
 	void Draw();
 private:
 	//背景や床

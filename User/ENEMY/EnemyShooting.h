@@ -11,6 +11,9 @@ class EnemyShooting : public EnemyState {
 public:
 	EnemyShooting();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update(Vector3 playerPos) override;
 
 private:

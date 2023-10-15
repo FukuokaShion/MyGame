@@ -10,6 +10,9 @@
 class Leave : public EnemyState {
 public:
 
+	/**
+	 * @brief 更新
+	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:

@@ -15,17 +15,33 @@ public:
 	float w;//w
 
 public:
-	//コンストラクタ
-	Vector4();//零ベクトル
-	Vector4(float x, float y, float z, float w);//成分を指定して生成
+	Vector4();
+	Vector4(float x, float y, float z, float w);
 
-
-	float Length()const;//ノルムを求める
+	/**
+	 * @brief ノルムを求める
+	*/
+	float Length()const;
+	/**
+	 * @brief 長さの二条計算 
+	*/
 	float LengthSquared()const;
-	Vector4 Normalization()const;//正規化する
-	Vector4& Normal();//正規化する
-	float Dot(const Vector4& v)const;//内積を求める
-	Vector4 Cross(const Vector4& v)const;//外積を求める
+	/**
+	 * @brief 正規化
+	*/
+	Vector4 Normalization()const;
+	/**
+	 * @brief 正規化
+	*/
+	Vector4& Normal();
+	/**
+	 * @brief 内積計算
+	*/
+	float Dot(const Vector4& v)const;
+	/**
+	 * @brief 外積計算
+	 */
+	Vector4 Cross(const Vector4& v)const;
 
 	//単項演算子オーバーロード
 	Vector4 operator+() const;
@@ -48,6 +64,12 @@ const Vector4 operator*(const Vector4& v, float s);
 const Vector4 operator*(float s, const Vector4& v);
 const Vector4 operator/(const Vector4& v, float s);
 
+/**
+ * @brief ラープ関数
+*/
 void Vector4Lerp(const Vector4& src1, const Vector4& src2, float t, Vector4& dest);
 
+/**
+ * @brief ラープ関数
+*/
 Vector4 Vector4Lerp(const Vector4& src1, const Vector4& src2, float t);
