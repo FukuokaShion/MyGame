@@ -1,4 +1,10 @@
+/**
+ * Easing.h
+ * イージング関数
+ */
+
 #include "Easing.h"
+
 float Easing::InQuad(const float& start, const float& end, const float time)
 {
 	float t = powf(time, 2);

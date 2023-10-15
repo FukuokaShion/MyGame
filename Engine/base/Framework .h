@@ -1,3 +1,8 @@
+/**
+ * Framework.h
+ * エンジンフレームワーク
+ */
+
 #pragma once
 #include "WinApp.h"
 #include "DirectXCommon.h"

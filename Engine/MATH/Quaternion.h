@@ -1,6 +1,12 @@
+/**
+ * Quaternion.h
+ * Quaternion
+ */
+
 #pragma once
 #include"vector3.h"
 #include"Matrix4.h"
+
 class Quaternion
 {
 public:

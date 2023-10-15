@@ -1,3 +1,8 @@
+/**
+ * PlayerState.cpp
+ * プレイヤーのステートパターン基底
+ */
+
 #include"PlayerState.h"
 
 Player* PlayerState::player_ = nullptr;

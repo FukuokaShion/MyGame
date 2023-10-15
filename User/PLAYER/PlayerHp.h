@@ -1,3 +1,8 @@
+/**
+ * PlayerHp.h
+ * プレイヤーの体力管理
+ */
+
 #pragma once
 
 class PlayerHp {

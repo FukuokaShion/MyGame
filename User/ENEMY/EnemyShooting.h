@@ -1,3 +1,8 @@
+/**
+ * EnemyShooting.h
+ * 敵の3点バースト射撃パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 

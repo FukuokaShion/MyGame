@@ -1,3 +1,8 @@
+/**
+ * SpriteCommon.cpp
+ * 画像データクラス
+ */
+
 #include"SpriteCommon.h"
 #include <string>
 #include <d3dcompiler.h>

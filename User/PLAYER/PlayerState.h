@@ -1,3 +1,8 @@
+/**
+ * PlayerState.h
+ * プレイヤーのステートパターン基底
+ */
+
 #pragma once
 #include"Transform.h"
 #include"Input.h"

@@ -1,3 +1,8 @@
+/**
+ * FbxModel.cpp
+ * FBXモデルデータ
+ */
+
 #include "FBXModel.h"
 
 

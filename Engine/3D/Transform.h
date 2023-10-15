@@ -1,5 +1,9 @@
-#pragma once
+/**
+ * Transform.h
+ * 3次元座標データ
+ */
 
+#pragma once
 #include "Matrix4.h"
 #include "Affin.h"
 

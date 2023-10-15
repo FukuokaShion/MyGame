@@ -1,3 +1,8 @@
+/**
+ * Camera.cpp
+ * ゲームカメラ
+ */
+
 #include "Camera.h"
 
 using namespace DirectX;

@@ -1,3 +1,8 @@
+/**
+ * PlayerJump.h
+ * プレイヤーのジャンプパターン
+ */
+
 #pragma once
 #include"PlayerState.h"
 

@@ -1,3 +1,8 @@
+/**
+ * Input.h
+ * 入力状態
+ */
+
 #pragma once
 #include <windows.h>
 #include <wrl.h>

@@ -1,3 +1,8 @@
+/**
+ * FPS.h
+ * FPS固定
+ */
+
 #pragma once
 
 #include <fstream>

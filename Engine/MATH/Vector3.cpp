@@ -1,3 +1,8 @@
+/**
+ * Vector3.cpp
+ * 3次元ベクトル
+ */
+
 #include "Vector3.h"
 #include <cmath>
 

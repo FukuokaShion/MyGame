@@ -1,3 +1,8 @@
+/**
+ * FbxModel.h
+ * FBX本体
+ */
+
 #pragma once
 #include <Windows.h>
 #include <wrl.h>

@@ -1,3 +1,8 @@
+/**
+ * ConvertXM.h
+ * DirectXMathを自作にクラスに変換
+ */
+
 #pragma once
 #include <DirectXMath.h>
 #include "Matrix4.h"

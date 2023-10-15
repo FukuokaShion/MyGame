@@ -1,3 +1,8 @@
+/**
+ * Model.h
+ * objモデルデータ
+ */
+
 #pragma once
 
 #include <vector>

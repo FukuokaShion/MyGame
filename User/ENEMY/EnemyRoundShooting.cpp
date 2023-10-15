@@ -1,3 +1,8 @@
+/**
+ * EnemyRoundShooting.cpp
+ * 敵の弾を5つ展開する射撃パターン
+ */
+
 #include"EnemyRoundShooting.h"
 #include"Enemy.h"
 #include"EnemyStandby.h"

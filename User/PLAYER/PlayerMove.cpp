@@ -1,3 +1,8 @@
+/**
+ * PlayerMove.cpp
+ * プレイヤーの移動パターン
+ */
+
 #include"Player.h"
 #include"PlayerStandby.h"
 #include"PlayerAttack.h"

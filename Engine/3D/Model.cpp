@@ -1,3 +1,8 @@
+/**
+ * Model.cpp
+ * objモデルデータ
+ */
+
 #include "Model.h"
 #include <cassert>
 #include <fstream>

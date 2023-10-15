@@ -1,3 +1,8 @@
+/**
+ * ImGuiManager.h
+ * ImGui管理
+ */
+
 #pragma once
 #include "WinApp.h"
 #include "DirectXCommon.h"

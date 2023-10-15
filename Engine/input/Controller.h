@@ -1,3 +1,8 @@
+/**
+ * Controller.h
+ * Xboxコントローラー
+ */
+
 #pragma once
 #include <windows.h>
 #include "Vector2.h"

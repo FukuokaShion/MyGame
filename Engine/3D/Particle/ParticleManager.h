@@ -1,3 +1,8 @@
+/**
+ * ParticleManager.h
+ * パーティクルマネージャ
+ */
+
 #pragma once
 
 #include <Windows.h>

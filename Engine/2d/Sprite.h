@@ -1,3 +1,8 @@
+/**
+ * Sprite.h
+ * 画像描画クラス
+ */
+
 #pragma once
 #include"SpriteCommon.h"
 

@@ -1,3 +1,8 @@
+/**
+ * SceneState.h
+ * シーンのステートパターン基底
+ */
+
 #pragma once
 #include "Input.h"
 

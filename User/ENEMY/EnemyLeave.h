@@ -1,3 +1,8 @@
+/**
+ * EnemyLeave.h
+ * 敵の離脱パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 

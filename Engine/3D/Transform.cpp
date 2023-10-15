@@ -1,3 +1,8 @@
+/**
+ * Transform.cpp
+ * 3次元座標データ
+ */
+
 #include "Transform.h"
 
 Transform::Transform() {

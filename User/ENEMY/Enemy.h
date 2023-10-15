@@ -1,3 +1,8 @@
+/**
+ * Enemy.h
+ * 敵クラス本体
+ */
+
 #pragma once
 #include "FBXModel.h"
 #include "FBXObject3d.h"

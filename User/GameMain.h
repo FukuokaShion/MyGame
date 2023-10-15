@@ -1,6 +1,10 @@
+/**
+ * GameMain.h
+ * ゲーム全体の流れ
+ */
+
 #pragma once
 #include"Framework .h"
-
 #include"SceneManager.h"
 
 class GameMain : public Framework {

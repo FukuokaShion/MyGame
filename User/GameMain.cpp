@@ -1,3 +1,8 @@
+/**
+ * GameMain.cpp
+ * ゲーム全体の流れ
+ */
+
 #include "GameMain.h"
 
 GameMain::GameMain() {

@@ -1,3 +1,8 @@
+/**
+ * PlayerMove.h
+ * プレイヤーの移動パターン
+ */
+
 #pragma once
 #include"PlayerState.h"
 

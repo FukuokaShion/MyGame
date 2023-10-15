@@ -1,3 +1,8 @@
+/**
+ * PlayerAvoid.h
+ * プレイヤーの回避パターン
+ */
+
 #pragma once
 #include"PlayerState.h"
 

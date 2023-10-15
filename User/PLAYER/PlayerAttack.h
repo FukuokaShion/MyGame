@@ -1,3 +1,8 @@
+/**
+ * PlayerAttack.h
+ * プレイヤーの攻撃パターン
+ */
+
 #pragma once
 #include"PlayerState.h"
 

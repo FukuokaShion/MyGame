@@ -1,3 +1,8 @@
+/**
+ * FPS.cpp
+ * FPS固定
+ */
+
 #include "FPS.h"
 
 void FPS::FpsControlBegin() {

@@ -1,3 +1,8 @@
+/**
+ * EnemyApproach.cpp
+ * 敵の接近パターン
+ */
+
 #include"Enemy.h"
 #include"EnemyApproach.h"
 #include"EnemyStandby.h"

@@ -1,3 +1,8 @@
+/**
+ * EnemyState.h
+ * 敵のステートパターン基底クラス
+ */
+
 #pragma once
 #include"Transform.h"
 

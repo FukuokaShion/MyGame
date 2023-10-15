@@ -1,3 +1,8 @@
+/**
+ * Player.h
+ * プレイヤー本体
+ */
+
 #pragma once
 #include "Input.h"
 #include "FBXModel.h"

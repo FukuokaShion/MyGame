@@ -1,3 +1,8 @@
+/**
+ * Vector3.h
+ * 3次元ベクトル
+ */
+
 #pragma once
 
 #include <DirectXMath.h>

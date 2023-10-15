@@ -1,3 +1,8 @@
+/**
+ * PlayerHp.cpp
+ * プレイヤーの体力管理
+ */
+
 #include"PlayerHp.h"
 
 PlayerHp::PlayerHp() {

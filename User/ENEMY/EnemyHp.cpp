@@ -1,3 +1,8 @@
+/**
+ * EnemyHp.cpp
+ * 敵の体力を管理する
+ */
+
 #include"EnemyHp.h"
 
 EnemyHp::EnemyHp() {

@@ -1,3 +1,8 @@
+/**
+ * EnemyState.cpp
+ * 敵のステートパターン基底クラス
+ */
+
 #include"EnemyState.h"
 
 Enemy* EnemyState::enemy_ = nullptr;

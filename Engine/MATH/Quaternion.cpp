@@ -1,3 +1,8 @@
+/**
+ * Quaternion.cpp
+ * Quaternion
+ */
+
 #include "Quaternion.h"
 #include<cmath>
 #include "Affin.h"

@@ -1,3 +1,8 @@
+/**
+ * EnemyShooting.cpp
+ * 敵の3点バースト射撃パターン
+ */
+
 #include"EnemyShooting.h"
 #include"Enemy.h"
 #include"EnemyStandby.h"

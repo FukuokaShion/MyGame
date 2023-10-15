@@ -1,3 +1,8 @@
+/**
+ * Vector2.h
+ * 2次元ベクトル
+ */
+
 #pragma once
 class Vector2
 {

@@ -1,3 +1,9 @@
+/**
+ * PlayerStandby.cpp
+ * プレイヤーの待機パターン
+ * 各行動後この状態になる
+ */
+
 #include"Player.h"
 
 #include"PlayerStandby.h"

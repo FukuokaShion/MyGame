@@ -1,3 +1,8 @@
+/**
+ * EnemyBullet.cpp
+ * 敵の弾
+ */
+
 #include "EnemyBullet.h"
 
 Model* EnemyBullet::model = nullptr;

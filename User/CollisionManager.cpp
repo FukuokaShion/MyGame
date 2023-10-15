@@ -1,3 +1,8 @@
+/**
+ * CollisionManager.cpp
+ * 当たり判定のチェック
+ */
+
 #include"CollisionManager.h"
 #include"Collision.h"
 

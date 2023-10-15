@@ -1,3 +1,8 @@
+/**
+ * TitleScene.h
+ * タイトルシーン
+ */
+
 #pragma once
 #include"SceneState.h"
 #include"Sprite.h"

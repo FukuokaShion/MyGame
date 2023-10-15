@@ -1,3 +1,8 @@
+/**
+ * SceneManager.h
+ * シーン管理
+ */
+
 #pragma once
 #include "SceneState.h"
 #include "DirectXCommon.h"

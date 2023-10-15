@@ -1,3 +1,8 @@
+/**
+ * EnemyParticle.h
+ * 敵のヒット時エフェクト
+ */
+
 #pragma once
 #include "ParticleManager.h"
 

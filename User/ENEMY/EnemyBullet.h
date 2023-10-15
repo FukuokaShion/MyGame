@@ -1,3 +1,8 @@
+/**
+ * EnemyBullet.h
+ * 敵の弾
+ */
+
 #pragma once
 #include "Object3d.h"
 #include "Model.h"

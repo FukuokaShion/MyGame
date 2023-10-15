@@ -1,3 +1,8 @@
+/**
+ * EnemyRoundShooting.h
+ * 敵の弾を5つ展開する射撃パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 

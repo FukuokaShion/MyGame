@@ -1,5 +1,9 @@
-#pragma once
+/**
+ * Object3d.h
+ * obj本体
+ */
 
+#pragma once
 #include <Windows.h>
 #include <wrl.h>
 #include <d3d12.h>

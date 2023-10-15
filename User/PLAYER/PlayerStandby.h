@@ -1,3 +1,9 @@
+/**
+ * PlayerStandby.h
+ * プレイヤーの待機パターン
+ * 各行動後この状態になる
+ */
+
 #pragma once
 #include"PlayerState.h"
 

@@ -1,3 +1,8 @@
+/**
+ * DirectXCommon.cpp
+ * DirectX基盤
+ */
+
 #include "DirectXCommon.h"
 #include <cassert>
 #include <vector>

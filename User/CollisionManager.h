@@ -1,3 +1,8 @@
+/**
+ * CollisionManager.h
+ * 当たり判定のチェック
+ */
+
 #pragma once
 #include"CollisionPrimitive.h"
 #include<forward_list>

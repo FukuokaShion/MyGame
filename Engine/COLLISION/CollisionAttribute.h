@@ -1,3 +1,8 @@
+/**
+ * CollisionAttribute.h
+ * 当たり判定の属性
+ */
+
 #pragma once
 //属性
 enum class Attribute {

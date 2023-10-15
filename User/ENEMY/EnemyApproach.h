@@ -1,3 +1,8 @@
+/**
+ * EnemyApproach.h
+ * 敵の接近パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 

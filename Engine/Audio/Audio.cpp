@@ -1,3 +1,8 @@
+/**
+ * Audio.cpp
+ * 音声
+ */
+
 #include "Audio.h"
 #include <windows.h>
 #include <cassert>

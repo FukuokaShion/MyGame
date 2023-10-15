@@ -1,3 +1,8 @@
+/**
+ * Easing.h
+ * イージング関数
+ */
+
 #pragma once
 #include "Vector3.h"
 #include <math.h>

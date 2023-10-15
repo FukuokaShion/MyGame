@@ -1,7 +1,11 @@
+/**
+ * Matrix4.h
+ * Matrix4
+ */
+
 #pragma once
 #include "Vector3.h"
 //#include <DxLib.h>
-
 
 class Matrix4
 {

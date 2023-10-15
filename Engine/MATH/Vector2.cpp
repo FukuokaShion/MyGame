@@ -1,3 +1,8 @@
+/**
+ * Vector2.cpp
+ * 2次元ベクトル
+ */
+
 #include "Vector2.h"
 #include <cmath>
 

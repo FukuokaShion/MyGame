@@ -1,4 +1,9 @@
-﻿#include "ParticleManager.h"
+/**
+ * ParticleManager.cpp
+ * パーティクルマネージャ
+ */
+
+#include "ParticleManager.h"
 #include <d3dcompiler.h>
 #include <DirectXTex.h>
 #include "Affin.h"

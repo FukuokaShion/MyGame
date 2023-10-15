@@ -1,3 +1,8 @@
+/**
+ * GameScene.h
+ * ゲームプレイシーン
+ */
+
 #pragma once
 #include"SceneState.h"
 #include"Sprite.h"

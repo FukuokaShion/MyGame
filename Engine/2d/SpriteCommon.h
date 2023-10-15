@@ -1,3 +1,8 @@
+/**
+ * SpriteCommon.h
+ * 画像データクラス
+ */
+
 #pragma once
 #include"DirectXCommon.h"
 #include <DirectXTex.h>
