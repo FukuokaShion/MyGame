@@ -1,6 +1,6 @@
 /**
- * EnemyState.cpp
- * 敵のステートパターン基底クラス
+ * @file EnemyState.cpp
+ * @brief 敵のステートパターン基底クラス
  */
 
 #include"EnemyState.h"

@@ -1,6 +1,6 @@
 /**
- * GameMain.h
- * ゲーム全体の流れ
+ * @file GameMain.h
+ * @brief ゲーム全体の流れ
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * EnemyLeave.h
- * 敵の離脱パターン
+ * @file EnemyLeave.h
+ * @brief 敵の離脱パターン
  */
 
 #pragma once

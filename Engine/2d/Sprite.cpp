@@ -1,6 +1,6 @@
 /**
- * Sprite.cpp
- * 画像描画クラス
+ * @file Sprite.cpp
+ * @brief 画像描画クラス
  */
 
 #include"Sprite.h"

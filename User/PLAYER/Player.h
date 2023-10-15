@@ -1,6 +1,6 @@
 /**
- * Player.h
- * プレイヤー本体
+ * @file Player.h
+ * @brief プレイヤー本体
  */
 
 #pragma once

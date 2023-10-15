@@ -1,6 +1,6 @@
 /**
- * Quaternion.cpp
- * Quaternion
+ * @file Quaternion.cpp
+ * @brief Quaternion
  */
 
 #include "Quaternion.h"

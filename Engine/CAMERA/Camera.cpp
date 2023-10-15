@@ -1,6 +1,6 @@
 /**
- * Camera.cpp
- * ゲームカメラ
+ * @file Camera.cpp
+ * @brief ゲームカメラ
  */
 
 #include "Camera.h"

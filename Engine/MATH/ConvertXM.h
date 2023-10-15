@@ -1,6 +1,6 @@
 /**
- * ConvertXM.h
- * DirectXMathを自作にクラスに変換
+ * @file ConvertXM.h
+ * @brief DirectXMathを自作にクラスに変換
  */
 
 #pragma once

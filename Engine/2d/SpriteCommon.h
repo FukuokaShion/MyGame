@@ -1,6 +1,6 @@
 /**
- * SpriteCommon.h
- * 画像データクラス
+ * @file SpriteCommon.h
+ * @brief 画像データクラス
  */
 
 #pragma once

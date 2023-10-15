@@ -1,6 +1,6 @@
 /**
- * Model.h
- * objモデルデータ
+ * @file Model.h
+ * @brief objモデルデータ
  */
 
 #pragma once

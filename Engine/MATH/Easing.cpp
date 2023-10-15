@@ -1,6 +1,6 @@
 /**
- * Easing.h
- * イージング関数
+ * @file Easing.h
+ * @brief イージング関数
  */
 
 #include "Easing.h"

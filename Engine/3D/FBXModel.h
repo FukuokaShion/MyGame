@@ -1,6 +1,6 @@
 /**
- * FbxModel.h
- * FBXモデルデータ
+ * @file FbxModel.h
+ * @brief FBXモデルデータ
  */
 
 #pragma once

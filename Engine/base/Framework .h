@@ -1,6 +1,6 @@
 /**
- * Framework.h
- * エンジンフレームワーク
+ * @file Framework.h
+ * @brief エンジンフレームワーク
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * EnemyRoundShooting.h
- * 敵の弾を5つ展開する射撃パターン
+ * @file EnemyRoundShooting.h
+ * @brief 敵の弾を5つ展開する射撃パターン
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * Controller.h
- * Xboxコントローラー
+ * @file Controller.h
+ * @brief Xboxコントローラー
  */
 
 #pragma once

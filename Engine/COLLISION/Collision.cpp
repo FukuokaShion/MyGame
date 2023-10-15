@@ -1,6 +1,6 @@
 /**
- * Collision.cpp
- * 衝突判定関数
+ * @file Collision.cpp
+ * @brief 衝突判定関数
  */
 
 #include "Collision.h"

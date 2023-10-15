@@ -1,6 +1,6 @@
 /**
- * EnemyShooting.cpp
- * 敵の3点バースト射撃パターン
+ * @file EnemyShooting.cpp
+ * @brief 敵の3点バースト射撃パターン
  */
 
 #include"EnemyShooting.h"

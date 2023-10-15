@@ -1,6 +1,6 @@
 /**
- * CollisionManager.cpp
- * 当たり判定のチェック
+ * @file CollisionManager.cpp
+ * @brief 当たり判定のチェック
  */
 
 #include"CollisionManager.h"

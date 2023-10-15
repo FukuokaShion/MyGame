@@ -1,6 +1,6 @@
 /**
- * PlayerAvoid.cpp
- * プレイヤーの回避パターン
+ * @file PlayerAvoid.cpp
+ * @brief プレイヤーの回避パターン
  */
 
 #include"Player.h"

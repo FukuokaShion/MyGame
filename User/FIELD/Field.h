@@ -1,6 +1,6 @@
 /**
- * Field.h
- * ゲームシーンのステージ描画
+ * @file Field.h
+ * @brief ゲームシーンのステージ
  */
 
 #pragma once

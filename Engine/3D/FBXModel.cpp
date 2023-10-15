@@ -1,6 +1,6 @@
 /**
- * FbxModel.cpp
- * FBXモデルデータ
+ * @file FbxModel.cpp
+ * @brief FBXモデルデータ
  */
 
 #include "FBXModel.h"

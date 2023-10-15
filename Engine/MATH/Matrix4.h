@@ -1,6 +1,6 @@
 /**
- * Matrix4.h
- * Matrix4
+ * @file Matrix4.h
+ * @brief Matrix4
  */
 
 #pragma once

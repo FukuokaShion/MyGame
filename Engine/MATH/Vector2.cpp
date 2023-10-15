@@ -1,6 +1,6 @@
 /**
- * Vector2.cpp
- * 2次元ベクトル
+ * @file Vector2.cpp
+ * @brief 2次元ベクトル
  */
 
 #include "Vector2.h"

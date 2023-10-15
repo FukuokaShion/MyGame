@@ -1,6 +1,6 @@
 /**
- * FbxLoader.h
- * FBXモデル読み込み
+ * @file FbxLoader.h
+ * @brief FBXモデル読み込み
  */
 
 #pragma once

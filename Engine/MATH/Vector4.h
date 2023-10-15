@@ -1,6 +1,6 @@
 /**
- * Vector4.h
- * 4次元ベクトル
+ * @file Vector4.h
+ * @brief 4次元ベクトル
  */
 
 #pragma once

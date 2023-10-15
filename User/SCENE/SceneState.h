@@ -1,6 +1,6 @@
 /**
- * SceneState.h
- * シーンのステートパターン基底
+ * @file SceneState.h
+ * @brief シーンのステートパターン基底
  */
 
 #pragma once

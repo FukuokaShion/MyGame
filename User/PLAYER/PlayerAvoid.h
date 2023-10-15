@@ -1,6 +1,6 @@
 /**
- * PlayerAvoid.h
- * プレイヤーの回避パターン
+ * @file PlayerAvoid.h
+ * @brief プレイヤーの回避パターン
  */
 
 #pragma once

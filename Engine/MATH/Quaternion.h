@@ -1,6 +1,6 @@
 /**
- * Quaternion.h
- * Quaternion
+ * @file Quaternion.h
+ * @brief Quaternion
  */
 
 #pragma once

@@ -1,7 +1,7 @@
 /**
- * EnemyStandby.h
- * 敵の待機状態パターン
- * 各行動終了後にこの状態になる
+ * @file EnemyStandby.h
+ * @brief 敵の待機状態パターン
+ *        各行動終了後にこの状態になる
  */
 
 #pragma once

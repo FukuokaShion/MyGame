@@ -1,7 +1,7 @@
 /**
- * PlayerStandby.cpp
- * プレイヤーの待機パターン
- * 各行動後この状態になる
+ * @file PlayerStandby.cpp
+ * @brief プレイヤーの待機パターン
+ *        各行動後この状態になる
  */
 
 #include"Player.h"

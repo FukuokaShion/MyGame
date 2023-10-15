@@ -1,6 +1,6 @@
 /**
- * EnemyHp.cpp
- * 敵の体力を管理する
+ * @file EnemyHp.cpp
+ * @brief 敵の体力を管理する
  */
 
 #include"EnemyHp.h"

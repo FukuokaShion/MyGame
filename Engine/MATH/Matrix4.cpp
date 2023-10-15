@@ -1,6 +1,6 @@
 /**
- * Matrix4.cpp
- * Matrix4
+ * @file Matrix4.cpp
+ * @brief Matrix4
  */
 
 #include "Matrix4.h"

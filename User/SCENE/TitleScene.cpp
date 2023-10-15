@@ -1,6 +1,6 @@
 /**
- * TitleScene.cpp
- * タイトルシーン
+ * @file TitleScene.cpp
+ * @brief タイトルシーン
  */
 
 #include"TitleScene.h"

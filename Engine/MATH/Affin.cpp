@@ -1,6 +1,6 @@
 /**
- * Affin.cpp
- * アフィン行列
+ * @file Affin.cpp
+ * @brief アフィン行列
  */
 
 #include "Affin.h"

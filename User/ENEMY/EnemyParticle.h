@@ -1,6 +1,6 @@
 /**
- * EnemyParticle.h
- * 敵のヒット時エフェクト
+ * @file EnemyParticle.h
+ * @brief　敵のヒット時エフェクト
  */
 
 #pragma once

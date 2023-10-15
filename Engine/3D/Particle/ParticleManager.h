@@ -1,6 +1,6 @@
 /**
- * ParticleManager.h
- * パーティクルマネージャ
+ * @file ParticleManager.h
+ * @brief パーティクルマネージャ
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * PlayerHp.cpp
- * プレイヤーの体力管理
+ * @file PlayerHp.cpp
+ * @brief プレイヤーの体力管理
  */
 
 #include"PlayerHp.h"

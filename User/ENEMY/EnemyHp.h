@@ -1,6 +1,6 @@
 /**
- * EnemyHp.h
- * 敵の体力を管理する
+ * @file EnemyHp.h
+ * @brief 敵の体力を管理する
  */
 
 #pragma once

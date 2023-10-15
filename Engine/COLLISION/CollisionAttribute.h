@@ -1,6 +1,6 @@
 /**
- * CollisionAttribute.h
- * 当たり判定の属性
+ * @file CollisionAttribute.h
+ * @brief 当たり判定の属性
  */
 
 #pragma once

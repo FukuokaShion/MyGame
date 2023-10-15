@@ -1,6 +1,6 @@
 /**
- * EnemyShooting.h
- * 敵の3点バースト射撃パターン
+ * @file EnemyShooting.h
+ * @brief 敵の3点バースト射撃パターン
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * PlayerState.cpp
- * プレイヤーのステートパターン基底
+ * @file PlayerState.cpp
+ * @brief プレイヤーのステートパターン基底
  */
 
 #include"PlayerState.h"

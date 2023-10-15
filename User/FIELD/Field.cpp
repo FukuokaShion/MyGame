@@ -1,6 +1,6 @@
 /**
- * Field.cpp
- * ゲームシーンのステージ描画
+ * @file Field.cpp
+ * @brief ゲームシーンのステージ描画
  */
 
 #include"Field.h"

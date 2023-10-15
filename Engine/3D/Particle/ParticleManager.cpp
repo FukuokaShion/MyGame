@@ -1,6 +1,6 @@
 /**
- * ParticleManager.cpp
- * パーティクルマネージャ
+ * @file ParticleManager.cpp
+ * @brief パーティクルマネージャ
  */
 
 #include "ParticleManager.h"

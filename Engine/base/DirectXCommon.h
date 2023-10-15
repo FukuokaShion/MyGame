@@ -1,6 +1,6 @@
 /**
- * DirectXCommon.h
- * DirectX基盤
+ * @file DirectXCommon.h
+ * @brief DirectX基盤
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * CollisionPrimitive.h
- * 当たり判定の形状
+ * @file CollisionPrimitive.h
+ * @brief 当たり判定の形状
  */
 
 #pragma once

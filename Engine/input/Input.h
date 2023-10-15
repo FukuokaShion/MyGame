@@ -1,6 +1,6 @@
 /**
- * Input.h
- * 入力状態
+ * @file Input.h
+ * @brief 入力状態
  */
 
 #pragma once

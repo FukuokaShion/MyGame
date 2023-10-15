@@ -1,6 +1,6 @@
 /**
- * GameScene.h
- * ゲームプレイシーン
+ * @file GameScene.h
+ * @brief ゲームプレイシーン
  */
 
 #pragma once

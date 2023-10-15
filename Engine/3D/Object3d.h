@@ -1,6 +1,6 @@
 /**
- * Object3d.h
- * obj本体
+ * @file Object3d.h
+ * @brief obj本体
  */
 
 #pragma once

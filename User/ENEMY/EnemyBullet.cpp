@@ -1,6 +1,6 @@
 /**
- * EnemyBullet.cpp
- * 敵の弾
+ * @file EnemyBullet.cpp
+ * @brief 敵の弾
  */
 
 #include "EnemyBullet.h"

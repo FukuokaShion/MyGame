@@ -1,6 +1,6 @@
 /**
- * Affin.h
- * アフィン行列
+ * @file Affin.h
+ * @brief アフィン行列
  */
 
 #pragma once

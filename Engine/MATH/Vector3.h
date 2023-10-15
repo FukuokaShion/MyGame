@@ -1,6 +1,6 @@
 /**
- * Vector3.h
- * 3次元ベクトル
+ * @file Vector3.h
+ * @brief 3次元ベクトル
  */
 
 #pragma once

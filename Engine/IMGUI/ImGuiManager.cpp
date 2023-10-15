@@ -1,6 +1,6 @@
 /**
- * ImGuiManager.cpp
- * ImGui管理
+ * @file ImGuiManager.cpp
+ * @brief ImGui管理
  */
 
 #include "ImGuiManager.h"

@@ -1,6 +1,6 @@
 /**
- * EnemyBullet.h
- * 敵の弾
+ * @file EnemyBullet.h
+ * @brief 敵の弾
  */
 
 #pragma once

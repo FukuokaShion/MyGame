@@ -1,6 +1,6 @@
 /**
- * Player.cpp
- * プレイヤー本体
+ * @file Player.cpp
+ * @brief プレイヤー本体
  */
 
 #include "Player.h"

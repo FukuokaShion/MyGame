@@ -1,6 +1,6 @@
 /**
- * EnemyApproach.h
- * 敵の接近パターン
+ * @file EnemyApproach.h
+ * @brief 敵の接近パターン
  */
 
 #pragma once

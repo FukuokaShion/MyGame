@@ -1,6 +1,6 @@
 /**
- * Audio.cpp
- * 音声
+ * @file Audio.cpp
+ * @brief 音声
  */
 
 #include "Audio.h"

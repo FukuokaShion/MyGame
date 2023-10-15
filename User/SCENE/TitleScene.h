@@ -1,6 +1,6 @@
 /**
- * TitleScene.h
- * タイトルシーン
+ * @file TitleScene.h
+ * @brief タイトルシーン
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * PlayerMove.cpp
- * プレイヤーの移動パターン
+ * @file PlayerMove.cpp
+ * @brief プレイヤーの移動パターン
  */
 
 #include"Player.h"

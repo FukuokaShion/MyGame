@@ -1,6 +1,6 @@
 /**
- * EnemyParticle.cpp
- * 敵のヒット時エフェクト
+ * @file EnemyParticle.cpp
+ * @brief 敵のヒット時エフェクト
  */
 
 #include"EnemyParticle.h"

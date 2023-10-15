@@ -1,6 +1,6 @@
 /**
- * WinApp.cpp
- * WindowsAPI
+ * @file WinApp.cpp
+ * @brief WindowsAPI
  */
 
 #include "WinApp.h"

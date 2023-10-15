@@ -1,6 +1,6 @@
 /**
- * GameMain.cpp
- * ゲーム全体の流れ
+ * @file GameMain.cpp
+ * @brief ゲーム全体の流れ
  */
 
 #include "GameMain.h"

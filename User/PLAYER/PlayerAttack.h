@@ -1,6 +1,6 @@
 /**
- * PlayerAttack.h
- * プレイヤーの攻撃パターン
+ * @file PlayerAttack.h
+ * @brief プレイヤーの攻撃パターン
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * Vector3.cpp
- * 3次元ベクトル
+ * @file Vector3.cpp
+ * @brief 3次元ベクトル
  */
 
 #include "Vector3.h"

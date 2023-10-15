@@ -1,6 +1,6 @@
 /**
- * PlayerMove.h
- * プレイヤーの移動パターン
+ * @file PlayerMove.h
+ * @brief プレイヤーの移動パターン
  */
 
 #pragma once

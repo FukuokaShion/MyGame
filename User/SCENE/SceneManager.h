@@ -1,6 +1,6 @@
 /**
- * SceneManager.h
- * シーン管理
+ * @file SceneManager.h
+ * @brief シーン管理
  */
 
 #pragma once

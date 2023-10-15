@@ -1,6 +1,6 @@
 /**
- * ConvertXM.cpp
- * DirectXMathを自作にクラスに変換
+ * @file ConvertXM.cpp
+ * @brief DirectXMathを自作にクラスに変換
  */
 
 #include "ConvertXM.h"

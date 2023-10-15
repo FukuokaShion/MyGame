@@ -1,6 +1,6 @@
 /**
- * FPS.h
- * FPS固定
+ * @file FPS.h
+ * @brief FPS固定
  */
 
 #pragma once

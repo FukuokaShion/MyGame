@@ -1,6 +1,6 @@
 /**
- * Model.cpp
- * objモデルデータ
+ * @file Model.cpp
+ * @brief objモデルデータ
  */
 
 #include "Model.h"

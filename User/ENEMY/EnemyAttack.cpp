@@ -1,6 +1,6 @@
 /**
- * EnemyAttack.cpp
- * 敵の突進攻撃パターン
+ * @file EnemyAttack.cpp
+ * @brief 敵の突進攻撃パターン
  */
 
 #include"Enemy.h"

@@ -1,6 +1,6 @@
 /**
- * Enemy.cpp
- * 敵クラス本体
+ * @file Enemy.cpp
+ * @brief 敵クラス本体
  */
 
 #include "Enemy.h"

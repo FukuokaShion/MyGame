@@ -1,6 +1,6 @@
 /**
- * Collision.h
- * 衝突判定関数
+ * @file Collision.h
+ * @brief 衝突判定関数
  */
 
 #pragma once

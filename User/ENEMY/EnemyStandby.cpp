@@ -1,7 +1,7 @@
 /**
- * EnemyStandby.cpp
- * 敵の待機状態パターン
- * 各行動終了後にこの状態になる
+ * @file EnemyStandby.cpp
+ * @brief 敵の待機状態パターン
+ *        各行動終了後にこの状態になる
  */
 
 #include"Enemy.h"

@@ -1,6 +1,6 @@
 /**
- * PlayerHp.h
- * プレイヤーの体力管理
+ * @file PlayerHp.h
+ * @brief プレイヤーの体力管理
  */
 
 #pragma once

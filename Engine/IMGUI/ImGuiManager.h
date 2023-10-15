@@ -1,6 +1,6 @@
 /**
- * ImGuiManager.h
- * ImGui管理
+ * @file ImGuiManager.h
+ * @brief ImGui管理
  */
 
 #pragma once

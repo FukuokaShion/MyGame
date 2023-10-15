@@ -1,6 +1,6 @@
 /**
- * FPS.cpp
- * FPS固定
+ * @file FPS.cpp
+ * @brief FPS固定
  */
 
 #include "FPS.h"

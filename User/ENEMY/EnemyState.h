@@ -1,6 +1,6 @@
 /**
- * EnemyState.h
- * 敵のステートパターン基底クラス
+ * @file EnemyState.h
+ * @brief 敵のステートパターン基底クラス
  */
 
 #pragma once

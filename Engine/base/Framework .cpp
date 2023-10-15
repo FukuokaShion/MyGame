@@ -1,6 +1,6 @@
 /**
- * Framework.cpp
- * エンジンフレームワーク
+ * @file Framework.cpp
+ * @brief エンジンフレームワーク
  */
 
 #include "Framework .h"

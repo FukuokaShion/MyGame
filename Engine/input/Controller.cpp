@@ -1,6 +1,6 @@
 /**
- * Controller.cpp
- * Xboxコントローラー
+ * @file Controller.cpp
+ * @brief Xboxコントローラー
  */
 
 #include "Controller.h"

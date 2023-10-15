@@ -1,6 +1,6 @@
 /**
- * GameScene.cpp
- * ゲームプレイシーン
+ * @file GameScene.cpp
+ * @brief ゲームプレイシーン
  */
 
 #include"GameScene.h"

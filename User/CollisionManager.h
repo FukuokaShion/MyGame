@@ -1,6 +1,6 @@
 /**
- * CollisionManager.h
- * 当たり判定のチェック
+ * @file CollisionManager.h
+ * @brief 当たり判定のチェック
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * SceneManager.cpp
- * シーン管理
+ * @file SceneManager.cpp
+ * @brief シーン管理
  */
 
 #include "SceneManager.h"

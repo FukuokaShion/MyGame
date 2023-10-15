@@ -1,6 +1,6 @@
 /**
- * FbxModel.h
- * FBX本体
+ * @file FbxModel.h
+ * @brief FBX本体
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * Input.cpp
- * 入力状態
+ * @file Input.cpp
+ * @brief 入力状態
  */
 
 #include "Input.h"

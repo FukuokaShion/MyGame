@@ -1,6 +1,6 @@
 /**
- * DirectXCommon.cpp
- * DirectX基盤
+ * @file DirectXCommon.cpp
+ * @brief DirectX基盤
  */
 
 #include "DirectXCommon.h"

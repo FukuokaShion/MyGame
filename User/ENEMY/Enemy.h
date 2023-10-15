@@ -1,6 +1,6 @@
 /**
- * Enemy.h
- * 敵クラス本体
+ * @file Enemy.h
+ * @brief　敵クラス本体
  */
 
 #pragma once

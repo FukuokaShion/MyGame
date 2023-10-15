@@ -1,6 +1,6 @@
 /**
- * Sprite.h
- * 画像描画クラス
+ * @file Sprite.h
+ * @brief 画像描画クラス
  */
 
 #pragma once

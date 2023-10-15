@@ -1,6 +1,6 @@
 /**
- * EnemyLeave.cpp
- * 敵の離脱パターン
+ * @file EnemyLeave.cpp
+ * @brief 敵の離脱パターン
  */
 
 #include"Enemy.h"

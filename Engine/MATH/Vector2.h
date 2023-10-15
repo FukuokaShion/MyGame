@@ -1,6 +1,6 @@
 /**
- * Vector2.h
- * 2次元ベクトル
+ * @file Vector2.h
+ * @brief 2次元ベクトル
  */
 
 #pragma once

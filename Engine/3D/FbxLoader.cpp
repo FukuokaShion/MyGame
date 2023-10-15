@@ -1,6 +1,6 @@
 /**
- * FbxLoader.cpp
- * FBXモデル読み込み
+ * @file FbxLoader.cpp
+ * @brief FBXモデル読み込み
  */
 
 #include "FbxLoader.h"

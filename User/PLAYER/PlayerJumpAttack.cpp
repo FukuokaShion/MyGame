@@ -1,6 +1,6 @@
 /**
- * PlayerJumpAttack.cpp
- * プレイヤーのジャンプ攻撃パターン
+ * @file PlayerJumpAttack.cpp
+ * @brief プレイヤーのジャンプ攻撃パターン
  */
 
 #include"Player.h"

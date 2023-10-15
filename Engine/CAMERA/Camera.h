@@ -1,6 +1,6 @@
 /**
- * Camera.h
- * ゲームカメラ
+ * @file Camera.h
+ * @brief ゲームカメラ
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
- * FbxModel.cpp
- * FBX本体
+ * @file FbxModel.cpp
+ * @brief FBX本体
  */
 
 #include "FBXObject3d.h"

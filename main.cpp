@@ -1,6 +1,6 @@
 /**
- * Main.cpp
- * ゲームを動かす
+ * @file Main.cpp
+ * @brief　ゲームを動かす
  */
 
 #include "GameMain.h"

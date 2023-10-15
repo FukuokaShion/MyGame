@@ -1,6 +1,6 @@
 /**
- * Object3d.cpp
- * obj本体
+ * @file Object3d.cpp
+ * @brief obj本体
  */
 
 #include "Object3d.h"

@@ -1,6 +1,6 @@
 /**
- * Transform.h
- * 3次元座標データ
+ * @file Transform.h
+ * @brief 3次元座標データ
  */
 
 #pragma once

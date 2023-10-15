@@ -1,6 +1,6 @@
 /**
- * SpriteCommon.cpp
- * 画像データクラス
+ * @file SpriteCommon.cpp
+ * @brief 画像データクラス
  */
 
 #include"SpriteCommon.h"
