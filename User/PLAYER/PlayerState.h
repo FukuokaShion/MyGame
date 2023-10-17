@@ -20,11 +20,6 @@ public:
 	void SetPlayer(Player* player) { player_ = player; };
 	
 	/**
-	 * @brief inputをセット
-	*/
-	void SetInput(Input* input) { this->input_ = input; };
-	
-	/**
 	 * @brief プレイヤーが攻撃常態かチェック
 	*/
 	bool GetIsAttack() { return isAttack; };
@@ -43,7 +38,7 @@ protected:
 
 protected:
 	static Player* player_;
-	static Input* input_;
+	Input* input_;
 
 	//攻撃判定
 	bool isAttack;

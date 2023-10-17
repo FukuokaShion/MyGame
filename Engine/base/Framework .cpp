@@ -18,7 +18,7 @@ void Framework::Initialize() {
 	dxCommon->Initialize(winApp);
 
 	//入力の初期化
-	input = new Input();
+	input = Input::GetInstance();
 	input->Initialize(winApp);
 
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
@@ -35,7 +35,6 @@ void Framework::Initialize() {
 
 void  Framework::Finalize() {
 	delete fps;
-	delete input;
 	delete dxCommon;
 	FbxLoader::GetInstance()->Finalize();
 	winApp->Finalize();

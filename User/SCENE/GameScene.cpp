@@ -39,7 +39,7 @@ void GameScene::Initialize() {
 
 	//プレイヤー生成
 	player = new Player();
-	player->Initialize(input);
+	player->Initialize();
 	player->SetCamera(camera);
 
 

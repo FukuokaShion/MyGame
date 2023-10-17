@@ -43,10 +43,6 @@ public:
 	*/
 	static void SetSceneManager(SceneManager* sceneManager_) { sceneManager = sceneManager_; };
 	
-	/**
-	 * @brief inputセット
-	*/
-	static void SetInput(Input* input_) { input = input_; };
 
 protected:
 	/**
@@ -58,5 +54,5 @@ protected:
 	//シーンマネージャー
 	static SceneManager* sceneManager;
 
-	static Input* input;
+	Input* input;
 };

@@ -33,7 +33,7 @@ public:
 
 private:
 	//入力
-	//Input* input_ = nullptr;
+	Input* input_ = nullptr;
 
 	//船
 	Object3d* ship = nullptr;
