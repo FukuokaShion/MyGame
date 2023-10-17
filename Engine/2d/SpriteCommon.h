@@ -1,3 +1,8 @@
+/**
+ * @file SpriteCommon.h
+ * @brief 画像データクラス
+ */
+
 #pragma once
 #include"DirectXCommon.h"
 #include <DirectXTex.h>
@@ -30,31 +35,64 @@ public:
 		Matrix4 mat;	//3D変換行列
 	};
 public:
-	//初期化
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
 
+	/**
+	 * @brief  DirectXCommon取得
+	*/
 	DirectXCommon* GetDxCommon() { return dxcommon_; }
 
+	/**
+	 * @brief ルートシグネチャ取得
+	*/
 	ID3D12RootSignature* GetRootSignature() { return rootSignature.Get(); }
 
+	/**
+	 * @brief パイプラインステート取得
+	*/
 	ID3D12PipelineState* GetPipelineState() { return pipelineState.Get(); }
 
+	/**
+	 * @brief srvヒープ取得
+	*/
 	ID3D12DescriptorHeap* GetSrvHeap() { return srvHeap.Get(); }
 
+	/**
+	 * @brief srvハンドル取得
+	*/
 	D3D12_CPU_DESCRIPTOR_HANDLE GetSrvHandle() { return srvHandle; }
 
+	/**
+	 * @brief sizeVVb取得
+	*/
 	UINT GetSizeVB() { return sizeVB; }
 
+	/**
+	 * @brief ResourceDesc取得
+	*/
 	D3D12_RESOURCE_DESC& GetResourceDesc() { return resDesc; }
 
+	/**
+	 * @brief 画像読み込み
+	*/
 	void LoadTexture(uint32_t index, const std::string& fileName);
 
+	/**
+	 * @brief テクスチャコマンド設定
+	*/
 	void SetTextureCommands(uint32_t index);
 
+	/**
+	 * @brief DirectXCommon設定
+	*/
 	static void SetDxCommon(DirectXCommon* dxcommon) { dxcommon_ = dxcommon; };
 
-	//Microsoft::WRL::ComPtr<ID3D12Resource> GetTexBuff(uint32_t index) { return texBuff[index]; }
-
+	/**
+	 * @brief テクスチャーバッファ取得
+	*/
 	Microsoft::WRL::ComPtr<ID3D12Resource> GetTextureBuffer(uint32_t index)const { return texBuff[index].Get(); }
 
 	//SRV用デスクリプタヒープ

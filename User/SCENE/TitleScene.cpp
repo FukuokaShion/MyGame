@@ -1,3 +1,8 @@
+/**
+ * @file TitleScene.cpp
+ * @brief タイトルシーン
+ */
+
 #include"TitleScene.h"
 #include"SceneManager.h"
 #include"GameScene.h"
@@ -39,11 +44,17 @@ void TitleScene::Initialize() {
 	black->SetSize({ 1280,720 });
 	black->SetColor({ 0,0,0,0 });
 
+	loading = std::make_unique<Sprite>();
+	loading->Initialize(spriteCommon);
+	loading->SetPozition({ 0,0 });
+	loading->SetSize({ 1280,720 });
+	
 	spriteCommon->LoadTexture(0, "title.png");
 	basePic->SetTextureIndex(0);
 	spriteCommon->LoadTexture(1, "white.png");
 	black->SetTextureIndex(1);
-
+	spriteCommon->LoadTexture(2, "loading.png");
+	loading->SetTextureIndex(2);
 	//obj
 	skydomeMD = Model::LoadFromOBJ("skydome");
 	skydome = Object3d::Create();
@@ -172,10 +183,13 @@ void TitleScene::FbxDraw() {
 void TitleScene::SpriteDraw() {
 	basePic->Draw();
 	black->Draw();
+	if (black->GetColor().w >= 1.0f) {
+		loading->Draw();
+	}
 }
 
 void TitleScene::StateTransition() {
-	if (input->TriggerKey(DIK_SPACE)) {
+	if (input->PButtonTrigger(B)) {
 		isMoveShip = true;
 	}
 

@@ -1,3 +1,8 @@
+/**
+ * @file CollisionPrimitive.cpp
+ * @brief 当たり判定の形状
+ */
+
 #include "CollisionPrimitive.h"
 
 using namespace DirectX;

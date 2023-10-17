@@ -1,3 +1,8 @@
+/**
+ * @file Affin.cpp
+ * @brief アフィン行列
+ */
+
 #include "Affin.h"
 #include "math.h"
 #include <cmath>

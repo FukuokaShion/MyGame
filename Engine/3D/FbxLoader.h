@@ -1,3 +1,8 @@
+/**
+ * @file FbxLoader.h
+ * @brief FBXモデル読み込み
+ */
+
 #pragma once
 
 #include <fbxsdk.h>

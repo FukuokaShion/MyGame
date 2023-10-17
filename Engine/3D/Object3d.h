@@ -1,5 +1,9 @@
-#pragma once
+/**
+ * @file Object3d.h
+ * @brief obj本体
+ */
 
+#pragma once
 #include <Windows.h>
 #include <wrl.h>
 #include <d3d12.h>
@@ -35,8 +39,6 @@ private: // エイリアス
 		Matrix4 mat;	// ３Ｄ変換行列
 	};
 
-
-
 private: // 定数
 	static const int division = 50;					// 分割数
 	static const float radius;				// 底面の半径
@@ -70,9 +72,10 @@ public: // 静的メンバ関数
 	/// <returns></returns>
 	static Object3d* Create();
 
+	/**
+	 * @brief 死亡フラグ
+	*/
 	bool IsDead() const { return  isDead_; }
-
-
 
 private: // 静的メンバ変数
 	// デバイス

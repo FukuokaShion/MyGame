@@ -1,3 +1,8 @@
+/**
+ * @file Vector4.cpp
+ * @brief 4次元ベクトル
+ */
+
 #include "Vector4.h"
 #include "Vector3.h"
 #include <math.h>

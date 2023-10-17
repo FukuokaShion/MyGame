@@ -1,3 +1,8 @@
+/**
+ * @file PlayerState.h
+ * @brief プレイヤーのステートパターン基底
+ */
+
 #pragma once
 #include"Transform.h"
 #include"Input.h"
@@ -9,16 +14,31 @@ public:
 	PlayerState();
 	virtual ~PlayerState() {};
 
+	/**
+	 * @brief プレイヤー本体をセット
+	*/
 	void SetPlayer(Player* player) { player_ = player; };
+	
+	/**
+	 * @brief inputをセット
+	*/
 	void SetInput(Input* input) { this->input_ = input; };
+	
+	/**
+	 * @brief プレイヤーが攻撃常態かチェック
+	*/
 	bool GetIsAttack() { return isAttack; };
 	int GetPower() { return power; };
 
-	//更新
+	/**
+	 * @brief 更新
+	*/
 	virtual void Update() = 0;
 
 protected:
-	//状態移行
+	/**
+	 * @brief 状態移行
+	*/
 	virtual void StateTransition() = 0;
 
 protected:

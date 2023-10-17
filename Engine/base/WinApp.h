@@ -1,3 +1,8 @@
+/**
+ * WinApp.h
+ * WindowsAPI
+ */
+
 #pragma once
 #include <Windows.h>
 
@@ -7,11 +12,19 @@ class WinApp
 public:
 	static LRESULT WindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
-	//getter
+	/**
+	 * @brief Hwnd取得
+	*/
 	HWND GetHwnd() const { return hwnd; }
 
+	/**
+	 * @brief HInstance取得
+	*/
 	HINSTANCE GetHInstance() const { return w.hInstance; }
 
+	/**
+	 * @brief メッセージ処理
+	*/
 	bool ProcessMessage();
 
 	// ウィンドウ横幅
@@ -20,13 +33,19 @@ public:
 	static const int window_height = 720;
 
 public: //メンバ関数
-	//初期化
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
 
-	//更新
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
-	//終了
+	/**
+	 * @brief 終了
+	*/
 	void Finalize();
 private:
 	//ウィンドウハンドル

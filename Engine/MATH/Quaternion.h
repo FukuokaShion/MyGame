@@ -1,6 +1,12 @@
+/**
+ * @file Quaternion.h
+ * @brief Quaternion
+ */
+
 #pragma once
 #include"vector3.h"
 #include"Matrix4.h"
+
 class Quaternion
 {
 public:
@@ -12,21 +18,44 @@ public:
 	Quaternion();
 	Quaternion(float x, float y, float z, float w);
 
-	//Quaternionの積
+	/**
+	 * @brief 積を計算
+	*/
 	Quaternion Multiply(Quaternion quaternion);
-	//単位Quaternionを返す
+	
+	/**
+	 * @brief 単位Quaternionを返す
+	*/
 	Quaternion IdentityQuaternion();
-	//共役Quaternionを返す
+	
+	/**
+	 * @brief 共役Quaternionを返す
+	*/
 	Quaternion Conjugate();
-	//Quaternionのnormを返す
+	
+	/**
+	 * @brief ノルム
+	*/
 	float Norm() const;
-	//正規化したQuaternionを返す
+	
+	/**
+	 * @brief 正規化
+	*/
 	Quaternion Normalize();
-	//逆Quaternionを返す
+	
+	/**
+	 * @brief 逆Quaternionを返す
+	*/
 	Quaternion Inverse();
-	//ベクトルをQuaternionで回転させた結果のベクトルを求める
+	
+	/**
+	 * @brief クトルをQuaternionで回転
+	*/
 	Vector3 RotateVector(const Vector3& vector);
-	//Quaternionから回転行列を求める
+	
+	/**
+	 * @brief 回転行列計算
+	*/
 	Matrix4 MakeRotateMatrix();
 
 	//単項演算子オーバーロード

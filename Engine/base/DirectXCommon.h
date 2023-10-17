@@ -1,3 +1,8 @@
+/**
+ * @file DirectXCommon.h
+ * @brief DirectX基盤
+ */
+
 #pragma once
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -11,38 +16,68 @@
 //template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 //DirectX基盤
-class DirectXCommon
-{
+class DirectXCommon{
 public://メンバ関数
 	// Microsoft::WRL::を省略
 	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
-	//初期化
+	
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize(WinApp* winApp);
 
+	/**
+	 * @brief デバイス初期化
+	*/
 	void InitializeDevice();
 
+	/**
+	 * @brief コマンドリスト初期化
+	*/
 	void InitializeCommand();
 
+	/**
+	 * @brief スワップチェーン初期化
+	*/
 	void InitializeSwapchain();
 
+	/**
+	 * @brief レンダーターゲットビュー初期化
+	*/
 	void InitializeRenderTargetView();
 
+	/**
+	 * @brief 深度バッファ初期化
+	*/
 	void InitializeDepthBuffer();
 
+	/**
+	 * @brief フェンスの初期化
+	*/
 	void InitializeFence();
 
-	//描画前処理
+	/**
+	 * @brief 描画前処理
+	*/
 	void PreDraw();
-	//描画後処理
+	/**
+	 * @brief 描画後処理
+	*/
 	void PostDraw();
 
-	//デバイス取得
+	/**
+	 * @brief デバイス取得
+	*/
 	ID3D12Device* GetDevice() const { return device.Get(); }
 
-	//コマンドリスト取得
+	/**
+	 * @brief コマンドリスト取得
+	*/
 	ID3D12GraphicsCommandList* GetCommandList()const { return commandList.Get(); }
 
-	//バックバッファの数を取得
+	/**
+	 * @brief バックバッファの数を取得
+	*/
 	size_t GetBackBufferCount() const { return backBuffers.size(); }
 
 private:

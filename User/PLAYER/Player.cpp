@@ -1,3 +1,8 @@
+/**
+ * @file Player.cpp
+ * @brief プレイヤー本体
+ */
+
 #include "Player.h"
 #include "FbxLoader.h"
 #include"PlayerStandby.h"

@@ -1,5 +1,9 @@
-#include"EnemyParticle.h"
+/**
+ * @file EnemyParticle.cpp
+ * @brief 敵のヒット時エフェクト
+ */
 
+#include"EnemyParticle.h"
 
 EnemyParticle::EnemyParticle() {
 	//パーティクル生成

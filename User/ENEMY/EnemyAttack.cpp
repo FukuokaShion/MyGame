@@ -1,3 +1,8 @@
+/**
+ * @file EnemyAttack.cpp
+ * @brief 敵の突進攻撃パターン
+ */
+
 #include"Enemy.h"
 #include"EnemyAttack.h"
 #include"EnemyStandby.h"

@@ -1,3 +1,8 @@
+/**
+ * @file Enemy.cpp
+ * @brief 敵クラス本体
+ */
+
 #include "Enemy.h"
 #include "FbxLoader.h"
 #include"EnemyStandby.h"

@@ -1,3 +1,8 @@
+/**
+ * @file FbxModel.cpp
+ * @brief FBX本体
+ */
+
 #include "FBXObject3d.h"
 #include <d3dcompiler.h>
 #include"ConvertXM.h"

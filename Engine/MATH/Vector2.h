@@ -1,3 +1,8 @@
+/**
+ * @file Vector2.h
+ * @brief 2次元ベクトル
+ */
+
 #pragma once
 class Vector2
 {
@@ -6,21 +11,31 @@ public:
 	float y;	//y成分
 
 public:
-	//　コンストラクタ
 	Vector2();					//零ベクトルとして生成
-	Vector2(float x, float y);		//x成分、ｙ成分を指定しての生成
+	Vector2(float x, float y);	//x成分、ｙ成分を指定しての生成
 
-	//　メンバ関数
-	float length() const;				//ノルム（長さ）を求める
-	Vector2& nomalize();				//正規化する
-	float dot(const Vector2& v) const;	//内積を求める
-	float cross(const Vector2& v) const;//外積を求める
+	/**
+	 * @brief ノルム計算
+	*/
+	float length() const;
+	/**
+	 * @brief 正規化
+	*/
+	Vector2& nomalize();
+	/**
+	 * @brief 内積計算
+	*/
+	float dot(const Vector2& v) const;
+	/**
+	 * @brief 外積計算
+	*/
+	float cross(const Vector2& v) const;
 
-	//　単項演算子オーバーロード
+	//単項演算子オーバーロード
 	Vector2 operator+() const;
 	Vector2 operator-() const;
 
-	//　代入演算子オーバーロード
+	//代入演算子オーバーロード
 	Vector2& operator+=(const Vector2& v);
 	Vector2& operator-=(const Vector2& v);
 	Vector2& operator*=(float s);

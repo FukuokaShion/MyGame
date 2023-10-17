@@ -1,3 +1,8 @@
+/**
+ * @file Camera.h
+ * @brief ゲームカメラ
+ */
+
 #pragma once
 
 #include "Vector3.h"

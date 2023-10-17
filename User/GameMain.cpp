@@ -1,3 +1,8 @@
+/**
+ * @file GameMain.cpp
+ * @brief ゲーム全体の流れ
+ */
+
 #include "GameMain.h"
 
 GameMain::GameMain() {

@@ -1,3 +1,8 @@
+/**
+ * @file Collision.cpp
+ * @brief 衝突判定関数
+ */
+
 #include "Collision.h"
 
 using namespace DirectX;

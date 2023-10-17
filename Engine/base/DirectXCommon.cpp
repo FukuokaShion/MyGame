@@ -1,3 +1,8 @@
+/**
+ * @file DirectXCommon.cpp
+ * @brief DirectX基盤
+ */
+
 #include "DirectXCommon.h"
 #include <cassert>
 #include <vector>
@@ -224,8 +229,6 @@ void DirectXCommon::InitializeDepthBuffer()
 void DirectXCommon::InitializeFence()
 {
 	// フェンスの生成
-
-
 	result = device->CreateFence(fenceVal, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence));
 }
 

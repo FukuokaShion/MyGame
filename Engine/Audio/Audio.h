@@ -1,3 +1,8 @@
+/**
+ * @file Audio.h
+ * @brief 音声
+ */
+
 #pragma once
 
 #include <xaudio2.h>

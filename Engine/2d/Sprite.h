@@ -1,3 +1,8 @@
+/**
+ * @file Sprite.h
+ * @brief 画像描画クラス
+ */
+
 #pragma once
 #include"SpriteCommon.h"
 
@@ -36,53 +41,115 @@ public:
 		RT,//右上
 	};
 public:
-	//初期化
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize(SpriteCommon* spritecommon_, uint32_t textureIndex = UINT32_MAX);
 
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
+	/**
+	 * @brief 描画
+	*/
 	void Draw();
 
+	/**
+	 * @brief 座標設定
+	*/
 	void SetPozition(const Vector2& position_);
 
+	/**
+	 * @brief 座標取得
+	*/
 	const Vector2& GetPosition() const { return position; }
 
+	/**
+	 * @brief 回転設定
+	*/
 	void SetRotation(float rotation_);
 
+	/**
+	 * @brief 回転取得
+	*/
 	float GetRotation() { return rotation; }
 
+	/**
+	 * @brief 色設定
+	*/
 	void SetColor(const Vector4& color_) { color = color_; }
 
+	/**
+	 * @brief 色取得
+	*/
 	Vector4 GetColor() { return color; }
 
+	/**
+	 * @brief サイズ設定
+	*/
 	void SetScale(const Vector3& scale_) { scale = scale_; }
 
+	/**
+	 * @brief サイズ取得
+	*/
 	Vector3 GetScale() { return scale; }
 
+	/**
+	 * @brief 中心座標設定
+	*/
 	void SetAnchorPoint(const Vector2& anchorPoint_) { anchorPoint = anchorPoint_; }
 
+	/**
+	 * @brief 中心座標取得
+	*/
 	Vector2 GetAnchorPoint() { return anchorPoint; }
 
+	/**
+	 * @brief テクスチャ番号設定
+	*/
 	void SetTextureIndex(uint32_t texNmb) { textureIndex_ = texNmb; AdjustTextureSize(); }
 
+	/**
+	 * @brief テクスチャ番号取得
+	*/
 	uint32_t GetTextureIndex() { return textureIndex_; }
 
+	/**
+	 * @brief テクスチャサイズ取得
+	*/
 	void SetTexSize(Vector2 texSize) { textureSize = texSize; }
 
+	/**
+	 * @brief サイズ取得
+	*/
 	Vector2 GetTexSize() { return textureSize; }
 
+	/**
+	 * @brief 初期化
+	*/
 	Vector2 GetSize() { return size_; }
 
+	/**
+	 * @brief サイズ設定
+	*/
 	void SetSize(Vector2 size);
 
-	/// 上下反転の設定
+	/**
+	 * @brief 上下反転の設定
+	*/
 	void SetIsFlipY(bool isFlipY);
 
-	/// 左右反転の設定
+	/**
+	 * @brief 左右反転の設定
+	*/
 	void SetIsFlipX(bool isFlipX);
 
 private:
-	//テクスチャサイズをイメージに合わせる
+	/**
+	 * @brief テクスチャサイズをイメージに合わせる
+	*/
 	void AdjustTextureSize();
 
 	SpriteCommon* spritecomon;

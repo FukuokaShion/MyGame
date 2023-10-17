@@ -1,35 +1,38 @@
+/**
+ * @file ImGuiManager.h
+ * @brief ImGui管理
+ */
+
 #pragma once
 #include "WinApp.h"
 #include "DirectXCommon.h"
 
 // Imgui の管理
-class ImGuiManager
-{
+class ImGuiManager{
 public:
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize(WinApp* winApp, DirectXCommon* dxCommon);
 
-	/// <summary>
-	/// 終了
-	/// </summary>
+	/**
+	 * @brief 終了
+	*/
 	void Finalize();
 
-	/// <summary>
-	/// Imgui受付開始
-	/// </summary>
+	/**
+	 * @brief Imgui受付開始
+	*/
 	void Begin();
 
-	/// <summary>
-	/// Imgui受付終了
-	/// </summary>
+	/**
+	 * @brief Imgui受付終了
+	*/
 	void End();
 
-	/// <summary>
-	/// 描画
-	/// </summary>
+	/**
+	 * @brief 描画
+	*/
 	void Draw();
 
 

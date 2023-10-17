@@ -1,3 +1,8 @@
+/**
+ * @file WinApp.cpp
+ * @brief WindowsAPI
+ */
+
 #include "WinApp.h"
 #include <tchar.h>
 

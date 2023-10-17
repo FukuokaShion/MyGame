@@ -1,3 +1,9 @@
+/**
+ * @file EnemyStandby.h
+ * @brief 敵の待機状態パターン
+ *        各行動終了後にこの状態になる
+ */
+
 #pragma once
 #include"EnemyState.h"
 
@@ -5,6 +11,10 @@
 class Standby : public EnemyState {
 public:
 	Standby();
+
+	/**
+	 * @brief 更新
+	*/
 	void Update(Vector3 playerPos) override;
 
 private:

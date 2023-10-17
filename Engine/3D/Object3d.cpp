@@ -1,3 +1,8 @@
+/**
+ * @file Object3d.cpp
+ * @brief obj本体
+ */
+
 #include "Object3d.h"
 
 #include <d3dcompiler.h>

@@ -1,3 +1,8 @@
+/**
+ * @file PlayerAvoid.h
+ * @brief プレイヤーの回避パターン
+ */
+
 #pragma once
 #include"PlayerState.h"
 
@@ -5,9 +10,15 @@
 class PlayerAvoid : public PlayerState {
 public:
 	PlayerAvoid();
+	/**
+	 * @brief 更新
+	*/
 	void Update() override;
 
 private:
+	/**
+	 * @brief 状態移行
+	*/
 	void StateTransition() override;
 
 private:

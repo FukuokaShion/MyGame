@@ -1,3 +1,9 @@
+/**
+ * @file EnemyStandby.cpp
+ * @brief 敵の待機状態パターン
+ *        各行動終了後にこの状態になる
+ */
+
 #include"Enemy.h"
 #include"EnemyStandby.h"
 #include"EnemyAttack.h"

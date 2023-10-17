@@ -1,3 +1,8 @@
+/**
+ * @file PlayerAttack.cpp
+ * @brief プレイヤーの攻撃パターン
+ */
+
 #include"Player.h"
 #include"PlayerAttack.h"
 #include"PlayerStandby.h"

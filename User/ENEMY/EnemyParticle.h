@@ -1,3 +1,8 @@
+/**
+ * @file EnemyParticle.h
+ * @brief　敵のヒット時エフェクト
+ */
+
 #pragma once
 #include "ParticleManager.h"
 
@@ -6,10 +11,19 @@ public:
 	EnemyParticle();
 	~EnemyParticle();
 
+	/**
+	 * @brief 発生
+	*/
 	void OnColision(Vector3 hitPos);
 
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
+	/**
+	 * @brief 描画
+	*/
 	void Draw();
 
 public:

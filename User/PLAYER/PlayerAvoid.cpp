@@ -1,3 +1,8 @@
+/**
+ * @file PlayerAvoid.cpp
+ * @brief プレイヤーの回避パターン
+ */
+
 #include"Player.h"
 #include"PlayerStandby.h"
 #include"PlayerAvoid.h"

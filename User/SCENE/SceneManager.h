@@ -1,42 +1,35 @@
+/**
+ * @file SceneManager.h
+ * @brief シーン管理
+ */
+
 #pragma once
 #include "SceneState.h"
 #include "DirectXCommon.h"
 
-/// <summary>
-/// ゲームシーン
-/// </summary>
-class SceneManager
-{
-private: // 静的メンバ変数
-
+class SceneManager{
 public: // メンバ関数
-
-	/// <summary>
-	/// コンストクラタ
-	/// </summary>
 	SceneManager();
-
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
 	~SceneManager();
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize(DirectXCommon* dxCommon);
 
-	//状態移行
+	/**
+	 * @brief シーン移行
+	*/
 	void TransitionTo(SceneState* state);
 
-	/// <summary>
-	/// 毎フレーム処理
-	/// </summary>
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
-	/// <summary>
-	/// 描画
-	/// </summary>
+	/**
+	 * @brief 描画
+	*/
 	void Draw();
 private: //メンバ変数 (固定)
 	DirectXCommon* dxCommon_ = nullptr;

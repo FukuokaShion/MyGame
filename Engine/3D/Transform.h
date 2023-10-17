@@ -1,5 +1,9 @@
-#pragma once
+/**
+ * @file Transform.h
+ * @brief 3次元座標データ
+ */
 
+#pragma once
 #include "Matrix4.h"
 #include "Affin.h"
 
@@ -8,7 +12,14 @@ class Transform
 public:
 	Transform();
 	~Transform();
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize();
+
+	/**
+	 * @brief Matrix4更新
+	*/
 	void UpdateMat();
 public:
 	// ローカルスケール

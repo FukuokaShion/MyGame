@@ -1,3 +1,8 @@
+/**
+ * @file EnemyAttack.h
+ * @brief 敵の突進攻撃パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 
@@ -6,6 +11,9 @@ class Attack : public EnemyState {
 public:
 	Attack();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:

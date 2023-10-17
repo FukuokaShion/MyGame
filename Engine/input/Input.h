@@ -1,3 +1,8 @@
+/**
+ * @file Input.h
+ * @brief 入力状態
+ */
+
 #pragma once
 #include <windows.h>
 #include <wrl.h>
@@ -14,112 +19,82 @@ public:
 	// namespace
 	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
-public: // メンバ関数
-	// 初期化
+public:
+	/**
+	 * @brief 初期化
+	*/
 	void Initialize(WinApp* winApp);
 
-	// 更新
+	/**
+	 * @brief 更新
+	*/
 	void Update();
 
-	/// <summary>
-	/// キーの押下をチェック
-	/// </summary>
-	/// <param name = "keyNumber">キー番号(DIK_0 等)</param>
-	/// <returns>押されているか</returns>
+	/**
+	 * @brief キーの押下をチェック
+	*/
 	bool PushKey(BYTE keyNumber);
 
-	/// <summary>
-	/// キーのトリガーをチェック
-	/// </summary>
-	/// </param name="keyNumber">キー番号( DIK_0 等)</param>
-	/// <reutrns>トリガーか</params>
+	/**
+	 * @brief キーのトリガーをチェック
+	*/
 	bool TriggerKey(BYTE keyNumber);
 
-	/// <summary>
-	/// キーのトリガーをチェック
-	/// </summary>
-	/// </param name="keyNumber">キー番号( DIK_0 等)</param>
-	/// <reutrns>離されたか</params>
+	/**
+	 * @brief キーの離した瞬間
+	*/
 	bool ReleaseKey(BYTE keyNumber);
 
 	//----- コントローラ- ------//
 
-	/// <summary>
-	/// コントローラーボタンのトリガー入力
-	/// </summary>
-	/// <param name="button">チェックしたいボタン</param>
-	/// <returns>押したか</returns>
+	/**
+	 * @brief コントローラーボタンのトリガー入力
+	*/
 	bool PButtonTrigger(ControllerButton button);
 
-	/// <summary>
-	/// コントローラースティックのトリガー入力
-	/// </summary>
-	/// <param name="stickInput">コントローラースティック方向</param>
-	/// <param name="deadRange">デッドゾーンの範囲</param>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>倒したかどうか</returns>
+	/**
+	 * @brief コントローラースティックのトリガー入力
+	*/
 	bool PStickTrigger(ControllerStick stickInput, const float& deadRange = 0.3f, const Vector2& deadRate = { 1.0f,1.0f });
 
-	/// <summary>
-	/// コントローラーボタンの入力
-	/// </summary>
-	/// <param name="button">チェックしたいボタン</param>
-	/// <returns>押したか</returns>
+	/**
+	 * @brief コントローラーボタンの入力
+	*/
 	bool ButtonInput(ControllerButton button);
 
-	/// <summary>
-	/// コントローラースティックの入力
-	/// </summary>
-	/// <param name="stickInput">コントローラースティック方向</param>
-	/// <param name="deadRange">デッドゾーンの範囲初期値0.3f</param>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>倒したかどうか</returns>
+	/**
+	 * @brief コントローラースティックの入力
+	*/
 	bool StickInput(ControllerStick stickInput, const float& deadRange = 0.3f, const Vector2& deadRate = { 1.0f,1.0f });
 
-
-	/// <summary>
-	/// コントローラー左スティックの入力
-	/// </summary>
-	/// <param name="deadRange">デッドゾーンの範囲初期値0.3f</param>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>倒したかどうか</returns>
+	/**
+	 * @brief コントローラー左スティックの入力
+	*/
 	bool LeftStickInput(const float& deadRange = 0.3f);
 
-	/// <summary>
-	/// コントローラーボタンの離した瞬間
-	/// </summary>
-	/// <param name="button">チェックしたいボタン</param>
-	/// <returns>離したか</returns>
+	/**
+	 * @brief コントローラーボタンの離した瞬間
+	*/
 	bool ButtonOffTrigger(ControllerButton button);
 
-	/// <summary>
-	/// コントローラースティックの離した瞬間
-	/// </summary>
-	/// <param name="stickInput">コントローラースティック方向</param>
-	/// <param name="deadRange">デッドゾーンの範囲初期値0.3f</param>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>離したか</returns>
+	/**
+	 * @brief コントローラースティックの離した瞬間
+	*/
 	bool StickOffTrigger(ControllerStick stickInput, const float& deadRange = 0.3f, const Vector2& deadRate = { 1.0f,1.0f });
 
-	/// <summary>
-	/// コントローラーの左スティックのベクトル
-	/// </summary>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>ベクトル</returns>
+	/**
+	 * @brief コントローラーの左スティックのベクトル
+	*/
 	Vector2 GetLeftStickVec(const Vector2& deadRate = { 1.0f,1.0f });
 
-	/// <summary>
-	/// コントローラーの右スティックのベクトル
-	/// </summary>
-	/// <param name="deadRate">デッドゾーン判定の度合い初期値1.0f</param>
-	/// <returns>ベクトル</returns>
+	/**
+	 * @brief コントローラーの右スティックのベクトル
+	*/
 	Vector2 GetRightStickVec(const Vector2& deadRate = { 1.0f,1.0f });
 
-	/// <summary>
-	/// コントローラーを振動させる
-	/// </summary>
-	/// <param name="power">振動の強さ0.0f～1.0f</param>
-	/// <param name="span">振動の時間フレーム</param>
+	/**
+	 * @brief コントローラーを振動させる
+	*/
 	void ShakeController(const float& power, const int& span);
 
 

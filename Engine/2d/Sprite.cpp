@@ -1,3 +1,8 @@
+/**
+ * @file Sprite.cpp
+ * @brief 画像描画クラス
+ */
+
 #include"Sprite.h"
 
 void Sprite::Initialize(SpriteCommon* spritecommon_, uint32_t textureIndex)

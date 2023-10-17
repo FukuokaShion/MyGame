@@ -1,3 +1,8 @@
+/**
+ * @file EnemyLeave.cpp
+ * @brief 敵の離脱パターン
+ */
+
 #include"Enemy.h"
 #include"EnemyLeave.h"
 #include"EnemyStandby.h"

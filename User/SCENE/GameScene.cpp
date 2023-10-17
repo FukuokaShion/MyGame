@@ -1,3 +1,8 @@
+/**
+ * @file GameScene.cpp
+ * @brief ゲームプレイシーン
+ */
+
 #include"GameScene.h"
 #include"SceneManager.h"
 #include"TitleScene.h"

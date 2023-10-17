@@ -1,3 +1,8 @@
+/**
+ * @file Framework.cpp
+ * @brief エンジンフレームワーク
+ */
+
 #include "Framework .h"
 #include "Object3d.h"
 #include "FBXObject3d.h"

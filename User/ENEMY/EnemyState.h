@@ -1,3 +1,8 @@
+/**
+ * @file EnemyState.h
+ * @brief 敵のステートパターン基底クラス
+ */
+
 #pragma once
 #include"Transform.h"
 
@@ -8,9 +13,15 @@ public:
 	EnemyState();
 	virtual ~EnemyState() {};
 
+	/**
+	 * @brief 敵を本体をセット
+	*/
 	void SetEnemy(Enemy* enemy) { enemy_ = enemy; }
 
 public:
+	/**
+	 * @brief 更新
+	*/
 	virtual void Update(Vector3 playerPos) = 0;
 
 protected:

@@ -1,3 +1,8 @@
+/**
+ * @file EnemyLeave.h
+ * @brief 敵の離脱パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 
@@ -5,6 +10,9 @@
 class Leave : public EnemyState {
 public:
 
+	/**
+	 * @brief 更新
+	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
 
 private:

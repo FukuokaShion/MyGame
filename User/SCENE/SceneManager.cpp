@@ -1,3 +1,8 @@
+/**
+ * @file SceneManager.cpp
+ * @brief シーン管理
+ */
+
 #include "SceneManager.h"
 #include"TitleScene.h"
 #include"Object3d.h"

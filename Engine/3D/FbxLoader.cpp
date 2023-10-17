@@ -1,3 +1,8 @@
+/**
+ * @file FbxLoader.cpp
+ * @brief FBXモデル読み込み
+ */
+
 #include "FbxLoader.h"
 
 #include <cassert>

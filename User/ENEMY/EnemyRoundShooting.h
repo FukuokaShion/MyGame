@@ -1,3 +1,8 @@
+/**
+ * @file EnemyRoundShooting.h
+ * @brief 敵の弾を5つ展開する射撃パターン
+ */
+
 #pragma once
 #include"EnemyState.h"
 
@@ -6,6 +11,9 @@ class EnemyRoundShooting : public EnemyState {
 public:
 	EnemyRoundShooting();
 
+	/**
+	 * @brief 更新
+	*/
 	void Update(Vector3 playerPos) override;
 
 private:
