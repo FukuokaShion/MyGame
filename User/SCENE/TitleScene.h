@@ -9,6 +9,7 @@
 #include "Object3d.h"
 #include"Audio.h"
 #include"TitleField.h"
+#include"Ship.h"
 
 class TitleScene : public SceneState {
 public:
@@ -64,15 +65,6 @@ private:
 	std::unique_ptr<TitleField> field;
 
 	//船
-	Object3d* ship = nullptr;
-	Model* shipMD = nullptr;
-	float shipAngle;
-	bool isMoveShip;
-	float shipSpeed;
-	int timer;
-	int limit;
+	std::unique_ptr<Ship> ship;
 
-	//プレイヤー
-	Object3d* player = nullptr;
-	Model* playerMD = nullptr;
 };

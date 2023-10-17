@@ -283,6 +283,9 @@
     <ClCompile Include="User\FIELD\TitleField.cpp">
       <Filter>user\ソース\FIELD</Filter>
     </ClCompile>
+    <ClCompile Include="User\FIELD\Ship.cpp">
+      <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -454,6 +457,9 @@
       <Filter>Engine\ヘッダーファイル\COLLISION</Filter>
     </ClInclude>
     <ClInclude Include="User\FIELD\TitleField.h">
+      <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\FIELD\Ship.h">
       <Filter>user\ヘッダー\FIELD</Filter>
     </ClInclude>
   </ItemGroup>

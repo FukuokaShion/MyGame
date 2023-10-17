@@ -7,9 +7,6 @@
 #include"SceneManager.h"
 #include"GameScene.h"
 
-
-#include"Easing.h"
-
 TitleScene::TitleScene() {
 }
 
@@ -59,30 +56,13 @@ void TitleScene::Initialize() {
 	field = std::make_unique<TitleField>();
 	field->Initialize();
 
-	shipMD = Model::LoadFromOBJ("ship");
-	ship = Object3d::Create();
-	ship->SetModel(shipMD);
-	ship->wtf.position = { -20,0,28 };
-	shipAngle = 0.04f * 3.141592f / 180.0f;
-	shipSpeed = 0.3f;
-	timer = 0;
-	limit = 90;
-
-	playerMD = Model::LoadFromOBJ("playerObj");
-	player = Object3d::Create();
-	player->SetModel(playerMD);
-	player->wtf.position = { -20,0.5f,28 };
+	ship = std::make_unique<Ship>();
+	ship->Initialize();
 }
 
 TitleScene::~TitleScene() {
 	delete basePic;
 	delete spriteCommon;
-
-	delete ship;
-	delete shipMD;
-
-	delete player;
-	delete playerMD;
 
 	audio->StopWave(pSourceVoice);
 }
@@ -91,22 +71,14 @@ TitleScene::~TitleScene() {
 void TitleScene::Update() {
 	camera->Update();
 	field->Update();
-	if (abs(ship->wtf.rotation.x) > 4 * 3.141592f / 180) {
-		shipAngle *= -1;
-	}
-	ship->wtf.rotation.x += shipAngle;
 	ship->Update();
-
-	player->Update();
-
 	StateTransition();
 }
 
 
 void TitleScene::ObjectDraw() {
-	player->Draw();
-	ship->Draw();
 	field->Draw();
+	ship->Draw();
 }
 
 void TitleScene::FbxDraw() {
@@ -122,27 +94,11 @@ void TitleScene::SpriteDraw() {
 }
 
 void TitleScene::StateTransition() {
-	if (input->PButtonTrigger(B)) {
-		isMoveShip = true;
-	}
-
-	if (isMoveShip) {
-		if (timer < limit) {
-			timer++;
-		}
-
-		float t = static_cast<float>(timer) / static_cast<float>(limit);
-		float add = Easing::OutQuad(0, shipSpeed, t);
-
-		ship->wtf.position.z += add;
-		player->wtf.position.z += add;
-	}
-
-	if (ship->wtf.position.z > 60.0f) {
+	if (ship->GetPos().z > 60.0f) {
 		black->SetColor({ 0,0,0,black->GetColor().w + 0.04f });
 	}
 
-	if (ship->wtf.position.z > 120) {
+	if (ship->GetPos().z > 120) {
 		sceneManager->TransitionTo(new GameScene);
 	}
 }
