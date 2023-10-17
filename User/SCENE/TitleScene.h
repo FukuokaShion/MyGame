@@ -57,6 +57,7 @@ private:
 	SpriteCommon* spriteCommon = nullptr;
 	Sprite* basePic;
 	std::unique_ptr<Sprite> black;
+	std::unique_ptr<Sprite> loading;
 
 	//obj
 	Object3d* skydome = nullptr;
