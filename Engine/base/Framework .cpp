@@ -28,6 +28,8 @@ void Framework::Initialize() {
 
 	ParticleManager::StaticInitialize(dxCommon->GetDevice(), dxCommon->GetCommandList());
 	SpriteCommon::SetDxCommon(dxCommon);
+	spriteCommon = SpriteCommon::GetInstance();
+	spriteCommon->Initialize();
 
 	//FPS固定
 	fps->SetFrameRate(60);

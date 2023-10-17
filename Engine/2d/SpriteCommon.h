@@ -40,6 +40,8 @@ public:
 	*/
 	void Initialize();
 
+	static SpriteCommon* GetInstance();
+
 	/**
 	 * @brief  DirectXCommon取得
 	*/

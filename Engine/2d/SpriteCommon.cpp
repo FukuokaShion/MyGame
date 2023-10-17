@@ -227,6 +227,11 @@ void SpriteCommon::Initialize()
 	srvHandle = srvHeap->GetCPUDescriptorHandleForHeapStart();
 }
 
+SpriteCommon* SpriteCommon::GetInstance() {
+	static SpriteCommon instance;
+	return &instance;
+}
+
 void SpriteCommon::LoadTexture(uint32_t index, const std::string& fileName)
 {
 	//ディレクトリパスとファイル名を連結してフルパスを得る
