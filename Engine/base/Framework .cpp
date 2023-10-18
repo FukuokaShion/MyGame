@@ -18,7 +18,7 @@ void Framework::Initialize() {
 	dxCommon->Initialize(winApp);
 
 	//入力の初期化
-	input = new Input();
+	input = Input::GetInstance();
 	input->Initialize(winApp);
 
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
@@ -28,6 +28,8 @@ void Framework::Initialize() {
 
 	ParticleManager::StaticInitialize(dxCommon->GetDevice(), dxCommon->GetCommandList());
 	SpriteCommon::SetDxCommon(dxCommon);
+	spriteCommon = SpriteCommon::GetInstance();
+	spriteCommon->Initialize();
 
 	//FPS固定
 	fps->SetFrameRate(60);
@@ -35,7 +37,6 @@ void Framework::Initialize() {
 
 void  Framework::Finalize() {
 	delete fps;
-	delete input;
 	delete dxCommon;
 	FbxLoader::GetInstance()->Finalize();
 	winApp->Finalize();

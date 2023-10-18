@@ -15,7 +15,6 @@ void GameMain::Initialize() {
 	Framework::Initialize();
 
 	//シーンの初期化
-	SceneState::SetInput(input);
 	sceneManager = new SceneManager();
 	sceneManager->Initialize(dxCommon);
 }

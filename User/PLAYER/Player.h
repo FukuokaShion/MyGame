@@ -24,7 +24,7 @@ public:
 	/**
 	 * @brief 初期化
 	*/
-	void Initialize(Input* input);
+	void Initialize();
 
 	/**
 	 * @brief カメラセット

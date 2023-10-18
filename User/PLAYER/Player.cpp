@@ -24,9 +24,8 @@ Player::~Player() {
 	delete fbxModel_;
 }
 
-void Player::Initialize(Input* input) {
-	input_ = input;
-	state_->SetInput(input_);
+void Player::Initialize() {
+	input_ = Input::GetInstance();
 
 	//サウンド
 	audio = new Audio();

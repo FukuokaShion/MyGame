@@ -39,6 +39,11 @@ void Input::Initialize(WinApp* winApp)
 	controller = new Controller;
 }
 
+Input* Input::GetInstance() {
+	static Input instance;
+	return &instance;
+}
+
 void Input::Update()
 {
 	HRESULT result;

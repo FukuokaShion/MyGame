@@ -7,7 +7,6 @@
 #include"Easing.h"
 
 void Ship::Initialize() {
-
 	shipMD = Model::LoadFromOBJ("ship");
 	ship = Object3d::Create();
 	ship->SetModel(shipMD);
@@ -21,6 +20,8 @@ void Ship::Initialize() {
 	player = Object3d::Create();
 	player->SetModel(playerMD);
 	player->wtf.position = { -20,0.5f,28 };
+
+	input_ = Input::GetInstance();
 }
 
 Ship::~Ship() {
@@ -39,9 +40,9 @@ void Ship::Update() {
 
 	player->Update();
 
-	//if (input_->PButtonTrigger(B)) {
-	//	isMoveShip = true;
-	//}
+	if (input_->PButtonTrigger(B)) {
+		isMoveShip = true;
+	}
 
 	if (isMoveShip) {
 		if (timer < limit) {

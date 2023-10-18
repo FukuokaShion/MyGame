@@ -50,4 +50,5 @@ protected:
 	DirectXCommon* dxCommon = nullptr;
 	FPS* fps = new FPS;
 	Input* input = nullptr;
+	SpriteCommon* spriteCommon = nullptr;
 };

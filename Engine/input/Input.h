@@ -11,7 +11,6 @@
 #include"Controller.h"
 //#define DIRECTINPUT_VERSION 0x0800 // DirectInputのバージョン指定
 
-
 // 入力
 class Input
 {
@@ -24,6 +23,11 @@ public:
 	 * @brief 初期化
 	*/
 	void Initialize(WinApp* winApp);
+
+	/**
+ * @brief インスタンス取得
+*/
+	static Input* GetInstance();
 
 	/**
 	 * @brief 更新
