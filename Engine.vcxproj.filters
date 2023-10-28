@@ -112,6 +112,12 @@
     <Filter Include="user\ソース\SCENE">
       <UniqueIdentifier>{4349b04e-3d06-488a-9b41-bd725a5b9100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="user\ソース\LOADER">
+      <UniqueIdentifier>{1494b4ec-62c1-404f-920d-c1997743b160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user\ヘッダー\LOADER">
+      <UniqueIdentifier>{bb559e5a-7f71-4a03-aa73-c2b8b77d0d7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -285,6 +291,12 @@
     </ClCompile>
     <ClCompile Include="User\FIELD\Ship.cpp">
       <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
+    <ClCompile Include="User\LOADER\ObjModelLoader.cpp">
+      <Filter>user\ソース\LOADER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\LOADER\LoaderManager.cpp">
+      <Filter>user\ソース\LOADER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -461,6 +473,12 @@
     </ClInclude>
     <ClInclude Include="User\FIELD\Ship.h">
       <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\LOADER\ObjModelLoader.h">
+      <Filter>user\ヘッダー\LOADER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\LOADER\LoaderManager.h">
+      <Filter>user\ヘッダー\LOADER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

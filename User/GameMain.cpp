@@ -13,14 +13,19 @@ GameMain::~GameMain() {
 
 void GameMain::Initialize() {
 	Framework::Initialize();
-
 	//シーンの初期化
 	sceneManager = new SceneManager();
 	sceneManager->Initialize(dxCommon);
+
+	//読み込み
+	loader = new LoaderManager();
+	loader->Initilize();
+	loader->Load();
 }
 
 void GameMain::Finalize() {
 	delete sceneManager;
+	loader->Finalize();
 
 	Framework::Finalize();
 }

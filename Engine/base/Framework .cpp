@@ -6,7 +6,6 @@
 #include "Framework .h"
 #include "Object3d.h"
 #include "FBXObject3d.h"
-#include "Sprite.h"
 #include "ParticleManager.h"
 
 void Framework::Initialize() {
@@ -21,12 +20,18 @@ void Framework::Initialize() {
 	input = Input::GetInstance();
 	input->Initialize(winApp);
 
+	//fbx
 	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
 	FBXObject3d::SetDevice(dxCommon->GetDevice());
 	FBXObject3d::CreateGraphicsPipeline();
+	
+	//obj
 	Object3d::StaticInitialize(dxCommon->GetDevice());
 
+	//パーティクル
 	ParticleManager::StaticInitialize(dxCommon->GetDevice(), dxCommon->GetCommandList());
+	
+	//スプライコモン
 	SpriteCommon::SetDxCommon(dxCommon);
 	spriteCommon = SpriteCommon::GetInstance();
 	spriteCommon->Initialize();

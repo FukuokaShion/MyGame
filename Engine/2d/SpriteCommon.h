@@ -40,6 +40,9 @@ public:
 	*/
 	void Initialize();
 
+	/**
+	 * @brief インスタンス取得
+	*/
 	static SpriteCommon* GetInstance();
 
 	/**

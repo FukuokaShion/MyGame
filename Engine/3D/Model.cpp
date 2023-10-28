@@ -18,6 +18,8 @@ using namespace std;
 //静的メンバ変数の実体
 ComPtr<ID3D12Device> Model::device_;
 
+Model::~Model() {
+}
 
 Model* Model::LoadFromOBJ(const std::string& modelname)
 {

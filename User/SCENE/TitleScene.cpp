@@ -63,7 +63,6 @@ void TitleScene::Initialize() {
 TitleScene::~TitleScene() {
 	delete basePic;
 	delete spriteCommon;
-
 	audio->StopWave(pSourceVoice);
 }
 

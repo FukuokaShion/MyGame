@@ -8,6 +8,7 @@
 #include "DirectXCommon.h"
 #include "FPS.h"
 #include "Input.h"
+#include "SpriteCommon.h"
 
 class Framework {
 public:

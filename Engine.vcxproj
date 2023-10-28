@@ -62,7 +62,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -83,7 +83,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -144,6 +144,8 @@
     <ClCompile Include="User\ENEMY\EnemyStandby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
     <ClCompile Include="User\GameMain.cpp" />
+    <ClCompile Include="User\LOADER\LoaderManager.cpp" />
+    <ClCompile Include="User\LOADER\ObjModelLoader.cpp" />
     <ClCompile Include="User\PLAYER\Player.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAvoid.cpp" />
@@ -204,6 +206,8 @@
     <ClInclude Include="User\ENEMY\EnemyStandby.h" />
     <ClInclude Include="User\FIELD\Field.h" />
     <ClInclude Include="User\GameMain.h" />
+    <ClInclude Include="User\LOADER\LoaderManager.h" />
+    <ClInclude Include="User\LOADER\ObjModelLoader.h" />
     <ClInclude Include="User\PLAYER\Player.h" />
     <ClInclude Include="User\PLAYER\PlayerAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerAvoid.h" />
