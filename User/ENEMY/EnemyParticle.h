@@ -28,5 +28,5 @@ public:
 
 public:
 	//パーティクル
-	std::unique_ptr<ParticleManager> DamageParticle;
+	std::unique_ptr<ParticleManager> DamageParticle_;
 };

@@ -8,7 +8,7 @@
 Player* PlayerState::player_ = nullptr;
 
 PlayerState::PlayerState() {
-	isAttack = false;
+	isAttack_ = false;
 	input_ = Input::GetInstance();
-	power = 0;
+	power_ = 0;
 }

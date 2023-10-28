@@ -8,14 +8,14 @@
 
 void CollisionManager::Initialize() {
 	model_ = Model::LoadFromOBJ("collider");
-	for (int i = 0; i < maxCol; i++) {
+	for (int i = 0; i < maxCol_; i++) {
 		objects_[i] = Object3d::Create();
 		objects_[i]->SetModel(model_);
 	}
 }
 
 CollisionManager::~CollisionManager() {
-	for (int i = 0; i < maxCol; i++) {
+	for (int i = 0; i < maxCol_; i++) {
 		delete objects_[i];
 	}
 	delete model_;
@@ -27,24 +27,24 @@ CollisionManager* CollisionManager::GetInstance(){
 }
 
 void CollisionManager::AddCollider(BaseCollider* collide){
-	colliders.push_front(collide);
+	colliders_.push_front(collide);
 };
 
 void CollisionManager::RemoveCollider(BaseCollider* collide){
-	colliders.remove(collide);
+	colliders_.remove(collide);
 };
 
 void CollisionManager::CheakCol() {
 	std::forward_list<BaseCollider*>::iterator itA;
 	std::forward_list<BaseCollider*>::iterator itB;
 	Vector3 hitPos;
-	itA = colliders.begin();
-	for (; itA != colliders.end(); ++itA) {
+	itA = colliders_.begin();
+	for (; itA != colliders_.end(); ++itA) {
 		BaseCollider* colA = *itA;
 		itB = itA;
 		++itB;
 
-		for (; itB != colliders.end(); ++itB) {
+		for (; itB != colliders_.end(); ++itB) {
 			BaseCollider* colB = *itB;
 			//自機と敵突進
 			if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyAttack) {
@@ -72,14 +72,14 @@ void CollisionManager::CheakCol() {
 			}
 			//自機攻撃と敵機
 			else if (colA->GetAttribute() == Attribute::PlayerAttack && colB->GetAttribute() == Attribute::EnemyBody) {
-				if (isEnemyHit == false) {
+				if (isEnemyHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colA->IsHit(Attribute::EnemyBody, hitPos);
 						colB->IsHit(Attribute::PlayerAttack , hitPos);
 					}
 				}
 			}else if (colB->GetAttribute() == Attribute::PlayerAttack && colA->GetAttribute() == Attribute::EnemyBody) {
-				if (isEnemyHit == false) {
+				if (isEnemyHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colB->IsHit(Attribute::EnemyBody, hitPos);
 						colA->IsHit(Attribute::PlayerAttack, hitPos);

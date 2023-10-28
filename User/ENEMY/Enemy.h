@@ -77,12 +77,12 @@ public:
 	/**
 	 * @brief 生存フラグ
 	 */
-	bool IsLive() { return hp->IsLive(); };
+	bool IsLive() { return hp_->IsLive(); };
 
 	/**
 	 * @brief ゲッター
 	 */
-	int GetHp() { return hp->GetHp(); };
+	int GetHp() { return hp_->GetHp(); };
 	bool GetIsAttack() { return isAttack_; };
 	int GetPower() { return power_; };
 
@@ -99,29 +99,29 @@ public:
 
 private:
 	//サウンド
-	Audio* audio = nullptr;
-	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
+	Audio* audio_ = nullptr;
+	IXAudio2SourceVoice* pSourceVoice_[10] = { 0 };
 
 	//行動
 	EnemyState* state_ = nullptr;
 
 	//体力
-	EnemyHp* hp = nullptr;
+	EnemyHp* hp_ = nullptr;
 
 	//当たり判定
-	BaseCollider* body;
+	BaseCollider* body_;
 
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
 
 	//弾リスト
-	std::list<std::unique_ptr<EnemyBullet>> bullets;
+	std::list<std::unique_ptr<EnemyBullet>> bullets_;
 
 	//攻撃判定
 	bool isAttack_;
 	int power_;
 
-	EnemyParticle* particle = nullptr;
+	EnemyParticle* particle_ = nullptr;
 
 };

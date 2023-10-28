@@ -6,11 +6,11 @@
 #include"ObjModelLoader.h"
 
 void LoaderManager::Initilize() {
-	objModels = ObjModelLoader::GetInstance();
+	objModels_ = ObjModelLoader::GetInstance();
 }
 
 void LoaderManager::Finalize() {
-	objModels->Finalize();
+	objModels_->Finalize();
 }
 
 void LoaderManager::Load() {

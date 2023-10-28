@@ -17,12 +17,12 @@ public:
 	void Update(Vector3 playerPos) override;
 
 private:
-	int interval;
-	int ShotTimer;
+	int interval_;
+	int shotTimer_;
 
-	int shotMax;
-	int shotNum;
+	int shotMax_;
+	int shotNum_;
 
-	int bulletLiveLimit;
-	float speed;
+	int bulletLiveLimit_;
+	float speed_;
 };

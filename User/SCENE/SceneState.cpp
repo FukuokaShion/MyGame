@@ -5,8 +5,8 @@
 
 #include"SceneState.h"
 
-SceneManager* SceneState::sceneManager = nullptr;
+SceneManager* SceneState::sceneManager_ = nullptr;
 
 SceneState::SceneState() {
-	input = Input::GetInstance();
+	input_ = Input::GetInstance();
 }

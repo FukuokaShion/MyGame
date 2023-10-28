@@ -10,37 +10,37 @@
 PlayerJumpAttack::PlayerJumpAttack() {
 	player_->PlayWav("jumpAttack.wav");
 	player_->AnimationChange(1, 1.5f);
-	attackFallSpeed = -0.2f;
+	attackFallSpeed_ = -0.2f;
 
-	action = Action::Attack;
+	action_ = Action::Attack;
 	power_ = 15;
 
-	timer = 0;
-	afterTime = 20;
+	timer_ = 0;
+	afterTime_ = 20;
 }
 
 //攻撃
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;
 
-	switch (action) {
+	switch (action_) {
 	case Action::Attack:
-		velocity = { 0,attackFallSpeed,0 };
+		velocity = { 0,attackFallSpeed_,0 };
 		player_->Move(velocity);
 
 		//攻撃判定
-		isAttack = true;
-		power = power_;
+		isAttack_ = true;
+		power_ = power_;
 
 		if (player_->GetWtf().position.y <= 0) {
 			player_->SetPosY(0);
-			action = Action::After;
+			action_ = Action::After;
 		}
 		break;
 	case Action::After:
-		timer++;
-		isAttack = false;
-		if (timer > afterTime) {
+		timer_++;
+		isAttack_ = false;
+		if (timer_ > afterTime_) {
 			StateTransition();
 		}
 		break;

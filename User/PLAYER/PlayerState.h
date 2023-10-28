@@ -22,8 +22,8 @@ public:
 	/**
 	 * @brief プレイヤーが攻撃常態かチェック
 	*/
-	bool GetIsAttack() { return isAttack; };
-	int GetPower() { return power; };
+	bool GetIsAttack() { return isAttack_; };
+	int GetPower() { return power_; };
 
 	/**
 	 * @brief 更新
@@ -41,6 +41,6 @@ protected:
 	Input* input_;
 
 	//攻撃判定
-	bool isAttack;
-	int power;
+	bool isAttack_;
+	int power_;
 };

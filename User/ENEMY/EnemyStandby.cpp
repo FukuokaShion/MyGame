@@ -20,8 +20,8 @@ Standby::Standby() {
 void Standby::Update(Vector3 playerPos) {
 	timer++;
 	//状態切り替え
-	if (timer > limit) {
-		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance) {
+	if (timer > limit_) {
+		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
 			if (rand() % 100 + 1 < 50) {
 				enemy_->TransitionTo(new Approach);
 			}

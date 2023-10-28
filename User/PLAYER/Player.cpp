@@ -14,7 +14,7 @@ Player::Player() {
 	fbxObject3d_ = new FBXObject3d;
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
-	hp = new PlayerHp;
+	hp_ = new PlayerHp;
 
 	state_->SetPlayer(this);
 }
@@ -38,18 +38,18 @@ void Player::Initialize() {
 	audio->LoadWave("avoid.wav");
 	audio->LoadWave("run.wav");
 
-	hp->Initialize();
+	hp_->Initialize();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.scale = { 0.8f,0.8f,0.8f };
 
-	gaugeLimit = 60;
+	gaugeLimit_ = 60;
 
 	TransitionTo(new PlayerStandby);
 
-	body = new BaseCollider;
-	body->SetAttribute(Attribute::PlyerBody);
-	CollisionManager::GetInstance()->AddCollider(body);
+	body_ = new BaseCollider;
+	body_->SetAttribute(Attribute::PlyerBody);
+	CollisionManager::GetInstance()->AddCollider(body_);
 }
 
 void Player::Update() {
@@ -57,19 +57,19 @@ void Player::Update() {
 
 	CamRota();
 	fbxObject3d_->wtf.UpdateMat();
-	body->SetCenter(fbxObject3d_->wtf.position);
+	body_->SetCenter(fbxObject3d_->wtf.position);
 	camera_->Update();
 	fbxObject3d_->Update();
 
 	OnCollision();
 
-	if (gaugeTimer < 0) {
-		if (damageGauge > hp->GetHp()) {
-			damageGauge--;
+	if (gaugeTimer_ < 0) {
+		if (damageGauge_ > hp_->GetHp()) {
+			damageGauge_--;
 		}
 	}
 	else {
-		gaugeTimer--;
+		gaugeTimer_--;
 	}
 
 	//uint32_t sowrdNum = 34;
@@ -102,16 +102,16 @@ void Player::CamRota() {
 }
 
 void Player::OnCollision() {
-	if (body->GetIsHit().enemyAttack || body->GetIsHit().enemyBullet) {
+	if (body_->GetIsHit().enemyAttack || body_->GetIsHit().enemyBullet) {
 		PlayWav("col.wav");
-		hp->Damage(10);
-		gaugeTimer = gaugeLimit;
-		damageGauge = hp->GetOldHp();
+		hp_->Damage(10);
+		gaugeTimer_ = gaugeLimit_;
+		damageGauge_ = hp_->GetOldHp();
 	}
 }
 
 void Player::Draw() {
-	if (hp->IsLive()) {
+	if (hp_->IsLive()) {
 		fbxObject3d_->Draw();
 	}
 }
@@ -126,30 +126,30 @@ void Player::TransitionTo(PlayerState* state) {
 
 void Player::PlayWav(const std::string& filename) {
 	if (filename == "col.wav") {
-		pSourceVoice[0] = audio->PlayWave("col.wav");
+		pSourceVoice_[0] = audio->PlayWave("col.wav");
 	}
 	else if (filename == "jump.wav") {
-		pSourceVoice[1] = audio->PlayWave("jump.wav");
+		pSourceVoice_[1] = audio->PlayWave("jump.wav");
 	}
 	else if (filename == "landing.wav") {
-		pSourceVoice[2] = audio->PlayWave("landing.wav");
+		pSourceVoice_[2] = audio->PlayWave("landing.wav");
 	}
 	else if (filename == "attack.wav") {
-		pSourceVoice[3] = audio->PlayWave("attack.wav");
+		pSourceVoice_[3] = audio->PlayWave("attack.wav");
 	}
 	else if (filename == "jumpAttack.wav") {
-		pSourceVoice[4] = audio->PlayWave("jumpAttack.wav");
+		pSourceVoice_[4] = audio->PlayWave("jumpAttack.wav");
 	}
 	else if (filename == "avoid.wav") {
-		pSourceVoice[5] = audio->PlayWave("avoid.wav");
+		pSourceVoice_[5] = audio->PlayWave("avoid.wav");
 	}
 	else if (filename == "run.wav") {
-		pSourceVoice[6] = audio->PlayWave("run.wav");
+		pSourceVoice_[6] = audio->PlayWave("run.wav");
 	}
 }
 
 void Player::StopWav() {
-	audio->StopWave(pSourceVoice[6]);
+	audio->StopWave(pSourceVoice_[6]);
 }
 
 void Player::Move(Vector3 velocity) {

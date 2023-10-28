@@ -12,23 +12,23 @@
 PlayerAvoid::PlayerAvoid() {
 	player_->PlayWav("avoid.wav");
 	player_->AnimationChange(3, 1.7f);
-	speed = { 0,0,0.8f };
+	speed_ = { 0,0,0.8f };
 	Matrix4 playerMat = player_->GetWtf().matWorld;
-	velocity = Matrix4::bVelocity(speed, playerMat);
-	timer = limit;
+	velocity_ = Matrix4::bVelocity(speed_, playerMat);
+	timer_ = limit_;
 }
 
 //待機
 void PlayerAvoid::Update() {
-	timer--;
+	timer_--;
 
-	float t = static_cast<float>(timer) / static_cast<float>(limit);
+	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
 
-	Vector3 add = Easing::OutQuadVec3({ 0,0,0 }, velocity, t);
+	Vector3 add = Easing::OutQuadVec3({ 0,0,0 }, velocity_, t);
 
 	player_->Move(add);
 
-	if (timer < 0) {
+	if (timer_ < 0) {
 		StateTransition();
 	}
 }

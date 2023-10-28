@@ -40,7 +40,7 @@ private:
 	bool IsEndRequst() override;
 
 private:
-	SceneManager* sceneManager = nullptr;
+	SceneManager* sceneManager_ = nullptr;
 
-	LoaderManager* loader = nullptr;
+	LoaderManager* loader_ = nullptr;
 };

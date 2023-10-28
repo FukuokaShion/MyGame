@@ -6,32 +6,32 @@
 #include"PlayerHp.h"
 
 PlayerHp::PlayerHp() {
-	MaxHp = 100;
-	hp = MaxHp;
-	oldHp = MaxHp;
-	isLive = true;
+	MaxHp_ = 100;
+	hp_ = MaxHp_;
+	oldHp_ = MaxHp_;
+	isLive_ = true;
 }
 
 PlayerHp::~PlayerHp() {
 }
 
 void PlayerHp::Initialize() {
-	hp = MaxHp;
-	oldHp = MaxHp;
-	isLive = true;
+	hp_ = MaxHp_;
+	oldHp_ = MaxHp_;
+	isLive_ = true;
 }
 
 void PlayerHp::Damage(int damage) {
-	oldHp = hp;
-	hp -= damage;
-	if (hp <= 0) {
-		isLive = false;
+	oldHp_ = hp_;
+	hp_ -= damage;
+	if (hp_ <= 0) {
+		isLive_ = false;
 	}
 }
 
 void PlayerHp::Heal(int heal) {
-	hp += heal;
-	if (hp > MaxHp) {
-		hp = MaxHp;
+	hp_ += heal;
+	if (hp_ > MaxHp_) {
+		hp_ = MaxHp_;
 	}
 }

@@ -104,16 +104,16 @@ public:
 	/**
 	 * @brief 生存フラグ
 	*/
-	bool IsLive() { return hp->IsLive(); };
+	bool IsLive() { return hp_->IsLive(); };
 	
 	/**
 	 * @brief 現在の体力取得
 	*/
-	int GetHp() { return hp->GetHp(); };
+	int GetHp() { return hp_->GetHp(); };
 	/**
 	 * @brief 受けているダメージ量取得
 	*/
-	int GetDamage() { return damageGauge; };
+	int GetDamage() { return damageGauge_; };
 	/**
 	 * @brief 攻撃状態か取得
 	*/
@@ -131,18 +131,18 @@ private:
 	Input* input_ = nullptr;
 	//サウンド
 	Audio* audio = nullptr;
-	IXAudio2SourceVoice* pSourceVoice[10] = { 0 };
+	IXAudio2SourceVoice* pSourceVoice_[10] = { 0 };
 
 	//体力
-	PlayerHp* hp = nullptr;
+	PlayerHp* hp_ = nullptr;
 
 	//当たり判定
-	BaseCollider* body;
+	BaseCollider* body_;
 
 	//HPゲージ管理
-	int gaugeTimer;
-	int gaugeLimit;
-	int damageGauge;
+	int gaugeTimer_;
+	int gaugeLimit_;
+	int damageGauge_;
 
 	//モデル
 	FBXModel* fbxModel_ = nullptr;

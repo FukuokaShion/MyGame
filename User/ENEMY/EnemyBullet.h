@@ -42,16 +42,16 @@ public:
 	/**
 	 * @brief 更新
 	*/
-	bool IsDead() { return isDead; };
+	bool IsDead() { return isDead_; };
 
 private:
-	Object3d* obj = nullptr;
-	static Model* model;
+	Object3d* obj_ = nullptr;
+	static Model* model_;
 
-	int liveTimer;
+	int liveTimer_;
 	Vector3 velocity_;
 	int stayTime_;
-	bool isDead;
+	bool isDead_;
 
-	BaseCollider* sphere;
+	BaseCollider* sphere_;
 };

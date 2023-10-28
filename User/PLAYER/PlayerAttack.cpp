@@ -10,54 +10,54 @@
 
 PlayerAttack::PlayerAttack() {
 	player_->PlayWav("attack.wav");
-	action = Action::Antic;
-	timer = 0;
+	action_ = Action::Antic;
+	timer_ = 0;
 	player_->AnimationChange(4, 1.5f);
 	
-	sowrd = new BaseCollider;
-	sowrd->SetAttribute(Attribute::PlayerAttack);
+	sowrd_ = new BaseCollider;
+	sowrd_->SetAttribute(Attribute::PlayerAttack);
 }
 
 //攻撃
 void PlayerAttack::Update() {
-	timer++;
+	timer_++;
 	Transform playerWtf = player_->GetWtf();
 
-	switch (action) {
+	switch (action_) {
 	case Action::Antic:
 		//予備動作
-		speed = anticDistance / static_cast<float>(anticTime);
-		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
-		player_->Move(velocity);
+		speed_ = anticDistance_ / static_cast<float>(anticTime_);
+		velocity_ = Matrix4::bVelocity(speed_, playerWtf.matWorld);
+		player_->Move(velocity_);
 
-		if (timer > anticTime) {
-			timer = 0;
-			CollisionManager::GetInstance()->AddCollider(sowrd);
-			action = Action::Attack;
+		if (timer_ > anticTime_) {
+			timer_ = 0;
+			CollisionManager::GetInstance()->AddCollider(sowrd_);
+			action_ = Action::Attack;
 		}
 		break;
 	case Action::Attack:
 		//攻撃
 		//移動
-		speed = attackDistance / static_cast<float>(attackTime);
-		velocity = Matrix4::bVelocity(speed, playerWtf.matWorld);
-		player_->Move(velocity);
+		speed_ = attackDistance_ / static_cast<float>(attackTime_);
+		velocity_ = Matrix4::bVelocity(speed_, playerWtf.matWorld);
+		player_->Move(velocity_);
 
 		//攻撃判定
-		sowrd->SetCenter({ 0,0,0 });
-		isAttack = true;
-		power = power_;
+		sowrd_->SetCenter({ 0,0,0 });
+		isAttack_ = true;
+		power_ = sowrdPower_;
 
-		if (timer > attackTime) {
-			timer = 0;
-			CollisionManager::GetInstance()->RemoveCollider(sowrd);
-			action = Action::After;
+		if (timer_ > attackTime_) {
+			timer_ = 0;
+			CollisionManager::GetInstance()->RemoveCollider(sowrd_);
+			action_ = Action::After;
 		}
 		break;
 	case Action::After:
 		//後隙
-		if (timer > afterTime) {
-			isAttack = false;
+		if (timer_ > afterTime_) {
+			isAttack_ = false;
 			player_->TransitionTo(new PlayerStandby);
 		}
 		break;

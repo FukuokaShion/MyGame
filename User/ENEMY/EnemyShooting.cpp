@@ -9,12 +9,12 @@
 
 EnemyShooting::EnemyShooting() {
 	enemy_->AnimationChange(0);
-	interval = 25;
-	ShotTimer = interval;
-	shotMax = 3;
-	shotNum = 0;
-	bulletLiveLimit = 60;
-	speed = 2;
+	interval_ = 25;
+	shotTimer_ = interval_;
+	shotMax_ = 3;
+	shotNum_ = 0;
+	bulletLiveLimit_ = 60;
+	speed_ = 2;
 }
 
 void EnemyShooting::Update(Vector3 playerPos) {
@@ -23,30 +23,30 @@ void EnemyShooting::Update(Vector3 playerPos) {
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 
-	ShotTimer--;
-	if (ShotTimer < 0) {
+	shotTimer_--;
+	if (shotTimer_ < 0) {
 		enemy_->PlayWave("fire.wav");
 
 		//速度設定
-		velocity = { 0,0,0 };
-		velocity += {0, 0, -speed};
+		velocity_ = { 0,0,0 };
+		velocity_ += {0, 0, -speed_};
 
 		//向いている方向に合わせる
 		Matrix4 enemyMat = enemy_->GetWtf().matWorld;
-		velocity = Matrix4::bVelocity(velocity, enemyMat);
+		velocity_ = Matrix4::bVelocity(velocity_, enemyMat);
 
 		//弾生成
-		enemy_->CreatBullet(enemy_->GetWtf().position, velocity, bulletLiveLimit);
+		enemy_->CreatBullet(enemy_->GetWtf().position, velocity_, bulletLiveLimit_);
 
 		//次の発射までの時間
-		ShotTimer = interval;
+		shotTimer_ = interval_;
 
 		//発射数
-		shotNum++;
+		shotNum_++;
 	}
 
 	//状態移行
-	if (shotNum >= shotMax) {
+	if (shotNum_ >= shotMax_) {
 		enemy_->TransitionTo(new Standby);
 	}
 }

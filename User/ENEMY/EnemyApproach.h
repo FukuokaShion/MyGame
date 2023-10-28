@@ -17,10 +17,10 @@ public:
 
 private:
 	//移動速度
-	const float speed = 0.3f;
+	const float speed_ = 0.3f;
 	//最終的な距離
-	const float distance = 4.0f;
+	const float distance_ = 4.0f;
 	//
-	int limit;
-	int timer;
+	int limit_;
+	int timer_;
 };

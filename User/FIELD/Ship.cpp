@@ -7,57 +7,57 @@
 #include"Easing.h"
 
 void Ship::Initialize() {
-	shipMD = Model::LoadFromOBJ("ship");
-	ship = Object3d::Create();
-	ship->SetModel(shipMD);
-	ship->wtf.position = { -20,0,28 };
-	shipAngle = 0.04f * 3.141592f / 180.0f;
-	shipSpeed = 0.3f;
-	timer = 0;
-	limit = 90;
+	shipMD_ = Model::LoadFromOBJ("ship");
+	ship_ = Object3d::Create();
+	ship_->SetModel(shipMD_);
+	ship_->wtf.position = { -20,0,28 };
+	shipAngle_ = 0.04f * 3.141592f / 180.0f;
+	shipSpeed_ = 0.3f;
+	timer_ = 0;
+	limit_ = 90;
 
-	playerMD = Model::LoadFromOBJ("playerObj");
-	player = Object3d::Create();
-	player->SetModel(playerMD);
-	player->wtf.position = { -20,0.5f,28 };
+	playerMD_ = Model::LoadFromOBJ("playerObj");
+	player_ = Object3d::Create();
+	player_->SetModel(playerMD_);
+	player_->wtf.position = { -20,0.5f,28 };
 
 	input_ = Input::GetInstance();
 }
 
 Ship::~Ship() {
-	delete ship;
-	delete shipMD;
-	delete player;
-	delete playerMD;
+	delete ship_;
+	delete shipMD_;
+	delete player_;
+	delete playerMD_;
 }
 
 void Ship::Update() {
-	if (abs(ship->wtf.rotation.x) > 4 * 3.141592f / 180) {
-		shipAngle *= -1;
+	if (abs(ship_->wtf.rotation.x) > 4 * 3.141592f / 180) {
+		shipAngle_ *= -1;
 	}
-	ship->wtf.rotation.x += shipAngle;
-	ship->Update();
+	ship_->wtf.rotation.x += shipAngle_;
+	ship_->Update();
 
-	player->Update();
+	player_->Update();
 
 	if (input_->PButtonTrigger(B)) {
-		isMoveShip = true;
+		isMoveShip_ = true;
 	}
 
-	if (isMoveShip) {
-		if (timer < limit) {
-			timer++;
+	if (isMoveShip_) {
+		if (timer_ < limit_) {
+			timer_++;
 		}
 
-		float t = static_cast<float>(timer) / static_cast<float>(limit);
-		float add = Easing::OutQuad(0, shipSpeed, t);
+		float t = static_cast<float>(timer_) / static_cast<float>(limit_);
+		float add = Easing::OutQuad(0, shipSpeed_, t);
 
-		ship->wtf.position.z += add;
-		player->wtf.position.z += add;
+		ship_->wtf.position.z += add;
+		player_->wtf.position.z += add;
 	}
 }
 
 void Ship::Draw() {
-	player->Draw();
-	ship->Draw();
+	player_->Draw();
+	ship_->Draw();
 }

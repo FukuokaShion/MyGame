@@ -22,9 +22,9 @@ private:
 	void StateTransition() override;
 
 private:
-	const int limit = 42;
-	int timer = limit;
+	const int limit_ = 42;
+	int timer_ = limit_;
 
-	Vector3 speed;
-	Vector3 velocity;
+	Vector3 speed_;
+	Vector3 velocity_;
 };

@@ -32,11 +32,11 @@ public:
 	static XMFLOAT3 ConvertVec3toXMFlo3(Vector3 vec3);
 
 private:
-	XMMATRIX xmMat;
-	Matrix4 mat4;
+	XMMATRIX xmMat_;
+	Matrix4 mat4_;
 
-	XMFLOAT3 xmFlo3;
-	Vector3 vec3;
+	XMFLOAT3 xmFlo3_;
+	Vector3 vec3_;
 
 };
 

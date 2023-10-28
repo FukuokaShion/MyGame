@@ -50,7 +50,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <returns>ビュー行列</returns>
 	inline const Matrix4& GetViewMatrix() {
-		return matView;
+		return matView_;
 	}
 
 	/// <summary>
@@ -58,7 +58,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <returns>射影行列</returns>
 	inline const Matrix4& GetProjectionMatrix() {
-		return matProjection;
+		return matProjection_;
 	}
 
 	/// <summary>
@@ -66,7 +66,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <returns>ビュー射影行列</returns>
 	inline const Matrix4& GetViewProjectionMatrix() {
-		return matViewProjection;
+		return matViewProjection_;
 	}
 
 	/// <summary>
@@ -74,7 +74,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <returns>ビルボード行列</returns>
 	inline const Matrix4& GetBillboardMatrix() {
-		return matBillboard;
+		return matBillboard_;
 	}
 
 	/// <summary>
@@ -90,7 +90,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="eye">座標</param>
 	inline void SetEye(Vector3 eye) {
-		this->eye_ = eye; viewDirty = true;
+		this->eye_ = eye; viewDirty_ = true;
 	}
 
 	/// <summary>
@@ -106,7 +106,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="target">座標</param>
 	inline void SetTarget(Vector3 target) {
-		this->target_ = target; viewDirty = true;
+		this->target_ = target; viewDirty_ = true;
 	}
 
 	/// <summary>
@@ -122,7 +122,7 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="up">上方向ベクトル</param>
 	inline void SetUp(Vector3 up) {
-		this->up_ = up; viewDirty = true;
+		this->up_ = up; viewDirty_ = true;
 	}
 
 	// sensor
@@ -130,14 +130,14 @@ public: // メンバ関数
 		return sensor_;
 	}
 	inline void SetSensor(float sensor) {
-		this->sensor_ = sensor; viewDirty = true;
+		this->sensor_ = sensor; viewDirty_ = true;
 	}
 	// FL
 	inline const float& GetForcalLengs() {
 		return focalLengs_;
 	}
 	inline void SetFocalLengs(float focalLengs) {
-		this->focalLengs_ = focalLengs; viewDirty = true;
+		this->focalLengs_ = focalLengs; viewDirty_ = true;
 	}
 
 
@@ -156,8 +156,8 @@ public: // メンバ関数
 	float FieldOfViewY();
 
 	//親子関係
-	void SetParent(Transform* parent) { this->parent_ = parent; hasParent = true; };
-	void LiftParent() { hasParent = false; };
+	void SetParent(Transform* parent) { this->parent_ = parent; hasParent_ = true; };
+	void LiftParent() { hasParent_ = false; };
 
 	//親との回転同期
 	bool isSyncRota;
@@ -166,19 +166,19 @@ public: // メンバ関数
 
 protected: // メンバ変数
 	// ビュー行列
-	Matrix4 matView = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
+	Matrix4 matView_ = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビルボード行列
-	Matrix4 matBillboard = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
+	Matrix4 matBillboard_ = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// Y軸回りビルボード行列
-	Matrix4 matBillboardY = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
+	Matrix4 matBillboardY_ = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// 射影行列
-	Matrix4 matProjection = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
+	Matrix4 matProjection_ = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビュー射影行列
-	Matrix4 matViewProjection = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
+	Matrix4 matViewProjection_ = ConvertXM::ConvertXMMATtoMat4(DirectX::XMMatrixIdentity());
 	// ビュー行列ダーティフラグ
-	bool viewDirty = false;
+	bool viewDirty_ = false;
 	// 射影行列ダーティフラグ
-	bool projectionDirty = false;
+	bool projectionDirty_ = false;
 	// 視点座標
 	Vector3 eye_ = { 0, 0, -6 };
 	// 注視点座標
@@ -186,19 +186,19 @@ protected: // メンバ変数
 	// 上方向ベクトル
 	Vector3 up_ = { 0, 1, 0 };
 	// アスペクト比
-	float aspectRatio = 1.0f;
+	float aspectRatio_ = 1.0f;
 
 
 	//親子関係
 	Transform* parent_;
-	bool hasParent;
+	bool hasParent_;
 
 	float focalLengs_ = 50;
 	float sensor_ = 35;
 
 	//回転制限
-	float PI = 3.141592f;
-	float upLimit = PI / 2;
-	float downLimit = -PI / 2;
+	float PI_ = 3.141592f;
+	float upLimit_ = PI_ / 2;
+	float downLimit = -PI_ / 2;
 };
 

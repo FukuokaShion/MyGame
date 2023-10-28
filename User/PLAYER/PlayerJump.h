@@ -21,8 +21,8 @@ private:
 	void StateTransition() override;
 
 private:
-	int timer;
-	int limit;
+	int timer_;
+	int limit_;
 
-	bool up;
+	bool up_;
 };

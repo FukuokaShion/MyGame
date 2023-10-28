@@ -5,61 +5,61 @@
 
 #include "EnemyBullet.h"
 
-Model* EnemyBullet::model = nullptr;
+Model* EnemyBullet::model_ = nullptr;
 
 EnemyBullet::EnemyBullet() {
 }
 
 EnemyBullet::~EnemyBullet() {
-	delete obj;
+	delete obj_;
 }
 
 void EnemyBullet::StaticInitialize() {
-	model = Model::LoadFromOBJ("boll");
+	model_ = Model::LoadFromOBJ("boll");
 }
 void EnemyBullet::StaticFinalize() {
-	delete model;
+	delete model_;
 }
 
 void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
-	obj = Object3d::Create();
-	obj->SetModel(model);
-	obj->wtf.position = pos;
+	obj_ = Object3d::Create();
+	obj_->SetModel(model_);
+	obj_->wtf.position = pos;
 	velocity_ = velocity;
 
-	liveTimer = liveLimit;
+	liveTimer_ = liveLimit;
 	stayTime_ = stayTime;
-	isDead = false;
+	isDead_ = false;
 
-	sphere = new BaseCollider;
-	sphere->SetRad(1.0f);
-	sphere->SetCenter(pos);
-	sphere->SetAttribute(Attribute::EnemyBullet);
+	sphere_ = new BaseCollider;
+	sphere_->SetRad(1.0f);
+	sphere_->SetCenter(pos);
+	sphere_->SetAttribute(Attribute::EnemyBullet);
 
-	CollisionManager::GetInstance()->AddCollider(sphere);
+	CollisionManager::GetInstance()->AddCollider(sphere_);
 }
 
 void EnemyBullet::Update() {
 	if (stayTime_ < 0) {
-		liveTimer--;
-		if (liveTimer < 0) {
-			isDead = true;
-			CollisionManager::GetInstance()->RemoveCollider(sphere);
+		liveTimer_--;
+		if (liveTimer_ < 0) {
+			isDead_ = true;
+			CollisionManager::GetInstance()->RemoveCollider(sphere_);
 		}
-		obj->wtf.position += velocity_;
+		obj_->wtf.position += velocity_;
 	}
 	else {
 		stayTime_--;
 	}
 
-	if (sphere->GetIsHit().playerBody == true) {
-		isDead = true;
-		CollisionManager::GetInstance()->RemoveCollider(sphere);
+	if (sphere_->GetIsHit().playerBody == true) {
+		isDead_ = true;
+		CollisionManager::GetInstance()->RemoveCollider(sphere_);
 	}
-	sphere->SetCenter(obj->wtf.position);
-	obj->Update();
+	sphere_->SetCenter(obj_->wtf.position);
+	obj_->Update();
 }
 
 void EnemyBullet::Draw() {
-	obj->Draw();
+	obj_->Draw();
 }

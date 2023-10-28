@@ -11,93 +11,93 @@ Field::Field() {
 
 void Field::Initialize() {
 	//背景
-	skydomeMD = Model::LoadFromOBJ("skydome");
-	skydome = Object3d::Create();
-	skydome->SetModel(skydomeMD);
-	skydome->wtf.scale = (Vector3{ 1000, 1000, 1000 });
+	skydomeMD_ = Model::LoadFromOBJ("skydome");
+	skydome_ = Object3d::Create();
+	skydome_->SetModel(skydomeMD_);
+	skydome_->wtf.scale = (Vector3{ 1000, 1000, 1000 });
 
-	floorMD = Model::LoadFromOBJ("floor");
-	floor = Object3d::Create();
-	floor->SetModel(floorMD);
+	floorMD_ = Model::LoadFromOBJ("floor");
+	floor_ = Object3d::Create();
+	floor_->SetModel(floorMD_);
 
-	waterMD = Model::LoadFromOBJ("water");
-	water = Object3d::Create();
-	water->SetModel(waterMD);
-	water->wtf.scale = { 2,1,2 };
+	waterMD_ = Model::LoadFromOBJ("water");
+	water_ = Object3d::Create();
+	water_->SetModel(waterMD_);
+	water_->wtf.scale = { 2,1,2 };
 
-	rock01MD = Model::LoadFromOBJ("rock01");
-	rock02MD = Model::LoadFromOBJ("rock02");
+	rock01MD_ = Model::LoadFromOBJ("rock01");
+	rock02MD_ = Model::LoadFromOBJ("rock02");
 
 	for (int i = 0; i < 3; i++) {
-		rock01[i] = Object3d::Create();
-		rock01[i]->SetModel(rock01MD);
-		rock02[i] = Object3d::Create();
-		rock02[i]->SetModel(rock02MD);
+		rock01_[i] = Object3d::Create();
+		rock01_[i]->SetModel(rock01MD_);
+		rock02_[i] = Object3d::Create();
+		rock02_[i]->SetModel(rock02MD_);
 	}
 
 	float PI = 3.141592f;
 
-	rock01[0]->wtf.position = { 42,0,65 };
-	rock01[0]->wtf.scale = { 5,5,5 };
-	rock01[0]->wtf.rotation = { 0,0,0 };
+	rock01_[0]->wtf.position = { 42,0,65 };
+	rock01_[0]->wtf.scale = { 5,5,5 };
+	rock01_[0]->wtf.rotation = { 0,0,0 };
 
-	rock01[1]->wtf.position = { 122,0,10 };
-	rock01[1]->wtf.scale = { 5,5,5 };
-	rock01[1]->wtf.rotation = { PI / 4,0,0 };
+	rock01_[1]->wtf.position = { 122,0,10 };
+	rock01_[1]->wtf.scale = { 5,5,5 };
+	rock01_[1]->wtf.rotation = { PI / 4,0,0 };
 
-	rock01[2]->wtf.position = { -26,0,-73 };
-	rock01[2]->wtf.scale = { 5,5,5 };
-	rock01[2]->wtf.rotation = { 0,0,0 };
+	rock01_[2]->wtf.position = { -26,0,-73 };
+	rock01_[2]->wtf.scale = { 5,5,5 };
+	rock01_[2]->wtf.rotation = { 0,0,0 };
 
-	rock02[0]->wtf.position = { -45,0,105 };
-	rock02[0]->wtf.scale = { 12,12,12 };
-	rock02[0]->wtf.rotation = { 0,0,0 };
+	rock02_[0]->wtf.position = { -45,0,105 };
+	rock02_[0]->wtf.scale = { 12,12,12 };
+	rock02_[0]->wtf.rotation = { 0,0,0 };
 
-	rock02[1]->wtf.position = { 75,0,-75 };
-	rock02[1]->wtf.scale = { 10,10,10 };
-	rock02[1]->wtf.rotation = { 0,-3.0f * PI / 4.0f,0 };
+	rock02_[1]->wtf.position = { 75,0,-75 };
+	rock02_[1]->wtf.scale = { 10,10,10 };
+	rock02_[1]->wtf.rotation = { 0,-3.0f * PI / 4.0f,0 };
 
-	rock02[2]->wtf.position = { -91,0,-49 };
-	rock02[2]->wtf.scale = { 8,8,8 };
-	rock02[2]->wtf.rotation = { 0,3.0f * PI / 20.0f,0 };
+	rock02_[2]->wtf.position = { -91,0,-49 };
+	rock02_[2]->wtf.scale = { 8,8,8 };
+	rock02_[2]->wtf.rotation = { 0,3.0f * PI / 20.0f,0 };
 }
 
 Field::~Field() {
-	delete skydome;
-	delete skydomeMD;
+	delete skydome_;
+	delete skydomeMD_;
 
-	delete floor;
-	delete floorMD;
-	delete water;
-	delete waterMD;
+	delete floor_;
+	delete floorMD_;
+	delete water_;
+	delete waterMD_;
 
 	for (int i = 0; i < 3; i++) {
-		delete rock01[i];
-		delete rock02[i];
+		delete rock01_[i];
+		delete rock02_[i];
 	}
 
-	delete rock01MD;
-	delete rock02MD;
+	delete rock01MD_;
+	delete rock02MD_;
 }
 
 void Field::Update() {
-	skydome->Update();
-	floor->Update();
-	water->Update();
+	skydome_->Update();
+	floor_->Update();
+	water_->Update();
 	for (int i = 0; i < 3; i++) {
-		rock01[i]->Update();
-		rock02[i]->Update();
+		rock01_[i]->Update();
+		rock02_[i]->Update();
 	}
 }
 
 void Field::Draw() {
-	skydome->Draw();
+	skydome_->Draw();
 
-	floor->Draw();
-	water->Draw();
+	floor_->Draw();
+	water_->Draw();
 
 	for (int i = 0; i < 3; i++) {
-		rock01[i]->Draw();
-		rock02[i]->Draw();
+		rock01_[i]->Draw();
+		rock02_[i]->Draw();
 	}
 }

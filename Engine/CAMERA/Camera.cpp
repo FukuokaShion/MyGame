@@ -9,10 +9,10 @@ using namespace DirectX;
 
 Camera::Camera(int window_width, int window_height)
 {
-	aspectRatio = (float)window_width / window_height;
+	aspectRatio_ = (float)window_width / window_height;
 
 	wtf.Initialize();
-	hasParent = false;
+	hasParent_ = false;
 
 	isSyncRota = false;
 
@@ -23,12 +23,12 @@ Camera::Camera(int window_width, int window_height)
 	UpdateProjectionMatrix();
 
 	// ビュープロジェクションの合成
-	matViewProjection = matView * matProjection;
+	matViewProjection_ = matView_ * matProjection_;
 }
 
 void Camera::Update() {
 	//親と同期
-	if (hasParent) {
+	if (hasParent_) {
 		if (isSyncRota) {
 			//回転同期
 			wtf.position = parent_->position;
@@ -44,18 +44,18 @@ void Camera::Update() {
 
 	//回転の制限
 	//縦回転
-	if (wtf.rotation.x > upLimit) {
-		wtf.rotation.x = upLimit;
+	if (wtf.rotation.x > upLimit_) {
+		wtf.rotation.x = upLimit_;
 	}
 	else if (wtf.rotation.x < downLimit) {
 		wtf.rotation.x = downLimit;
 	}
 
 	//横回転
-	if (wtf.rotation.y > 2 * PI) {
+	if (wtf.rotation.y > 2 * PI_) {
 		wtf.rotation.y = 0;
 	}
-	else if (wtf.rotation.y < 2 * -PI) {
+	else if (wtf.rotation.y < 2 * -PI_) {
 		wtf.rotation.y = 0;
 	}
 
@@ -64,7 +64,7 @@ void Camera::Update() {
 
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
-	matViewProjection = matView * matProjection;
+	matViewProjection_ = matView_ * matProjection_;
 }
 
 void Camera::UpdateViewMatrix() {
@@ -121,7 +121,7 @@ void Camera::UpdateViewMatrix() {
 	matCameraRot.m[3][3] = 1;
 
 	// 転置により逆行列（逆回転）を計算
-	matView = ConvertXM::ConvertXMMATtoMat4(XMMatrixTranspose(ConvertXM::ConvertMat4toXMMAT(matCameraRot)));
+	matView_ = ConvertXM::ConvertXMMATtoMat4(XMMatrixTranspose(ConvertXM::ConvertMat4toXMMAT(matCameraRot)));
 
 	// 視点座標に-1を掛けた座標
 	Vector3 reverseEyePosition = -eyePosition;
@@ -132,29 +132,29 @@ void Camera::UpdateViewMatrix() {
 	// 一つのベクトルにまとめる
 	Vector3 translation = { tX,tY,tZ };
 	// ビュー行列に平行移動成分を設定
-	matView.m[3][0] = translation.x;
-	matView.m[3][1] = translation.y;
-	matView.m[3][2] = translation.z;
-	matView.m[3][3] = 1;
+	matView_.m[3][0] = translation.x;
+	matView_.m[3][1] = translation.y;
+	matView_.m[3][2] = translation.z;
+	matView_.m[3][3] = 1;
 
 #pragma region 全方向ビルボード行列の計算
 	// ビルボード行列
-	matBillboard.m[0][0] = cameraAxisX.x;
-	matBillboard.m[0][1] = cameraAxisX.y;
-	matBillboard.m[0][2] = cameraAxisX.z;
-	matBillboard.m[0][3] = 0;
-	matBillboard.m[1][0] = cameraAxisY.x;
-	matBillboard.m[1][1] = cameraAxisY.y;
-	matBillboard.m[1][2] = cameraAxisY.z;
-	matBillboard.m[1][3] = 0;
-	matBillboard.m[2][0] = cameraAxisZ.x;
-	matBillboard.m[2][1] = cameraAxisZ.y;
-	matBillboard.m[2][2] = cameraAxisZ.z;
-	matBillboard.m[2][3] = 0;
-	matBillboard.m[3][0] = 0;
-	matBillboard.m[3][1] = 0;
-	matBillboard.m[3][2] = 0;
-	matBillboard.m[3][3] = 1;
+	matBillboard_.m[0][0] = cameraAxisX.x;
+	matBillboard_.m[0][1] = cameraAxisX.y;
+	matBillboard_.m[0][2] = cameraAxisX.z;
+	matBillboard_.m[0][3] = 0;
+	matBillboard_.m[1][0] = cameraAxisY.x;
+	matBillboard_.m[1][1] = cameraAxisY.y;
+	matBillboard_.m[1][2] = cameraAxisY.z;
+	matBillboard_.m[1][3] = 0;
+	matBillboard_.m[2][0] = cameraAxisZ.x;
+	matBillboard_.m[2][1] = cameraAxisZ.y;
+	matBillboard_.m[2][2] = cameraAxisZ.z;
+	matBillboard_.m[2][3] = 0;
+	matBillboard_.m[3][0] = 0;
+	matBillboard_.m[3][1] = 0;
+	matBillboard_.m[3][2] = 0;
+	matBillboard_.m[3][3] = 1;
 #pragma region
 
 #pragma region Y軸回りビルボード行列の計算
@@ -169,32 +169,32 @@ void Camera::UpdateViewMatrix() {
 	ybillCameraAxisZ = ybillCameraAxisX.cross(ybillCameraAxisY);
 
 	// Y軸回りビルボード行列
-	matBillboardY.m[0][0] = cameraAxisX.x;
-	matBillboardY.m[0][1] = cameraAxisX.y;
-	matBillboardY.m[0][2] = cameraAxisX.z;
-	matBillboardY.m[0][3] = 0;
-	matBillboardY.m[1][0] = cameraAxisY.x;
-	matBillboardY.m[1][1] = cameraAxisY.y;
-	matBillboardY.m[1][2] = cameraAxisY.z;
-	matBillboardY.m[1][3] = 0;
-	matBillboardY.m[2][0] = cameraAxisZ.x;
-	matBillboardY.m[2][1] = cameraAxisZ.y;
-	matBillboardY.m[2][2] = cameraAxisZ.z;
-	matBillboardY.m[2][3] = 0;
-	matBillboardY.m[3][0] = 0;
-	matBillboardY.m[3][1] = 0;
-	matBillboardY.m[3][2] = 0;
-	matBillboardY.m[3][3] = 1;
+	matBillboardY_.m[0][0] = cameraAxisX.x;
+	matBillboardY_.m[0][1] = cameraAxisX.y;
+	matBillboardY_.m[0][2] = cameraAxisX.z;
+	matBillboardY_.m[0][3] = 0;
+	matBillboardY_.m[1][0] = cameraAxisY.x;
+	matBillboardY_.m[1][1] = cameraAxisY.y;
+	matBillboardY_.m[1][2] = cameraAxisY.z;
+	matBillboardY_.m[1][3] = 0;
+	matBillboardY_.m[2][0] = cameraAxisZ.x;
+	matBillboardY_.m[2][1] = cameraAxisZ.y;
+	matBillboardY_.m[2][2] = cameraAxisZ.z;
+	matBillboardY_.m[2][3] = 0;
+	matBillboardY_.m[3][0] = 0;
+	matBillboardY_.m[3][1] = 0;
+	matBillboardY_.m[3][2] = 0;
+	matBillboardY_.m[3][3] = 1;
 #pragma endregion
 }
 
 void Camera::UpdateProjectionMatrix()
 {
 	// 透視投影による射影行列の生成
-	matProjection.MakePerspectiveL(
+	matProjection_.MakePerspectiveL(
 		FieldOfViewY(),
-		aspectRatio,
-		0.1f, 100000.0f, matProjection
+		aspectRatio_,
+		0.1f, 100000.0f, matProjection_
 	);
 }
 

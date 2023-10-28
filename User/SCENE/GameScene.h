@@ -55,34 +55,34 @@ private:
 		death,
 	};
 private:
-	State state;
+	State state_;
 
 	//画像
-	SpriteCommon* spriteCommon = nullptr;
+	SpriteCommon* spriteCommon_ = nullptr;
 	//サウンド
-	Audio* audio = nullptr;
-	IXAudio2SourceVoice* pSourceVoice = nullptr;
+	Audio* audio_ = nullptr;
+	IXAudio2SourceVoice* pSourceVoice_ = nullptr;
 
 	//メンバ変数
 	//カメラ
-	Camera* camera = nullptr;
+	Camera* camera_ = nullptr;
 	//フィールド
-	Field* field = nullptr;
+	Field* field_ = nullptr;
 
 	//プレイヤー
-	Player* player = nullptr;
+	Player* player_ = nullptr;
 	//エネミー
-	Enemy* enemy = nullptr;
+	Enemy* enemy_ = nullptr;
 
 	//画像
-	Sprite* UIBase;
+	Sprite* UIBase_;
 
-	Sprite* hpGauge;
-	Sprite* damageGauge;
-	Sprite* enemyHpGauge;
+	Sprite* hpGauge_;
+	Sprite* damageGauge_;
+	Sprite* enemyHpGauge_;
 
-	Sprite* clear;
-	Sprite* gameOver;
+	Sprite* clear_;
+	Sprite* gameOver_;
 
-	CollisionManager* collisionManager = nullptr;
+	CollisionManager* collisionManager_ = nullptr;
 };

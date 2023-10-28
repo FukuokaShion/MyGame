@@ -47,9 +47,9 @@ protected:
 	virtual bool IsEndRequst();
 
 protected:
-	WinApp* winApp = nullptr;
-	DirectXCommon* dxCommon = nullptr;
-	FPS* fps = new FPS;
-	Input* input = nullptr;
-	SpriteCommon* spriteCommon = nullptr;
+	WinApp* winApp_ = nullptr;
+	DirectXCommon* dxCommon_ = nullptr;
+	FPS* fps_ = new FPS;
+	Input* input_ = nullptr;
+	SpriteCommon* spriteCommon_ = nullptr;
 };

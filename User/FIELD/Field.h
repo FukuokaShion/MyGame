@@ -27,17 +27,17 @@ public:
 	void Draw();
 private:
 	//背景や床
-	Object3d* skydome = nullptr;
-	Model* skydomeMD = nullptr;
+	Object3d* skydome_ = nullptr;
+	Model* skydomeMD_ = nullptr;
 
-	Object3d* floor = nullptr;
-	Model* floorMD = nullptr;
-	Object3d* water = nullptr;
-	Model* waterMD = nullptr;
+	Object3d* floor_ = nullptr;
+	Model* floorMD_ = nullptr;
+	Object3d* water_ = nullptr;
+	Model* waterMD_ = nullptr;
 
-	Object3d* rock01[3];
-	Model* rock01MD = nullptr;
-	Object3d* rock02[3];
-	Model* rock02MD = nullptr;
+	Object3d* rock01_[3];
+	Model* rock01MD_ = nullptr;
+	Object3d* rock02_[3];
+	Model* rock02MD_ = nullptr;
 
 };

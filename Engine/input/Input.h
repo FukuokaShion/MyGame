@@ -104,15 +104,15 @@ public:
 
 private: // メンバ変数
 	// キーボードのデバイス
-	ComPtr<IDirectInputDevice8> keyboard;
+	ComPtr<IDirectInputDevice8> keyboard_;
 	// DirectInputのインスタンス
-	ComPtr<IDirectInput8> directInput;
+	ComPtr<IDirectInput8> directInput_;
 	//コントローラー
-	Controller* controller = nullptr;
+	Controller* controller_ = nullptr;
 	// 全キーの状態
-	BYTE key[256] = {};
+	BYTE key_[256] = {};
 	// 前回の全キーの状態
-	BYTE keyPre[256] = {};
+	BYTE keyPre_[256] = {};
 	//windwsAPI
 	WinApp* winApp_ = nullptr;
 };

@@ -29,23 +29,23 @@ public:
 	/**
 	 * @brief 座標取得
 	*/
-	Vector3 GetPos() { return ship->wtf.position; };
+	Vector3 GetPos() { return ship_->wtf.position; };
 
 private:
 	//入力
 	Input* input_ = nullptr;
 
 	//船
-	Object3d* ship = nullptr;
-	Model* shipMD = nullptr;
-	float shipAngle;
-	bool isMoveShip;
-	float shipSpeed;
-	int timer;
-	int limit;
+	Object3d* ship_ = nullptr;
+	Model* shipMD_ = nullptr;
+	float shipAngle_;
+	bool isMoveShip_;
+	float shipSpeed_;
+	int timer_;
+	int limit_;
 
 	//プレイヤー
-	Object3d* player = nullptr;
-	Model* playerMD = nullptr;
+	Object3d* player_ = nullptr;
+	Model* playerMD_ = nullptr;
 
 };

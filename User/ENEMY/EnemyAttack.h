@@ -22,23 +22,23 @@ private:
 		Attack,
 		After,
 	};
-	Action action;
+	Action action_;
 
 	///予備動作
 	//時間
-	const int anticTime = 20;
+	const int anticTime_ = 20;
 	//移動距離
-	const Vector3 anticDistance = { 0,0,1 };
+	const Vector3 anticDistance_ = { 0,0,1 };
 
 	///攻撃
 	//時間
-	const int attackTime = 15;
+	const int attackTime_ = 15;
 	//移動距離
-	const Vector3 attackDistance = { 0,0,-3 };
+	const Vector3 attackDistance_ = { 0,0,-3 };
 	//攻撃力
-	const int power = 10;
+	const int power_ = 10;
 
 	///後隙
-	const int afterTime = 5;
+	const int afterTime_ = 5;
 
 };

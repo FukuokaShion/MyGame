@@ -8,7 +8,7 @@
 #include"EnemyStandby.h"
 
 Attack::Attack() {
-	action = Action::Antic;
+	action_ = Action::Antic;
 	enemy_->AnimationChange(0);
 }
 
@@ -18,36 +18,36 @@ void Attack::Update([[maybe_unused]] Vector3 playerPos) {
 
 	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
 
-	switch (action) {
+	switch (action_) {
 	case Action::Antic:
 		//予備動作
-		speed = anticDistance / static_cast<float>(anticTime);
-		velocity = Matrix4::bVelocity(speed, enemyMat);
-		enemy_->Move(velocity);
+		speed_ = anticDistance_ / static_cast<float>(anticTime_);
+		velocity_ = Matrix4::bVelocity(speed_, enemyMat);
+		enemy_->Move(velocity_);
 
-		if (timer > anticTime) {
+		if (timer > anticTime_) {
 			timer = 0;
-			action = Action::Attack;
+			action_ = Action::Attack;
 		}
 		break;
 	case Action::Attack:
 		//攻撃
 		enemy_->PlayWave("enemyat.wav");
-		speed = attackDistance / static_cast<float>(attackTime);
-		velocity = Matrix4::bVelocity(speed, enemyMat);
-		enemy_->Move(velocity);
+		speed_ = attackDistance_ / static_cast<float>(attackTime_);
+		velocity_ = Matrix4::bVelocity(speed_, enemyMat);
+		enemy_->Move(velocity_);
 
 		enemy_->SetIsAttack(true);
-		enemy_->setPower(power);
+		enemy_->setPower(power_);
 
-		if (timer > attackTime) {
+		if (timer > attackTime_) {
 			timer = 0;
-			action = Action::After;
+			action_ = Action::After;
 		}
 		break;
 	case Action::After:
 		//後隙
-		if (timer > afterTime) {
+		if (timer > afterTime_) {
 			enemy_->SetIsAttack(false);
 			enemy_->TransitionTo(new Standby);
 		}
