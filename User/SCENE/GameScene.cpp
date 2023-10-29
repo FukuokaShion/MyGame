@@ -15,144 +15,144 @@ GameScene::GameScene() {
 
 void GameScene::Initialize() {
 	//スプライト共通部分の初期化
-	spriteCommon = new SpriteCommon;
-	spriteCommon->Initialize();
+	spriteCommon_ = new SpriteCommon;
+	spriteCommon_->Initialize();
 
 	// カメラ生成
-	camera = new Camera(WinApp::window_width, WinApp::window_height);
+	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
 
 	//カメラセット
-	ParticleManager::SetCamera(camera);
-	Object3d::SetCamera(camera);
-	FBXObject3d::SetCamera(camera);
+	ParticleManager::SetCamera(camera_);
+	Object3d::SetCamera(camera_);
+	FBXObject3d::SetCamera(camera_);
 
-	state = State::game;
+	state_ = State::game;
 
 	//フィールド生成
-	field = new Field();
-	field->Initialize();
+	field_ = new Field();
+	field_->Initialize();
 
 
 	//エネミー生成
-	enemy = new Enemy();
-	enemy->Initialize();
+	enemy_ = new Enemy();
+	enemy_->Initialize();
 
 	//プレイヤー生成
-	player = new Player();
-	player->Initialize();
-	player->SetCamera(camera);
+	player_ = new Player();
+	player_->Initialize();
+	player_->SetCamera(camera_);
 
 
 	//カメラの設定
-	camera->SetParent(player->GetWtfP());
-	camera->isSyncRota = false;
+	camera_->SetParent(player_->GetWtfP());
+	camera_->isSyncRota = false;
 
 	//サウンド
-	audio = new Audio();
-	audio->Initialize();
-	audio->LoadWave("game.wav");
+	audio_ = new Audio();
+	audio_->Initialize();
+	audio_->LoadWave("game.wav");
 
-	pSourceVoice = audio->PlayWave("game.wav");
-	pSourceVoice->SetVolume(0.8f);
+	pSourceVoice_ = audio_->PlayWave("game.wav");
+	pSourceVoice_->SetVolume(0.8f);
 
 	//スプライト
-	UIBase = new Sprite();
-	UIBase->Initialize(spriteCommon);
-	UIBase->SetPozition({ 0,0 });
-	UIBase->SetSize({ 1280,720 });
+	UIBase_ = new Sprite();
+	UIBase_->Initialize(spriteCommon_);
+	UIBase_->SetPozition({ 0,0 });
+	UIBase_->SetSize({ 1280,720 });
 
-	hpGauge = new Sprite();
-	hpGauge->Initialize(spriteCommon);
-	hpGauge->SetPozition({ 128,38 });
-	hpGauge->SetSize({ 400,26 });
-	hpGauge->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
+	hpGauge_ = new Sprite();
+	hpGauge_->Initialize(spriteCommon_);
+	hpGauge_->SetPozition({ 128,38 });
+	hpGauge_->SetSize({ 400,26 });
+	hpGauge_->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
 
-	damageGauge = new Sprite();
-	damageGauge->Initialize(spriteCommon);
-	damageGauge->SetPozition({ 128,38 });
-	damageGauge->SetSize({ 400,26 });
-	damageGauge->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
+	damageGauge_ = new Sprite();
+	damageGauge_->Initialize(spriteCommon_);
+	damageGauge_->SetPozition({ 128,38 });
+	damageGauge_->SetSize({ 400,26 });
+	damageGauge_->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
 
-	enemyHpGauge = new Sprite();
-	enemyHpGauge->Initialize(spriteCommon);
-	enemyHpGauge->SetPozition({ 309,576 });
-	enemyHpGauge->SetSize({ 671,11 });
-	enemyHpGauge->SetColor({ 172.0f / 255.0f,50.0f / 255.0f,50.0f / 255.0f,1.0f });
+	enemyHpGauge_ = new Sprite();
+	enemyHpGauge_->Initialize(spriteCommon_);
+	enemyHpGauge_->SetPozition({ 309,576 });
+	enemyHpGauge_->SetSize({ 671,11 });
+	enemyHpGauge_->SetColor({ 172.0f / 255.0f,50.0f / 255.0f,50.0f / 255.0f,1.0f });
 
-	clear = new Sprite();
-	clear->Initialize(spriteCommon);
-	clear->SetPozition({ 0,0 });
-	clear->SetSize({ 1280,720 });
+	clear_ = new Sprite();
+	clear_->Initialize(spriteCommon_);
+	clear_->SetPozition({ 0,0 });
+	clear_->SetSize({ 1280,720 });
 
-	gameOver = new Sprite();
-	gameOver->Initialize(spriteCommon);
-	gameOver->SetPozition({ 0,0 });
-	gameOver->SetSize({ 1280,720 });
+	gameOver_ = new Sprite();
+	gameOver_->Initialize(spriteCommon_);
+	gameOver_->SetPozition({ 0,0 });
+	gameOver_->SetSize({ 1280,720 });
 
-	spriteCommon->LoadTexture(0, "UIBase.png");
-	UIBase->SetTextureIndex(0);
-	spriteCommon->LoadTexture(1, "white.png");
-	hpGauge->SetTextureIndex(1);
-	spriteCommon->LoadTexture(2, "white.png");
-	damageGauge->SetTextureIndex(2);
-	spriteCommon->LoadTexture(3, "white.png");
-	enemyHpGauge->SetTextureIndex(3);
-	spriteCommon->LoadTexture(4, "clear.png");
-	clear->SetTextureIndex(4);
-	spriteCommon->LoadTexture(5, "gameOver.png");
-	gameOver->SetTextureIndex(5);
+	spriteCommon_->LoadTexture(0, "UIBase.png");
+	UIBase_->SetTextureIndex(0);
+	spriteCommon_->LoadTexture(1, "white.png");
+	hpGauge_->SetTextureIndex(1);
+	spriteCommon_->LoadTexture(2, "white.png");
+	damageGauge_->SetTextureIndex(2);
+	spriteCommon_->LoadTexture(3, "white.png");
+	enemyHpGauge_->SetTextureIndex(3);
+	spriteCommon_->LoadTexture(4, "clear.png");
+	clear_->SetTextureIndex(4);
+	spriteCommon_->LoadTexture(5, "gameOver.png");
+	gameOver_->SetTextureIndex(5);
 
-	collisionManager = CollisionManager::GetInstance();
-	collisionManager->Initialize();
+	collisionManager_ = CollisionManager::GetInstance();
+	collisionManager_->Initialize();
 }
 
 GameScene::~GameScene() {
-	delete spriteCommon;
-	delete camera;
-	delete audio;
+	delete spriteCommon_;
+	delete camera_;
+	delete audio_;
 
-	delete field;
+	delete field_;
 
-	delete player;
-	delete enemy;
+	delete player_;
+	delete enemy_;
 
-	delete UIBase;
-	delete hpGauge;
-	delete damageGauge;
-	delete enemyHpGauge;
-	delete clear;
-	delete gameOver;
+	delete UIBase_;
+	delete hpGauge_;
+	delete damageGauge_;
+	delete enemyHpGauge_;
+	delete clear_;
+	delete gameOver_;
 }
 
 //更新
 void GameScene::Update() {
-	switch (state) {
+	switch (state_) {
 	case State::game:
 		//オブジェクト更新
-		field->Update();
-		player->Update();
-		enemy->Update(player->GetWtf().position);
-		collisionManager->CheakCol();
+		field_->Update();
+		player_->Update();
+		enemy_->Update(player_->GetWtf().position);
+		collisionManager_->CheakCol();
 
-		damageGauge->SetSize({ static_cast<float>(4 * player->GetDamage()),26 });
-		hpGauge->SetSize({ static_cast<float>(4 * player->GetHp()),26 });
-		enemyHpGauge->SetSize({ static_cast<float>(6.71f * enemy->GetHp()),11 });
+		damageGauge_->SetSize({ static_cast<float>(4 * player_->GetDamage()),26 });
+		hpGauge_->SetSize({ static_cast<float>(4 * player_->GetHp()),26 });
+		enemyHpGauge_->SetSize({ static_cast<float>(6.71f * enemy_->GetHp()),11 });
 
-		if (enemy->IsLive() == false) {
-			state = State::clear;
+		if (enemy_->IsLive() == false) {
+			state_ = State::clear;
 		}
-		else if (player->IsLive() == false) {
-			state = State::death;
+		else if (player_->IsLive() == false) {
+			state_ = State::death;
 		}
 		break;
 	case State::clear:
-		if (input->PButtonTrigger(B)) {
-			sceneManager->TransitionTo(new TitleScene);
+		if (input_->PButtonTrigger(B)) {
+			sceneManager_->TransitionTo(new TitleScene);
 		}
 		break;
 	case State::death:
-		if (input->PButtonTrigger(B)) {
-			sceneManager->TransitionTo(new TitleScene);
+		if (input_->PButtonTrigger(B)) {
+			sceneManager_->TransitionTo(new TitleScene);
 		}
 		break;
 	}
@@ -160,41 +160,41 @@ void GameScene::Update() {
 
 
 void GameScene::ObjectDraw() {
-	field->Draw();
-	collisionManager->DrawCollider();
-	enemy->ObjDraw();
+	field_->Draw();
+	collisionManager_->DrawCollider();
+	enemy_->ObjDraw();
 }
 
 void GameScene::FbxDraw() {
-	player->Draw();
-	enemy->Draw();
+	player_->Draw();
+	enemy_->Draw();
 }
 
 void GameScene::SpriteDraw() {
-	switch (state) {
+	switch (state_) {
 	case State::game:
-		UIBase->Draw();
-		damageGauge->Draw();
-		hpGauge->Draw();
-		enemyHpGauge->Draw();
+		UIBase_->Draw();
+		damageGauge_->Draw();
+		hpGauge_->Draw();
+		enemyHpGauge_->Draw();
 
 		break;
 	case State::clear:
 
-		clear->Draw();
+		clear_->Draw();
 		break;
 	case State::death:
 
-		gameOver->Draw();
+		gameOver_->Draw();
 		break;
 	}
 }
 
 void GameScene::StateTransition() {
-	if (enemy->IsLive() == false) {
-		sceneManager->TransitionTo(new TitleScene);
+	if (enemy_->IsLive() == false) {
+		sceneManager_->TransitionTo(new TitleScene);
 	}
-	else if (player->IsLive() == false) {
-		sceneManager->TransitionTo(new TitleScene);
+	else if (player_->IsLive() == false) {
+		sceneManager_->TransitionTo(new TitleScene);
 	}
 }

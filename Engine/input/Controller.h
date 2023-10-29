@@ -33,13 +33,13 @@ class Controller
 {
 private:
 
-	XINPUT_STATE xinputState{};
-	XINPUT_STATE oldXinputState{};
+	XINPUT_STATE xinputState_{};
+	XINPUT_STATE oldXinputState_{};
 
 	//コントローラー振動強さ
-	float shakePower = 0.0f;
+	float shakePower_ = 0.0f;
 	//コントローラー振動長さ(フレーム数)
-	int shakeTimer = 0;
+	int shakeTimer_ = 0;
 
 	//デッドゾーンに入っているか(DeadRate : デッドゾーン判定の度合い、1.0fだとデフォルト)
 	bool StickInDeadZone(Vector2& thumb, const Vector2& deadRate);

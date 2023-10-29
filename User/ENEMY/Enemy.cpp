@@ -16,52 +16,52 @@ Enemy::Enemy() {
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_);
 
-	hp = new EnemyHp();
+	hp_ = new EnemyHp();
 
 	isAttack_ = false;
 	power_ = 0;
 
 	state_->SetEnemy(this);
 
-	particle = new EnemyParticle;
+	particle_ = new EnemyParticle;
 }
 
 void Enemy::Initialize() {
 	//サウンド
-	audio = new Audio();
-	audio->Initialize();
-	audio->LoadWave("fire.wav");
-	audio->LoadWave("enemyat.wav");
+	audio_ = new Audio();
+	audio_->Initialize();
+	audio_->LoadWave("fire.wav");
+	audio_->LoadWave("enemyat.wav");
 
 	TransitionTo(new Standby);
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.position = { 0,0,8 };
-	hp->Initialize();
+	hp_->Initialize();
 
 	isAttack_ = false;
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
 
-	body = new BaseCollider;
-	body->SetAttribute(Attribute::EnemyBody);
-	CollisionManager::GetInstance()->AddCollider(body);
+	body_ = new BaseCollider;
+	body_->SetAttribute(Attribute::EnemyBody);
+	CollisionManager::GetInstance()->AddCollider(body_);
 }
 
 Enemy::~Enemy() {
 	delete fbxObject3d_;
 	delete fbxModel_;
-	delete hp;
+	delete hp_;
 	delete state_;
-	delete particle;
-	bullets.clear();
+	delete particle_;
+	bullets_.clear();
 	EnemyBullet::StaticFinalize();
 }
 
 void Enemy::Update(Vector3 playerPos) {
-	if (hp->IsLive()) {
+	if (hp_->IsLive()) {
 		//当たり判定
-		body->SetCenter(fbxObject3d_->wtf.position);
+		body_->SetCenter(fbxObject3d_->wtf.position);
 		OnCollision();
 
 		//行動
@@ -71,39 +71,39 @@ void Enemy::Update(Vector3 playerPos) {
 		fbxObject3d_->Update();
 
 		//弾
-		bullets.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
-		for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
+		bullets_.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
+		for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 			bullet->Update();
 		}
 	}
 	//パーティクル
-	particle->Update();
+	particle_->Update();
 }
 
 void Enemy::OnCollision() {
-	if (body->GetIsHit().playerAttack) {
-		hp->Damage(10);
-		particle->OnColision(body->GetHitPos().playerAttack);
+	if (body_->GetIsHit().playerAttack) {
+		hp_->Damage(10);
+		particle_->OnColision(body_->GetHitPos().playerAttack);
 	}
 }
 
 void Enemy::Draw() {
-	if (hp->IsLive()) {
+	if (hp_->IsLive()) {
 		fbxObject3d_->Draw();
 	}
 }
 
 void Enemy::ObjDraw() {
-	for (std::unique_ptr<EnemyBullet>& bullet : bullets) {
+	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Draw();
 	}
-	particle->Draw();
+	particle_->Draw();
 }
 
 void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
 	std::unique_ptr<EnemyBullet> newBullet = std::make_unique<EnemyBullet>();
 	newBullet->Initialize(pos, velocity, liveLimit, stayTime);
-	bullets.push_back(std::move(newBullet));
+	bullets_.push_back(std::move(newBullet));
 }
 
 //状態を変更する
@@ -116,9 +116,9 @@ void Enemy::TransitionTo(EnemyState* state) {
 
 void Enemy::PlayWave(const std::string& filename) {
 	if (filename == "fire.wav") {
-		pSourceVoice[0] = audio->PlayWave("fire.wav");
+		pSourceVoice_[0] = audio_->PlayWave("fire.wav");
 	}
 	else if (filename == "enemyat.wav") {
-		pSourceVoice[1] = audio->PlayWave("enemyat.wav");
+		pSourceVoice_[1] = audio_->PlayWave("enemyat.wav");
 	}
 }

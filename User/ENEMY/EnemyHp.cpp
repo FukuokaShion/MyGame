@@ -6,29 +6,29 @@
 #include"EnemyHp.h"
 
 EnemyHp::EnemyHp() {
-	MaxHp = 100;
-	hp = MaxHp;
-	isLive = true;
+	MaxHp_ = 100;
+	hp_ = MaxHp_;
+	isLive_ = true;
 }
 
 EnemyHp::~EnemyHp() {
 }
 
 void EnemyHp::Initialize() {
-	hp = MaxHp;
-	isLive = true;
+	hp_ = MaxHp_;
+	isLive_ = true;
 }
 
 void EnemyHp::Damage(int damage) {
-	hp -= damage;
-	if (hp <= 0) {
-		isLive = false;
+	hp_ -= damage;
+	if (hp_ <= 0) {
+		isLive_ = false;
 	}
 }
 
 void EnemyHp::Heal(int heal) {
-	hp += heal;
-	if (hp > MaxHp) {
-		hp = MaxHp;
+	hp_ += heal;
+	if (hp_ > MaxHp_) {
+		hp_ = MaxHp_;
 	}
 }

@@ -26,13 +26,13 @@ private:
 		Attack,
 		After,
 	};
-	Action action;
-	int timer;
+	Action action_;
+	int timer_;
 
 	//攻撃時
-	float attackFallSpeed;
+	float attackFallSpeed_;
 	int power_;
 
 	//後隙
-	int afterTime;
+	int afterTime_;
 };

@@ -38,9 +38,9 @@ public:
 	*/
 	void CheakCol();
 private:
-	bool isPlayerHit;
-	bool isEnemyHit;
-	std::forward_list<BaseCollider*> colliders;
+	bool isPlayerHit_;
+	bool isEnemyHit_;
+	std::forward_list<BaseCollider*> colliders_;
 
 public://可視化関数
 	/**
@@ -50,6 +50,6 @@ public://可視化関数
 
 private://可視化変数
 	Model* model_ = nullptr;
-	int maxCol = 20;
+	int maxCol_ = 20;
 	Object3d* objects_[20];
 };

@@ -27,5 +27,5 @@ private:
 	void ObjLoad();
 
 private:
-	ObjModelLoader* objModels;
+	ObjModelLoader* objModels_;
 };

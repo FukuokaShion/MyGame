@@ -27,29 +27,29 @@ private:
 		Attack,
 		After,
 	};
-	Action action;
+	Action action_;
 
-	Vector3 speed;
-	Vector3 velocity;
+	Vector3 speed_;
+	Vector3 velocity_;
 
-	int timer;
+	int timer_;
 
 	///予備動作
 	//時間
-	const int anticTime = 16;
+	const int anticTime_ = 16;
 	//移動距離
-	const Vector3 anticDistance = { 0,0,1 };
+	const Vector3 anticDistance_ = { 0,0,1 };
 
 	///攻撃
 	//時間
-	const int attackTime = 11;
+	const int attackTime_ = 11;
 	//移動距離
-	const Vector3 attackDistance = { 0,0,1 };
+	const Vector3 attackDistance_ = { 0,0,1 };
 	//攻撃力
-	const int power_ = 10;
+	const int sowrdPower_ = 10;
 
 	///後隙
-	const int afterTime = 6;
+	const int afterTime_ = 6;
 
-	BaseCollider* sowrd;
+	BaseCollider* sowrd_;
 };

@@ -7,9 +7,9 @@
 
 EnemyParticle::EnemyParticle() {
 	//パーティクル生成
-	DamageParticle = std::make_unique<ParticleManager>();
-	DamageParticle.get()->Initialize();
-	DamageParticle->LoadTexture("blod.png");
+	DamageParticle_ = std::make_unique<ParticleManager>();
+	DamageParticle_.get()->Initialize();
+	DamageParticle_->LoadTexture("blod.png");
 }
 
 EnemyParticle::~EnemyParticle() {
@@ -37,14 +37,14 @@ void EnemyParticle::OnColision(Vector3 hitPos) {
 		acc.y = (float)rand() / RAND_MAX * rnd_acc - rnd_acc / 2.0f;
 
 		//追加
-		DamageParticle->Add(30, pos, vel, acc, 0.3f, 0.0f);
+		DamageParticle_->Add(30, pos, vel, acc, 0.3f, 0.0f);
 	}
 }
 
 void EnemyParticle::Update() {
-	DamageParticle->Update();
+	DamageParticle_->Update();
 }
 
 void EnemyParticle::Draw() {
-	DamageParticle->Draw();
+	DamageParticle_->Draw();
 }

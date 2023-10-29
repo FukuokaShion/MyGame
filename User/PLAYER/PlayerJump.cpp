@@ -12,24 +12,24 @@
 
 PlayerJump::PlayerJump() {
 	player_->AnimationChange(0);
-	limit = 20;
-	timer = 0;
-	up = true;
+	limit_ = 20;
+	timer_ = 0;
+	up_ = true;
 	player_->PlayWav("jump.wav");
 }
 
 void PlayerJump::Update() {
-	if (up == true) {
-		timer++;
-		if (timer > limit) {
-			up = false;
+	if (up_ == true) {
+		timer_++;
+		if (timer_ > limit_) {
+			up_ = false;
 		}
 	}
 	else {
-		timer--;
+		timer_--;
 	}
 
-	float t = static_cast<float>(timer) / static_cast<float>(limit);
+	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
 
 	float newPos = Easing::OutQuad(0, 2, t);
 

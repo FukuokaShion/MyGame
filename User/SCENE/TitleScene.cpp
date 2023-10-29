@@ -12,72 +12,72 @@ TitleScene::TitleScene() {
 
 void TitleScene::Initialize() {
 	//サウンド
-	audio = new Audio();
-	audio->Initialize();
-	audio->LoadWave("ocean.wav");
+	audio_ = new Audio();
+	audio_->Initialize();
+	audio_->LoadWave("ocean.wav");
 
-	pSourceVoice = audio->PlayWave("ocean.wav");
+	pSourceVoice_ = audio_->PlayWave("ocean.wav");
 
 	float PI = 3.1415f;
 	// カメラ生成
-	camera = new Camera(WinApp::window_width, WinApp::window_height);
-	camera->wtf.position = { 0,6,-7 };
-	camera->wtf.rotation = { 10 * PI / 180.0f , -25 * PI / 180.0f,0 };
+	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
+	camera_->wtf.position = { 0,6,-7 };
+	camera_->wtf.rotation = { 10 * PI / 180.0f , -25 * PI / 180.0f,0 };
 
-	Object3d::SetCamera(camera);
+	Object3d::SetCamera(camera_);
 
 	//スプライト共通部分の初期化
-	spriteCommon = new SpriteCommon;
-	spriteCommon->Initialize();
+	spriteCommon_ = new SpriteCommon;
+	spriteCommon_->Initialize();
 
-	basePic = new Sprite();
-	basePic->Initialize(spriteCommon);
-	basePic->SetPozition({ 0,0 });
-	basePic->SetSize({ 1280,720 });
+	basePic_ = new Sprite();
+	basePic_->Initialize(spriteCommon_);
+	basePic_->SetPozition({ 0,0 });
+	basePic_->SetSize({ 1280,720 });
 
-	black = std::make_unique<Sprite>();
-	black->Initialize(spriteCommon);
-	black->SetPozition({ 0,0 });
-	black->SetSize({ 1280,720 });
-	black->SetColor({ 0,0,0,0 });
+	black_ = std::make_unique<Sprite>();
+	black_->Initialize(spriteCommon_);
+	black_->SetPozition({ 0,0 });
+	black_->SetSize({ 1280,720 });
+	black_->SetColor({ 0,0,0,0 });
 
-	loading = std::make_unique<Sprite>();
-	loading->Initialize(spriteCommon);
-	loading->SetPozition({ 0,0 });
-	loading->SetSize({ 1280,720 });
+	loading_ = std::make_unique<Sprite>();
+	loading_->Initialize(spriteCommon_);
+	loading_->SetPozition({ 0,0 });
+	loading_->SetSize({ 1280,720 });
 	
-	spriteCommon->LoadTexture(0, "title.png");
-	basePic->SetTextureIndex(0);
-	spriteCommon->LoadTexture(1, "white.png");
-	black->SetTextureIndex(1);
-	spriteCommon->LoadTexture(2, "loading.png");
-	loading->SetTextureIndex(2);
+	spriteCommon_->LoadTexture(0, "title.png");
+	basePic_->SetTextureIndex(0);
+	spriteCommon_->LoadTexture(1, "white.png");
+	black_->SetTextureIndex(1);
+	spriteCommon_->LoadTexture(2, "loading.png");
+	loading_->SetTextureIndex(2);
 	
-	field = std::make_unique<TitleField>();
-	field->Initialize();
+	field_ = std::make_unique<TitleField>();
+	field_->Initialize();
 
-	ship = std::make_unique<Ship>();
-	ship->Initialize();
+	ship_ = std::make_unique<Ship>();
+	ship_->Initialize();
 }
 
 TitleScene::~TitleScene() {
-	delete basePic;
-	delete spriteCommon;
-	audio->StopWave(pSourceVoice);
+	delete basePic_;
+	delete spriteCommon_;
+	audio_->StopWave(pSourceVoice_);
 }
 
 //更新
 void TitleScene::Update() {
-	camera->Update();
-	field->Update();
-	ship->Update();
+	camera_->Update();
+	field_->Update();
+	ship_->Update();
 	StateTransition();
 }
 
 
 void TitleScene::ObjectDraw() {
-	field->Draw();
-	ship->Draw();
+	field_->Draw();
+	ship_->Draw();
 }
 
 void TitleScene::FbxDraw() {
@@ -85,19 +85,19 @@ void TitleScene::FbxDraw() {
 }
 
 void TitleScene::SpriteDraw() {
-	basePic->Draw();
-	black->Draw();
-	if (black->GetColor().w >= 1.0f) {
-		loading->Draw();
+	basePic_->Draw();
+	black_->Draw();
+	if (black_->GetColor().w >= 1.0f) {
+		loading_->Draw();
 	}
 }
 
 void TitleScene::StateTransition() {
-	if (ship->GetPos().z > 60.0f) {
-		black->SetColor({ 0,0,0,black->GetColor().w + 0.04f });
+	if (ship_->GetPos().z > 60.0f) {
+		black_->SetColor({ 0,0,0,black_->GetColor().w + 0.04f });
 	}
 
-	if (ship->GetPos().z > 120) {
-		sceneManager->TransitionTo(new GameScene);
+	if (ship_->GetPos().z > 120) {
+		sceneManager_->TransitionTo(new GameScene);
 	}
 }

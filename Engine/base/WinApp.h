@@ -15,12 +15,12 @@ public:
 	/**
 	 * @brief Hwnd取得
 	*/
-	HWND GetHwnd() const { return hwnd; }
+	HWND GetHwnd() const { return hwnd_; }
 
 	/**
 	 * @brief HInstance取得
 	*/
-	HINSTANCE GetHInstance() const { return w.hInstance; }
+	HINSTANCE GetHInstance() const { return w_.hInstance; }
 
 	/**
 	 * @brief メッセージ処理
@@ -49,9 +49,9 @@ public: //メンバ関数
 	void Finalize();
 private:
 	//ウィンドウハンドル
-	HWND hwnd = nullptr;
+	HWND hwnd_ = nullptr;
 
 	//ウィンドウクラスの設定
-	WNDCLASSEX w{};
+	WNDCLASSEX w_{};
 
 };

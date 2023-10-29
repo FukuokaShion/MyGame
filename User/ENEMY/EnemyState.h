@@ -28,8 +28,8 @@ protected:
 	static Enemy* enemy_;
 	int timer;
 	//プレイヤー座標
-	Transform* playerWtf = nullptr;
+	Transform* playerWtf_ = nullptr;
 
-	Vector3 speed;
-	Vector3 velocity;
+	Vector3 speed_;
+	Vector3 velocity_;
 };

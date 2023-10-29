@@ -18,17 +18,17 @@ public:
 	/**
 	 * @brief 体力上限セッター
 	*/
-	void SetMaxHp(int maxHp) { this->MaxHp = maxHp; };
+	void SetMaxHp(int maxHp) { this->MaxHp_ = maxHp; };
 
 	/**
 	 * @brief 現在の体力取得
 	*/
-	int GetHp() { return hp; };
+	int GetHp() { return hp_; };
 	
 	/**
 	 * @brief 生存フラグ
 	*/
-	bool IsLive() { return isLive; };
+	bool IsLive() { return isLive_; };
 
 	/**
 	 * @brief ダメージを受ける
@@ -42,9 +42,9 @@ public:
 
 private:
 	//最大HP
-	int MaxHp;
+	int MaxHp_;
 	//現在のHP
-	int hp;
+	int hp_;
 	//生存フラグ
-	bool isLive;
+	bool isLive_;
 };

@@ -49,22 +49,22 @@ private:
 
 private:
 	//サウンド
-	Audio* audio = nullptr;
-	IXAudio2SourceVoice* pSourceVoice = nullptr;
+	Audio* audio_ = nullptr;
+	IXAudio2SourceVoice* pSourceVoice_ = nullptr;
 
 	//カメラ
-	Camera* camera = nullptr;
+	Camera* camera_ = nullptr;
 
 	//画像
-	SpriteCommon* spriteCommon = nullptr;
-	Sprite* basePic;
-	std::unique_ptr<Sprite> black;
-	std::unique_ptr<Sprite> loading;
+	SpriteCommon* spriteCommon_ = nullptr;
+	Sprite* basePic_;
+	std::unique_ptr<Sprite> black_;
+	std::unique_ptr<Sprite> loading_;
 
 	//フィールド
-	std::unique_ptr<TitleField> field;
+	std::unique_ptr<TitleField> field_;
 
 	//船
-	std::unique_ptr<Ship> ship;
+	std::unique_ptr<Ship> ship_;
 
 };

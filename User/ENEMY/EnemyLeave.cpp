@@ -10,14 +10,14 @@
 void Leave::Update([[maybe_unused]]Vector3 playerPos) {
 	timer++;
 
-	speed = distance / static_cast<float>(limit);
+	speed_ = distance_ / static_cast<float>(limit_);
 	Matrix4 enemyMat = enemy_->GetWtf().matWorld;
-	velocity = Matrix4::bVelocity(speed, enemyMat);
+	velocity_ = Matrix4::bVelocity(speed_, enemyMat);
 
 	//座標に足す
-	enemy_->Move(velocity);
+	enemy_->Move(velocity_);
 
-	if (timer > limit) {
+	if (timer > limit_) {
 		//待機状態に戻る
 		enemy_->TransitionTo(new Standby);
 	}

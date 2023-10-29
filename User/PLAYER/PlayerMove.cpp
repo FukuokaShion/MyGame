@@ -11,8 +11,8 @@
 
 PlayerMove::PlayerMove() {
 	player_->AnimationChange(2);
-	limit = 600;
-	timer = 0;
+	limit_ = 600;
+	timer_ = 0;
 	player_->PlayWav("run.wav");
 }
 
@@ -23,9 +23,9 @@ void PlayerMove::Update() {
 }
 
 void PlayerMove::Move() {
-	timer++;
-	if (timer > limit) {
-		timer = 0;
+	timer_++;
+	if (timer_ > limit_) {
+		timer_ = 0;
 		player_->StopWav();
 		player_->PlayWav("run.wav");
 	}

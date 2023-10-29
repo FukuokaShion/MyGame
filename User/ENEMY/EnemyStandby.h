@@ -19,8 +19,8 @@ public:
 
 private:
 	//待機時間
-	const int limit = 120;
+	const int limit_ = 120;
 
 	//接近移行距離
-	const float approachDistance = 4.0f;
+	const float approachDistance_ = 4.0f;
 };

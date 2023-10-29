@@ -10,41 +10,41 @@
 
 void Framework::Initialize() {
 	//windowsAPIの初期化
-	winApp = new WinApp();
-	winApp->Initialize();
+	winApp_ = new WinApp();
+	winApp_->Initialize();
 
-	dxCommon = new DirectXCommon();
-	dxCommon->Initialize(winApp);
+	dxCommon_ = new DirectXCommon();
+	dxCommon_->Initialize(winApp_);
 
 	//入力の初期化
-	input = Input::GetInstance();
-	input->Initialize(winApp);
+	input_ = Input::GetInstance();
+	input_->Initialize(winApp_);
 
 	//fbx
-	FbxLoader::GetInstance()->Initialize(dxCommon->GetDevice());
-	FBXObject3d::SetDevice(dxCommon->GetDevice());
+	FbxLoader::GetInstance()->Initialize(dxCommon_->GetDevice());
+	FBXObject3d::SetDevice(dxCommon_->GetDevice());
 	FBXObject3d::CreateGraphicsPipeline();
 	
 	//obj
-	Object3d::StaticInitialize(dxCommon->GetDevice());
+	Object3d::StaticInitialize(dxCommon_->GetDevice());
 
 	//パーティクル
-	ParticleManager::StaticInitialize(dxCommon->GetDevice(), dxCommon->GetCommandList());
+	ParticleManager::StaticInitialize(dxCommon_->GetDevice(), dxCommon_->GetCommandList());
 	
 	//スプライコモン
-	SpriteCommon::SetDxCommon(dxCommon);
-	spriteCommon = SpriteCommon::GetInstance();
-	spriteCommon->Initialize();
+	SpriteCommon::SetDxCommon(dxCommon_);
+	spriteCommon_ = SpriteCommon::GetInstance();
+	spriteCommon_->Initialize();
 
 	//FPS固定
-	fps->SetFrameRate(60);
+	fps_->SetFrameRate(60);
 }
 
 void  Framework::Finalize() {
-	delete fps;
-	delete dxCommon;
+	delete fps_;
+	delete dxCommon_;
 	FbxLoader::GetInstance()->Finalize();
-	winApp->Finalize();
+	winApp_->Finalize();
 }
 
 void  Framework::Run() {
@@ -59,20 +59,20 @@ void  Framework::Run() {
 		}
 
 		//fps管理
-		fps->FpsControlBegin();
+		fps_->FpsControlBegin();
 
 		//更新処理
 		Update();
 
 		//描画開始
-		dxCommon->PreDraw();
+		dxCommon_->PreDraw();
 		//描画処理
 		Draw();
 		//描画終了
-		dxCommon->PostDraw();
+		dxCommon_->PostDraw();
 
 		//fps管理
-		fps->FpsControlEnd();
+		fps_->FpsControlEnd();
 	}
 
 	//破棄
@@ -82,17 +82,17 @@ void  Framework::Run() {
 
 void  Framework::Update() {
 	//入力の更新
-	input->Update();
+	input_->Update();
 }
 
 void  Framework::Draw() {
 }
 
 bool  Framework::IsEndRequst() {
-	if (winApp->ProcessMessage()) {
+	if (winApp_->ProcessMessage()) {
 		return true;
 	}
-	else if (input->PushKey(DIK_ESCAPE)) {
+	else if (input_->PushKey(DIK_ESCAPE)) {
 		return true;
 	}
 
