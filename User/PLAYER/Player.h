@@ -138,6 +138,11 @@ private:
 
 	//当たり判定
 	BaseCollider* body_;
+	BaseCollider* body2_;
+	BaseCollider* body3_;
+	BaseCollider* body4_;
+	BaseCollider* body5_;
+	uint32_t num[4];
 
 	//HPゲージ管理
 	int gaugeTimer_;

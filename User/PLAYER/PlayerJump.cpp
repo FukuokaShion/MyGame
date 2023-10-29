@@ -45,7 +45,7 @@ void PlayerJump::StateTransition() {
 		player_->TransitionTo(new PlayerStandby);
 	}
 	else {
-		if (input_->ButtonInput(B)) {
+		if (Input::GetInstance()->ButtonInput(B)) {
 			player_->TransitionTo(new PlayerJumpAttack);
 		}
 	}

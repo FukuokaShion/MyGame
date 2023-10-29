@@ -92,10 +92,10 @@ void CollisionManager::CheakCol() {
 
 void CollisionManager::DrawCollider() {
 	//std::forward_list<BaseCollider*>::iterator it;
-	//it = colliders.begin();
+	//it = colliders_.begin();
 	//int i = 0;
 
-	//for (; it != colliders.end(); ++it) {
+	//for (; it != colliders_.end(); ++it) {
 	//	BaseCollider* col = *it;
 	//	objects_[i]->wtf.position = col->GetCenter();
 	//	objects_[i]->wtf.scale = { col->GetRad(),col->GetRad() ,col->GetRad() };
