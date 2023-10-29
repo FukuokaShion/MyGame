@@ -122,6 +122,7 @@ private:
 	bool isAttack_;
 	int power_;
 
+	//パーティクル
 	EnemyParticle* particle_ = nullptr;
 
 };

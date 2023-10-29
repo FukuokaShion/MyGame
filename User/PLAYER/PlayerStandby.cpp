@@ -26,17 +26,18 @@ void PlayerStandby::StateTransition() {
 	//if (input->PButtonTrigger(A)) {
 	//	player_->TransitionTo(new PlayerAvoid);
 	//}
-	if (input_->PButtonTrigger(A)) {
+	//ジャンプ
+	if (Input::GetInstance()->PButtonTrigger(A)) {
 		player_->TransitionTo(new PlayerJump);
 	}
 
 	//攻撃
-	if (input_->PButtonTrigger(B)) {
+	if (Input::GetInstance()->PButtonTrigger(B)) {
 		player_->TransitionTo(new PlayerAttack);
 	}
 
 	//移動
-	if (input_->LeftStickInput()) {
+	if (Input::GetInstance()->LeftStickInput()) {
 		player_->TransitionTo(new PlayerMove);
 	}
 }

@@ -25,8 +25,8 @@ public:
 	void Initialize(WinApp* winApp);
 
 	/**
- * @brief インスタンス取得
-*/
+	 * @brief インスタンス取得
+	*/
 	static Input* GetInstance();
 
 	/**
