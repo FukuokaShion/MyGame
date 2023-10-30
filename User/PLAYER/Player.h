@@ -97,6 +97,11 @@ public:
 	Transform GetCamWtf() { return camera_->wtf; };
 
 	/**
+	 * @brief 剣座標取得
+	*/
+	Vector3 GetSwordPos() { return fbxObject3d_->GetBonWorldPos(num[4]); };
+
+	/**
 	 * @brief 被ダメ処理
 	*/
 	void OnCollision();
@@ -142,7 +147,7 @@ private:
 	BaseCollider* body3_;
 	BaseCollider* body4_;
 	BaseCollider* body5_;
-	uint32_t num[4];
+	uint32_t num[5];
 
 	//HPゲージ管理
 	int gaugeTimer_;

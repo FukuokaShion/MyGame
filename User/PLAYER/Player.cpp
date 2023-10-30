@@ -75,6 +75,7 @@ void Player::Initialize() {
 	num[1] = 5;
 	num[2] = 9;
 	num[3] = 33;
+	num[4] = 34;
 }
 
 void Player::Update() {
@@ -134,10 +135,13 @@ void Player::CamRota() {
 void Player::OnCollision() {
 	if (body_->GetIsHit().enemyAttack || body_->GetIsHit().enemyBullet) {
 		PlayWav("col.wav");
+		body_->RemoveHit(Attribute::EnemyAttack);
+		body_->RemoveHit(Attribute::EnemyBullet);
 		hp_->Damage(10);
 		gaugeTimer_ = gaugeLimit_;
 		damageGauge_ = hp_->GetOldHp();
 	}
+
 }
 
 void Player::Draw() {

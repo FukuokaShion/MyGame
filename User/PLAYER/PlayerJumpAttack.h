@@ -35,4 +35,7 @@ private:
 
 	//後隙
 	int afterTime_;
+
+	//当たり判定
+	BaseCollider* sowrd_;
 };

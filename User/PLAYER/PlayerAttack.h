@@ -51,5 +51,6 @@ private:
 	///後隙
 	const int afterTime_ = 6;
 
+	//当たり判定
 	BaseCollider* sowrd_;
 };

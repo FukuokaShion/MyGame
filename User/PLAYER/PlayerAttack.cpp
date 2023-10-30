@@ -44,7 +44,7 @@ void PlayerAttack::Update() {
 		player_->Move(velocity_);
 
 		//攻撃判定
-		sowrd_->SetCenter({ 0,0,0 });
+		sowrd_->SetCenter(player_->GetSwordPos());
 		isAttack_ = true;
 		power_ = sowrdPower_;
 

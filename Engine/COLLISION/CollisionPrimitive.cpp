@@ -9,20 +9,39 @@ using namespace DirectX;
 
 void BaseCollider::IsHit(Attribute attribute, Vector3 hitPos) {
 	if (attribute == Attribute::PlayerAttack) {
-		isHit_.playerAttack;
+		isHit_.playerAttack = true;
 		hitPos_.playerAttack = hitPos;
 	}else if (attribute == Attribute::PlyerBody) {
-		isHit_.playerBody;
+		isHit_.playerBody = true;
 		hitPos_.playerBody = hitPos;
 	}else if (attribute == Attribute::EnemyAttack) {
-		isHit_.enemyAttack;
+		isHit_.enemyAttack = true;
 		hitPos_.enemyAttack = hitPos;
 	}else if (attribute == Attribute::EnemyBody) {
-		isHit_.enemyBody;
+		isHit_.enemyBody = true;
 		hitPos_.enemyBody = hitPos;
 	}else if (attribute == Attribute::EnemyBullet) {
-		isHit_.enemyBullet;
+		isHit_.enemyBullet = true;
 		hitPos_.enemyBullet = hitPos;
+	}
+}
+
+
+void BaseCollider::RemoveHit(Attribute attribute) {
+	if (attribute == Attribute::PlayerAttack) {
+		isHit_.playerAttack = false;
+	}
+	else if (attribute == Attribute::PlyerBody) {
+		isHit_.playerBody = false;
+	}
+	else if (attribute == Attribute::EnemyAttack) {
+		isHit_.enemyAttack = false;
+	}
+	else if (attribute == Attribute::EnemyBody) {
+		isHit_.enemyBody = false;
+	}
+	else if (attribute == Attribute::EnemyBullet) {
+		isHit_.enemyBullet = false;
 	}
 }
 
