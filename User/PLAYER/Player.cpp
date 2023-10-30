@@ -50,6 +50,32 @@ void Player::Initialize() {
 	body_ = new BaseCollider;
 	body_->SetAttribute(Attribute::PlyerBody);
 	CollisionManager::GetInstance()->AddCollider(body_);
+
+	body2_ = new BaseCollider;
+	body2_->SetAttribute(Attribute::PlyerBody);
+	body2_->SetRad(0.4f);
+	CollisionManager::GetInstance()->AddCollider(body2_);
+
+	body3_ = new BaseCollider;
+	body3_->SetAttribute(Attribute::PlyerBody);
+	body3_->SetRad(0.4f);
+	CollisionManager::GetInstance()->AddCollider(body3_);
+
+	body4_ = new BaseCollider;
+	body4_->SetAttribute(Attribute::PlyerBody);
+	body4_->SetRad(0.4f);
+	CollisionManager::GetInstance()->AddCollider(body4_);
+
+	body5_ = new BaseCollider;
+	body5_->SetAttribute(Attribute::PlyerBody);
+	body5_->SetRad(0.4f);
+	CollisionManager::GetInstance()->AddCollider(body5_);
+
+	num[0] = 0;
+	num[1] = 5;
+	num[2] = 9;
+	num[3] = 33;
+	num[4] = 34;
 }
 
 void Player::Update() {
@@ -57,7 +83,7 @@ void Player::Update() {
 
 	CamRota();
 	fbxObject3d_->wtf.UpdateMat();
-	body_->SetCenter(fbxObject3d_->wtf.position);
+
 	camera_->Update();
 	fbxObject3d_->Update();
 
@@ -72,8 +98,13 @@ void Player::Update() {
 		gaugeTimer_--;
 	}
 
-	//uint32_t sowrdNum = 34;
-	//skydome->wtf.position = fbxObject3d_->GetBonWorldPos(sowrdNum);
+
+	body_->SetCenter(fbxObject3d_->wtf.position);
+	body2_->SetCenter(fbxObject3d_->GetBonWorldPos(num[0]));
+	body3_->SetCenter(fbxObject3d_->GetBonWorldPos(num[1]));
+	body4_->SetCenter(fbxObject3d_->GetBonWorldPos(num[2]));
+	body5_->SetCenter(fbxObject3d_->GetBonWorldPos(num[3]));
+
 }
 
 void Player::CamRota() {
@@ -104,10 +135,13 @@ void Player::CamRota() {
 void Player::OnCollision() {
 	if (body_->GetIsHit().enemyAttack || body_->GetIsHit().enemyBullet) {
 		PlayWav("col.wav");
+		body_->RemoveHit(Attribute::EnemyAttack);
+		body_->RemoveHit(Attribute::EnemyBullet);
 		hp_->Damage(10);
 		gaugeTimer_ = gaugeLimit_;
 		damageGauge_ = hp_->GetOldHp();
 	}
+
 }
 
 void Player::Draw() {

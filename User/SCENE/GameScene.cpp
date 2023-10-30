@@ -9,6 +9,7 @@
 
 #include"FbxLoader.h"
 #include"Easing.h"
+#include"Collision.h"
 
 GameScene::GameScene() {
 }
@@ -122,16 +123,35 @@ GameScene::~GameScene() {
 	delete enemyHpGauge_;
 	delete clear_;
 	delete gameOver_;
+
+	collisionManager_->Finalize();
 }
 
 //更新
 void GameScene::Update() {
+
+	Vector3 distance;
+	Vector3 pushVelocity;
+
 	switch (state_) {
 	case State::game:
 		//オブジェクト更新
 		field_->Update();
 		player_->Update();
 		enemy_->Update(player_->GetWtf().position);
+
+		//押し出し処理
+		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, 0.4f, 1.3f)) {
+			distance = player_->GetWtf().position - enemy_->GetWtf().position;
+			pushVelocity = distance;
+			pushVelocity.nomalize();
+			pushVelocity *= 0.4f + 1.3f;
+			pushVelocity -= distance;
+			player_->Move(pushVelocity);
+		}
+
+		collisionManager_->GetPlayerAttack(player_->GetIsAttack());
+		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
 		collisionManager_->CheakCol();
 
 		damageGauge_->SetSize({ static_cast<float>(4 * player_->GetDamage()),26 });

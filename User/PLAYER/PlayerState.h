@@ -38,7 +38,6 @@ protected:
 
 protected:
 	static Player* player_;
-	Input* input_;
 
 	//攻撃判定
 	bool isAttack_;

@@ -28,6 +28,11 @@ public:
 	void IsHit(Attribute attribute, Vector3 hitPos);
 
 	/**
+	 * @brief 衝突判定解除
+	*/
+	void RemoveHit(Attribute attribute);
+
+	/**
 	 * @brief 中心座標取得
 	*/
 	Vector3 GetCenter() { return center_; };

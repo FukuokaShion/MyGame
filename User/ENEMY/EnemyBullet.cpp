@@ -61,5 +61,5 @@ void EnemyBullet::Update() {
 }
 
 void EnemyBullet::Draw() {
-	obj_->Draw();
+	//obj_->Draw();
 }

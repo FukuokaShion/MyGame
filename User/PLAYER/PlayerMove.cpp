@@ -36,7 +36,7 @@ void PlayerMove::Move() {
 	float speed = 0.5f;
 
 	//スティック入力方向取得
-	Vector2 stickVec = input_->GetLeftStickVec();
+	Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
 	//移動方向に変換
 	velocity.x = stickVec.x;
 	velocity.z = stickVec.y;
@@ -54,8 +54,8 @@ void PlayerMove::Move() {
 }
 
 void PlayerMove::Rota() {
-	if (input_->LeftStickInput()) {
-		Vector2 stickVec = input_->GetLeftStickVec();
+	if (Input::GetInstance()->LeftStickInput()) {
+		Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
 
 		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
 
@@ -66,18 +66,18 @@ void PlayerMove::Rota() {
 
 void PlayerMove::StateTransition() {
 	//待機状態
-	if (input_->LeftStickInput() == false) {
+	if (Input::GetInstance()->LeftStickInput() == false) {
 		player_->TransitionTo(new PlayerStandby);
 		player_->StopWav();
 	}
 
 	//回避
-	if (input_->PButtonTrigger(A)) {
+	if (Input::GetInstance()->PButtonTrigger(A)) {
 		player_->TransitionTo(new PlayerAvoid);
 	}
 
 	//攻撃
-	if (input_->PButtonTrigger(B)) {
+	if (Input::GetInstance()->PButtonTrigger(B)) {
 		player_->TransitionTo(new PlayerAttack);
 	}
 }

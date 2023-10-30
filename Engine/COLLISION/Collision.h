@@ -69,7 +69,7 @@ public:
 	/**
 	 * @brief 円の当たり判定
 	*/
-	bool CircleCollision(Vector3 playerPos, Vector3 enemyPos, float playerWidth, float enemyWidth);
+	static bool CircleCollision(Vector3 playerPos, Vector3 enemyPos, float playerWidth, float enemyWidth);
 
 	/**
 	 * @brief 円の当たり判定

@@ -12,13 +12,11 @@ void CollisionManager::Initialize() {
 		objects_[i] = Object3d::Create();
 		objects_[i]->SetModel(model_);
 	}
+	isPlayerHit_ = false;
+	isEnemyHit_ = false;
 }
 
 CollisionManager::~CollisionManager() {
-	for (int i = 0; i < maxCol_; i++) {
-		delete objects_[i];
-	}
-	delete model_;
 }
 
 CollisionManager* CollisionManager::GetInstance(){
@@ -32,6 +30,14 @@ void CollisionManager::AddCollider(BaseCollider* collide){
 
 void CollisionManager::RemoveCollider(BaseCollider* collide){
 	colliders_.remove(collide);
+};
+
+void CollisionManager::Finalize() {
+	for (int i = 0; i < maxCol_; i++) {
+		delete objects_[i];
+	}
+	delete model_;
+	colliders_.clear();
 };
 
 void CollisionManager::CheakCol() {
@@ -48,14 +54,20 @@ void CollisionManager::CheakCol() {
 			BaseCollider* colB = *itB;
 			//自機と敵突進
 			if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyAttack) {
-				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
-					colA->IsHit(Attribute::EnemyAttack, hitPos);
-					colB->IsHit(Attribute::PlyerBody, hitPos);
+				if (isPlayerHit_ == false) {
+					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+						colA->IsHit(Attribute::EnemyAttack, hitPos);
+						colB->IsHit(Attribute::PlyerBody, hitPos);
+						isPlayerHit_ = true;
+					}
 				}
-			}else if(colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyAttack) {
-				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
-					colB->IsHit(Attribute::EnemyAttack, hitPos);
-					colA->IsHit(Attribute::PlyerBody, hitPos);
+			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyAttack) {
+				if (isPlayerHit_ == false) {
+					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+						colB->IsHit(Attribute::EnemyAttack, hitPos);
+						colA->IsHit(Attribute::PlyerBody, hitPos);
+						isPlayerHit_ = true;
+					}
 				}
 			}
 			//自機と敵弾
@@ -63,11 +75,13 @@ void CollisionManager::CheakCol() {
 				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 					colA->IsHit(Attribute::EnemyBullet, hitPos);
 					colB->IsHit(Attribute::PlyerBody, hitPos);
+					isPlayerHit_ = true;
 				}
 			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyBullet) {
 				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 					colB->IsHit(Attribute::EnemyBullet, hitPos);
 					colA->IsHit(Attribute::PlyerBody, hitPos);
+					isPlayerHit_ = true;
 				}
 			}
 			//自機攻撃と敵機
@@ -76,6 +90,7 @@ void CollisionManager::CheakCol() {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colA->IsHit(Attribute::EnemyBody, hitPos);
 						colB->IsHit(Attribute::PlayerAttack , hitPos);
+						isEnemyHit_ = true;
 					}
 				}
 			}else if (colB->GetAttribute() == Attribute::PlayerAttack && colA->GetAttribute() == Attribute::EnemyBody) {
@@ -83,6 +98,7 @@ void CollisionManager::CheakCol() {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colB->IsHit(Attribute::EnemyBody, hitPos);
 						colA->IsHit(Attribute::PlayerAttack, hitPos);
+						isEnemyHit_ = true;
 					}
 				}
 			}
@@ -90,17 +106,31 @@ void CollisionManager::CheakCol() {
 	}
 }
 
-void CollisionManager::DrawCollider() {
-	//std::forward_list<BaseCollider*>::iterator it;
-	//it = colliders.begin();
-	//int i = 0;
 
-	//for (; it != colliders.end(); ++it) {
-	//	BaseCollider* col = *it;
-	//	objects_[i]->wtf.position = col->GetCenter();
-	//	objects_[i]->wtf.scale = { col->GetRad(),col->GetRad() ,col->GetRad() };
-	//	objects_[i]->Update();
-	//	objects_[i]->Draw();
-	//	i++;
-	//}
+void CollisionManager::GetPlayerAttack(bool playerIsAttack) {
+	if (playerIsAttack == false) {
+		isEnemyHit_ = false;
+	}
+}
+
+void CollisionManager::GetEnemyAttack(bool enemyIsAttack) {
+	if (enemyIsAttack == false) {
+		isPlayerHit_ = false;
+	}
+}
+
+
+void CollisionManager::DrawCollider() {
+	std::forward_list<BaseCollider*>::iterator it;
+	it = colliders_.begin();
+	int i = 0;
+
+	for (; it != colliders_.end(); ++it) {
+		BaseCollider* col = *it;
+		objects_[i]->wtf.position = col->GetCenter();
+		objects_[i]->wtf.scale = { col->GetRad(),col->GetRad() ,col->GetRad() };
+		objects_[i]->Update();
+		objects_[i]->Draw();
+		i++;
+	}
 }

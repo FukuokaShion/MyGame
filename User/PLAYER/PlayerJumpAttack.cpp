@@ -6,6 +6,7 @@
 #include"Player.h"
 #include"PlayerJumpAttack.h"
 #include"PlayerStandby.h"
+#include"CollisionManager.h"
 
 PlayerJumpAttack::PlayerJumpAttack() {
 	player_->PlayWav("jumpAttack.wav");
@@ -17,6 +18,10 @@ PlayerJumpAttack::PlayerJumpAttack() {
 
 	timer_ = 0;
 	afterTime_ = 20;
+
+	sowrd_ = new BaseCollider;
+	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	CollisionManager::GetInstance()->AddCollider(sowrd_);
 }
 
 //攻撃
@@ -29,12 +34,14 @@ void PlayerJumpAttack::Update() {
 		player_->Move(velocity);
 
 		//攻撃判定
+		sowrd_->SetCenter(player_->GetSwordPos());
 		isAttack_ = true;
 		power_ = power_;
 
 		if (player_->GetWtf().position.y <= 0) {
 			player_->SetPosY(0);
 			action_ = Action::After;
+			CollisionManager::GetInstance()->RemoveCollider(sowrd_);
 		}
 		break;
 	case Action::After:

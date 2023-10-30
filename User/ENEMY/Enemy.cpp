@@ -45,7 +45,30 @@ void Enemy::Initialize() {
 
 	body_ = new BaseCollider;
 	body_->SetAttribute(Attribute::EnemyBody);
+	body_->SetRad(1.3f);
 	CollisionManager::GetInstance()->AddCollider(body_);
+	body2_ = new BaseCollider;
+	body2_->SetAttribute(Attribute::EnemyBody);
+	body2_->SetRad(1.0f);
+	CollisionManager::GetInstance()->AddCollider(body2_);
+	body3_ = new BaseCollider;
+	body3_->SetAttribute(Attribute::EnemyBody);
+	body3_->SetRad(1.0f);
+	CollisionManager::GetInstance()->AddCollider(body3_);
+	body4_ = new BaseCollider;
+	body4_->SetAttribute(Attribute::EnemyBody);
+	body4_->SetRad(1.0f);
+	CollisionManager::GetInstance()->AddCollider(body4_);
+	body5_ = new BaseCollider;
+	body5_->SetAttribute(Attribute::EnemyBody);
+	body5_->SetRad(1.0f);
+	CollisionManager::GetInstance()->AddCollider(body5_);
+
+	num[0] = 1;
+	num[1] = 4;
+	num[2] = 7;
+	num[3] = 12;
+	num[4] = 17;
 }
 
 Enemy::~Enemy() {
@@ -78,11 +101,43 @@ void Enemy::Update(Vector3 playerPos) {
 	}
 	//パーティクル
 	particle_->Update();
+
+
+	body_->SetCenter(fbxObject3d_->GetBonWorldPos(num[0]));
+	body2_->SetCenter(fbxObject3d_->GetBonWorldPos(num[1]));
+	body3_->SetCenter(fbxObject3d_->GetBonWorldPos(num[2]));
+	body4_->SetCenter(fbxObject3d_->GetBonWorldPos(num[3]));
+	body5_->SetCenter(fbxObject3d_->GetBonWorldPos(num[4]));
 }
 
 void Enemy::OnCollision() {
 	if (body_->GetIsHit().playerAttack) {
 		hp_->Damage(10);
+		body_->RemoveHit(Attribute::PlayerAttack);
+		particle_->OnColision(body_->GetHitPos().playerAttack);
+	}
+	
+	if (body2_->GetIsHit().playerAttack) {
+		hp_->Damage(10);
+		body2_->RemoveHit(Attribute::PlayerAttack);
+		particle_->OnColision(body_->GetHitPos().playerAttack);
+	}
+
+	if (body3_->GetIsHit().playerAttack) {
+		hp_->Damage(10);
+		body3_->RemoveHit(Attribute::PlayerAttack);
+		particle_->OnColision(body_->GetHitPos().playerAttack);
+	}
+
+	if (body4_->GetIsHit().playerAttack) {
+		hp_->Damage(10);
+		body4_->RemoveHit(Attribute::PlayerAttack);
+		particle_->OnColision(body_->GetHitPos().playerAttack);
+	}
+
+	if (body5_->GetIsHit().playerAttack) {
+		hp_->Damage(10);
+		body5_->RemoveHit(Attribute::PlayerAttack);
 		particle_->OnColision(body_->GetHitPos().playerAttack);
 	}
 }
