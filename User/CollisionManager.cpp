@@ -17,10 +17,6 @@ void CollisionManager::Initialize() {
 }
 
 CollisionManager::~CollisionManager() {
-	for (int i = 0; i < maxCol_; i++) {
-		delete objects_[i];
-	}
-	delete model_;
 }
 
 CollisionManager* CollisionManager::GetInstance(){
@@ -34,6 +30,14 @@ void CollisionManager::AddCollider(BaseCollider* collide){
 
 void CollisionManager::RemoveCollider(BaseCollider* collide){
 	colliders_.remove(collide);
+};
+
+void CollisionManager::Finalize() {
+	for (int i = 0; i < maxCol_; i++) {
+		delete objects_[i];
+	}
+	delete model_;
+	colliders_.clear();
 };
 
 void CollisionManager::CheakCol() {

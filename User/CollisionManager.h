@@ -34,6 +34,11 @@ public:
 	void RemoveCollider(BaseCollider* collide);
 
 	/**
+	 * @brief デストラクタ
+	*/
+	void Finalize();
+
+	/**
 	 * @brief 衝突チェック
 	*/
 	void CheakCol();

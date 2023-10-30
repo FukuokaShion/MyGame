@@ -122,6 +122,8 @@ GameScene::~GameScene() {
 	delete enemyHpGauge_;
 	delete clear_;
 	delete gameOver_;
+
+	collisionManager_->Finalize();
 }
 
 //更新
