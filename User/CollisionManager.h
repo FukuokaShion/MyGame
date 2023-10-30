@@ -37,10 +37,23 @@ public:
 	 * @brief 衝突チェック
 	*/
 	void CheakCol();
+
+	/**
+	 * @brief プレイヤー攻撃判定
+	*/
+	void GetPlayerAttack(bool playerIsAttack);
+
+	/**
+	 * @brief 敵攻撃判定
+	*/
+	void GetEnemyAttack(bool enemyIsAttack);
+	
+
 private:
 	bool isPlayerHit_;
 	bool isEnemyHit_;
 	std::forward_list<BaseCollider*> colliders_;
+
 
 public://可視化関数
 	/**

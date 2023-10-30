@@ -132,6 +132,8 @@ void GameScene::Update() {
 		field_->Update();
 		player_->Update();
 		enemy_->Update(player_->GetWtf().position);
+		collisionManager_->GetPlayerAttack(player_->GetIsAttack());
+		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
 		collisionManager_->CheakCol();
 
 		damageGauge_->SetSize({ static_cast<float>(4 * player_->GetDamage()),26 });
