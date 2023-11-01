@@ -57,10 +57,10 @@ void GameScene::Initialize() {
 	pSourceVoice_->SetVolume(0.8f);
 
 	//スプライト
-	UIBase_ = new Sprite();
-	UIBase_->Initialize(spriteCommon_);
-	UIBase_->SetPozition({ 0,0 });
-	UIBase_->SetSize({ 1280,720 });
+	UiBase_ = new Sprite();
+	UiBase_->Initialize(spriteCommon_);
+	UiBase_->SetPozition({ 0,0 });
+	UiBase_->SetSize({ 1280,720 });
 
 	hpGauge_ = new Sprite();
 	hpGauge_->Initialize(spriteCommon_);
@@ -89,19 +89,44 @@ void GameScene::Initialize() {
 	gameOver_->Initialize(spriteCommon_);
 	gameOver_->SetPozition({ 0,0 });
 	gameOver_->SetSize({ 1280,720 });
+	gameOver_->SetColor({ 1,1,1,0 });
 
-	spriteCommon_->LoadTexture(0, "UIBase.png");
-	UIBase_->SetTextureIndex(0);
+	black_ = std::make_unique<Sprite>();
+	black_->Initialize(spriteCommon_);
+	black_->SetPozition({ 0,0 });
+	black_->SetSize({ 1280,720 });
+	black_->SetColor({ 0,0,0,0 });
+
+	loading_ = std::make_unique<Sprite>();
+	loading_->Initialize(spriteCommon_);
+	loading_->SetPozition({ 0,0 });
+	loading_->SetSize({ 1280,720 });
+
+	spriteCommon_->LoadTexture(0, "UI.png");
+	UiBase_->SetTextureIndex(0);
+
 	spriteCommon_->LoadTexture(1, "white.png");
 	hpGauge_->SetTextureIndex(1);
+	
 	spriteCommon_->LoadTexture(2, "white.png");
 	damageGauge_->SetTextureIndex(2);
+
 	spriteCommon_->LoadTexture(3, "white.png");
 	enemyHpGauge_->SetTextureIndex(3);
+	
 	spriteCommon_->LoadTexture(4, "clear.png");
 	clear_->SetTextureIndex(4);
+
 	spriteCommon_->LoadTexture(5, "gameOver.png");
 	gameOver_->SetTextureIndex(5);
+
+	spriteCommon_->LoadTexture(6, "white.png");
+	black_->SetTextureIndex(6);
+	
+	spriteCommon_->LoadTexture(7, "loading.png");
+	loading_->SetTextureIndex(7);
+
+	isGameOver = false;
 
 	collisionManager_ = CollisionManager::GetInstance();
 	collisionManager_->Initialize();
@@ -117,7 +142,7 @@ GameScene::~GameScene() {
 	delete player_;
 	delete enemy_;
 
-	delete UIBase_;
+	delete UiBase_;
 	delete hpGauge_;
 	delete damageGauge_;
 	delete enemyHpGauge_;
@@ -133,13 +158,13 @@ void GameScene::Update() {
 	Vector3 distance;
 	Vector3 pushVelocity;
 
+	//オブジェクト更新
+	field_->Update();
+	enemy_->Update(player_->GetWtf().position);
+
 	switch (state_) {
 	case State::game:
-		//オブジェクト更新
-		field_->Update();
 		player_->Update();
-		enemy_->Update(player_->GetWtf().position);
-
 		//押し出し処理
 		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, 0.4f, 1.3f)) {
 			distance = player_->GetWtf().position - enemy_->GetWtf().position;
@@ -171,9 +196,20 @@ void GameScene::Update() {
 		}
 		break;
 	case State::death:
-		if (input_->PButtonTrigger(B)) {
-			sceneManager_->TransitionTo(new TitleScene);
+		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + 0.01f });
+
+		if (gameOver_->GetColor().w >= 0.6f) {
+			if (input_->PButtonTrigger(B)) {
+				isGameOver = true;
+			}
 		}
+		if (isGameOver) {
+			black_->SetColor({ 0,0,0,black_->GetColor().w + 0.04f });
+			if (black_->GetColor().w >= 1.0f) {
+				sceneManager_->TransitionTo(new TitleScene);
+			}
+		}
+		
 		break;
 	}
 }
@@ -193,7 +229,7 @@ void GameScene::FbxDraw() {
 void GameScene::SpriteDraw() {
 	switch (state_) {
 	case State::game:
-		UIBase_->Draw();
+		UiBase_->Draw();
 		damageGauge_->Draw();
 		hpGauge_->Draw();
 		enemyHpGauge_->Draw();
@@ -204,8 +240,12 @@ void GameScene::SpriteDraw() {
 		clear_->Draw();
 		break;
 	case State::death:
-
-		gameOver_->Draw();
+		black_->Draw();
+		if (black_->GetColor().w >= 0.9f) {
+			loading_->Draw();
+		}else{
+			gameOver_->Draw();
+		}
 		break;
 	}
 }
