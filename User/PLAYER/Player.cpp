@@ -47,6 +47,8 @@ void Player::Initialize() {
 
 	TransitionTo(new PlayerStandby);
 
+	ui_.Initialize();
+
 	body_ = new BaseCollider;
 	body_->SetAttribute(Attribute::PlyerBody);
 	CollisionManager::GetInstance()->AddCollider(body_);
@@ -98,6 +100,7 @@ void Player::Update() {
 		gaugeTimer_--;
 	}
 
+	ui_.Update(GetDamage(),GetHp());
 
 	body_->SetCenter(fbxObject3d_->wtf.position);
 	body2_->SetCenter(fbxObject3d_->GetBonWorldPos(num[0]));
@@ -148,6 +151,10 @@ void Player::Draw() {
 	if (hp_->IsLive()) {
 		fbxObject3d_->Draw();
 	}
+}
+
+void Player::DrawSprite() {
+	ui_.Draw();
 }
 
 //状態を変更する
