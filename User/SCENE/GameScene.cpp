@@ -56,30 +56,6 @@ void GameScene::Initialize() {
 	pSourceVoice_ = audio_->PlayWave("game.wav");
 	pSourceVoice_->SetVolume(0.8f);
 
-	//スプライト
-	UiBase_ = new Sprite();
-	UiBase_->Initialize(spriteCommon_);
-	UiBase_->SetPozition({ 0,0 });
-	UiBase_->SetSize({ 1280,720 });
-
-	hpGauge_ = new Sprite();
-	hpGauge_->Initialize(spriteCommon_);
-	hpGauge_->SetPozition({ 128,38 });
-	hpGauge_->SetSize({ 400,26 });
-	hpGauge_->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
-
-	damageGauge_ = new Sprite();
-	damageGauge_->Initialize(spriteCommon_);
-	damageGauge_->SetPozition({ 128,38 });
-	damageGauge_->SetSize({ 400,26 });
-	damageGauge_->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
-
-	enemyHpGauge_ = new Sprite();
-	enemyHpGauge_->Initialize(spriteCommon_);
-	enemyHpGauge_->SetPozition({ 309,576 });
-	enemyHpGauge_->SetSize({ 671,11 });
-	enemyHpGauge_->SetColor({ 172.0f / 255.0f,50.0f / 255.0f,50.0f / 255.0f,1.0f });
-
 	clear_ = new Sprite();
 	clear_->Initialize(spriteCommon_);
 	clear_->SetPozition({ 0,0 });
@@ -102,17 +78,6 @@ void GameScene::Initialize() {
 	loading_->SetPozition({ 0,0 });
 	loading_->SetSize({ 1280,720 });
 
-	spriteCommon_->LoadTexture(0, "UI.png");
-	UiBase_->SetTextureIndex(0);
-
-	spriteCommon_->LoadTexture(1, "white.png");
-	hpGauge_->SetTextureIndex(1);
-	
-	spriteCommon_->LoadTexture(2, "white.png");
-	damageGauge_->SetTextureIndex(2);
-
-	spriteCommon_->LoadTexture(3, "white.png");
-	enemyHpGauge_->SetTextureIndex(3);
 	
 	spriteCommon_->LoadTexture(4, "clear.png");
 	clear_->SetTextureIndex(4);
@@ -142,10 +107,6 @@ GameScene::~GameScene() {
 	delete player_;
 	delete enemy_;
 
-	delete UiBase_;
-	delete hpGauge_;
-	delete damageGauge_;
-	delete enemyHpGauge_;
 	delete clear_;
 	delete gameOver_;
 
@@ -179,9 +140,6 @@ void GameScene::Update() {
 		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
 		collisionManager_->CheakCol();
 
-		damageGauge_->SetSize({ static_cast<float>(4 * player_->GetDamage()),26 });
-		hpGauge_->SetSize({ static_cast<float>(4 * player_->GetHp()),26 });
-		enemyHpGauge_->SetSize({ static_cast<float>(6.71f * enemy_->GetHp()),11 });
 
 		if (enemy_->IsLive() == false) {
 			state_ = State::clear;
@@ -229,10 +187,8 @@ void GameScene::FbxDraw() {
 void GameScene::SpriteDraw() {
 	switch (state_) {
 	case State::game:
-		UiBase_->Draw();
-		damageGauge_->Draw();
-		hpGauge_->Draw();
-		enemyHpGauge_->Draw();
+		player_->DrawSprite();
+		enemy_->SpriteDraw();
 
 		break;
 	case State::clear:

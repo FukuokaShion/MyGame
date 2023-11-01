@@ -298,6 +298,12 @@
     <ClCompile Include="User\LOADER\LoaderManager.cpp">
       <Filter>user\ソース\LOADER</Filter>
     </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerUI.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyUI.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -479,6 +485,12 @@
     </ClInclude>
     <ClInclude Include="User\LOADER\LoaderManager.h">
       <Filter>user\ヘッダー\LOADER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerUI.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyUI.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

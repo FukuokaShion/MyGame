@@ -12,6 +12,7 @@
 
 #include"PlayerHp.h"
 #include"PlayerState.h"
+#include"PlayerUI.h"
 
 #include "Object3d.h"
 
@@ -45,6 +46,11 @@ public:
 	 * @brief 描画
 	*/
 	void Draw();
+
+	/**
+	 * @brief スプライト描画
+	*/
+	void DrawSprite();
 
 	/**
 	 * @brief 状態移行
@@ -157,6 +163,9 @@ private:
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
 	FBXObject3d* fbxObject3d_ = nullptr;
+
+	//UI
+	PlayerUI ui_;
 
 	//行動
 	PlayerState* state_ = nullptr;

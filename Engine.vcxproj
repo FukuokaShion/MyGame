@@ -128,6 +128,7 @@
     <ClCompile Include="Engine\MATH\Vector3.cpp" />
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
     <ClCompile Include="User\FIELD\TitleField.cpp" />
     <ClCompile Include="User\CollisionManager.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="User\PLAYER\PlayerStandby.cpp" />
     <ClCompile Include="User\PLAYER\PlayerState.cpp" />
     <ClCompile Include="User\PLAYER\PlayerJumpAttack.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerUI.cpp" />
     <ClCompile Include="User\SCENE\GameScene.cpp" />
     <ClCompile Include="User\SCENE\SceneManager.cpp" />
     <ClCompile Include="User\SCENE\SceneState.cpp" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Engine\MATH\Vector2.h" />
     <ClInclude Include="Engine\MATH\Vector3.h" />
     <ClInclude Include="Engine\MATH\Vector4.h" />
+    <ClInclude Include="User\ENEMY\EnemyUI.h" />
     <ClInclude Include="User\FIELD\Ship.h" />
     <ClInclude Include="User\FIELD\TitleField.h" />
     <ClInclude Include="User\CollisionManager.h" />
@@ -217,6 +220,7 @@
     <ClInclude Include="User\PLAYER\PlayerMove.h" />
     <ClInclude Include="User\PLAYER\PlayerStandby.h" />
     <ClInclude Include="User\PLAYER\PlayerState.h" />
+    <ClInclude Include="User\PLAYER\PlayerUI.h" />
     <ClInclude Include="User\SCENE\GameScene.h" />
     <ClInclude Include="User\SCENE\SceneManager.h" />
     <ClInclude Include="User\SCENE\SceneState.h" />

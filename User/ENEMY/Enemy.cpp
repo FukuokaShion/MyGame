@@ -43,6 +43,8 @@ void Enemy::Initialize() {
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
 
+	ui_.Initialize();
+
 	body_ = new BaseCollider;
 	body_->SetAttribute(Attribute::EnemyBody);
 	body_->SetRad(1.3f);
@@ -102,6 +104,8 @@ void Enemy::Update(Vector3 playerPos) {
 	//パーティクル
 	particle_->Update();
 
+	//ui
+	ui_.Update(GetHp());
 
 	body_->SetCenter(fbxObject3d_->GetBonWorldPos(num[0]));
 	body2_->SetCenter(fbxObject3d_->GetBonWorldPos(num[1]));
@@ -153,6 +157,10 @@ void Enemy::ObjDraw() {
 		bullet->Draw();
 	}
 	particle_->Draw();
+}
+
+void Enemy::SpriteDraw() {
+	ui_.Draw();
 }
 
 void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
