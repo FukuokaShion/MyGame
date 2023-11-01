@@ -75,14 +75,18 @@ private:
 	Enemy* enemy_ = nullptr;
 
 	//画像
-	Sprite* UIBase_;
-
+	Sprite* UiBase_;
 	Sprite* hpGauge_;
 	Sprite* damageGauge_;
 	Sprite* enemyHpGauge_;
-
 	Sprite* clear_;
 	Sprite* gameOver_;
 
 	CollisionManager* collisionManager_ = nullptr;
+
+	//ゲームオーバー
+	bool isGameOver;
+	std::unique_ptr<Sprite> black_;
+	std::unique_ptr<Sprite> loading_;
+
 };
