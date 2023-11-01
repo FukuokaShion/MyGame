@@ -27,7 +27,7 @@ void PlayerUI::Initialize() {
 	damageGauge_->SetSize({ 400,26 });
 	damageGauge_->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
 
-	spriteCommon_->LoadTexture(0, "UI.png");
+	spriteCommon_->LoadTexture(0, "playerUI.png");
 	base_->SetTextureIndex(0);
 
 	spriteCommon_->LoadTexture(1, "white.png");

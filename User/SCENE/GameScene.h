@@ -75,7 +75,6 @@ private:
 	Enemy* enemy_ = nullptr;
 
 	//画像
-	Sprite* enemyHpGauge_;
 	Sprite* clear_;
 	Sprite* gameOver_;
 

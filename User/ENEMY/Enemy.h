@@ -13,6 +13,7 @@
 #include"EnemyHp.h"
 #include"EnemyState.h"
 #include"EnemyBullet.h"
+#include"EnemyUI.h"
 
 class Enemy {
 public:
@@ -38,6 +39,11 @@ public:
 	 * @brief Obj描画
 	*/
 	void ObjDraw();
+
+	/**
+	 * @brief スプライト描画
+	*/
+	void SpriteDraw();
 
 	/**
 	 * @brief 状態移行
@@ -115,6 +121,9 @@ private:
 	BaseCollider* body4_;
 	BaseCollider* body5_;
 	uint32_t num[5];
+
+	//UI
+	EnemyUI ui_;
 
 	//モデル
 	FBXModel* fbxModel_ = nullptr;
