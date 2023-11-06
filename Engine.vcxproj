@@ -66,6 +66,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -88,6 +89,7 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +149,7 @@
     <ClCompile Include="User\GameMain.cpp" />
     <ClCompile Include="User\LOADER\LoaderManager.cpp" />
     <ClCompile Include="User\LOADER\ObjModelLoader.cpp" />
+    <ClCompile Include="User\LOADER\SpriteLoader.cpp" />
     <ClCompile Include="User\PLAYER\Player.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAvoid.cpp" />
@@ -211,6 +214,7 @@
     <ClInclude Include="User\GameMain.h" />
     <ClInclude Include="User\LOADER\LoaderManager.h" />
     <ClInclude Include="User\LOADER\ObjModelLoader.h" />
+    <ClInclude Include="User\LOADER\SpriteLoader.h" />
     <ClInclude Include="User\PLAYER\Player.h" />
     <ClInclude Include="User\PLAYER\PlayerAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerAvoid.h" />

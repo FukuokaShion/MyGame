@@ -6,7 +6,6 @@
 #pragma once
 #include"Framework .h"
 #include"SceneManager.h"
-#include "LoaderManager.h"
 
 class GameMain : public Framework {
 public:
@@ -41,6 +40,4 @@ private:
 
 private:
 	SceneManager* sceneManager_ = nullptr;
-
-	LoaderManager* loader_ = nullptr;
 };

@@ -26,31 +26,24 @@ void TitleScene::Initialize() {
 
 	Object3d::SetCamera(camera_);
 
-	//スプライト共通部分の初期化
-	spriteCommon_ = new SpriteCommon;
-	spriteCommon_->Initialize();
-
 	basePic_ = new Sprite();
-	basePic_->Initialize(spriteCommon_);
+	basePic_->Initialize(SpriteCommon::GetInstance());
 	basePic_->SetPozition({ 0,0 });
 	basePic_->SetSize({ 1280,720 });
 
 	black_ = std::make_unique<Sprite>();
-	black_->Initialize(spriteCommon_);
+	black_->Initialize(SpriteCommon::GetInstance());
 	black_->SetPozition({ 0,0 });
 	black_->SetSize({ 1280,720 });
 	black_->SetColor({ 0,0,0,0 });
 
 	loading_ = std::make_unique<Sprite>();
-	loading_->Initialize(spriteCommon_);
+	loading_->Initialize(SpriteCommon::GetInstance());
 	loading_->SetPozition({ 0,0 });
 	loading_->SetSize({ 1280,720 });
 	
-	spriteCommon_->LoadTexture(0, "title.png");
-	basePic_->SetTextureIndex(0);
-	spriteCommon_->LoadTexture(1, "white.png");
-	black_->SetTextureIndex(1);
-	spriteCommon_->LoadTexture(2, "loading.png");
+	basePic_->SetTextureIndex(1);
+	black_->SetTextureIndex(0);
 	loading_->SetTextureIndex(2);
 	
 	field_ = std::make_unique<TitleField>();
@@ -62,7 +55,6 @@ void TitleScene::Initialize() {
 
 TitleScene::~TitleScene() {
 	delete basePic_;
-	delete spriteCommon_;
 	audio_->StopWave(pSourceVoice_);
 }
 
@@ -71,6 +63,10 @@ void TitleScene::Update() {
 	camera_->Update();
 	field_->Update();
 	ship_->Update();
+
+	basePic_->Update();
+	black_->Update();
+	loading_->Update();
 	StateTransition();
 }
 

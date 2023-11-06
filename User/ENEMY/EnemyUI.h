@@ -25,8 +25,6 @@ public:
 	void Draw();
 
 private:
-	SpriteCommon* spriteCommon_ = nullptr;
-
 	Sprite* enemyHpGauge_;
 	Sprite* base_;
 

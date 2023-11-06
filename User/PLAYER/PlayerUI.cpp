@@ -6,39 +6,29 @@
 #include"PlayerUI.h"
 
 void PlayerUI::Initialize() {
-	//スプライト共通部分の初期化
-	spriteCommon_ = new SpriteCommon;
-	spriteCommon_->Initialize();
-
 	//スプライト
 	base_ = new Sprite();
-	base_->Initialize(spriteCommon_);
+	base_->Initialize(SpriteCommon::GetInstance());
 	base_->SetSize({ 1280,720 });
 
 	hpGauge_ = new Sprite();
-	hpGauge_->Initialize(spriteCommon_);
+	hpGauge_->Initialize(SpriteCommon::GetInstance());
 	hpGauge_->SetPozition({ 128,38 });
 	hpGauge_->SetSize({ 400,26 });
 	hpGauge_->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
 
 	damageGauge_ = new Sprite();
-	damageGauge_->Initialize(spriteCommon_);
+	damageGauge_->Initialize(SpriteCommon::GetInstance());
 	damageGauge_->SetPozition({ 128,38 });
 	damageGauge_->SetSize({ 400,26 });
 	damageGauge_->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
 
-	spriteCommon_->LoadTexture(0, "playerUI.png");
-	base_->SetTextureIndex(0);
-
-	spriteCommon_->LoadTexture(1, "white.png");
-	hpGauge_->SetTextureIndex(1);
-
-	spriteCommon_->LoadTexture(2, "white.png");
-	damageGauge_->SetTextureIndex(2);
+	base_->SetTextureIndex(4);
+	hpGauge_->SetTextureIndex(0);
+	damageGauge_->SetTextureIndex(0);
 }
 
 PlayerUI::~PlayerUI() {
-	delete spriteCommon_;
 	
 	delete hpGauge_;
 	delete damageGauge_;

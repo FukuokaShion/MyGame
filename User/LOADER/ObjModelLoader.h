@@ -1,5 +1,5 @@
 /**
- * @file ObjModelLoader.cpp
+ * @file ObjModelLoader.h
  * @brief objモデル読み込み
  */
 

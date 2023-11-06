@@ -33,8 +33,6 @@ void Framework::Initialize() {
 	
 	//スプライコモン
 	SpriteCommon::SetDxCommon(dxCommon_);
-	spriteCommon_ = SpriteCommon::GetInstance();
-	spriteCommon_->Initialize();
 
 	//FPS固定
 	fps_->SetFrameRate(60);

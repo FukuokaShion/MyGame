@@ -15,10 +15,6 @@ GameScene::GameScene() {
 }
 
 void GameScene::Initialize() {
-	//スプライト共通部分の初期化
-	spriteCommon_ = new SpriteCommon;
-	spriteCommon_->Initialize();
-
 	// カメラ生成
 	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
 
@@ -57,39 +53,32 @@ void GameScene::Initialize() {
 	pSourceVoice_->SetVolume(0.8f);
 
 	clear_ = new Sprite();
-	clear_->Initialize(spriteCommon_);
+	clear_->Initialize(SpriteCommon::GetInstance());
 	clear_->SetPozition({ 0,0 });
 	clear_->SetSize({ 1280,720 });
 
 	gameOver_ = new Sprite();
-	gameOver_->Initialize(spriteCommon_);
+	gameOver_->Initialize(SpriteCommon::GetInstance());
 	gameOver_->SetPozition({ 0,0 });
 	gameOver_->SetSize({ 1280,720 });
 	gameOver_->SetColor({ 1,1,1,0 });
 
 	black_ = std::make_unique<Sprite>();
-	black_->Initialize(spriteCommon_);
+	black_->Initialize(SpriteCommon::GetInstance());
 	black_->SetPozition({ 0,0 });
 	black_->SetSize({ 1280,720 });
 	black_->SetColor({ 0,0,0,0 });
 
 	loading_ = std::make_unique<Sprite>();
-	loading_->Initialize(spriteCommon_);
+	loading_->Initialize(SpriteCommon::GetInstance());
 	loading_->SetPozition({ 0,0 });
 	loading_->SetSize({ 1280,720 });
 
 	
-	spriteCommon_->LoadTexture(4, "clear.png");
-	clear_->SetTextureIndex(4);
-
-	spriteCommon_->LoadTexture(5, "gameOver.png");
-	gameOver_->SetTextureIndex(5);
-
-	spriteCommon_->LoadTexture(6, "white.png");
-	black_->SetTextureIndex(6);
-	
-	spriteCommon_->LoadTexture(7, "loading.png");
-	loading_->SetTextureIndex(7);
+	clear_->SetTextureIndex(5);
+	gameOver_->SetTextureIndex(6);
+	black_->SetTextureIndex(0);
+	loading_->SetTextureIndex(2);
 
 	isGameOver = false;
 
@@ -98,7 +87,6 @@ void GameScene::Initialize() {
 }
 
 GameScene::~GameScene() {
-	delete spriteCommon_;
 	delete camera_;
 	delete audio_;
 
