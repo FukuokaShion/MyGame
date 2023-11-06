@@ -57,8 +57,6 @@ private:
 private:
 	State state_;
 
-	//画像
-	SpriteCommon* spriteCommon_ = nullptr;
 	//サウンド
 	Audio* audio_ = nullptr;
 	IXAudio2SourceVoice* pSourceVoice_ = nullptr;

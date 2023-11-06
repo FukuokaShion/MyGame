@@ -304,6 +304,9 @@
     <ClCompile Include="User\ENEMY\EnemyUI.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\LOADER\SpriteLoader.cpp">
+      <Filter>user\ソース\LOADER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -491,6 +494,9 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyUI.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\LOADER\SpriteLoader.h">
+      <Filter>user\ヘッダー\LOADER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

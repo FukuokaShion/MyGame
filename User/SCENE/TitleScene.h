@@ -56,7 +56,6 @@ private:
 	Camera* camera_ = nullptr;
 
 	//画像
-	SpriteCommon* spriteCommon_ = nullptr;
 	Sprite* basePic_;
 	std::unique_ptr<Sprite> black_;
 	std::unique_ptr<Sprite> loading_;
@@ -66,5 +65,4 @@ private:
 
 	//船
 	std::unique_ptr<Ship> ship_;
-
 };

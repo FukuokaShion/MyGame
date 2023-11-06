@@ -3,21 +3,8 @@
  * @brief 様々なものの読み込み管理
  */
 #include"LoaderManager.h"
-#include"ObjModelLoader.h"
-
-void LoaderManager::Initilize() {
-	objModels_ = ObjModelLoader::GetInstance();
-}
-
-void LoaderManager::Finalize() {
-	objModels_->Finalize();
-}
+#include"SpriteLoader.h"
 
 void LoaderManager::Load() {
-	ObjLoad();
-
-}
-
-void LoaderManager::ObjLoad() {
-
+	SpriteLoader::Load();
 }
