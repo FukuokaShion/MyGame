@@ -8,6 +8,7 @@
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
 #include"EnemyParticle.h"
+#include"EnemyDeathParticle.h"
 #include"Audio.h"
 
 #include"EnemyHp.h"
@@ -138,5 +139,10 @@ private:
 
 	//パーティクル
 	EnemyParticle* particle_ = nullptr;
+
+	//死亡時
+	const int DeathLimit = 210;
+	int DeathTimer;
+	EnemyDeathParticle* deatgparticle_ = nullptr;
 
 };

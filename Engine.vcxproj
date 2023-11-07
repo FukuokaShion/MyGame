@@ -130,6 +130,7 @@
     <ClCompile Include="Engine\MATH\Vector3.cpp" />
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp" />
     <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
     <ClCompile Include="User\FIELD\TitleField.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Engine\MATH\Vector2.h" />
     <ClInclude Include="Engine\MATH\Vector3.h" />
     <ClInclude Include="Engine\MATH\Vector4.h" />
+    <ClInclude Include="User\ENEMY\EnemyDeathParticle.h" />
     <ClInclude Include="User\ENEMY\EnemyUI.h" />
     <ClInclude Include="User\FIELD\Ship.h" />
     <ClInclude Include="User\FIELD\TitleField.h" />

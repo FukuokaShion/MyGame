@@ -24,6 +24,7 @@ Enemy::Enemy() {
 	state_->SetEnemy(this);
 
 	particle_ = new EnemyParticle;
+	deatgparticle_ = new EnemyDeathParticle;
 }
 
 void Enemy::Initialize() {
@@ -42,6 +43,8 @@ void Enemy::Initialize() {
 	isAttack_ = false;
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
+
+	DeathTimer = 0;
 
 	ui_.Initialize();
 
@@ -79,6 +82,7 @@ Enemy::~Enemy() {
 	delete hp_;
 	delete state_;
 	delete particle_;
+	delete deatgparticle_;
 	bullets_.clear();
 	EnemyBullet::StaticFinalize();
 }
@@ -100,9 +104,15 @@ void Enemy::Update(Vector3 playerPos) {
 		for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 			bullet->Update();
 		}
+	}else {
+		DeathTimer++;
+		if (DeathTimer < DeathLimit) {
+			deatgparticle_->Accrual(fbxObject3d_->wtf.position);
+		}
 	}
 	//パーティクル
 	particle_->Update();
+	deatgparticle_->Update();
 
 	//ui
 	ui_.Update(GetHp());
@@ -124,25 +134,25 @@ void Enemy::OnCollision() {
 	if (body2_->GetIsHit().playerAttack) {
 		hp_->Damage(10);
 		body2_->RemoveHit(Attribute::PlayerAttack);
-		particle_->OnColision(body_->GetHitPos().playerAttack);
+		particle_->OnColision(body2_->GetHitPos().playerAttack);
 	}
 
 	if (body3_->GetIsHit().playerAttack) {
 		hp_->Damage(10);
 		body3_->RemoveHit(Attribute::PlayerAttack);
-		particle_->OnColision(body_->GetHitPos().playerAttack);
+		particle_->OnColision(body3_->GetHitPos().playerAttack);
 	}
 
 	if (body4_->GetIsHit().playerAttack) {
 		hp_->Damage(10);
 		body4_->RemoveHit(Attribute::PlayerAttack);
-		particle_->OnColision(body_->GetHitPos().playerAttack);
+		particle_->OnColision(body4_->GetHitPos().playerAttack);
 	}
 
 	if (body5_->GetIsHit().playerAttack) {
 		hp_->Damage(10);
 		body5_->RemoveHit(Attribute::PlayerAttack);
-		particle_->OnColision(body_->GetHitPos().playerAttack);
+		particle_->OnColision(body5_->GetHitPos().playerAttack);
 	}
 }
 
@@ -157,6 +167,7 @@ void Enemy::ObjDraw() {
 		bullet->Draw();
 	}
 	particle_->Draw();
+	deatgparticle_->Draw();
 }
 
 void Enemy::SpriteDraw() {

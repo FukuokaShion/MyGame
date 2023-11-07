@@ -56,6 +56,8 @@ void GameScene::Initialize() {
 	clear_->Initialize(SpriteCommon::GetInstance());
 	clear_->SetPozition({ 0,0 });
 	clear_->SetSize({ 1280,720 });
+	clear_->SetColor({1,1,1,0});
+	clear_->Update();
 
 	gameOver_ = new Sprite();
 	gameOver_->Initialize(SpriteCommon::GetInstance());
@@ -137,11 +139,20 @@ void GameScene::Update() {
 		}
 		break;
 	case State::clear:
-		if (input_->PButtonTrigger(B)) {
-			sceneManager_->TransitionTo(new TitleScene);
+		//クリア画面
+		player_->Update();
+		clear_->Update();
+		if (clear_->GetColor().w < 1.0f) {
+			clear_->SetColor({ 1,1,1,clear_->GetColor().w + 0.005f});
+
+		}else if (clear_->GetColor().w >= 1.0f) {
+			if (input_->PButtonTrigger(B)) {
+				sceneManager_->TransitionTo(new TitleScene);
+			}
 		}
 		break;
 	case State::death:
+		//ゲームオーバー画面
 		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + 0.01f });
 
 		if (gameOver_->GetColor().w >= 0.6f) {
@@ -180,7 +191,6 @@ void GameScene::SpriteDraw() {
 
 		break;
 	case State::clear:
-
 		clear_->Draw();
 		break;
 	case State::death:
