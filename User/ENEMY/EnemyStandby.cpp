@@ -13,7 +13,7 @@
 #include"EnemyRoundShooting.h"
 
 Standby::Standby() {
-	enemy_->AnimationChange(1);
+	enemy_->AnimationChange(Enemy::Animation::STAND);
 }
 
 //待機
@@ -32,8 +32,7 @@ void Standby::Update(Vector3 playerPos) {
 		else {
 			if (rand() % 100 + 1 < 50) {
 				enemy_->TransitionTo(new Attack);
-			}
-			else {
+			}else {
 				enemy_->TransitionTo(new Leave);
 			}
 		}

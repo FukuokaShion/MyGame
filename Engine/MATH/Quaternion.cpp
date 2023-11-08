@@ -147,7 +147,6 @@ Quaternion& Quaternion::operator+=(const Quaternion& v)
 	this->z += v.z;
 	this->w += v.w;
 	return *this;
-	// TODO: return ステートメントをここに挿入します
 }
 
 Quaternion& Quaternion::operator-=(const Quaternion& v)
@@ -157,7 +156,6 @@ Quaternion& Quaternion::operator-=(const Quaternion& v)
 	this->z -= v.z;
 	this->w -= v.w;
 	return *this;
-	// TODO: return ステートメントをここに挿入します
 }
 
 Quaternion& Quaternion::operator*=(float s)
@@ -167,7 +165,6 @@ Quaternion& Quaternion::operator*=(float s)
 	this->z *= s;
 	this->w *= s;
 	return *this;
-	// TODO: return ステートメントをここに挿入します
 }
 
 Quaternion& Quaternion::operator/=(float s)
@@ -177,7 +174,6 @@ Quaternion& Quaternion::operator/=(float s)
 	this->z /= s;
 	this->w /= s;
 	return *this;
-	// TODO: return ステートメントをここに挿入します
 }
 
 Vector3 MatVector(const Vector3& vector, const Matrix4& matrix)

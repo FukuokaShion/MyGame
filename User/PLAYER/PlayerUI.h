@@ -17,7 +17,7 @@ public:
 	/**
 	 * @brief 更新
 	*/
-	void Update(int a,int b);
+	void Update(int damage,int hp);
 
 	/**
 	 * @brief スプライト描画
@@ -29,4 +29,10 @@ private:
 	Sprite* damageGauge_;
 	Sprite* base_;
 
+	const Vector4 hpColor_ = { 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f };
+	const Vector4 damageColor_ = { 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f };
+
+	const Vector2 hpGaugePos_ = { 128,38 };
+	const Vector2 hpGaugeSize_ = { 400,26 };
+	const int hpGaugeOneSize_ = 4;
 };

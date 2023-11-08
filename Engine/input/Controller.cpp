@@ -44,6 +44,8 @@ void Controller::Update()
 	//コントローラー取得
 	DWORD dwResult = XInputGetState(0, &xinputState_);
 
+	const float maxValue = 65535.0f;
+
 	if (dwResult == ERROR_SUCCESS)
 	{
 		//コントローラーが接続されている
@@ -60,8 +62,8 @@ void Controller::Update()
 			}
 			else
 			{
-				vibration.wLeftMotorSpeed = static_cast<WORD>(65535.0f * shakePower_); // use any value between 0-65535 here
-				vibration.wRightMotorSpeed = static_cast<WORD>(65535.0f * shakePower_); // use any value between 0-65535 here
+				vibration.wLeftMotorSpeed = static_cast<WORD>(maxValue * shakePower_); // use any value between 0-65535 here
+				vibration.wRightMotorSpeed = static_cast<WORD>(maxValue * shakePower_); // use any value between 0-65535 here
 			}
 
 			XInputSetState(dwResult, &vibration);

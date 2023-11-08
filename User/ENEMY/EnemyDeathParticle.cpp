@@ -16,26 +16,40 @@ EnemyDeathParticle::~EnemyDeathParticle() {
 }
 
 void EnemyDeathParticle::Accrual(Vector3 centerPos) {
-	for (int i = 0; i < 10; i++) {
+	const int accrualNum = 10;
+	for (int i = 0; i < accrualNum; i++) {
+		const float half = 0.5f;
+
 		//生成位置
 		const float rnd_pos = 3.0f;
+		const float enemySizeY = 4.0f;
 		Vector3 pos = centerPos;
 
-		pos.x += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
-		pos.y += (float)rand() / RAND_MAX * 4.0f;
-		pos.z += (float)rand() / RAND_MAX * rnd_pos - rnd_pos / 2.0f;
+		pos.x += (float)rand() / RAND_MAX * rnd_pos - rnd_pos * half;
+		pos.y += (float)rand() / RAND_MAX * enemySizeY;
+		pos.z += (float)rand() / RAND_MAX * rnd_pos - rnd_pos * half;
 
 		//速度
 		Vector3 vel = { 0,0,0 };
-		vel.x = (float)rand() / RAND_MAX * 0.02f - 0.02f / 2.0f;
-		vel.y = (float)rand() / RAND_MAX * 0.02f - 0.02f / 2.0f;
-		vel.z = (float)rand() / RAND_MAX * 0.05f;
+		const float speed = 0.02f;
+		const float zSpeed = 0.05f;
+	
+		vel.x = (float)rand() / RAND_MAX * speed - speed * half;
+		vel.y = (float)rand() / RAND_MAX * speed - speed * half;
+		vel.z = (float)rand() / RAND_MAX * zSpeed;
 
 		//加速度
 		Vector3 acc = { 0,0,0 };
 
+		//パーティクルサイズ
+		const float start = 0.1f;
+		const float end = 0.0f;
+
+		//生存時間
+		const int lifeTime = 90;
+
 		//追加
-		particle_->Add(90, pos, vel, acc, 0.1f, 0.0f);
+		particle_->Add(lifeTime, pos, vel, acc, start, end);
 	}
 }
 

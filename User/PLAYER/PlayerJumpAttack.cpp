@@ -10,7 +10,8 @@
 
 PlayerJumpAttack::PlayerJumpAttack() {
 	player_->PlayWav("jumpAttack.wav");
-	player_->AnimationChange(1, 1.5f);
+	animationSpeed = 1.5f;
+	player_->AnimationChange(Player::Animation::JUMPATTACK, animationSpeed);
 	attackFallSpeed_ = -0.2f;
 
 	action_ = Action::Attack;
@@ -27,6 +28,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 //攻撃
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;
+	const float groundY = 0;
 
 	switch (action_) {
 	case Action::Attack:
@@ -38,8 +40,8 @@ void PlayerJumpAttack::Update() {
 		isAttack_ = true;
 		power_ = power_;
 
-		if (player_->GetWtf().position.y <= 0) {
-			player_->SetPosY(0);
+		if (player_->GetWtf().position.y <= groundY) {
+			player_->SetPosY(groundY);
 			action_ = Action::After;
 			CollisionManager::GetInstance()->RemoveCollider(sowrd_);
 		}

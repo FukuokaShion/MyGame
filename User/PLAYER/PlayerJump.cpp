@@ -11,7 +11,7 @@
 #include"Easing.h"
 
 PlayerJump::PlayerJump() {
-	player_->AnimationChange(0);
+	player_->AnimationChange(Player::Animation::JUMP);
 	limit_ = 20;
 	timer_ = 0;
 	up_ = true;
@@ -31,7 +31,8 @@ void PlayerJump::Update() {
 
 	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
 
-	float newPos = Easing::OutQuad(0, 2, t);
+	
+	float newPos = Easing::OutQuad(groundPos, maxPos, t);
 
 	player_->SetPosY(newPos);
 
@@ -39,7 +40,7 @@ void PlayerJump::Update() {
 }
 
 void PlayerJump::StateTransition() {
-	if (player_->GetWtf().position.y <= 0) {
+	if (player_->GetWtf().position.y <= groundPos) {
 		player_->PlayWav("landing.wav");
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);

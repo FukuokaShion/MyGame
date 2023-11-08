@@ -10,7 +10,7 @@
 #include"PlayerMove.h"
 
 PlayerMove::PlayerMove() {
-	player_->AnimationChange(2);
+	player_->AnimationChange(Player::Animation::DASH);
 	limit_ = 600;
 	timer_ = 0;
 	player_->PlayWav("run.wav");

@@ -18,6 +18,12 @@
 
 class Enemy {
 public:
+	enum Animation {
+		SHAKE,//0
+		STAND,//1
+	};
+
+public:
 	Enemy();
 	~Enemy();
 	
@@ -93,6 +99,12 @@ public:
 	bool GetIsAttack() { return isAttack_; };
 	int GetPower() { return power_; };
 
+
+	/**
+	 * @brief 押し出し時半径取得
+	*/
+	float GetRad() { return rad_; };
+
 	/**
 	 * @brief セッター
 	 */
@@ -116,12 +128,10 @@ private:
 	EnemyHp* hp_ = nullptr;
 
 	//当たり判定
-	BaseCollider* body_;
-	BaseCollider* body2_;
-	BaseCollider* body3_;
-	BaseCollider* body4_;
-	BaseCollider* body5_;
-	uint32_t num[5];
+	const float rad_ = 1.3f;
+	const int MaxColliderNum = 5;
+	BaseCollider* colliders_[5];
+	uint32_t boneNum_[5];
 
 	//UI
 	EnemyUI ui_;

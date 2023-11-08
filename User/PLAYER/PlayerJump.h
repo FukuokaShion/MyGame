@@ -25,4 +25,7 @@ private:
 	int limit_;
 
 	bool up_;
+
+	const float maxPos = 2.0f;
+	const float groundPos = 0;
 };

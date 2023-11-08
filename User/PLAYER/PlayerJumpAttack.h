@@ -38,4 +38,6 @@ private:
 
 	//当たり判定
 	BaseCollider* sowrd_;
+
+	float animationSpeed;
 };

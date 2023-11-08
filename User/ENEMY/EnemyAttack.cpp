@@ -9,7 +9,7 @@
 
 Attack::Attack() {
 	action_ = Action::Antic;
-	enemy_->AnimationChange(0);
+	enemy_->AnimationChange(Enemy::Animation::SHAKE);
 }
 
 //攻撃

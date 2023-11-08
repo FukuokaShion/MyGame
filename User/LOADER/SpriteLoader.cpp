@@ -8,11 +8,11 @@
 void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->Initialize();
 
-	SpriteCommon::GetInstance()->LoadTexture(0, "white.png");
-	SpriteCommon::GetInstance()->LoadTexture(1, "title.png");
-	SpriteCommon::GetInstance()->LoadTexture(2, "loading.png");
-	SpriteCommon::GetInstance()->LoadTexture(3, "enemyUI.png");
-	SpriteCommon::GetInstance()->LoadTexture(4, "playerUI.png");
-	SpriteCommon::GetInstance()->LoadTexture(5, "clear.png");
-	SpriteCommon::GetInstance()->LoadTexture(6, "gameOver.png");
+	SpriteCommon::GetInstance()->LoadTexture(WHITE, "white.png");
+	SpriteCommon::GetInstance()->LoadTexture(TITLE, "title.png");
+	SpriteCommon::GetInstance()->LoadTexture(LOADING, "loading.png");
+	SpriteCommon::GetInstance()->LoadTexture(ENEMYUI, "enemyUI.png");
+	SpriteCommon::GetInstance()->LoadTexture(PLAYERUI, "playerUI.png");
+	SpriteCommon::GetInstance()->LoadTexture(CLEAR, "clear.png");
+	SpriteCommon::GetInstance()->LoadTexture(GAMEOVER, "gameOver.png");
 }

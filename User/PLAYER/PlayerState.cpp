@@ -4,10 +4,11 @@
  */
 
 #include"PlayerState.h"
+#include"Player.h"
 
 Player* PlayerState::player_ = nullptr;
 
 PlayerState::PlayerState() {
 	isAttack_ = false;
-	power_ = 0;
+	power_ = Player::Power::ZERO;
 }

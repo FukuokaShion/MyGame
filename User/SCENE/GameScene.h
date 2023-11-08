@@ -72,15 +72,20 @@ private:
 	//エネミー
 	Enemy* enemy_ = nullptr;
 
-	//画像
-	Sprite* clear_;
-	Sprite* gameOver_;
-
 	CollisionManager* collisionManager_ = nullptr;
 
+	//クリア
+	Sprite* clear_;
+	const float clearAddAlpha_ = 0.005f;
+
 	//ゲームオーバー
+	Sprite* gameOver_;
 	bool isGameOver;
 	std::unique_ptr<Sprite> black_;
 	std::unique_ptr<Sprite> loading_;
+	const float gameOverAddAlpha_ = 0.01f;
+	const float gameOverAlphaEnd_ = 0.6f;
+	const float blackAddAlpha_ = 0.04f;
+
 
 };
