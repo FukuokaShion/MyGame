@@ -8,6 +8,16 @@
 
 class SpriteLoader {
 public:
+	enum {
+		WHITE,
+		TITLE,
+		LOADING,
+		ENEMYUI,
+		PLAYERUI,
+		CLEAR,
+		GAMEOVER
+	};
+
 	/**
 	 * @brief 読み込み
 	*/

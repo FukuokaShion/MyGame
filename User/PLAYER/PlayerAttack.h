@@ -53,4 +53,7 @@ private:
 
 	//当たり判定
 	BaseCollider* sowrd_;
+
+	//アニメーションスピード
+	const float animationSpeed_ = 1.5f;
 };

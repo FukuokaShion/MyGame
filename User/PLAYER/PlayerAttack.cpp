@@ -12,7 +12,7 @@ PlayerAttack::PlayerAttack() {
 	player_->PlayWav("attack.wav");
 	action_ = Action::Antic;
 	timer_ = 0;
-	player_->AnimationChange(4, 1.5f);
+	player_->AnimationChange(Player::Animation::ATTACK, animationSpeed_);
 	
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);

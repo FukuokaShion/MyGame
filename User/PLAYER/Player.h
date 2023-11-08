@@ -18,6 +18,24 @@
 
 class Player {
 public:
+	//アニメーション番号
+	enum Animation {
+		JUMP,//0
+		JUMPATTACK,//1
+		DASH,//2
+		AVOID,//3
+		ATTACK,//4
+		STAND,//5
+	};
+
+	//攻撃力
+	enum Power {
+		ZERO = 0,
+		ATTACK_POWER = 10,
+		JUMPATTACK_POWER = 20,
+	};
+
+public:
 	//設定
 	Player();
 	~Player();
@@ -61,7 +79,7 @@ public:
 	 * @brief サウンド再生
 	*/
 	void PlayWav(const std::string& filename);
-	
+
 	/**
 	 * @brief サウンド停止
 	*/
@@ -81,22 +99,22 @@ public:
 	 * @brief y座標セット
 	*/
 	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
-	
+
 	/**
 	 * @brief y軸回転セット
 	*/
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
-	
+
 	/**
 	 * @brief 座標取得
 	*/
 	Transform GetWtf() { return fbxObject3d_->wtf; };
-	
+
 	/**
 	 * @brief 座標ポインタ取得
 	*/
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
-	
+
 	/**
 	 * @brief カメラ座標取得
 	*/
@@ -105,7 +123,7 @@ public:
 	/**
 	 * @brief 剣座標取得
 	*/
-	Vector3 GetSwordPos() { return fbxObject3d_->GetBonWorldPos(num[4]); };
+	Vector3 GetSwordPos() { return fbxObject3d_->GetBonWorldPos(boneNum[4]); };
 
 	/**
 	 * @brief 被ダメ処理
@@ -116,7 +134,7 @@ public:
 	 * @brief 生存フラグ
 	*/
 	bool IsLive() { return hp_->IsLive(); };
-	
+
 	/**
 	 * @brief 現在の体力取得
 	*/
@@ -133,6 +151,10 @@ public:
 	 * @brief 攻撃力取得
 	*/
 	int GetPower() { return state_->GetPower(); };
+	/**
+	 * @brief 押し出し時半径取得
+	*/
+	float GetRad() { return rad_; };
 
 
 private:
@@ -148,12 +170,10 @@ private:
 	PlayerHp* hp_ = nullptr;
 
 	//当たり判定
-	BaseCollider* body_;
-	BaseCollider* body2_;
-	BaseCollider* body3_;
-	BaseCollider* body4_;
-	BaseCollider* body5_;
-	uint32_t num[5];
+	const float rad_ = 0.4f;
+	const int maxColliderNum = 5;
+	BaseCollider* colliders_[5];
+	uint32_t boneNum[5];
 
 	//HPゲージ管理
 	int gaugeTimer_;

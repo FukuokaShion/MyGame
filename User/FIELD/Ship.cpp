@@ -32,7 +32,9 @@ Ship::~Ship() {
 }
 
 void Ship::Update() {
-	if (abs(ship_->wtf.rotation.x) > 4 * 3.141592f / 180) {
+
+	const float shipRotaMax = 4 * 3.141592f / 180;
+	if (abs(ship_->wtf.rotation.x) > shipRotaMax) {
 		shipAngle_ *= -1;
 	}
 	ship_->wtf.rotation.x += shipAngle_;
@@ -41,6 +43,10 @@ void Ship::Update() {
 	player_->Update();
 
 	if (input_->PButtonTrigger(B)) {
+		isMoveShip_ = true;
+	}
+
+	if (input_->TriggerKey(DIK_SPACE)) {
 		isMoveShip_ = true;
 	}
 

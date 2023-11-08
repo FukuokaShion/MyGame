@@ -49,35 +49,20 @@ void Player::Initialize() {
 
 	ui_.Initialize();
 
-	body_ = new BaseCollider;
-	body_->SetAttribute(Attribute::PlyerBody);
-	CollisionManager::GetInstance()->AddCollider(body_);
+	boneNum[0] = 0;
+	boneNum[1] = 0;
+	boneNum[2] = 5;
+	boneNum[3] = 9;
+	boneNum[4] = 33;
 
-	body2_ = new BaseCollider;
-	body2_->SetAttribute(Attribute::PlyerBody);
-	body2_->SetRad(0.4f);
-	CollisionManager::GetInstance()->AddCollider(body2_);
-
-	body3_ = new BaseCollider;
-	body3_->SetAttribute(Attribute::PlyerBody);
-	body3_->SetRad(0.4f);
-	CollisionManager::GetInstance()->AddCollider(body3_);
-
-	body4_ = new BaseCollider;
-	body4_->SetAttribute(Attribute::PlyerBody);
-	body4_->SetRad(0.4f);
-	CollisionManager::GetInstance()->AddCollider(body4_);
-
-	body5_ = new BaseCollider;
-	body5_->SetAttribute(Attribute::PlyerBody);
-	body5_->SetRad(0.4f);
-	CollisionManager::GetInstance()->AddCollider(body5_);
-
-	num[0] = 0;
-	num[1] = 5;
-	num[2] = 9;
-	num[3] = 33;
-	num[4] = 34;
+	for (int i = 0; i < maxColliderNum; i++) {
+		colliders_[i] = new BaseCollider;
+		colliders_[i]->SetAttribute(Attribute::PlyerBody);
+		if (i >= 1) {
+			colliders_[i]->SetRad(rad_);
+		}
+		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
+	}
 }
 
 void Player::Update() {
@@ -95,19 +80,16 @@ void Player::Update() {
 		if (damageGauge_ > hp_->GetHp()) {
 			damageGauge_--;
 		}
-	}
-	else {
+	}else {
 		gaugeTimer_--;
 	}
 
 	ui_.Update(GetDamage(),GetHp());
 
-	body_->SetCenter(fbxObject3d_->wtf.position);
-	body2_->SetCenter(fbxObject3d_->GetBonWorldPos(num[0]));
-	body3_->SetCenter(fbxObject3d_->GetBonWorldPos(num[1]));
-	body4_->SetCenter(fbxObject3d_->GetBonWorldPos(num[2]));
-	body5_->SetCenter(fbxObject3d_->GetBonWorldPos(num[3]));
-
+	colliders_[0]->SetCenter(fbxObject3d_->wtf.position);
+	for (int i = 1; i < maxColliderNum; i++) {
+		colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum[i]));
+	}
 }
 
 void Player::CamRota() {
@@ -136,11 +118,12 @@ void Player::CamRota() {
 }
 
 void Player::OnCollision() {
-	if (body_->GetIsHit().enemyAttack || body_->GetIsHit().enemyBullet) {
+	if (colliders_[0]->GetIsHit().enemyAttack || colliders_[0]->GetIsHit().enemyBullet) {
 		PlayWav("col.wav");
-		body_->RemoveHit(Attribute::EnemyAttack);
-		body_->RemoveHit(Attribute::EnemyBullet);
-		hp_->Damage(10);
+		colliders_[0]->RemoveHit(Attribute::EnemyAttack);
+		colliders_[0]->RemoveHit(Attribute::EnemyBullet);
+		const int damage = 10;
+		hp_->Damage(damage);
 		gaugeTimer_ = gaugeLimit_;
 		damageGauge_ = hp_->GetOldHp();
 	}

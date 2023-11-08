@@ -4,28 +4,29 @@
  */
 
 #include"PlayerUI.h"
+#include"SpriteLoader.h"
 
 void PlayerUI::Initialize() {
 	//スプライト
 	base_ = new Sprite();
 	base_->Initialize(SpriteCommon::GetInstance());
-	base_->SetSize({ 1280,720 });
+	base_->SetSize({ WinApp::window_width,WinApp::window_height });
 
 	hpGauge_ = new Sprite();
 	hpGauge_->Initialize(SpriteCommon::GetInstance());
-	hpGauge_->SetPozition({ 128,38 });
-	hpGauge_->SetSize({ 400,26 });
-	hpGauge_->SetColor({ 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f });
+	hpGauge_->SetPozition(hpGaugePos_);
+	hpGauge_->SetSize({ hpGaugeSize_ });
+	hpGauge_->SetColor(hpColor_);
 
 	damageGauge_ = new Sprite();
 	damageGauge_->Initialize(SpriteCommon::GetInstance());
-	damageGauge_->SetPozition({ 128,38 });
-	damageGauge_->SetSize({ 400,26 });
-	damageGauge_->SetColor({ 255.0f / 255.0f,255.0f / 255.0f,3.0f / 255.0f,1.0f });
+	damageGauge_->SetPozition(hpGaugePos_);
+	damageGauge_->SetSize({ hpGaugeSize_ });
+	damageGauge_->SetColor(damageColor_);
 
-	base_->SetTextureIndex(4);
-	hpGauge_->SetTextureIndex(0);
-	damageGauge_->SetTextureIndex(0);
+	base_->SetTextureIndex(SpriteLoader::PLAYERUI);
+	hpGauge_->SetTextureIndex(SpriteLoader::WHITE);
+	damageGauge_->SetTextureIndex(SpriteLoader::WHITE);
 }
 
 PlayerUI::~PlayerUI() {
@@ -35,10 +36,10 @@ PlayerUI::~PlayerUI() {
 	delete base_;
 }
 
-void PlayerUI::Update(int a, int b) {
+void PlayerUI::Update(int damage, int hp) {
 	base_->Update();
-	damageGauge_->SetSize({ static_cast<float>(4 * a),26 });
-	hpGauge_->SetSize({ static_cast<float>(4 * b),26 });
+	damageGauge_->SetSize({ static_cast<float>(hpGaugeOneSize_ * damage), hpGaugeSize_.y });
+	hpGauge_->SetSize({ static_cast<float>(hpGaugeOneSize_ * hp), hpGaugeSize_.y });
 
 }
 

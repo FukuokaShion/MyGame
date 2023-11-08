@@ -54,27 +54,23 @@ void GameScene::Initialize() {
 
 	clear_ = new Sprite();
 	clear_->Initialize(SpriteCommon::GetInstance());
-	clear_->SetPozition({ 0,0 });
-	clear_->SetSize({ 1280,720 });
+	clear_->SetSize({ WinApp::window_width,WinApp::window_height });
 	clear_->SetColor({1,1,1,0});
 	clear_->Update();
 
 	gameOver_ = new Sprite();
 	gameOver_->Initialize(SpriteCommon::GetInstance());
-	gameOver_->SetPozition({ 0,0 });
-	gameOver_->SetSize({ 1280,720 });
+	gameOver_->SetSize({ WinApp::window_width,WinApp::window_height });
 	gameOver_->SetColor({ 1,1,1,0 });
 
 	black_ = std::make_unique<Sprite>();
 	black_->Initialize(SpriteCommon::GetInstance());
-	black_->SetPozition({ 0,0 });
-	black_->SetSize({ 1280,720 });
+	black_->SetSize({ WinApp::window_width,WinApp::window_height });
 	black_->SetColor({ 0,0,0,0 });
 
 	loading_ = std::make_unique<Sprite>();
 	loading_->Initialize(SpriteCommon::GetInstance());
-	loading_->SetPozition({ 0,0 });
-	loading_->SetSize({ 1280,720 });
+	loading_->SetSize({ WinApp::window_width,WinApp::window_height });
 
 	
 	clear_->SetTextureIndex(5);
@@ -117,11 +113,11 @@ void GameScene::Update() {
 	case State::game:
 		player_->Update();
 		//押し出し処理
-		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, 0.4f, 1.3f)) {
+		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), enemy_->GetRad())) {
 			distance = player_->GetWtf().position - enemy_->GetWtf().position;
 			pushVelocity = distance;
 			pushVelocity.nomalize();
-			pushVelocity *= 0.4f + 1.3f;
+			pushVelocity *= player_->GetRad() + enemy_->GetRad();
 			pushVelocity -= distance;
 			player_->Move(pushVelocity);
 		}
@@ -143,7 +139,7 @@ void GameScene::Update() {
 		player_->Update();
 		clear_->Update();
 		if (clear_->GetColor().w < 1.0f) {
-			clear_->SetColor({ 1,1,1,clear_->GetColor().w + 0.005f});
+			clear_->SetColor({ 1,1,1,clear_->GetColor().w + clearAddAlpha_});
 
 		}else if (clear_->GetColor().w >= 1.0f) {
 			if (input_->PButtonTrigger(B)) {
@@ -153,15 +149,15 @@ void GameScene::Update() {
 		break;
 	case State::death:
 		//ゲームオーバー画面
-		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + 0.01f });
+		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + gameOverAddAlpha_ });
 
-		if (gameOver_->GetColor().w >= 0.6f) {
+		if (gameOver_->GetColor().w >= gameOverAlphaEnd_) {
 			if (input_->PButtonTrigger(B)) {
 				isGameOver = true;
 			}
 		}
 		if (isGameOver) {
-			black_->SetColor({ 0,0,0,black_->GetColor().w + 0.04f });
+			black_->SetColor({ 0,0,0,black_->GetColor().w + blackAddAlpha_ });
 			if (black_->GetColor().w >= 1.0f) {
 				sceneManager_->TransitionTo(new TitleScene);
 			}
@@ -195,7 +191,7 @@ void GameScene::SpriteDraw() {
 		break;
 	case State::death:
 		black_->Draw();
-		if (black_->GetColor().w >= 0.9f) {
+		if (black_->GetColor().w >= 1.0f) {
 			loading_->Draw();
 		}else{
 			gameOver_->Draw();

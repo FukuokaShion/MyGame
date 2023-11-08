@@ -40,22 +40,22 @@ void EnemyRoundShooting::Update(Vector3 playerPos) {
 		if (shotNum_ == 0) {
 			creatPos = { 1.9f,2.6f,2 };
 			creatPos = creatPos * enemyMat;
-			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * 4);
+			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * (shotMax_ - shotNum_));
 		}
 		else if (shotNum_ == 1) {
 			creatPos = { 1.17f,0.4f,2 };
 			creatPos = creatPos * enemyMat;
-			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * 3);
+			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * (shotMax_ - shotNum_));
 		}
 		else if (shotNum_ == 2) {
 			creatPos = { -1.17f,0.4f,2 };
 			creatPos = creatPos * enemyMat;
-			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * 2);
+			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * (shotMax_ - shotNum_));
 		}
 		else if (shotNum_ == 3) {
 			creatPos = { -1.9f,2.6f,2 };
 			creatPos = creatPos * enemyMat;
-			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * 1);
+			enemy_->CreatBullet(creatPos, velocity_, bulletLiveLimit_, interval_ * (shotMax_ - shotNum_));
 		}
 		else if (shotNum_ == 4) {
 			creatPos = { 0,4,2 };

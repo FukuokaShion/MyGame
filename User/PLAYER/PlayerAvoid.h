@@ -27,4 +27,6 @@ private:
 
 	Vector3 speed_;
 	Vector3 velocity_;
+
+	const float animationSpeed_ = 1.7f;
 };

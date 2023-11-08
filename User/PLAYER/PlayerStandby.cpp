@@ -13,7 +13,7 @@
 #include"PlayerJump.h"
 
 PlayerStandby::PlayerStandby() {
-	player_->AnimationChange(5);
+	player_->AnimationChange(Player::Animation::STAND);
 }
 
 //待機

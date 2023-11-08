@@ -6,6 +6,7 @@
 #include"TitleScene.h"
 #include"SceneManager.h"
 #include"GameScene.h"
+#include"SpriteLoader.h"
 
 TitleScene::TitleScene() {
 }
@@ -18,33 +19,31 @@ void TitleScene::Initialize() {
 
 	pSourceVoice_ = audio_->PlayWave("ocean.wav");
 
-	float PI = 3.1415f;
+	const float PI = 3.1415f;
 	// カメラ生成
 	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
-	camera_->wtf.position = { 0,6,-7 };
-	camera_->wtf.rotation = { 10 * PI / 180.0f , -25 * PI / 180.0f,0 };
+	camera_->wtf.position = { 0.0f,6.0f,-7.0f };
+	const Vector3 camDegree = { 10.0f,-25.0f,0.0f };
+	camera_->wtf.rotation = { camDegree.x * PI / 180.0f , camDegree.y * PI / 180.0f,camDegree.z * PI / 180.0f };
 
 	Object3d::SetCamera(camera_);
 
 	basePic_ = new Sprite();
 	basePic_->Initialize(SpriteCommon::GetInstance());
-	basePic_->SetPozition({ 0,0 });
-	basePic_->SetSize({ 1280,720 });
+	basePic_->SetSize({ WinApp::window_width,WinApp::window_height });
 
 	black_ = std::make_unique<Sprite>();
 	black_->Initialize(SpriteCommon::GetInstance());
-	black_->SetPozition({ 0,0 });
-	black_->SetSize({ 1280,720 });
+	black_->SetSize({ WinApp::window_width,WinApp::window_height });
 	black_->SetColor({ 0,0,0,0 });
 
 	loading_ = std::make_unique<Sprite>();
 	loading_->Initialize(SpriteCommon::GetInstance());
-	loading_->SetPozition({ 0,0 });
-	loading_->SetSize({ 1280,720 });
+	loading_->SetSize({ WinApp::window_width,WinApp::window_height });
 	
-	basePic_->SetTextureIndex(1);
-	black_->SetTextureIndex(0);
-	loading_->SetTextureIndex(2);
+	basePic_->SetTextureIndex(SpriteLoader::TITLE);
+	black_->SetTextureIndex(SpriteLoader::WHITE);
+	loading_->SetTextureIndex(SpriteLoader::LOADING);
 	
 	field_ = std::make_unique<TitleField>();
 	field_->Initialize();
@@ -89,11 +88,11 @@ void TitleScene::SpriteDraw() {
 }
 
 void TitleScene::StateTransition() {
-	if (ship_->GetPos().z > 60.0f) {
-		black_->SetColor({ 0,0,0,black_->GetColor().w + 0.04f });
+	if (ship_->GetPos().z > blackDrawPos) {
+		black_->SetColor({ 0,0,0,black_->GetColor().w + blackAddAlpha });
 	}
 
-	if (ship_->GetPos().z > 120) {
+	if (ship_->GetPos().z > shipMoveEnd) {
 		sceneManager_->TransitionTo(new GameScene);
 	}
 }
