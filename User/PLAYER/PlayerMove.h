@@ -33,4 +33,7 @@ private:
 private:
 	int timer_;
 	int limit_;
+
+	int pushATime_;
+	const int switchTime_ = 5;
 };

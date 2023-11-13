@@ -5,7 +5,6 @@
  */
 
 #include"Player.h"
-
 #include"PlayerStandby.h"
 #include"PlayerAttack.h"
 #include"PlayerAvoid.h"
@@ -22,10 +21,6 @@ void PlayerStandby::Update() {
 }
 
 void PlayerStandby::StateTransition() {
-	//回避
-	//if (input->PButtonTrigger(A)) {
-	//	player_->TransitionTo(new PlayerAvoid);
-	//}
 	//ジャンプ
 	if (Input::GetInstance()->PButtonTrigger(A)) {
 		player_->TransitionTo(new PlayerJump);

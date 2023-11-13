@@ -8,12 +8,14 @@
 #include"PlayerAttack.h"
 #include"PlayerAvoid.h"
 #include"PlayerMove.h"
+#include"PlayerJump.h"
 
 PlayerMove::PlayerMove() {
 	player_->AnimationChange(Player::Animation::DASH);
 	limit_ = 600;
 	timer_ = 0;
 	player_->PlayWav("run.wav");
+	pushATime_ = 0;
 }
 
 void PlayerMove::Update() {
@@ -71,9 +73,19 @@ void PlayerMove::StateTransition() {
 		player_->StopWav();
 	}
 
-	//回避
-	if (Input::GetInstance()->PButtonTrigger(A)) {
-		player_->TransitionTo(new PlayerAvoid);
+	//
+	if (Input::GetInstance()->ButtonInput(A)) {
+		pushATime_++;
+		if (pushATime_ > switchTime_) {
+			//回避
+			player_->TransitionTo(new PlayerAvoid);
+		}
+	}else {
+		if (1 <= pushATime_ && pushATime_ <= switchTime_) {
+			//ジャンプ
+			player_->TransitionTo(new PlayerJump);
+		}
+		pushATime_ = 0;
 	}
 
 	//攻撃
