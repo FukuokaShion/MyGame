@@ -80,11 +80,12 @@ void Player::Update() {
 		if (damageGauge_ > hp_->GetHp()) {
 			damageGauge_ -= 10;
 		}
-	}else {
+	}
+	else {
 		gaugeTimer_--;
 	}
 
-	ui_.Update(GetDamage(),GetHp());
+	ui_.Update(GetDamage(), GetHp());
 
 	colliders_[0]->SetCenter(fbxObject3d_->wtf.position);
 	for (int i = 1; i < maxColliderNum; i++) {
@@ -119,23 +120,24 @@ void Player::CamRota() {
 
 void Player::OnCollision() {
 	for (int i = 0; i < maxColliderNum; i++) {
-		if (colliders_[i]->GetIsHit().enemyAttack == true) {
-			PlayWav("col.wav");
-			colliders_[i]->RemoveHit(Attribute::EnemyAttack);
-			colliders_[i]->RemoveHit(Attribute::EnemyBullet);
-			const int damage = 350;
-			hp_->Damage(damage);
-			gaugeTimer_ = gaugeLimit_;
-			damageGauge_ = hp_->GetOldHp();
-		}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
-			PlayWav("col.wav");
-			colliders_[i]->RemoveHit(Attribute::EnemyAttack);
-			colliders_[i]->RemoveHit(Attribute::EnemyBullet);
-			const int damage = 60;
-			hp_->Damage(damage);
-			gaugeTimer_ = gaugeLimit_;
-			damageGauge_ = hp_->GetOldHp();
+		if (isInvincible_ == false) {
+			if (colliders_[i]->GetIsHit().enemyAttack == true) {
+				PlayWav("col.wav");
+				const int damage = 350;
+				hp_->Damage(damage);
+				gaugeTimer_ = gaugeLimit_;
+				damageGauge_ = hp_->GetOldHp();
+			}
+			else if (colliders_[i]->GetIsHit().enemyBullet == true) {
+				PlayWav("col.wav");
+				const int damage = 60;
+				hp_->Damage(damage);
+				gaugeTimer_ = gaugeLimit_;
+				damageGauge_ = hp_->GetOldHp();
+			}
 		}
+		colliders_[i]->RemoveHit(Attribute::EnemyAttack);
+		colliders_[i]->RemoveHit(Attribute::EnemyBullet);
 	}
 }
 

@@ -101,6 +101,11 @@ public:
 	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
 
 	/**
+	 * @brief y座標セット
+	*/
+	void SetInvincible(bool isInvincible) { isInvincible_ = isInvincible; };
+
+	/**
 	 * @brief y軸回転セット
 	*/
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
@@ -174,6 +179,8 @@ private:
 	const int maxColliderNum = 5;
 	BaseCollider* colliders_[5];
 	uint32_t boneNum[5];
+
+	bool isInvincible_;
 
 	//HPゲージ管理
 	int gaugeTimer_;

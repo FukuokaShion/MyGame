@@ -7,7 +7,6 @@
 #include"PlayerStandby.h"
 #include"PlayerJump.h"
 #include"PlayerJumpAttack.h"
-
 #include"Easing.h"
 
 PlayerJump::PlayerJump() {
