@@ -148,6 +148,8 @@ void GameScene::Update() {
 		}
 		break;
 	case State::death:
+		loading_->Update();
+		gameOver_->Update();
 		//ゲームオーバー画面
 		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + gameOverAddAlpha_ });
 
