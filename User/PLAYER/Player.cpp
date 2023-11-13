@@ -78,7 +78,7 @@ void Player::Update() {
 
 	if (gaugeTimer_ < 0) {
 		if (damageGauge_ > hp_->GetHp()) {
-			damageGauge_--;
+			damageGauge_ -= 10;
 		}
 	}else {
 		gaugeTimer_--;
@@ -118,16 +118,25 @@ void Player::CamRota() {
 }
 
 void Player::OnCollision() {
-	if (colliders_[0]->GetIsHit().enemyAttack || colliders_[0]->GetIsHit().enemyBullet) {
-		PlayWav("col.wav");
-		colliders_[0]->RemoveHit(Attribute::EnemyAttack);
-		colliders_[0]->RemoveHit(Attribute::EnemyBullet);
-		const int damage = 10;
-		hp_->Damage(damage);
-		gaugeTimer_ = gaugeLimit_;
-		damageGauge_ = hp_->GetOldHp();
+	for (int i = 0; i < maxColliderNum; i++) {
+		if (colliders_[i]->GetIsHit().enemyAttack == true) {
+			PlayWav("col.wav");
+			colliders_[i]->RemoveHit(Attribute::EnemyAttack);
+			colliders_[i]->RemoveHit(Attribute::EnemyBullet);
+			const int damage = 350;
+			hp_->Damage(damage);
+			gaugeTimer_ = gaugeLimit_;
+			damageGauge_ = hp_->GetOldHp();
+		}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
+			PlayWav("col.wav");
+			colliders_[i]->RemoveHit(Attribute::EnemyAttack);
+			colliders_[i]->RemoveHit(Attribute::EnemyBullet);
+			const int damage = 60;
+			hp_->Damage(damage);
+			gaugeTimer_ = gaugeLimit_;
+			damageGauge_ = hp_->GetOldHp();
+		}
 	}
-
 }
 
 void Player::Draw() {

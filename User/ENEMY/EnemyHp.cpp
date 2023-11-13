@@ -6,7 +6,7 @@
 #include"EnemyHp.h"
 
 EnemyHp::EnemyHp() {
-	MaxHp_ = 100;
+	MaxHp_ = 1000;
 	hp_ = MaxHp_;
 	isLive_ = true;
 }

@@ -19,7 +19,7 @@ public:
 
 private:
 	//待機時間
-	const int limit_ = 120;
+	const int limit_ = 60;
 
 	//接近移行距離
 	const float approachDistance_ = 4.0f;
