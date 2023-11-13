@@ -7,7 +7,6 @@
 #include"PlayerStandby.h"
 #include"PlayerJump.h"
 #include"PlayerJumpAttack.h"
-
 #include"Easing.h"
 
 PlayerJump::PlayerJump() {
@@ -31,12 +30,49 @@ void PlayerJump::Update() {
 
 	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
 
-	
 	float newPos = Easing::OutQuad(groundPos, maxPos, t);
 
 	player_->SetPosY(newPos);
 
+	Rota();
+	Move();
+
 	StateTransition();
+}
+
+void PlayerJump::Move() {
+	//移動量
+	Vector3 velocity = { 0,0,0 };
+	//移動速度
+	float speed = 0.2f;
+
+	//スティック入力方向取得
+	Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
+	//移動方向に変換
+	velocity.x = stickVec.x;
+	velocity.z = stickVec.y;
+	//単位ベクトル化
+	velocity = velocity.nomalize();
+	//移動ベクトルに変換
+	velocity *= speed;
+
+	//カメラが向いている方向に合わせる
+	Transform direction = player_->GetCamWtf();
+	direction.rotation.x = 0;
+	direction.UpdateMat();
+	velocity = Matrix4::bVelocity(velocity, direction.matWorld);
+	player_->Move(velocity);
+}
+
+void PlayerJump::Rota() {
+	if (Input::GetInstance()->LeftStickInput()) {
+		Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
+
+		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
+
+		Transform camWtf = player_->GetCamWtf();
+		player_->RotaY(theta + camWtf.rotation.y);
+	}
 }
 
 void PlayerJump::StateTransition() {

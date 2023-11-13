@@ -16,6 +16,7 @@ PlayerAvoid::PlayerAvoid() {
 	Matrix4 playerMat = player_->GetWtf().matWorld;
 	velocity_ = Matrix4::bVelocity(speed_, playerMat);
 	timer_ = limit_;
+	player_->SetInvincible(true);
 }
 
 //待機
@@ -34,6 +35,6 @@ void PlayerAvoid::Update() {
 }
 
 void PlayerAvoid::StateTransition() {
+	player_->SetInvincible(false);
 	player_->TransitionTo(new PlayerStandby);
-
 }
