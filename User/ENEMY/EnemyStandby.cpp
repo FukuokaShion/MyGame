@@ -24,19 +24,20 @@ void Standby::Update(Vector3 playerPos) {
 		int randNum = rand() % 100 + 1;//1から100の範囲になる
 		//遠い場合
 		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
-			if (0 < randNum && randNum <= 30) {
+			if (0 < randNum && randNum <= 25) {
 				enemy_->TransitionTo(new Approach);
-			}else if (30 < randNum && randNum <= 100) {
+			}else if (25 < randNum && randNum <= 70) {
 				enemy_->TransitionTo(new EnemyShooting);
-			}
-			/*else {
+			}else {
 				enemy_->TransitionTo(new EnemyRoundShooting);
-			}*/
+			}
 		}
 		//近い場合
 		else {
-			if (0 < randNum && randNum <= 70) {
+			if (0 < randNum && randNum <= 35) {
 				enemy_->TransitionTo(new Attack);
+			}else if (35 < randNum && randNum <= 60) {
+				enemy_->TransitionTo(new EnemyShooting);
 			}else {
 				enemy_->TransitionTo(new Leave);
 			}

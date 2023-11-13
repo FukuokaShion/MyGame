@@ -19,5 +19,5 @@ private:
 	//時間
 	const int limit_ = 10;
 	//移動距離
-	const Vector3 distance_ = { 0,0,7 };
+	const Vector3 distance_ = { 0,0,10 };
 };
