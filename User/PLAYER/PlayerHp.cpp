@@ -6,7 +6,7 @@
 #include"PlayerHp.h"
 
 PlayerHp::PlayerHp() {
-	MaxHp_ = 100;
+	MaxHp_ = 1000;
 	hp_ = MaxHp_;
 	oldHp_ = MaxHp_;
 	isLive_ = true;

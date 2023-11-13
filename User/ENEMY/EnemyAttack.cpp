@@ -10,6 +10,10 @@
 Attack::Attack() {
 	action_ = Action::Antic;
 	enemy_->AnimationChange(Enemy::Animation::SHAKE);
+
+	attackCol_ = new BaseCollider;
+	attackCol_->SetRad(colRad);
+	attackCol_->SetAttribute(Attribute::EnemyAttack);
 }
 
 //攻撃
@@ -28,6 +32,8 @@ void Attack::Update([[maybe_unused]] Vector3 playerPos) {
 		if (timer > anticTime_) {
 			timer = 0;
 			action_ = Action::Attack;
+			enemy_->SetIsAttack(true);
+			CollisionManager::GetInstance()->AddCollider(attackCol_);
 		}
 		break;
 	case Action::Attack:
@@ -37,18 +43,20 @@ void Attack::Update([[maybe_unused]] Vector3 playerPos) {
 		velocity_ = Matrix4::bVelocity(speed_, enemyMat);
 		enemy_->Move(velocity_);
 
-		enemy_->SetIsAttack(true);
+		attackCol_->SetCenter(enemy_->GetCenterPos());
+
 		enemy_->setPower(power_);
 
 		if (timer > attackTime_) {
 			timer = 0;
 			action_ = Action::After;
+			enemy_->SetIsAttack(false);
+			CollisionManager::GetInstance()->RemoveCollider(attackCol_);
 		}
 		break;
 	case Action::After:
 		//後隙
 		if (timer > afterTime_) {
-			enemy_->SetIsAttack(false);
 			enemy_->TransitionTo(new Standby);
 		}
 		break;

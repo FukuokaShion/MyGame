@@ -34,5 +34,5 @@ private:
 
 	const Vector2 hpGaugePos_ = { 128,38 };
 	const Vector2 hpGaugeSize_ = { 400,26 };
-	const int hpGaugeOneSize_ = 4;
+	const float hpGaugeOneSize_ = 0.4f;
 };

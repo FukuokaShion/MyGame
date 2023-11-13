@@ -116,6 +116,11 @@ public:
 	 */
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
+	/**
+	 * @brief中心ボーン座標
+	 */
+	Vector3 GetCenterPos() { return fbxObject3d_->GetBonWorldPos(boneNum_[0]); };
+
 private:
 	//サウンド
 	Audio* audio_ = nullptr;

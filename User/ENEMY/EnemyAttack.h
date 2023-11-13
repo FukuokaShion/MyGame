@@ -41,4 +41,7 @@ private:
 	///後隙
 	const int afterTime_ = 5;
 
+	//当たり判定
+	BaseCollider* attackCol_;
+	const float colRad = 3.0f;
 };
