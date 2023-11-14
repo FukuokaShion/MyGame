@@ -41,7 +41,7 @@ public:
 	};
 
 	//ボーンの最大数
-	static const int MAX_BONES = 32;
+	static const int MAX_BONES = 128;
 
 	//定数バッファ用のデータ構造体(スキニング)
 	struct ConstBufferDataSkin
