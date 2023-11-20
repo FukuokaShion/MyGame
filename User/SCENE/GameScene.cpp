@@ -104,6 +104,7 @@ void GameScene::Update() {
 	Vector3 distance;
 	Vector3 pushVelocity;
 	gameCamera_->SetParentPos(player_->GetWtf().position);
+	gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 	gameCamera_->Update();
 
 	//オブジェクト更新
