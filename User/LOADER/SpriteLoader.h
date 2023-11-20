@@ -15,7 +15,9 @@ public:
 		ENEMYUI,
 		PLAYERUI,
 		CLEAR,
-		GAMEOVER
+		GAMEOVER,
+		OPTION,
+		RSTICK
 	};
 
 	/**

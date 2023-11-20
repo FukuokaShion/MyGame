@@ -316,6 +316,9 @@
     <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\SCENE\Option.cpp">
+      <Filter>user\ソース\SCENE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -515,6 +518,9 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\Option.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

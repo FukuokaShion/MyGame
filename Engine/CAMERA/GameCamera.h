@@ -21,11 +21,16 @@ public:
 	*/
 	void Update() override;
 
+	/**
+	 * @brief 感度変更
+	*/
+	static void ChangeSensitivity(Vector2 fluctuation);
 
 	/**
-	 * @brief 感度セット
+	 * @brief 感度取得
 	*/
-	void SetSensitivity(Vector2 sensitivity) { sensitivity_ = sensitivity; };
+	static Vector2 GetSensitivity() { return sensitivity_; };
+
 	/**
 	 * @brief 親座標セット
 	*/
@@ -53,7 +58,9 @@ private:
 	float upLimit_;
 	float downLimit_;
 
-	Vector2 sensitivity_;
+	static Vector2 sensitivity_;
+	static Vector2 sensitivityMax_;
+	static Vector2 sensitivityLimit_;
 
 	Vector3 parentViewVec_;
 	Vector3 resetVec;

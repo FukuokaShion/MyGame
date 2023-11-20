@@ -39,7 +39,6 @@ void GameScene::Initialize() {
 	player_ = new Player();
 	player_->Initialize();
 
-
 	//カメラの設定
 	gameCamera_->SetParentPos(player_->GetWtf().position);
 
@@ -81,6 +80,9 @@ void GameScene::Initialize() {
 
 	collisionManager_ = CollisionManager::GetInstance();
 	collisionManager_->Initialize();
+
+	option_ = new Option();
+	option_->Initialize();
 }
 
 GameScene::~GameScene() {
@@ -95,24 +97,27 @@ GameScene::~GameScene() {
 	delete clear_;
 	delete gameOver_;
 
+	delete option_;
+
 	collisionManager_->Finalize();
 }
 
 //更新
 void GameScene::Update() {
-
 	Vector3 distance;
 	Vector3 pushVelocity;
-	gameCamera_->SetParentPos(player_->GetWtf().position);
-	gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
-	gameCamera_->Update();
 
 	//オブジェクト更新
 	field_->Update();
-	enemy_->Update(player_->GetWtf().position);
 
 	switch (state_) {
 	case State::game:
+		gameCamera_->SetParentPos(player_->GetWtf().position);
+		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
+		gameCamera_->Update();
+
+		enemy_->Update(player_->GetWtf().position);
+
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
 		//押し出し処理
@@ -136,8 +141,20 @@ void GameScene::Update() {
 		else if (player_->IsLive() == false) {
 			state_ = State::death;
 		}
+
+
+		if (Input::GetInstance()->PButtonTrigger(START)) {
+			state_ = State::option;
+		}
+
 		break;
 	case State::clear:
+		gameCamera_->SetParentPos(player_->GetWtf().position);
+		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
+		gameCamera_->Update();
+
+		enemy_->Update(player_->GetWtf().position);
+
 		//クリア画面
 		player_->Update();
 		clear_->Update();
@@ -151,6 +168,12 @@ void GameScene::Update() {
 		}
 		break;
 	case State::death:
+		gameCamera_->SetParentPos(player_->GetWtf().position);
+		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
+		gameCamera_->Update();
+
+		enemy_->Update(player_->GetWtf().position);
+
 		loading_->Update();
 		gameOver_->Update();
 		//ゲームオーバー画面
@@ -168,6 +191,13 @@ void GameScene::Update() {
 			}
 		}
 		
+		break;
+	case State::option:
+		option_->Update();
+		if (Input::GetInstance()->PButtonTrigger(START)) {
+			state_ = State::game;
+		}
+
 		break;
 	}
 }
@@ -201,6 +231,10 @@ void GameScene::SpriteDraw() {
 		}else{
 			gameOver_->Draw();
 		}
+		break;
+	case State::option:
+		option_->SpriteDraw();
+
 		break;
 	}
 }

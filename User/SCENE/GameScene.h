@@ -13,6 +13,7 @@
 #include"Enemy.h"
 #include"CollisionManager.h"
 #include"GameCamera.h"
+#include"Option.h"
 
 class GameScene : public SceneState {
 public:
@@ -54,6 +55,7 @@ private:
 		game,
 		clear,
 		death,
+		option,
 	};
 private:
 	State state_;
@@ -88,5 +90,7 @@ private:
 	const float gameOverAlphaEnd_ = 0.6f;
 	const float blackAddAlpha_ = 0.04f;
 
+	//オプション
+	Option* option_ = nullptr;
 
 };

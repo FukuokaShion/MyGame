@@ -15,4 +15,6 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(PLAYERUI, "playerUI.png");
 	SpriteCommon::GetInstance()->LoadTexture(CLEAR, "clear.png");
 	SpriteCommon::GetInstance()->LoadTexture(GAMEOVER, "gameOver.png");
+	SpriteCommon::GetInstance()->LoadTexture(OPTION, "option.png");
+	SpriteCommon::GetInstance()->LoadTexture(RSTICK, "r.png");
 }
