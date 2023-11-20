@@ -167,7 +167,7 @@ void Player::Move(Vector3 velocity) {
 	//中心からの距離
 	float distance = sqrt((newPos.x * newPos.x) + (newPos.z * newPos.z));
 
-	int limit = 49;
+	const int limit = 49;
 
 	//範囲外なら
 	if (distance > limit) {
