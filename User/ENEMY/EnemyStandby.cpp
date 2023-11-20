@@ -11,6 +11,7 @@
 #include"EnemyLeave.h"
 #include"EnemyShooting.h"
 #include"EnemyRoundShooting.h"
+#include"EnemyStrongBodyBlow.h"
 
 Standby::Standby() {
 	enemy_->AnimationChange(Enemy::Animation::STAND);
@@ -22,8 +23,19 @@ void Standby::Update(Vector3 playerPos) {
 	//状態切り替え
 	if (timer > limit_) {
 		int randNum = rand() % 100 + 1;//1から100の範囲になる
+		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > switchDistance_) {
+			if (0 < randNum && randNum <= 20) {
+				enemy_->TransitionTo(new EnemyStrongBodyBlow);
+			}if (20 < randNum && randNum <= 30) {
+				enemy_->TransitionTo(new Approach);
+			}else if (30 < randNum && randNum <= 70) {
+				enemy_->TransitionTo(new EnemyShooting);
+			}else {
+				enemy_->TransitionTo(new EnemyRoundShooting);
+			}
+		}
 		//遠い場合
-		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
+		else if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
 			if (0 < randNum && randNum <= 25) {
 				enemy_->TransitionTo(new Approach);
 			}else if (25 < randNum && randNum <= 70) {

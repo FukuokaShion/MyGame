@@ -313,6 +313,9 @@
     <ClCompile Include="Engine\CAMERA\GameCamera.cpp">
       <Filter>Engine\ソースファイル\CAMERA</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -509,6 +512,9 @@
     </ClInclude>
     <ClInclude Include="Engine\CAMERA\GameCamera.h">
       <Filter>Engine\ヘッダーファイル\CAMERA</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
