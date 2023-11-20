@@ -16,12 +16,13 @@ GameScene::GameScene() {
 
 void GameScene::Initialize() {
 	// カメラ生成
-	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
+	gameCamera_ = new GameCamera();
+	gameCamera_->Initialize(WinApp::window_width, WinApp::window_height);
 
 	//カメラセット
-	ParticleManager::SetCamera(camera_);
-	Object3d::SetCamera(camera_);
-	FBXObject3d::SetCamera(camera_);
+	ParticleManager::SetCamera(gameCamera_);
+	Object3d::SetCamera(gameCamera_);
+	FBXObject3d::SetCamera(gameCamera_);
 
 	state_ = State::game;
 
@@ -37,12 +38,10 @@ void GameScene::Initialize() {
 	//プレイヤー生成
 	player_ = new Player();
 	player_->Initialize();
-	player_->SetCamera(camera_);
 
 
 	//カメラの設定
-	camera_->SetParent(player_->GetWtfP());
-	camera_->isSyncRota = false;
+	gameCamera_->SetParentPos(player_->GetWtf().position);
 
 	//サウンド
 	audio_ = new Audio();
@@ -85,7 +84,7 @@ void GameScene::Initialize() {
 }
 
 GameScene::~GameScene() {
-	delete camera_;
+	delete gameCamera_;
 	delete audio_;
 
 	delete field_;
@@ -104,6 +103,8 @@ void GameScene::Update() {
 
 	Vector3 distance;
 	Vector3 pushVelocity;
+	gameCamera_->SetParentPos(player_->GetWtf().position);
+	gameCamera_->Update();
 
 	//オブジェクト更新
 	field_->Update();
@@ -111,6 +112,7 @@ void GameScene::Update() {
 
 	switch (state_) {
 	case State::game:
+		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
 		//押し出し処理
 		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), enemy_->GetRad())) {

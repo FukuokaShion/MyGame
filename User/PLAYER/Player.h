@@ -46,19 +46,9 @@ public:
 	void Initialize();
 
 	/**
-	 * @brief カメラセット
-	*/
-	void SetCamera(Camera* camera) { camera_ = camera; };
-
-	/**
 	 * @brief 更新
 	*/
 	void Update();
-
-	/**
-	 * @brief カメラ回転
-	*/
-	void CamRota();
 
 	/**
 	 * @brief 描画
@@ -96,6 +86,11 @@ public:
 	void Move(Vector3 velocity);
 
 	/**
+	 * @brief カメラ方向セット
+	*/
+	void SetCamViewVec(Vector3 camViewVec) { camViewVec_ = camViewVec; };
+
+	/**
 	 * @brief y座標セット
 	*/
 	void SetPosY(float posY) { fbxObject3d_->wtf.position.y = posY; };
@@ -121,14 +116,14 @@ public:
 	Transform* GetWtfP() { return &fbxObject3d_->wtf; };
 
 	/**
-	 * @brief カメラ座標取得
-	*/
-	Transform GetCamWtf() { return camera_->wtf; };
-
-	/**
 	 * @brief 剣座標取得
 	*/
 	Vector3 GetSwordPos() { return fbxObject3d_->GetBonWorldPos(boneNum[4]); };
+
+	/**
+	 * @brief カメラ方向セット
+	*/
+	Vector3 GetCamViewVec() { return camViewVec_; };
 
 	/**
 	 * @brief 被ダメ処理
@@ -161,10 +156,8 @@ public:
 	*/
 	float GetRad() { return rad_; };
 
-
 private:
-	//カメラ
-	Camera* camera_ = nullptr;
+	Vector3 camViewVec_;
 	//入力
 	Input* input_ = nullptr;
 	//サウンド

@@ -21,7 +21,8 @@ void TitleScene::Initialize() {
 
 	const float PI = 3.1415f;
 	// カメラ生成
-	camera_ = new Camera(WinApp::window_width, WinApp::window_height);
+	camera_ = new Camera();
+	camera_->Initialize(WinApp::window_width, WinApp::window_height);
 	camera_->wtf.position = { 0.0f,6.0f,-7.0f };
 	const Vector3 camDegree = { 10.0f,-25.0f,0.0f };
 	camera_->wtf.rotation = { camDegree.x * PI / 180.0f , camDegree.y * PI / 180.0f,camDegree.z * PI / 180.0f };

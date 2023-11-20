@@ -310,6 +310,9 @@
     <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\CAMERA\GameCamera.cpp">
+      <Filter>Engine\ソースファイル\CAMERA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -503,6 +506,9 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyDeathParticle.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\CAMERA\GameCamera.h">
+      <Filter>Engine\ヘッダーファイル\CAMERA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -116,6 +116,7 @@
     <ClCompile Include="Engine\base\Framework .cpp" />
     <ClCompile Include="Engine\BASE\WinApp.cpp" />
     <ClCompile Include="Engine\CAMERA\Camera.cpp" />
+    <ClCompile Include="Engine\CAMERA\GameCamera.cpp" />
     <ClCompile Include="Engine\COLLISION\Collision.cpp" />
     <ClCompile Include="Engine\COLLISION\CollisionPrimitive.cpp" />
     <ClCompile Include="Engine\IMGUI\ImGuiManager.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Engine\base\Framework .h" />
     <ClInclude Include="Engine\BASE\WinApp.h" />
     <ClInclude Include="Engine\CAMERA\Camera.h" />
+    <ClInclude Include="Engine\CAMERA\GameCamera.h" />
     <ClInclude Include="Engine\COLLISION\Collision.h" />
     <ClInclude Include="Engine\COLLISION\CollisionAttribute.h" />
     <ClInclude Include="Engine\COLLISION\CollisionPrimitive.h" />
