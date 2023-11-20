@@ -40,7 +40,7 @@ void PlayerMove::Move() {
 	//スティック入力角度
 	float  sticAngle = atan2f(Input::GetInstance()->GetLeftStickVec().x, Input::GetInstance()->GetLeftStickVec().y);
 	//カメラ角度
-	float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
+	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
 	//カメラから見た時の移動方向に合わせる
 	float worldAngle = sticAngle + camAngle;
 
@@ -53,7 +53,7 @@ void PlayerMove::Rota() {
 	if (Input::GetInstance()->LeftStickInput()) {
 		Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
 		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
-		float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
+		float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
 
 		player_->RotaY(theta + camAngle);
 	}

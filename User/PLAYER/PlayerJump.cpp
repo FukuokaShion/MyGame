@@ -13,6 +13,7 @@ PlayerJump::PlayerJump() {
 	player_->AnimationChange(Player::Animation::JUMP);
 	limit_ = 20;
 	timer_ = 0;
+	MaxSpeed_ = 0.2f;
 	up_ = true;
 	player_->PlayWav("jump.wav");
 }
@@ -43,14 +44,15 @@ void PlayerJump::Update() {
 void PlayerJump::Move() {
 	//移動量
 	Vector3 velocity = { 0,0,0 };
-	//移動速度
-	float speed = 0.2f;
+	float speed = 0.0f;
 
-
-	//スティック入力角度
+	//スティック入力
+	if (Input::GetInstance()->LeftStickInput()) {
+		speed = MaxSpeed_;
+	}
 	float  sticAngle = atan2f(Input::GetInstance()->GetLeftStickVec().x, Input::GetInstance()->GetLeftStickVec().y);
 	//カメラ角度
-	float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
+	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
 	//カメラから見た時の移動方向に合わせる
 	float worldAngle = sticAngle + camAngle;
 
@@ -64,7 +66,7 @@ void PlayerJump::Rota() {
 		Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
 
 		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
-		float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
+		float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
 
 		player_->RotaY(theta + camAngle);
 	}
@@ -75,10 +77,11 @@ void PlayerJump::StateTransition() {
 		player_->PlayWav("landing.wav");
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);
-	}
-	else {
-		if (Input::GetInstance()->ButtonInput(B)) {
-			player_->TransitionTo(new PlayerJumpAttack);
+	}else {
+		if (up_ == false) {
+			if (Input::GetInstance()->ButtonInput(B)) {
+				player_->TransitionTo(new PlayerJumpAttack);
+			}
 		}
 	}
 }
