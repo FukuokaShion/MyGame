@@ -38,6 +38,16 @@ Matrix4::Matrix4(
 	m[3][0] = m30; m[3][1] = m31; m[3][2] = m32; m[3][3] = m33;
 }
 
+Matrix4 Matrix4::Initialize() {
+	Matrix4 matInitialize{
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
+
+	return matInitialize;
+}
 
 Vector3 Matrix4::transform(const Vector3& v, const Matrix4& matrix4) {
 
@@ -232,18 +242,91 @@ Vector3 Matrix4::bVelocity(Vector3& velocity, Matrix4& mat) {
 
 	//内積
 	result.x = velocity.x * mat.m[0][0] +
-		velocity.y * mat.m[1][0] +
-		velocity.z * mat.m[2][0];
+			   velocity.y * mat.m[1][0] +
+			   velocity.z * mat.m[2][0];
 
 	result.y = velocity.x * mat.m[0][1] +
-		velocity.y * mat.m[1][1] +
-		velocity.z * mat.m[2][1];
+			   velocity.y * mat.m[1][1] +
+			   velocity.z * mat.m[2][1];
 
 	result.z = velocity.x * mat.m[0][2] +
-		velocity.y * mat.m[1][2] +
-		velocity.z * mat.m[2][2];
+			   velocity.y * mat.m[1][2] +
+			   velocity.z * mat.m[2][2];
 
 	return result;
+}
+
+Matrix4 Matrix4::Rotation(const Vector3& rotation, int X_1_Y_2_Z_3_XYZ_6) {
+	int rotaX = 1;
+	int rotaY = 2;
+	int rotaZ = 3;
+
+	if (X_1_Y_2_Z_3_XYZ_6 == rotaX) {
+		Matrix4 matRotX = {
+		  1.0f,0.0f,0.0f,0.0f,
+		  0.0f,cosf(rotation.x),sinf(rotation.x),0.0f,
+		  0.0f,-sinf(rotation.x),cosf(rotation.x),0.0f,
+		  0.0f,0.0f,0.0f,1.0f
+		};
+		Matrix4 rotationX = Initialize();
+		rotationX *= matRotX;
+
+		return rotationX;
+	}
+	else if (X_1_Y_2_Z_3_XYZ_6 == rotaY) {
+		Matrix4 matRotY = {
+			cosf(rotation.y), 0.0f, -sinf(rotation.y), 0.0f,
+			0.0f, 1.0f, 0.0f, 0.0f,
+			sinf(rotation.y), 0.0f, cosf(rotation.y),  0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f
+		};
+		Matrix4 rotationY = Initialize();
+		rotationY *= matRotY;
+
+		return rotationY;
+	}
+	else if (X_1_Y_2_Z_3_XYZ_6 == rotaZ) {
+		Matrix4 matRotZ = {
+		  cosf(rotation.z),sinf(rotation.z),0.0f,0.0f,
+		  -sinf(rotation.z),cosf(rotation.z),0.0f,0.0f,
+		  0.0f,0.0f,1.0f,0.0f,
+		  0.0f,0.0f,0.0f,1.0f
+		};
+		Matrix4 rotationZ = Initialize();
+		rotationZ *= matRotZ;
+
+		return rotationZ;
+	}
+	else {
+		Matrix4 matRotXYZ;
+		Matrix4 matRot_X, matRot_Y, matRot_Z;
+		matRot_X = {
+		  1.0f,0.0f,0.0f,0.0f,
+		  0.0f,cosf(rotation.x),sinf(rotation.x),0.0f,
+		  0.0f,-sinf(rotation.x),cosf(rotation.x),0.0f,
+		  0.0f,0.0f,0.0f,1.0f
+		};
+		matRot_Y = {
+			cosf(rotation.y), 0.0f, -sinf(rotation.y),
+			0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+			sinf(rotation.y), 0.0f, cosf(rotation.y),
+			0.0f, 0.0f, 0.0f, 0.0f, 1.0f
+		};
+		matRot_Z = {
+		  cosf(rotation.z),sinf(rotation.z),0.0f,0.0f,
+		  -sinf(rotation.z),cosf(rotation.z),0.0f,0.0f,
+		  0.0f,0.0f,1.0f,0.0f,
+		  0.0f,0.0f,0.0f,1.0f
+		};
+		//各軸の回転行列を合成
+		matRotXYZ = Initialize();
+
+		matRotXYZ *= matRot_X;
+		matRotXYZ *= matRot_Y;
+		matRotXYZ *= matRot_Z;
+
+		return matRotXYZ;
+	}
 }
 
 //	--		 --			--		 --
@@ -252,8 +335,6 @@ Vector3 Matrix4::bVelocity(Vector3& velocity, Matrix4& mat) {
 //	| i j k l |			| I J K L |
 //	| m n o p |			| M N O P |
 //	--		 --			--		 --
-
-
 
 Matrix4& operator*=(Matrix4& m1, const Matrix4& m2) {
 
@@ -271,8 +352,6 @@ Matrix4& operator*=(Matrix4& m1, const Matrix4& m2) {
 	m1 = result;
 	return m1;
 }
-
-
 
 // 2項演算子オーバーロード ( 行列と行列の積 )
 const Matrix4 operator*(const Matrix4& m1, const Matrix4& m2) {

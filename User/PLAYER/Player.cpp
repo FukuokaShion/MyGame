@@ -68,10 +68,8 @@ void Player::Initialize() {
 void Player::Update() {
 	state_->Update();
 
-	CamRota();
 	fbxObject3d_->wtf.UpdateMat();
 
-	camera_->Update();
 	fbxObject3d_->Update();
 
 	OnCollision();
@@ -91,31 +89,6 @@ void Player::Update() {
 	for (int i = 1; i < maxColliderNum; i++) {
 		colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum[i]));
 	}
-}
-
-void Player::CamRota() {
-	//左右
-	Vector3 theta = { 0,0,0 };
-
-	float PI = 3.1415f;
-	Vector2 camRotaSpeed = { PI / 1800.0f, PI / 1800.0f };
-	float sensitivity = 10.0f;
-
-	if (input_->StickInput(R_RIGHT)) {
-		theta.y = camRotaSpeed.y * sensitivity;
-	}
-	else if (input_->StickInput(R_LEFT)) {
-		theta.y = -camRotaSpeed.y * sensitivity;
-	}
-
-	if (input_->StickInput(R_DOWN)) {
-		theta.x = camRotaSpeed.x * sensitivity;
-	}
-	else if (input_->StickInput(R_UP)) {
-		theta.x = -camRotaSpeed.x * sensitivity;
-	}
-
-	camera_->wtf.rotation += theta;
 }
 
 void Player::OnCollision() {

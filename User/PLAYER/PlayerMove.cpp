@@ -35,34 +35,27 @@ void PlayerMove::Move() {
 	//移動量
 	Vector3 velocity = { 0,0,0 };
 	//移動速度
-	float speed = 0.5f;
+	const float speed = 0.5f;
 
-	//スティック入力方向取得
-	Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
-	//移動方向に変換
-	velocity.x = stickVec.x;
-	velocity.z = stickVec.y;
-	//単位ベクトル化
-	velocity = velocity.nomalize();
-	//移動ベクトルに変換
-	velocity *= speed;
+	//スティック入力角度
+	float  sticAngle = atan2f(Input::GetInstance()->GetLeftStickVec().x, Input::GetInstance()->GetLeftStickVec().y);
+	//カメラ角度
+	float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
+	//カメラから見た時の移動方向に合わせる
+	float worldAngle = sticAngle + camAngle;
 
-	//カメラが向いている方向に合わせる
-	Transform direction = player_->GetCamWtf();
-	direction.rotation.x = 0;
-	direction.UpdateMat();
-	velocity = Matrix4::bVelocity(velocity, direction.matWorld);
+	velocity = { sinf(worldAngle) * speed,0.0f,cosf(worldAngle) * speed };
+
 	player_->Move(velocity);
 }
 
 void PlayerMove::Rota() {
 	if (Input::GetInstance()->LeftStickInput()) {
 		Vector2 stickVec = Input::GetInstance()->GetLeftStickVec();
-
 		float theta = static_cast<float>(atan2(stickVec.x, stickVec.y));
+		float camAngle = atan2f(player_->GetCamViewVec().z, player_->GetCamViewVec().x);
 
-		Transform camWtf = player_->GetCamWtf();
-		player_->RotaY(theta + camWtf.rotation.y);
+		player_->RotaY(theta + camAngle);
 	}
 }
 

@@ -7,12 +7,12 @@
 
 using namespace DirectX;
 
-Camera::Camera(int window_width, int window_height)
-{
+Camera::Camera() {}
+
+void Camera::Initialize(int window_width, int window_height){
 	aspectRatio_ = (float)window_width / window_height;
 
 	wtf.Initialize();
-	hasParent_ = false;
 
 	isSyncRota = false;
 
@@ -27,38 +27,6 @@ Camera::Camera(int window_width, int window_height)
 }
 
 void Camera::Update() {
-	//親と同期
-	if (hasParent_) {
-		if (isSyncRota) {
-			//回転同期
-			wtf.position = parent_->position;
-			wtf.rotation = parent_->rotation;
-		}
-		else {
-			//非同期
-			wtf.position = parent_->position;
-		}
-		///仮で高さを調整する
-		wtf.position.y += 2.5;
-	}
-
-	//回転の制限
-	//縦回転
-	if (wtf.rotation.x > upLimit_) {
-		wtf.rotation.x = upLimit_;
-	}
-	else if (wtf.rotation.x < downLimit) {
-		wtf.rotation.x = downLimit;
-	}
-
-	//横回転
-	if (wtf.rotation.y > 2 * PI_) {
-		wtf.rotation.y = 0;
-	}
-	else if (wtf.rotation.y < 2 * -PI_) {
-		wtf.rotation.y = 0;
-	}
-
 	//座標更新
 	wtf.UpdateMat();
 
@@ -231,3 +199,8 @@ void Camera::MoveVector(const Vector3& move)
 float Camera::FieldOfViewY() {
 	return static_cast<float>(2 * atan(sensor_ / (2 * focalLengs_)));
 }
+
+Vector3 Camera::GetViewVec() {
+	Vector3 viewVec = target_ - eye_;
+	return viewVec.nomalize();
+};

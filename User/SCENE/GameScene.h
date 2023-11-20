@@ -12,6 +12,7 @@
 #include"Player.h"
 #include"Enemy.h"
 #include"CollisionManager.h"
+#include"GameCamera.h"
 
 class GameScene : public SceneState {
 public:
@@ -63,7 +64,7 @@ private:
 
 	//メンバ変数
 	//カメラ
-	Camera* camera_ = nullptr;
+	GameCamera* gameCamera_ = nullptr;
 	//フィールド
 	Field* field_ = nullptr;
 

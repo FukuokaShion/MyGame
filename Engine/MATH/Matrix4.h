@@ -14,6 +14,7 @@ public:
 	float m[4][4];
 
 public:
+	static Matrix4 Initialize();
 	Matrix4();
 	Matrix4(float num);
 	/**
@@ -57,6 +58,12 @@ public:
 	 * @brief 移動
 	*/
 	Vector3 transform(const Vector3& v, const Matrix4& matrix4);
+
+
+	/**
+	 * @brief 回転計算
+	*/
+	static Matrix4 Rotation(const Vector3& rotation, int X_1_Y_2_Z_3_XYZ_6);
 };
 // 代入演算子オーバーロード
 Matrix4& operator*=(Matrix4& m1, const Matrix4& m2);
