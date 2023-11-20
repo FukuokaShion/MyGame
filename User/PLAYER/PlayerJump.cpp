@@ -75,10 +75,11 @@ void PlayerJump::StateTransition() {
 		player_->PlayWav("landing.wav");
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);
-	}
-	else {
-		if (Input::GetInstance()->ButtonInput(B)) {
-			player_->TransitionTo(new PlayerJumpAttack);
+	}else {
+		if (up_ == false) {
+			if (Input::GetInstance()->ButtonInput(B)) {
+				player_->TransitionTo(new PlayerJumpAttack);
+			}
 		}
 	}
 }
