@@ -21,6 +21,7 @@ public:
 	*/
 	void Update() override;
 
+
 	/**
 	 * @brief 感度セット
 	*/
@@ -29,12 +30,20 @@ public:
 	 * @brief 親座標セット
 	*/
 	void SetParentPos(Vector3 parentPos) { parentPos_ = parentPos; };
+	/**
+	 * @brief 親視線ベクトルセット
+	*/
+	void SetParentViewVec(Vector3 SetParentViewVec);
 
 private:
 	/**
 	 * @brief 回転
 	*/
 	void Rota();
+	/**
+	 * @brief 親の視線になる
+	*/
+	void ViewReset();
 
 private:
 	Vector3 parentPos_;
@@ -45,4 +54,9 @@ private:
 	float downLimit_;
 
 	Vector2 sensitivity_;
+
+	Vector3 parentViewVec_;
+	Vector3 resetVec;
+	bool isViewReset;
+	float resetSpeed;
 };
