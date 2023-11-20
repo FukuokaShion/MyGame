@@ -35,6 +35,8 @@ private:
 
 	bool up_;
 
+	float MaxSpeed_;
+
 	const float maxPos = 2.0f;
 	const float groundPos = 0;
 };
