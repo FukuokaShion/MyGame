@@ -14,8 +14,12 @@ public:
 		LOADING,
 		ENEMYUI,
 		PLAYERUI,
-		CLEAR,
-		GAMEOVER
+		BOSSFELLED,
+		YOUDIED,
+		OPTION,
+		RSTICK,
+		TELOPBASE,
+		PUSHB,
 	};
 
 	/**

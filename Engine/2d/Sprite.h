@@ -204,9 +204,6 @@ private:
 
 	Matrix4 matProjection;
 
-	// アンカーポイント
-	Vector2 anchorpoint = { 0, 0 };
-
 	// 頂点バッファの生成
 	ComPtr<ID3D12Resource> vertBuff = nullptr;
 

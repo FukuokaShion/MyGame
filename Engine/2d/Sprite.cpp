@@ -127,10 +127,10 @@ void Sprite::Update()
 {
 	ComPtr<ID3D12Resource> textureBuffer = spritecomon->GetTextureBuffer(textureIndex_);
 
-	float left = (0.0f - anchorpoint.x) * size_.x;
-	float right = (1.0f - anchorpoint.x) * size_.x;
-	float top = (0.0f - anchorpoint.x) * size_.y;
-	float bottom = (1.0f - anchorpoint.x) * size_.y;
+	float left = (0.0f - anchorPoint.x) * size_.x;
+	float right = (1.0f - anchorPoint.x) * size_.x;
+	float top = (0.0f - anchorPoint.y) * size_.y;
+	float bottom = (1.0f - anchorPoint.y) * size_.y;
 
 	if (isFlipX_)
 	{// 左右入れ替え

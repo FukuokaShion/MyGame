@@ -5,6 +5,7 @@
 
 #include "SceneManager.h"
 #include"TitleScene.h"
+#include"GameScene.h"
 #include"Object3d.h"
 #include"FBXObject3d.h"
 
@@ -19,6 +20,7 @@ SceneManager::SceneManager() {
 /// </summary>
 SceneManager::~SceneManager() {
 	delete state_;
+	delete sceneChange_;
 }
 
 /// <summary>
@@ -33,14 +35,14 @@ void SceneManager::Initialize(DirectXCommon* dxCommon) {
 	SceneState::SetSceneManager(this);
 	state_ = new TitleScene;
 	state_->Initialize();
+
+	sceneChange_ = new SceneChange();
+	sceneChange_->Initialize();
 }
 
-void SceneManager::TransitionTo(SceneState* state) {
-	//削除
-	delete state_;
-	//新規作成
-	state_ = state;
-	state_->Initialize();
+void SceneManager::TransitionTo(SCENE nextScene) {
+	sceneChange_->FadeOutStart();
+	nextScene_ = nextScene;
 }
 
 /// <summary>
@@ -48,6 +50,8 @@ void SceneManager::TransitionTo(SceneState* state) {
 /// </summary>
 void SceneManager::Update() {
 	state_->Update();
+	ChangeScene();
+	sceneChange_->Update();
 }
 
 /// <summary>
@@ -70,4 +74,21 @@ void SceneManager::Draw() {
 	FBXObject3d::PostDraw();
 
 	state_->SpriteDraw();
+	sceneChange_->SpriteDraw();
+}
+
+void SceneManager::ChangeScene() {
+	if (sceneChange_->GetIsFadeOutFin()) {
+		//削除
+		delete state_;
+		//新規作成
+		if (nextScene_ == SCENE::TITLE) {
+			state_ = new TitleScene();
+		}
+		else if (nextScene_ == SCENE::GAME) {
+			state_ = new GameScene();
+		}
+		state_->Initialize();
+		sceneChange_->FadeInStart();
+	}
 }

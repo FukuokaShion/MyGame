@@ -13,6 +13,7 @@
 #include"Enemy.h"
 #include"CollisionManager.h"
 #include"GameCamera.h"
+#include"Option.h"
 
 class GameScene : public SceneState {
 public:
@@ -54,6 +55,7 @@ private:
 		game,
 		clear,
 		death,
+		option,
 	};
 private:
 	State state_;
@@ -75,18 +77,24 @@ private:
 
 	CollisionManager* collisionManager_ = nullptr;
 
+
+	//画像
+	Sprite* pushB_;
+	Sprite* telopBase_;
+	float telopBaseAddAlpha_;
+
 	//クリア
 	Sprite* clear_;
-	const float clearAddAlpha_ = 0.005f;
+
+	Sprite* clearEffect_;
+	int clearEffAddSize_;
+	float clearEffSubtractAlpha_;
 
 	//ゲームオーバー
-	Sprite* gameOver_;
-	bool isGameOver;
-	std::unique_ptr<Sprite> black_;
-	std::unique_ptr<Sprite> loading_;
-	const float gameOverAddAlpha_ = 0.01f;
-	const float gameOverAlphaEnd_ = 0.6f;
-	const float blackAddAlpha_ = 0.04f;
+	Sprite* youDiedPic_;
+	float youDiedAddAlpha_;
 
+	//オプション
+	Option* option_ = nullptr;
 
 };

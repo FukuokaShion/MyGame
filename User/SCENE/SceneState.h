@@ -46,7 +46,7 @@ public:
 
 protected:
 	/**
-	 * @brief シーンマ移行
+	 * @brief シーン移行
 	*/
 	virtual void StateTransition() = 0;
 
