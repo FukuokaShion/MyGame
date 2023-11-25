@@ -165,6 +165,7 @@
     <ClCompile Include="User\PLAYER\PlayerUI.cpp" />
     <ClCompile Include="User\SCENE\GameScene.cpp" />
     <ClCompile Include="User\SCENE\Option.cpp" />
+    <ClCompile Include="User\SCENE\SceneChange.cpp" />
     <ClCompile Include="User\SCENE\SceneManager.cpp" />
     <ClCompile Include="User\SCENE\SceneState.cpp" />
     <ClCompile Include="User\SCENE\TitleScene.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="User\PLAYER\PlayerUI.h" />
     <ClInclude Include="User\SCENE\GameScene.h" />
     <ClInclude Include="User\SCENE\Option.h" />
+    <ClInclude Include="User\SCENE\SceneChange.h" />
     <ClInclude Include="User\SCENE\SceneManager.h" />
     <ClInclude Include="User\SCENE\SceneState.h" />
     <ClInclude Include="User\SCENE\TitleScene.h" />

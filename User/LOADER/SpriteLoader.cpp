@@ -13,8 +13,10 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(LOADING, "loading.png");
 	SpriteCommon::GetInstance()->LoadTexture(ENEMYUI, "enemyUI.png");
 	SpriteCommon::GetInstance()->LoadTexture(PLAYERUI, "playerUI.png");
-	SpriteCommon::GetInstance()->LoadTexture(CLEAR, "clear.png");
-	SpriteCommon::GetInstance()->LoadTexture(GAMEOVER, "gameOver.png");
+	SpriteCommon::GetInstance()->LoadTexture(BOSSFELLED, "bossFelled.png");
+	SpriteCommon::GetInstance()->LoadTexture(YOUDIED, "youDied.png");
 	SpriteCommon::GetInstance()->LoadTexture(OPTION, "option.png");
 	SpriteCommon::GetInstance()->LoadTexture(RSTICK, "r.png");
+	SpriteCommon::GetInstance()->LoadTexture(TELOPBASE, "telopBase.png");
+	SpriteCommon::GetInstance()->LoadTexture(PUSHB, "pushB.png");
 }

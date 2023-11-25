@@ -57,15 +57,11 @@ private:
 
 	//画像
 	Sprite* basePic_;
-	std::unique_ptr<Sprite> black_;
-	std::unique_ptr<Sprite> loading_;
 
 	//フィールド
 	std::unique_ptr<TitleField> field_;
 
 	//船
-	const float blackDrawPos = 60.0f;
-	const float blackAddAlpha = 0.04f;
-	const float shipMoveEnd = 120.0f;
+	const float fadeOutPos = 60.0f;
 	std::unique_ptr<Ship> ship_;
 };

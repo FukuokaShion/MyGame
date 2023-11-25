@@ -8,6 +8,7 @@
 #include"TitleScene.h"
 
 #include"FbxLoader.h"
+#include"SpriteLoader.h"
 #include"Easing.h"
 #include"Collision.h"
 
@@ -50,33 +51,36 @@ void GameScene::Initialize() {
 	pSourceVoice_ = audio_->PlayWave("game.wav");
 	pSourceVoice_->SetVolume(0.8f);
 
+	//画像
+	telopBase_ = new Sprite();
+	telopBase_->Initialize(SpriteCommon::GetInstance());
+	telopBase_->SetSize({ WinApp::window_width,WinApp::window_height });
+	telopBase_->SetColor({ 1,1,1,0 });
+	telopBase_->Update();
+	telopBaseAddAlpha_ = 0.04f;
+
+	pushB_ = new Sprite();
+	pushB_->Initialize(SpriteCommon::GetInstance());
+	pushB_->SetSize({ 200,48 });
+	pushB_->SetPozition({1050,650});
+	pushB_->Update();
+
 	clear_ = new Sprite();
 	clear_->Initialize(SpriteCommon::GetInstance());
 	clear_->SetSize({ WinApp::window_width,WinApp::window_height });
 	clear_->SetColor({1,1,1,0});
 	clear_->Update();
 
-	gameOver_ = new Sprite();
-	gameOver_->Initialize(SpriteCommon::GetInstance());
-	gameOver_->SetSize({ WinApp::window_width,WinApp::window_height });
-	gameOver_->SetColor({ 1,1,1,0 });
+	youDiedPic_ = new Sprite();
+	youDiedPic_->Initialize(SpriteCommon::GetInstance());
+	youDiedPic_->SetSize({ WinApp::window_width,WinApp::window_height });
+	youDiedPic_->SetColor({ 1,1,1,0 });
+	youDiedAddAlpha_ = 0.01f;
 
-	black_ = std::make_unique<Sprite>();
-	black_->Initialize(SpriteCommon::GetInstance());
-	black_->SetSize({ WinApp::window_width,WinApp::window_height });
-	black_->SetColor({ 0,0,0,0 });
-
-	loading_ = std::make_unique<Sprite>();
-	loading_->Initialize(SpriteCommon::GetInstance());
-	loading_->SetSize({ WinApp::window_width,WinApp::window_height });
-
-	
-	clear_->SetTextureIndex(5);
-	gameOver_->SetTextureIndex(6);
-	black_->SetTextureIndex(0);
-	loading_->SetTextureIndex(2);
-
-	isGameOver = false;
+	telopBase_->SetTextureIndex(SpriteLoader::TELOPBASE);
+	pushB_->SetTextureIndex(SpriteLoader::PUSHB);
+	clear_->SetTextureIndex(SpriteLoader::BOSSFELLED);
+	youDiedPic_->SetTextureIndex(SpriteLoader::YOUDIED);
 
 	collisionManager_ = CollisionManager::GetInstance();
 	collisionManager_->Initialize();
@@ -94,8 +98,10 @@ GameScene::~GameScene() {
 	delete player_;
 	delete enemy_;
 
+	delete telopBase_;
+	delete pushB_;
 	delete clear_;
-	delete gameOver_;
+	delete youDiedPic_;
 
 	delete option_;
 
@@ -157,40 +163,40 @@ void GameScene::Update() {
 
 		//クリア画面
 		player_->Update();
+		telopBase_->Update();
+		pushB_->Update();
 		clear_->Update();
 		if (clear_->GetColor().w < 1.0f) {
 			clear_->SetColor({ 1,1,1,clear_->GetColor().w + clearAddAlpha_});
 
 		}else if (clear_->GetColor().w >= 1.0f) {
 			if (input_->PButtonTrigger(B)) {
-				sceneManager_->TransitionTo(new TitleScene);
+				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 			}
 		}
 		break;
 	case State::death:
+		//ゲームオーバー画面
 		gameCamera_->SetParentPos(player_->GetWtf().position);
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 		gameCamera_->Update();
 
 		enemy_->Update(player_->GetWtf().position);
 
-		loading_->Update();
-		gameOver_->Update();
-		//ゲームオーバー画面
-		gameOver_->SetColor({ 1,1,1,gameOver_->GetColor().w + gameOverAddAlpha_ });
+		if (telopBase_->GetColor().w <= 1.0f) {
+			telopBase_->SetColor({ 1, 1, 1, telopBase_->GetColor().w + telopBaseAddAlpha_ });
+		}
+		if (youDiedPic_->GetColor().w < 1.0f) {
+			youDiedPic_->SetColor({ 1, 1, 1, youDiedPic_->GetColor().w + youDiedAddAlpha_ });
+		}else if (youDiedPic_->GetColor().w >= 1.0f) {
+			if(Input::GetInstance()->PButtonTrigger(B)){
+				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
+			}
+		}
 
-		if (gameOver_->GetColor().w >= gameOverAlphaEnd_) {
-			if (input_->PButtonTrigger(B)) {
-				isGameOver = true;
-			}
-		}
-		if (isGameOver) {
-			black_->SetColor({ 0,0,0,black_->GetColor().w + blackAddAlpha_ });
-			if (black_->GetColor().w >= 1.0f) {
-				sceneManager_->TransitionTo(new TitleScene);
-			}
-		}
-		
+		telopBase_->Update();
+		pushB_->Update();
+		youDiedPic_->Update();
 		break;
 	case State::option:
 		option_->Update();
@@ -222,15 +228,14 @@ void GameScene::SpriteDraw() {
 
 		break;
 	case State::clear:
+		telopBase_->Draw();
 		clear_->Draw();
+		pushB_->Draw();
 		break;
 	case State::death:
-		black_->Draw();
-		if (black_->GetColor().w >= 1.0f) {
-			loading_->Draw();
-		}else{
-			gameOver_->Draw();
-		}
+		telopBase_->Draw();
+		youDiedPic_->Draw();
+		pushB_->Draw();
 		break;
 	case State::option:
 		option_->SpriteDraw();
@@ -241,9 +246,9 @@ void GameScene::SpriteDraw() {
 
 void GameScene::StateTransition() {
 	if (enemy_->IsLive() == false) {
-		sceneManager_->TransitionTo(new TitleScene);
+		sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 	}
 	else if (player_->IsLive() == false) {
-		sceneManager_->TransitionTo(new TitleScene);
+		sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 	}
 }

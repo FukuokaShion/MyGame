@@ -33,18 +33,7 @@ void TitleScene::Initialize() {
 	basePic_->Initialize(SpriteCommon::GetInstance());
 	basePic_->SetSize({ WinApp::window_width,WinApp::window_height });
 
-	black_ = std::make_unique<Sprite>();
-	black_->Initialize(SpriteCommon::GetInstance());
-	black_->SetSize({ WinApp::window_width,WinApp::window_height });
-	black_->SetColor({ 0,0,0,0 });
-
-	loading_ = std::make_unique<Sprite>();
-	loading_->Initialize(SpriteCommon::GetInstance());
-	loading_->SetSize({ WinApp::window_width,WinApp::window_height });
-	
 	basePic_->SetTextureIndex(SpriteLoader::TITLE);
-	black_->SetTextureIndex(SpriteLoader::WHITE);
-	loading_->SetTextureIndex(SpriteLoader::LOADING);
 	
 	field_ = std::make_unique<TitleField>();
 	field_->Initialize();
@@ -65,8 +54,6 @@ void TitleScene::Update() {
 	ship_->Update();
 
 	basePic_->Update();
-	black_->Update();
-	loading_->Update();
 	StateTransition();
 }
 
@@ -82,18 +69,10 @@ void TitleScene::FbxDraw() {
 
 void TitleScene::SpriteDraw() {
 	basePic_->Draw();
-	black_->Draw();
-	if (black_->GetColor().w >= 1.0f) {
-		loading_->Draw();
-	}
 }
 
 void TitleScene::StateTransition() {
-	if (ship_->GetPos().z > blackDrawPos) {
-		black_->SetColor({ 0,0,0,black_->GetColor().w + blackAddAlpha });
-	}
-
-	if (ship_->GetPos().z > shipMoveEnd) {
-		sceneManager_->TransitionTo(new GameScene);
+	if (fadeOutPos < ship_->GetPos().z) {
+		sceneManager_->TransitionTo(SceneManager::SCENE::GAME);
 	}
 }
