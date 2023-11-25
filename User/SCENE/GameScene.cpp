@@ -71,6 +71,16 @@ void GameScene::Initialize() {
 	clear_->SetColor({1,1,1,0});
 	clear_->Update();
 
+	clearEffect_ = new Sprite();
+	clearEffect_->Initialize(SpriteCommon::GetInstance());
+	clearEffect_->SetAnchorPoint({ 0.5f,0 });
+	clearEffect_->SetPozition({ 1280 / 2,0 });
+	clearEffect_->SetSize({ WinApp::window_width,WinApp::window_height });
+	clearEffect_->SetColor({ 1.6f,1.6f,1.6f,0.5f });
+	clearEffect_->Update();
+	clearEffAddSize_ = 2;
+	clearEffSubtractAlpha_ = -0.005f;
+
 	youDiedPic_ = new Sprite();
 	youDiedPic_->Initialize(SpriteCommon::GetInstance());
 	youDiedPic_->SetSize({ WinApp::window_width,WinApp::window_height });
@@ -80,6 +90,7 @@ void GameScene::Initialize() {
 	telopBase_->SetTextureIndex(SpriteLoader::TELOPBASE);
 	pushB_->SetTextureIndex(SpriteLoader::PUSHB);
 	clear_->SetTextureIndex(SpriteLoader::BOSSFELLED);
+	clearEffect_->SetTextureIndex(SpriteLoader::BOSSFELLED);
 	youDiedPic_->SetTextureIndex(SpriteLoader::YOUDIED);
 
 	collisionManager_ = CollisionManager::GetInstance();
@@ -101,6 +112,7 @@ GameScene::~GameScene() {
 	delete telopBase_;
 	delete pushB_;
 	delete clear_;
+	delete clearEffect_;
 	delete youDiedPic_;
 
 	delete option_;
@@ -155,25 +167,33 @@ void GameScene::Update() {
 
 		break;
 	case State::clear:
+		//クリア画面
 		gameCamera_->SetParentPos(player_->GetWtf().position);
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 		gameCamera_->Update();
 
+		player_->Update();
 		enemy_->Update(player_->GetWtf().position);
 
-		//クリア画面
-		player_->Update();
 		telopBase_->Update();
 		pushB_->Update();
 		clear_->Update();
-		if (clear_->GetColor().w < 1.0f) {
-			clear_->SetColor({ 1,1,1,clear_->GetColor().w + clearAddAlpha_});
+		clearEffect_->Update();
 
-		}else if (clear_->GetColor().w >= 1.0f) {
+		clearEffect_->SetSize({ clearEffect_->GetSize().x + clearEffAddSize_,WinApp::window_height });
+		clearEffect_->SetColor({ 1, 1, 1, clearEffect_->GetColor().w + clearEffSubtractAlpha_ });
+
+		if (telopBase_->GetColor().w <= 1.0f) {
+			telopBase_->SetColor({ 1, 1, 1, telopBase_->GetColor().w + telopBaseAddAlpha_ });
+			clear_->SetColor({ 1,1,1,clear_->GetColor().w + telopBaseAddAlpha_ });
+		}
+
+		if (clear_->GetColor().w >= 1.0f) {
 			if (input_->PButtonTrigger(B)) {
 				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 			}
 		}
+
 		break;
 	case State::death:
 		//ゲームオーバー画面
@@ -229,6 +249,7 @@ void GameScene::SpriteDraw() {
 		break;
 	case State::clear:
 		telopBase_->Draw();
+		clearEffect_->Draw();
 		clear_->Draw();
 		pushB_->Draw();
 		break;

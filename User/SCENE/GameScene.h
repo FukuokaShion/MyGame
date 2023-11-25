@@ -85,7 +85,10 @@ private:
 
 	//クリア
 	Sprite* clear_;
-	const float clearAddAlpha_ = 0.005f;
+
+	Sprite* clearEffect_;
+	int clearEffAddSize_;
+	float clearEffSubtractAlpha_;
 
 	//ゲームオーバー
 	Sprite* youDiedPic_;
