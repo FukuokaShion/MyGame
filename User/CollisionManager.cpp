@@ -64,7 +64,7 @@ void CollisionManager::CheakCol() {
 				}
 			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyAttack) {
 				if (isPlayerHit_ == false) {
-					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					if (Collision::CheckSphere2Sphere(*colB, *colA, &hitPos)) {
 						colB->IsHit(Attribute::EnemyAttack, hitPos);
 						colB->SetDamage(colA->GetPower());
 						colA->IsHit(Attribute::PlyerBody, hitPos);
@@ -81,7 +81,7 @@ void CollisionManager::CheakCol() {
 					isPlayerHit_ = true;
 				}
 			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyBullet) {
-				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+				if (Collision::CheckSphere2Sphere(*colB, *colA, &hitPos)) {
 					colB->IsHit(Attribute::EnemyBullet, hitPos);
 					colB->SetDamage(colA->GetPower());
 					colA->IsHit(Attribute::PlyerBody, hitPos);
@@ -91,7 +91,7 @@ void CollisionManager::CheakCol() {
 			//自機攻撃と敵機
 			else if (colA->GetAttribute() == Attribute::PlayerAttack && colB->GetAttribute() == Attribute::EnemyBody) {
 				if (isEnemyHit_ == false) {
-					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
+					if (Collision::CheckSphere2Sphere(*colB, *colA, &hitPos)) {
 						colA->IsHit(Attribute::EnemyBody, hitPos);
 						colB->SetDamage(colA->GetPower());
 						colB->IsHit(Attribute::PlayerAttack , hitPos);
