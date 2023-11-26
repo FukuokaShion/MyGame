@@ -89,11 +89,7 @@ void Enemy::Update(Vector3 playerPos) {
 		//行動
 		state_->Update(playerPos);
 
-		//弾
-		bullets_.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
-		for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
-			bullet->Update();
-		}
+		
 	}else {
 		DeathTimer++;
 		if (DeathTimer < DeathLimit) {
@@ -103,7 +99,11 @@ void Enemy::Update(Vector3 playerPos) {
 	//パーティクル
 	particle_->Update();
 	deatgparticle_->Update();
-
+	//弾
+	bullets_.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
+	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
+		bullet->Update();
+	}
 	//ui
 	ui_.Update(GetHp());
 }
