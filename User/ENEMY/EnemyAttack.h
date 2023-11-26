@@ -36,7 +36,7 @@ private:
 	//移動距離
 	const Vector3 attackDistance_ = { 0,0,-3 };
 	//攻撃力
-	const int power_ = 10;
+	const int power_ = 220;
 
 	///後隙
 	const int afterTime_ = 5;

@@ -16,6 +16,7 @@ PlayerAttack::PlayerAttack() {
 	
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	sowrd_->SetPower(sowrdPower_);
 }
 
 //攻撃

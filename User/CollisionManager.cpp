@@ -57,6 +57,7 @@ void CollisionManager::CheakCol() {
 				if (isPlayerHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colA->IsHit(Attribute::EnemyAttack, hitPos);
+						colA->SetDamage(colB->GetPower());
 						colB->IsHit(Attribute::PlyerBody, hitPos);
 						isPlayerHit_ = true;
 					}
@@ -65,6 +66,7 @@ void CollisionManager::CheakCol() {
 				if (isPlayerHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colB->IsHit(Attribute::EnemyAttack, hitPos);
+						colB->SetDamage(colA->GetPower());
 						colA->IsHit(Attribute::PlyerBody, hitPos);
 						isPlayerHit_ = true;
 					}
@@ -74,12 +76,14 @@ void CollisionManager::CheakCol() {
 			else if (colA->GetAttribute() == Attribute::PlyerBody && colB->GetAttribute() == Attribute::EnemyBullet) {
 				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 					colA->IsHit(Attribute::EnemyBullet, hitPos);
+					colA->SetDamage(colB->GetPower());
 					colB->IsHit(Attribute::PlyerBody, hitPos);
 					isPlayerHit_ = true;
 				}
 			}else if (colB->GetAttribute() == Attribute::PlyerBody && colA->GetAttribute() == Attribute::EnemyBullet) {
 				if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 					colB->IsHit(Attribute::EnemyBullet, hitPos);
+					colB->SetDamage(colA->GetPower());
 					colA->IsHit(Attribute::PlyerBody, hitPos);
 					isPlayerHit_ = true;
 				}
@@ -89,6 +93,7 @@ void CollisionManager::CheakCol() {
 				if (isEnemyHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colA->IsHit(Attribute::EnemyBody, hitPos);
+						colB->SetDamage(colA->GetPower());
 						colB->IsHit(Attribute::PlayerAttack , hitPos);
 						isEnemyHit_ = true;
 					}
@@ -97,6 +102,7 @@ void CollisionManager::CheakCol() {
 				if (isEnemyHit_ == false) {
 					if (Collision::CheckSphere2Sphere(*colA, *colB, &hitPos)) {
 						colB->IsHit(Attribute::EnemyBody, hitPos);
+						colA->SetDamage(colB->GetPower());
 						colA->IsHit(Attribute::PlayerAttack, hitPos);
 						isEnemyHit_ = true;
 					}

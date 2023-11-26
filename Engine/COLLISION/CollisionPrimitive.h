@@ -22,6 +22,24 @@ public:
 	 * @brief 属性設定
 	*/
 	void SetAttribute(Attribute attribute) { attribute_ = attribute; };
+
+	/**
+	 * @brief 攻撃力設定
+	*/
+	void SetPower(int power) { power_ = power; };
+	/**
+	 * @brief 攻撃力取得
+	*/
+	int GetPower() { return power_; };
+	/**
+	 * @brief ダメージ設定
+	*/
+	void SetDamage(int damage) { damage_ = damage; };
+	/**
+	 * @brief ダメージ取得
+	*/
+	int GetDamage() { return damage_; };
+
 	/**
 	 * @brief 衝突判定付与
 	*/
@@ -59,6 +77,8 @@ protected:
 	Attribute attribute_;
 	HitTarget isHit_;
 	HitPos hitPos_;
+	int power_ = 0;
+	int damage_ = 0;
 };
 
 struct Sphere {

@@ -34,6 +34,8 @@ void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int s
 	sphere_ = new BaseCollider;
 	sphere_->SetRad(1.0f);
 	sphere_->SetCenter(pos);
+	const int power = 60;
+	sphere_->SetPower(power);
 	sphere_->SetAttribute(Attribute::EnemyBullet);
 
 	CollisionManager::GetInstance()->AddCollider(sphere_);

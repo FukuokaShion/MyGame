@@ -94,15 +94,12 @@ void Player::OnCollision() {
 		if (isInvincible_ == false) {
 			if (colliders_[i]->GetIsHit().enemyAttack == true) {
 				PlayWav("col.wav");
-				const int damage = 350;
-				hp_->Damage(damage);
+				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
-			}
-			else if (colliders_[i]->GetIsHit().enemyBullet == true) {
+			}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
 				PlayWav("col.wav");
-				const int damage = 60;
-				hp_->Damage(damage);
+				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
 			}
