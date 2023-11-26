@@ -79,7 +79,7 @@ void PlayerJump::StateTransition() {
 		player_->TransitionTo(new PlayerStandby);
 	}else {
 		if (up_ == false) {
-			if (Input::GetInstance()->ButtonInput(B)) {
+			if (Input::GetInstance()->ButtonInput(RB)) {
 				player_->TransitionTo(new PlayerJumpAttack);
 			}
 		}

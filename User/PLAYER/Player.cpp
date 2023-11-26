@@ -58,9 +58,7 @@ void Player::Initialize() {
 	for (int i = 0; i < maxColliderNum; i++) {
 		colliders_[i] = new BaseCollider;
 		colliders_[i]->SetAttribute(Attribute::PlyerBody);
-		if (i >= 1) {
-			colliders_[i]->SetRad(rad_);
-		}
+		colliders_[i]->SetRad(rad_);
 		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
 	}
 }
@@ -85,7 +83,7 @@ void Player::Update() {
 
 	ui_.Update(GetDamage(), GetHp());
 
-	colliders_[0]->SetCenter(fbxObject3d_->wtf.position);
+	colliders_[0]->SetCenter(fbxObject3d_->wtf.position + Vector3{ 0,rad_,0 });
 	for (int i = 1; i < maxColliderNum; i++) {
 		colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum[i]));
 	}

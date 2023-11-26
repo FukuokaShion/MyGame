@@ -65,24 +65,16 @@ void PlayerMove::StateTransition() {
 		player_->TransitionTo(new PlayerStandby);
 		player_->StopWav();
 	}
-
-	//
-	if (Input::GetInstance()->ButtonInput(A)) {
-		pushATime_++;
-		if (pushATime_ > switchTime_) {
-			//回避
-			player_->TransitionTo(new PlayerAvoid);
-		}
-	}else {
-		if (1 <= pushATime_ && pushATime_ <= switchTime_) {
-			//ジャンプ
-			player_->TransitionTo(new PlayerJump);
-		}
-		pushATime_ = 0;
+	//ジャンプ
+	if (Input::GetInstance()->PButtonTrigger(A)) {
+		player_->TransitionTo(new PlayerJump);
 	}
-
-	//攻撃
+	//回避
 	if (Input::GetInstance()->PButtonTrigger(B)) {
+		player_->TransitionTo(new PlayerAvoid);
+	}
+	//攻撃
+	if (Input::GetInstance()->PButtonTrigger(RB)) {
 		player_->TransitionTo(new PlayerAttack);
 	}
 }
