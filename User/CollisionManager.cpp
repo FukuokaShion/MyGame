@@ -127,7 +127,7 @@ void CollisionManager::GetEnemyAttack(bool enemyIsAttack) {
 
 
 void CollisionManager::DrawCollider() {
-	std::forward_list<BaseCollider*>::iterator it;
+	/*std::forward_list<BaseCollider*>::iterator it;
 	it = colliders_.begin();
 	int i = 0;
 
@@ -138,5 +138,5 @@ void CollisionManager::DrawCollider() {
 		objects_[i]->Update();
 		objects_[i]->Draw();
 		i++;
-	}
+	}*/
 }

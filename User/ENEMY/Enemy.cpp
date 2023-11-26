@@ -112,8 +112,8 @@ void Enemy::OnCollision() {
 	for (int i = 0; i < MaxColliderNum; i++) {
 		if (colliders_[i]->GetIsHit().playerAttack) {
 			hp_->Damage(colliders_[i]->GetDamage());
-			colliders_[i]->RemoveHit(Attribute::PlayerAttack);
 			particle_->OnColision(colliders_[i]->GetHitPos().playerAttack);
+			colliders_[i]->RemoveHit(Attribute::PlayerAttack);
 		}
 	}
 }

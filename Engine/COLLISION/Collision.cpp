@@ -402,7 +402,7 @@ bool Collision::CircleCollisionXZ(Vector3 playerPos, Vector3 enemyPos, float pla
 bool Collision::CheckSphere2Sphere(BaseCollider& sphere1, BaseCollider& sphere2, Vector3* inter) {
 	if (Vector3::Distance(sphere1.GetCenter(), sphere2.GetCenter()) <= sphere1.GetRad() + sphere2.GetRad()) {
 		Vector3 inter_ = sphere1.GetCenter() + (sphere2.GetCenter() - sphere1.GetCenter()) / 2;
-		inter = &inter_;
+		*inter = inter_;
 		return true;
 	}
 
