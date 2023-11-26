@@ -109,13 +109,11 @@ void Enemy::Update(Vector3 playerPos) {
 }
 
 void Enemy::OnCollision() {
-	const int damage = 10000;
-
 	for (int i = 0; i < MaxColliderNum; i++) {
 		if (colliders_[i]->GetIsHit().playerAttack) {
-			hp_->Damage(damage);
-			colliders_[i]->RemoveHit(Attribute::PlayerAttack);
+			hp_->Damage(colliders_[i]->GetDamage());
 			particle_->OnColision(colliders_[i]->GetHitPos().playerAttack);
+			colliders_[i]->RemoveHit(Attribute::PlayerAttack);
 		}
 	}
 }

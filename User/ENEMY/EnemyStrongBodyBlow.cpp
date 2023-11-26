@@ -13,6 +13,7 @@ EnemyStrongBodyBlow::EnemyStrongBodyBlow() {
 
 	attackCol_ = new BaseCollider;
 	attackCol_->SetRad(colRad);
+	attackCol_->SetPower(power_);
 	attackCol_->SetAttribute(Attribute::EnemyAttack);
 }
 

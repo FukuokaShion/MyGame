@@ -15,13 +15,14 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	attackFallSpeed_ = -0.2f;
 
 	action_ = Action::Attack;
-	power_ = 15;
+	power_ = 150;
 
 	timer_ = 0;
 	afterTime_ = 20;
 
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	sowrd_->SetPower(power_);
 	CollisionManager::GetInstance()->AddCollider(sowrd_);
 }
 
