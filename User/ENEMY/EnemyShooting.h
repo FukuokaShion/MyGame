@@ -25,4 +25,6 @@ private:
 
 	int bulletLiveLimit_;
 	float speed_;
+
+	int afterTime_;
 };

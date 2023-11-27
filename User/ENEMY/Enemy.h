@@ -112,14 +112,20 @@ public:
 	void setPower(int power) { this->power_ = power; };
 
 	/**
-	 * @brief弾生成
+	 * @brief 弾生成
 	 */
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 	/**
-	 * @brief中心ボーン座標
+	 * @brief 中心ボーン座標
 	 */
 	Vector3 GetCenterPos() { return fbxObject3d_->GetBonWorldPos(boneNum_[0]); };
+	/**
+	 * @brief 手の座標取得
+	 */
+	Vector3 GetLeftHandPos() { return fbxObject3d_->GetBonWorldPos(boneNum_[4]); };
+	Vector3 GetRightHandPos() { return fbxObject3d_->GetBonWorldPos(boneNum_[3]); };
+
 
 private:
 	//サウンド
