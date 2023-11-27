@@ -25,6 +25,9 @@ void GameCamera::Initialize(int window_width, int window_height) {
 	
 	isViewReset = false;
 	resetSpeed = 0.2f;
+
+	rotaSpeedTimer_ = 0;
+	rotaSpeedMaxTime_ = 30;
 }
 
 void GameCamera::Update() {
@@ -38,7 +41,15 @@ void GameCamera::Update() {
 
 void GameCamera::Rota() {
 	Vector2 stick = Input::GetInstance()->GetRightStickVec();
+	if (stick.x != 0 || stick.y != 0) {
+		if (rotaSpeedTimer_ < rotaSpeedMaxTime_) {
+			rotaSpeedTimer_++;
+		}
+	}else {
+		rotaSpeedTimer_ = 0;
+	}
 	Vector2 velocity = { stick.x * sensitivity_.x ,stick.y * sensitivity_.y };
+	velocity *= std::lerp(0, 1, rotaSpeedTimer_ / rotaSpeedMaxTime_);
 	rota_.x += velocity.y;
 	rota_.y += velocity.x;
 	if (rota_.x > upLimit_) {
