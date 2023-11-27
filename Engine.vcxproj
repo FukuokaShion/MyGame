@@ -133,6 +133,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="User\COLLISION\CollisionManager.cpp" />
     <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp" />
     <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp" />
     <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Engine\MATH\Vector4.h" />
     <ClInclude Include="User\COLLISION\CollisionManager.h" />
     <ClInclude Include="User\ENEMY\EnemyDeathParticle.h" />
+    <ClInclude Include="User\ENEMY\EnemyShootingParticle.h" />
     <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h" />
     <ClInclude Include="User\ENEMY\EnemyUI.h" />
     <ClInclude Include="User\FIELD\Ship.h" />

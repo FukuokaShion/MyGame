@@ -25,6 +25,7 @@ void EnemyShooting::Update(Vector3 playerPos) {
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 	if (shotNum_ < shotMax_) {
+		enemy_->CreateBulletParticle();
 		shotTimer_--;
 		if (shotTimer_ < 0) {
 			enemy_->PlayWave("fire.wav");
