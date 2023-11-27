@@ -66,4 +66,7 @@ private:
 	Vector3 resetVec;
 	bool isViewReset;
 	float resetSpeed;
+
+	float rotaSpeedTimer_;
+	float rotaSpeedMaxTime_;
 };

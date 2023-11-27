@@ -9,13 +9,17 @@
 #include"PlayerAvoid.h"
 #include"PlayerMove.h"
 #include"PlayerJump.h"
+#include<cmath>
 
 PlayerMove::PlayerMove() {
 	player_->AnimationChange(Player::Animation::DASH);
 	limit_ = 600;
 	timer_ = 0;
+
+	speed = 0.5f;
+	speedTimer_ = 0;
+	speedMaxTime_ = 15;
 	player_->PlayWav("run.wav");
-	pushATime_ = 0;
 }
 
 void PlayerMove::Update() {
@@ -35,7 +39,10 @@ void PlayerMove::Move() {
 	//移動量
 	Vector3 velocity = { 0,0,0 };
 	//移動速度
-	const float speed = 0.5f;
+	float nowSpeed = nowSpeed = std::lerp(0.0f, speed, speedTimer_ / speedMaxTime_);
+	if (speedTimer_ < speedMaxTime_) {
+		speedTimer_++;
+	}
 
 	//スティック入力角度
 	float  sticAngle = atan2f(Input::GetInstance()->GetLeftStickVec().x, Input::GetInstance()->GetLeftStickVec().y);
@@ -44,7 +51,7 @@ void PlayerMove::Move() {
 	//カメラから見た時の移動方向に合わせる
 	float worldAngle = sticAngle + camAngle;
 
-	velocity = { sinf(worldAngle) * speed,0.0f,cosf(worldAngle) * speed };
+	velocity = { sinf(worldAngle) * nowSpeed,0.0f,cosf(worldAngle) * nowSpeed };
 
 	player_->Move(velocity);
 }

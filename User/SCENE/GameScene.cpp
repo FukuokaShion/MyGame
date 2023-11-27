@@ -138,9 +138,11 @@ void GameScene::Update() {
 
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
+
 		//押し出し処理
-		if (Collision::CircleCollision(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), enemy_->GetRad())) {
+		if (Collision::CircleCollisionXZ(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), enemy_->GetRad())) {
 			distance = player_->GetWtf().position - enemy_->GetWtf().position;
+			distance.y = 0;
 			pushVelocity = distance;
 			pushVelocity.nomalize();
 			pushVelocity *= player_->GetRad() + enemy_->GetRad();
