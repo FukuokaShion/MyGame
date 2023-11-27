@@ -18,7 +18,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	power_ = 150;
 
 	timer_ = 0;
-	afterTime_ = 20;
+	afterTime_ = 40;
 
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
