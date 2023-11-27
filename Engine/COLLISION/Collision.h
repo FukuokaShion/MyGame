@@ -74,6 +74,6 @@ public:
 	/**
 	 * @brief 円の当たり判定
 	*/
-	bool CircleCollisionXZ(Vector3 playerPos, Vector3 enemyPos, float playerWidth, float enemyWidth);
+	static bool CircleCollisionXZ(Vector3 playerPos, Vector3 enemyPos, float playerWidth, float enemyWidth);
 };
 
