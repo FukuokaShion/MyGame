@@ -19,4 +19,5 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(RSTICK, "r.png");
 	SpriteCommon::GetInstance()->LoadTexture(TELOPBASE, "telopBase.png");
 	SpriteCommon::GetInstance()->LoadTexture(PUSHB, "pushB.png");
+	SpriteCommon::GetInstance()->LoadTexture(ARROW, "arrow.png");
 }

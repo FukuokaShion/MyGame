@@ -10,6 +10,7 @@
 #include"Audio.h"
 #include"TitleField.h"
 #include"Ship.h"
+#include"Option.h"
 
 class TitleScene : public SceneState {
 public:
@@ -52,11 +53,15 @@ private:
 	Audio* audio_ = nullptr;
 	IXAudio2SourceVoice* pSourceVoice_ = nullptr;
 
+	//オプション
+	Option* option_ = nullptr;
+
 	//カメラ
 	Camera* camera_ = nullptr;
 
 	//画像
 	Sprite* basePic_;
+	Sprite* arrow_;
 
 	//フィールド
 	std::unique_ptr<TitleField> field_;
@@ -64,4 +69,9 @@ private:
 	//船
 	const float fadeOutPos = 60.0f;
 	std::unique_ptr<Ship> ship_;
+
+	Vector2 startSelect_;
+	Vector2 optionSelect_;
+	bool optionOpen_;
+	bool isStartSelect_;
 };
