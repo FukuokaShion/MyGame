@@ -62,7 +62,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER;$(SolutionDir)User\COLLISION</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -84,7 +84,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER;$(SolutionDir)User\COLLISION</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -131,12 +131,12 @@
     <ClCompile Include="Engine\MATH\Vector3.cpp" />
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="User\COLLISION\CollisionManager.cpp" />
     <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp" />
     <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp" />
     <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
     <ClCompile Include="User\FIELD\TitleField.cpp" />
-    <ClCompile Include="User\CollisionManager.cpp" />
     <ClCompile Include="User\ENEMY\EnemyApproach.cpp" />
     <ClCompile Include="User\ENEMY\Enemy.cpp" />
     <ClCompile Include="User\ENEMY\EnemyAttack.cpp" />
@@ -201,12 +201,12 @@
     <ClInclude Include="Engine\MATH\Vector2.h" />
     <ClInclude Include="Engine\MATH\Vector3.h" />
     <ClInclude Include="Engine\MATH\Vector4.h" />
+    <ClInclude Include="User\COLLISION\CollisionManager.h" />
     <ClInclude Include="User\ENEMY\EnemyDeathParticle.h" />
     <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h" />
     <ClInclude Include="User\ENEMY\EnemyUI.h" />
     <ClInclude Include="User\FIELD\Ship.h" />
     <ClInclude Include="User\FIELD\TitleField.h" />
-    <ClInclude Include="User\CollisionManager.h" />
     <ClInclude Include="User\ENEMY\EnemyApproach.h" />
     <ClInclude Include="User\ENEMY\Enemy.h" />
     <ClInclude Include="User\ENEMY\EnemyAttack.h" />
