@@ -42,14 +42,6 @@ void Ship::Update() {
 
 	player_->Update();
 
-	if (input_->PButtonTrigger(B)) {
-		isMoveShip_ = true;
-	}
-
-	if (input_->TriggerKey(DIK_SPACE)) {
-		isMoveShip_ = true;
-	}
-
 	if (isMoveShip_) {
 		if (timer_ < limit_) {
 			timer_++;

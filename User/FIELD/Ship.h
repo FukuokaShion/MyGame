@@ -27,9 +27,19 @@ public:
 	void Draw();
 
 	/**
+	 * @brief 動き始める
+	*/
+	void Start() { isMoveShip_ = true; };
+
+	/**
 	 * @brief 座標取得
 	*/
 	Vector3 GetPos() { return ship_->wtf.position; };
+
+	/**
+	 * @brief 動き始めているか取得
+	*/
+	bool GetIsMoveShip() { return isMoveShip_; };
 
 private:
 	//入力

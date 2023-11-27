@@ -20,6 +20,7 @@ public:
 		RSTICK,
 		TELOPBASE,
 		PUSHB,
+		ARROW,
 	};
 
 	/**

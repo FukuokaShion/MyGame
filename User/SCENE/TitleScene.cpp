@@ -33,28 +33,75 @@ void TitleScene::Initialize() {
 	basePic_->Initialize(SpriteCommon::GetInstance());
 	basePic_->SetSize({ WinApp::window_width,WinApp::window_height });
 
+	startSelect_ = { 1185,327 };
+	optionSelect_ = { 1185,490 };
+	arrow_ = new Sprite();
+	arrow_->Initialize(SpriteCommon::GetInstance());
+	arrow_->SetPozition(startSelect_);
+	arrow_->SetSize({ 64,64 });
+
+
 	basePic_->SetTextureIndex(SpriteLoader::TITLE);
-	
+	arrow_->SetTextureIndex(SpriteLoader::ARROW);
+
 	field_ = std::make_unique<TitleField>();
 	field_->Initialize();
 
 	ship_ = std::make_unique<Ship>();
 	ship_->Initialize();
+
+	option_ = new Option();
+	option_->Initialize();
+	optionOpen_ = false;
+	isStartSelect_ = true;
 }
 
 TitleScene::~TitleScene() {
 	delete basePic_;
+	delete arrow_;
+	delete option_;
 	audio_->StopWave(pSourceVoice_);
 }
 
 //更新
 void TitleScene::Update() {
-	camera_->Update();
-	field_->Update();
-	ship_->Update();
+	if (optionOpen_) {
+		//オプション画面
+		option_->Update();
+		if (Input::GetInstance()->PButtonTrigger(B) || Input::GetInstance()->PButtonTrigger(START)) {
+			optionOpen_ = false;
+		}
+	}else {
+		//スタート画面
+		if (ship_->GetIsMoveShip() == false) {
+			//選択変更
+			if (Input::GetInstance()->LeftStickInput()) {
+				if (Input::GetInstance()->GetLeftStickVec().y > 0) {
+					arrow_->SetPozition(startSelect_);
+					isStartSelect_ = true;
+				}else if (Input::GetInstance()->GetLeftStickVec().y < 0) {
+					arrow_->SetPozition(optionSelect_);
+					isStartSelect_ = false;
+				}
+			}
+			//実行
+			if (Input::GetInstance()->PButtonTrigger(B)) {
+				if (isStartSelect_) {
+					ship_->Start();
+				}else {
+					optionOpen_ = true;
+				}
+			}
+		}
 
-	basePic_->Update();
-	StateTransition();
+		camera_->Update();
+		field_->Update();
+		ship_->Update();
+		basePic_->Update();
+		arrow_->Update();
+		StateTransition();
+	}
+
 }
 
 
@@ -68,7 +115,13 @@ void TitleScene::FbxDraw() {
 }
 
 void TitleScene::SpriteDraw() {
-	basePic_->Draw();
+	if (optionOpen_) {
+		option_->SpriteDraw();
+	}
+	else {
+		basePic_->Draw();
+		arrow_->Draw();
+	}
 }
 
 void TitleScene::StateTransition() {

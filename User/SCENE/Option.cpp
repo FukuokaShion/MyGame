@@ -22,13 +22,14 @@ void Option::Initialize() {
 	rPic_ = std::make_unique<Sprite>();
 	rPic_->Initialize(SpriteCommon::GetInstance());
 	rPic_->SetSize({ 48,48 });
-	rPic_->SetPozition({ 411 + (GameCamera::GetSensitivity().x - 0.02f) * 7830.0f, 400.0f });
+	rPic_->SetAnchorPoint({ 0.5f,0.5f });
+	rPic_->SetPozition({ 405 + (GameCamera::GetSensitivity().x - 0.02f) * 8880.0f, 521.0f });
 	rPic_->SetTextureIndex(SpriteLoader::RSTICK);
 }
 
 void Option::Update() {
 	basePic_->Update();
-	rPic_->SetPozition({ 411 + (GameCamera::GetSensitivity().x - 0.02f) * 7830.0f, 400.0f });
+	rPic_->SetPozition({ 405 + (GameCamera::GetSensitivity().x - 0.02f) * 8880.0f, 521.0f });
 	rPic_->Update();
 
 	if (0 < Input::GetInstance()->GetRightStickVec().x) {	
