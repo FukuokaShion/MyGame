@@ -39,7 +39,7 @@ private:
 	const int power_ = 220;
 
 	///後隙
-	const int afterTime_ = 5;
+	const int afterTime_ = 45;
 
 	//当たり判定
 	BaseCollider* attackCol_;

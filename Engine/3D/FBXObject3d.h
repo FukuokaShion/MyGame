@@ -124,7 +124,7 @@ public: // メンバ関数
 	/**
 	 * @brief ボーンのワールド座標取得
 	*/
-	Vector3 GetBonWorldPos(uint32_t& BoneNum);
+	Vector3 GetBonWorldPos(const uint32_t& BoneNum);
 
 protected: // メンバ変数
 	ComPtr<ID3D12Resource> constBuffB0; // 定数バッファ

@@ -48,20 +48,35 @@ void Enemy::Initialize() {
 
 	ui_.Initialize();
 
-	boneNum_[0] = 1;
-	boneNum_[1] = 4;
-	boneNum_[2] = 7;
-	boneNum_[3] = 12;
-	boneNum_[4] = 17;
+	boneNum_[0] = SPINE1;
+	boneNum_[1] = SPINE2;
+	boneNum_[2] = HEAD;
+	boneNum_[3] = HAND_R;
+	boneNum_[4] = HAND_L;
+	boneNum_[5] = ARM1_R;
+	boneNum_[6] = ARM2_R;
+	boneNum_[7] = ARM1_L;
+	boneNum_[8] = ARM2_L;
+	boneNum_[9] = LEG_R;
+	boneNum_[10] = LEG_L;
 
 	for (int i = 0; i < MaxColliderNum; i++) {
 		colliders_[i] = new BaseCollider;
 		colliders_[i]->SetAttribute(Attribute::EnemyBody);
-		if (i == 0) {
-			colliders_[i]->SetRad(rad_);
-		}
 		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
 	}
+
+	colliders_[0]->SetRad(0.7f);
+	colliders_[1]->SetRad(0.7f);
+	colliders_[2]->SetRad(0.5f);
+	colliders_[3]->SetRad(0.3f);
+	colliders_[4]->SetRad(0.3f);
+	colliders_[5]->SetRad(0.3f);
+	colliders_[6]->SetRad(0.3f);
+	colliders_[7]->SetRad(0.3f);
+	colliders_[8]->SetRad(0.3f);
+	colliders_[9]->SetRad(0.6f);
+	colliders_[10]->SetRad(0.6f);
 }
 
 Enemy::~Enemy() {

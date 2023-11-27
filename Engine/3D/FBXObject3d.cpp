@@ -327,7 +327,7 @@ void FBXObject3d::PlayAnimation(int animationNum, float speed, bool isLoop) {
 	this->isLoop_ = isLoop;
 }
 
-Vector3 FBXObject3d::GetBonWorldPos(uint32_t& BoneNum) {
+Vector3 FBXObject3d::GetBonWorldPos(const uint32_t& BoneNum) {
 	Vector3 result;
 
 	result.x = (bonesMat[BoneNum] * wtf.matWorld).m[3][0];
