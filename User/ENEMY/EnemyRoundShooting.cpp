@@ -8,7 +8,7 @@
 #include"EnemyStandby.h"
 
 EnemyRoundShooting::EnemyRoundShooting() {
-	enemy_->AnimationChange(1);
+	enemy_->AnimationChange(Enemy::HANDUP);
 	interval_ = 25;
 	shotTimer_ = interval_;
 	shotMax_ = 5;

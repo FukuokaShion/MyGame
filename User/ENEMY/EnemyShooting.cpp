@@ -8,7 +8,7 @@
 #include"EnemyStandby.h"
 
 EnemyShooting::EnemyShooting() {
-	enemy_->AnimationChange(1);
+	enemy_->AnimationChange(Enemy::SHOOT);
 	interval_ = 25;
 	shotTimer_ = interval_;
 	shotMax_ = 3;

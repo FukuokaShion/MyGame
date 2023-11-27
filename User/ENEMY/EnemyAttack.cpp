@@ -9,7 +9,7 @@
 
 Attack::Attack() {
 	action_ = Action::Antic;
-	enemy_->AnimationChange(0);
+	enemy_->AnimationChange(Enemy::ATTACK);
 
 	attackCol_ = new BaseCollider;
 	attackCol_->SetRad(colRad);

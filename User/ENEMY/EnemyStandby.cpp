@@ -14,7 +14,7 @@
 #include"EnemyStrongBodyBlow.h"
 
 Standby::Standby() {
-	enemy_->AnimationChange(2);
+	enemy_->AnimationChange(Enemy::STAND);
 }
 
 //待機

@@ -18,9 +18,11 @@
 
 class Enemy {
 public:
-	enum Animation {
-		SHAKE,//0
-		STAND,//1
+	enum{
+		ATTACK,
+		HANDUP,
+		SHOOT,
+		STAND,
 	};
 
 	enum : uint32_t {
