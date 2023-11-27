@@ -18,15 +18,31 @@
 
 class Enemy {
 public:
-	enum Animation {
-		SHAKE,//0
-		STAND,//1
+	enum{
+		ATTACK,
+		HANDUP,
+		SHOOT,
+		STAND,
+	};
+
+	enum : uint32_t {
+		SPINE1 = 3,
+		SPINE2 = 4,
+		HEAD = 6,
+		ARM1_R = 9,
+		ARM2_R = 10,
+		HAND_R = 11,
+		LEG_R = 18,
+		ARM1_L = 14,
+		ARM2_L = 15,
+		HAND_L = 16,
+		LEG_L = 22,
 	};
 
 public:
 	Enemy();
 	~Enemy();
-	
+
 	/**
 	 * @brief 初期化
 	*/
@@ -71,12 +87,12 @@ public:
 	 * @brief 座標移動
 	*/
 	void Move(Vector3 velocity) { fbxObject3d_->wtf.position += velocity; };
-	
+
 	/**
 	 * @brief Y軸回転
 	*/
 	void RotaY(float theta) { fbxObject3d_->wtf.rotation.y = theta; };
-	
+
 	/**
 	 * @brief 座標取得
 	*/
@@ -112,14 +128,20 @@ public:
 	void setPower(int power) { this->power_ = power; };
 
 	/**
-	 * @brief弾生成
+	 * @brief 弾生成
 	 */
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
 
 	/**
-	 * @brief中心ボーン座標
+	 * @brief 中心ボーン座標
 	 */
-	Vector3 GetCenterPos() { return fbxObject3d_->GetBonWorldPos(boneNum_[0]); };
+	Vector3 GetCenterPos() { return fbxObject3d_->GetBonWorldPos(SPINE1); };
+	/**
+	 * @brief 手の座標取得
+	 */
+	Vector3 GetLeftHandPos() { return fbxObject3d_->GetBonWorldPos(HAND_L); };
+	Vector3 GetRightHandPos() { return fbxObject3d_->GetBonWorldPos(HAND_R); };
+
 
 private:
 	//サウンド
@@ -134,9 +156,9 @@ private:
 
 	//当たり判定
 	const float rad_ = 1.3f;
-	const int MaxColliderNum = 5;
-	BaseCollider* colliders_[5];
-	uint32_t boneNum_[5];
+	const int MaxColliderNum = 11;
+	BaseCollider* colliders_[11];
+	uint32_t boneNum_[11];
 
 	//UI
 	EnemyUI ui_;
