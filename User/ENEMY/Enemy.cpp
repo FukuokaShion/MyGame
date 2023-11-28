@@ -24,6 +24,7 @@ Enemy::Enemy() {
 	state_->SetEnemy(this);
 
 	particle_ = new EnemyParticle;
+	bulletCreateParticle_ = new EnemyShootingParticle;
 	deatgparticle_ = new EnemyDeathParticle;
 }
 
@@ -85,6 +86,7 @@ Enemy::~Enemy() {
 	delete hp_;
 	delete state_;
 	delete particle_;
+	delete bulletCreateParticle_;
 	delete deatgparticle_;
 	bullets_.clear();
 	EnemyBullet::StaticFinalize();
@@ -113,6 +115,7 @@ void Enemy::Update(Vector3 playerPos) {
 	}
 	//パーティクル
 	particle_->Update();
+	bulletCreateParticle_->Update();
 	deatgparticle_->Update();
 	//弾
 	bullets_.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
@@ -137,14 +140,16 @@ void Enemy::Draw() {
 	if (hp_->IsLive()) {
 		fbxObject3d_->Draw();
 	}
+
+	particle_->Draw();
+	bulletCreateParticle_->Draw();
+	deatgparticle_->Draw();
 }
 
 void Enemy::ObjDraw() {
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Draw();
 	}
-	particle_->Draw();
-	deatgparticle_->Draw();
 }
 
 void Enemy::SpriteDraw() {
@@ -155,6 +160,10 @@ void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTi
 	std::unique_ptr<EnemyBullet> newBullet = std::make_unique<EnemyBullet>();
 	newBullet->Initialize(pos, velocity, liveLimit, stayTime);
 	bullets_.push_back(std::move(newBullet));
+}
+
+void Enemy::CreateBulletParticle() {
+	bulletCreateParticle_->Create(GetRightHandPos());
 }
 
 //状態を変更する

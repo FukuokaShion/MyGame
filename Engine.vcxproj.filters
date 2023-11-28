@@ -322,6 +322,9 @@
     <ClCompile Include="User\COLLISION\CollisionManager.cpp">
       <Filter>user\ソース</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -527,6 +530,9 @@
     </ClInclude>
     <ClInclude Include="Engine\COLLISION\CollisionPrimitive.h">
       <Filter>Engine\ヘッダーファイル\COLLISION</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyShootingParticle.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
 #include"EnemyParticle.h"
+#include"EnemyShootingParticle.h"
 #include"EnemyDeathParticle.h"
 #include"Audio.h"
 
@@ -131,6 +132,10 @@ public:
 	 * @brief 弾生成
 	 */
 	void CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime = 0);
+	/**
+	 * @brief 弾生成時パーティクル
+	 */
+	void CreateBulletParticle();
 
 	/**
 	 * @brief 中心ボーン座標
@@ -176,6 +181,7 @@ private:
 
 	//パーティクル
 	EnemyParticle* particle_ = nullptr;
+	EnemyShootingParticle* bulletCreateParticle_ = nullptr;
 
 	//死亡時
 	const int DeathLimit = 210;
