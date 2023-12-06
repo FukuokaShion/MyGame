@@ -23,7 +23,4 @@ private:
 
 	//接近移行距離
 	const float approachDistance_ = 4.0f;
-
-	//遠距離範囲
-	const float switchDistance_ = 10.0f;
 };

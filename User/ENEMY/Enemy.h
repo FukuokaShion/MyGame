@@ -15,12 +15,14 @@
 #include"EnemyHp.h"
 #include"EnemyState.h"
 #include"EnemyBullet.h"
+#include"EnemyBomb.h"
 #include"EnemyUI.h"
 
 class Enemy {
 public:
 	enum{
 		ATTACK,
+		BOMBSHOOT,
 		HANDUP,
 		SHOOT,
 		STAND,
@@ -136,6 +138,10 @@ public:
 	 * @brief 弾生成時パーティクル
 	 */
 	void CreateBulletParticle();
+	/**
+	 * @brief 爆弾登録
+	 */
+	void CreateBomb();
 
 	/**
 	 * @brief 中心ボーン座標
@@ -174,6 +180,8 @@ private:
 
 	//弾リスト
 	std::list<std::unique_ptr<EnemyBullet>> bullets_;
+	std::list<std::unique_ptr<EnemyBomb>> bombs_;
+	EnemyBomb* bomb_;
 
 	//攻撃判定
 	bool isAttack_;

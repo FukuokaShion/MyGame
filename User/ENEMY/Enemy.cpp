@@ -8,6 +8,7 @@
 #include"EnemyStandby.h"
 #include"EnemyAttack.h"
 #include"EnemyShooting.h"
+#include"Input.h"
 
 Enemy::Enemy() {
 	//モデル生成
@@ -44,6 +45,7 @@ void Enemy::Initialize() {
 	isAttack_ = false;
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
+	EnemyBomb::StaticInitialize();
 
 	DeathTimer = 0;
 
@@ -90,6 +92,7 @@ Enemy::~Enemy() {
 	delete deatgparticle_;
 	bullets_.clear();
 	EnemyBullet::StaticFinalize();
+	EnemyBomb::StaticFinalize();
 }
 
 void Enemy::Update(Vector3 playerPos) {
@@ -122,6 +125,11 @@ void Enemy::Update(Vector3 playerPos) {
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Update();
 	}
+
+	bombs_.remove_if([](std::unique_ptr<EnemyBomb>& bomb) {return bomb->IsDead(); });
+	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
+		bomb->Update(GetRightHandPos(), playerPos);
+	}
 	//ui
 	ui_.Update(GetHp());
 }
@@ -150,6 +158,9 @@ void Enemy::ObjDraw() {
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Draw();
 	}
+	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
+		bomb->Draw();
+	}
 }
 
 void Enemy::SpriteDraw() {
@@ -164,6 +175,13 @@ void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTi
 
 void Enemy::CreateBulletParticle() {
 	bulletCreateParticle_->Create(GetRightHandPos());
+}
+
+
+void Enemy::CreateBomb() {
+	std::unique_ptr<EnemyBomb> newBomb = std::make_unique<EnemyBomb>();
+	newBomb->Initialize(GetRightHandPos());
+	bombs_.push_back(std::move(newBomb));
 }
 
 //状態を変更する
