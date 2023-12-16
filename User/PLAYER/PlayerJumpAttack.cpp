@@ -15,7 +15,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	attackFallSpeed_ = -0.2f;
 
 	action_ = Action::Attack;
-	power_ = 150;
+	power_ = 100;
 
 	timer_ = 0;
 	afterTime_ = 40;

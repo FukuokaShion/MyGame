@@ -58,13 +58,6 @@ void SceneManager::Update() {
 /// 描画
 /// </summary>
 void SceneManager::Draw() {
-	///3Dオブジェクト描画前処理
-	Object3d::PreDraw(dxCommon_->GetCommandList());
-	///3Dオブクジェクトの描画 
-	state_->ObjectDraw();
-	///3Dオブジェクト描画後処理
-	Object3d::PostDraw();
-
 
 	///fbx描画前処理
 	FBXObject3d::PreDraw(dxCommon_->GetCommandList());
@@ -72,6 +65,13 @@ void SceneManager::Draw() {
 	state_->FbxDraw();
 	///FBX描画後処理
 	FBXObject3d::PostDraw();
+
+	///3Dオブジェクト描画前処理
+	Object3d::PreDraw(dxCommon_->GetCommandList());
+	///3Dオブクジェクトの描画 
+	state_->ObjectDraw();
+	///3Dオブジェクト描画後処理
+	Object3d::PostDraw();
 
 	state_->SpriteDraw();
 	sceneChange_->SpriteDraw();

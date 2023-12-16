@@ -150,6 +150,15 @@ void GameScene::Update() {
 			player_->Move(pushVelocity);
 		}
 
+		//地震仮ダメージ判定
+		if (enemy_->JISIN) {
+			if (Collision::CircleCollisionXZ(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), 8)) {
+				if (player_->Damage(180)) {
+					enemy_->JISIN = false;
+				}
+			}
+		}
+
 		collisionManager_->GetPlayerAttack(player_->GetIsAttack());
 		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
 		collisionManager_->CheakCol();

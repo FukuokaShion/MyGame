@@ -12,6 +12,8 @@
 #include"EnemyShooting.h"
 #include"EnemyRoundShooting.h"
 #include"EnemyStrongBodyBlow.h"
+#include"EnemyBombShooting.h"
+#include"EnemyEarthquakeAttack.h"
 
 Standby::Standby() {
 	enemy_->AnimationChange(Enemy::STAND);
@@ -20,36 +22,30 @@ Standby::Standby() {
 //待機
 void Standby::Update(Vector3 playerPos) {
 	timer++;
+	playerPos;
 	//状態切り替え
 	if (timer > limit_) {
 		int randNum = rand() % 100 + 1;//1から100の範囲になる
-		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > switchDistance_) {
-			if (0 < randNum && randNum <= 20) {
-				enemy_->TransitionTo(new EnemyStrongBodyBlow);
-			}if (20 < randNum && randNum <= 30) {
-				enemy_->TransitionTo(new Approach);
-			}else if (30 < randNum && randNum <= 70) {
-				enemy_->TransitionTo(new EnemyShooting);
-			}else {
-				enemy_->TransitionTo(new EnemyRoundShooting);
-			}
-		}
 		//遠い場合
-		else if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
-			if (0 < randNum && randNum <= 25) {
+		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
+			if (0 < randNum && randNum <= 20) {
 				enemy_->TransitionTo(new Approach);
-			}else if (25 < randNum && randNum <= 70) {
+			}else if (20 < randNum && randNum <= 60) {
 				enemy_->TransitionTo(new EnemyShooting);
-			}else {
+			}else if(60 < randNum && randNum <= 75) {
 				enemy_->TransitionTo(new EnemyRoundShooting);
+			}else {
+				enemy_->TransitionTo(new EnemyBombShooting);
 			}
 		}
 		//近い場合
 		else {
 			if (0 < randNum && randNum <= 35) {
 				enemy_->TransitionTo(new Attack);
-			}else if (35 < randNum && randNum <= 60) {
+			}else if (35 < randNum && randNum <= 55) {
 				enemy_->TransitionTo(new EnemyShooting);
+			}else if (55 < randNum && randNum <= 85) {
+				enemy_->TransitionTo(new EnemyEarthquakeAttack);
 			}else {
 				enemy_->TransitionTo(new Leave);
 			}

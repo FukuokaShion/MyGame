@@ -325,6 +325,18 @@
     <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyBomb.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyBombShooting.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyEarthquake.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyEarthquakeAttack.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -532,6 +544,18 @@
       <Filter>Engine\ヘッダーファイル\COLLISION</Filter>
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyShootingParticle.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyBomb.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyBombShooting.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyEarthquake.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyEarthquakeAttack.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>

@@ -156,6 +156,9 @@ public:
 	*/
 	float GetRad() { return rad_; };
 
+
+	bool Damage(int damage);
+
 private:
 	Vector3 camViewVec_;
 	//入力

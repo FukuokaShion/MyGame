@@ -176,3 +176,14 @@ void Player::Move(Vector3 velocity) {
 
 	fbxObject3d_->wtf.position = newPos;
 };
+
+
+bool Player::Damage(int damage) {
+	if (isInvincible_ == false) {
+		if (fbxObject3d_->wtf.position.y < 0.5f) {
+			hp_->Damage(damage);
+			return true;
+		}
+	}
+	return false;
+};

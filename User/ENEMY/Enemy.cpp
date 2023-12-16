@@ -8,6 +8,7 @@
 #include"EnemyStandby.h"
 #include"EnemyAttack.h"
 #include"EnemyShooting.h"
+#include"Input.h"
 
 Enemy::Enemy() {
 	//モデル生成
@@ -44,6 +45,7 @@ void Enemy::Initialize() {
 	isAttack_ = false;
 	power_ = 0;
 	EnemyBullet::StaticInitialize();
+	EnemyBomb::StaticInitialize();
 
 	DeathTimer = 0;
 
@@ -90,6 +92,7 @@ Enemy::~Enemy() {
 	delete deatgparticle_;
 	bullets_.clear();
 	EnemyBullet::StaticFinalize();
+	EnemyBomb::StaticFinalize();
 }
 
 void Enemy::Update(Vector3 playerPos) {
@@ -122,6 +125,19 @@ void Enemy::Update(Vector3 playerPos) {
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Update();
 	}
+
+	bombs_.remove_if([](std::unique_ptr<EnemyBomb>& bomb) {return bomb->IsDead(); });
+	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
+		bomb->Update(GetRightHandPos(), playerPos);
+	}
+
+	earthquakes_.remove_if([](std::unique_ptr<Earthquake>& earthquake) {return earthquake->IsDead();});
+	for (std::unique_ptr<Earthquake>& earthquake : earthquakes_) {
+		earthquake->Update();
+		if (earthquake->attack()) {
+			JISIN = false;
+		}
+	}
 	//ui
 	ui_.Update(GetHp());
 }
@@ -141,15 +157,22 @@ void Enemy::Draw() {
 		fbxObject3d_->Draw();
 	}
 
-	particle_->Draw();
-	bulletCreateParticle_->Draw();
-	deatgparticle_->Draw();
 }
 
 void Enemy::ObjDraw() {
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
 		bullet->Draw();
 	}
+	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
+		bomb->Draw();
+	}
+	for (std::unique_ptr<Earthquake>& earthquake : earthquakes_) {
+		earthquake->Draw();
+	}
+
+	particle_->Draw();
+	bulletCreateParticle_->Draw();
+	deatgparticle_->Draw();
 }
 
 void Enemy::SpriteDraw() {
@@ -164,6 +187,20 @@ void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTi
 
 void Enemy::CreateBulletParticle() {
 	bulletCreateParticle_->Create(GetRightHandPos());
+}
+
+
+void Enemy::CreateBomb() {
+	std::unique_ptr<EnemyBomb> newBomb = std::make_unique<EnemyBomb>();
+	newBomb->Initialize(GetRightHandPos());
+	bombs_.push_back(std::move(newBomb));
+}
+
+void Enemy::CreateEarthquake() {
+	std::unique_ptr<Earthquake> newEarthquake = std::make_unique<Earthquake>();
+	newEarthquake->Initialize(fbxObject3d_->wtf.position);
+	earthquakes_.push_back(std::move(newEarthquake));
+	JISIN = true;
 }
 
 //状態を変更する
