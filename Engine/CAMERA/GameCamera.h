@@ -36,6 +36,11 @@ public:
 	*/
 	void SetParentPos(Vector3 parentPos) { parentPos_ = parentPos; };
 	/**
+	 * @brief ロックオン座標セット
+	*/
+	void SetRockOnPos(Vector3 rockOnPos) { rockOnPos_ = rockOnPos; };
+
+	/**
 	 * @brief 親視線ベクトルセット
 	*/
 	void SetParentViewVec(Vector3 SetParentViewVec);
@@ -45,6 +50,9 @@ private:
 	 * @brief 回転
 	*/
 	void Rota();
+
+	void ChangeRockOn();
+	
 	/**
 	 * @brief 親の視線になる
 	*/
@@ -69,4 +77,9 @@ private:
 
 	float rotaSpeedTimer_;
 	float rotaSpeedMaxTime_;
+
+	//ロックオン
+	bool isRockOn_;
+	Vector3 rockOnPos_;
+
 };
