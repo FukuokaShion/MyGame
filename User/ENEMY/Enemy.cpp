@@ -130,6 +130,14 @@ void Enemy::Update(Vector3 playerPos) {
 	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
 		bomb->Update(GetRightHandPos(), playerPos);
 	}
+
+	earthquakes_.remove_if([](std::unique_ptr<Earthquake>& earthquake) {return earthquake->IsDead();});
+	for (std::unique_ptr<Earthquake>& earthquake : earthquakes_) {
+		earthquake->Update();
+		if (earthquake->attack()) {
+			JISIN = false;
+		}
+	}
 	//ui
 	ui_.Update(GetHp());
 }
@@ -149,9 +157,6 @@ void Enemy::Draw() {
 		fbxObject3d_->Draw();
 	}
 
-	particle_->Draw();
-	bulletCreateParticle_->Draw();
-	deatgparticle_->Draw();
 }
 
 void Enemy::ObjDraw() {
@@ -161,6 +166,13 @@ void Enemy::ObjDraw() {
 	for (std::unique_ptr<EnemyBomb>& bomb : bombs_) {
 		bomb->Draw();
 	}
+	for (std::unique_ptr<Earthquake>& earthquake : earthquakes_) {
+		earthquake->Draw();
+	}
+
+	particle_->Draw();
+	bulletCreateParticle_->Draw();
+	deatgparticle_->Draw();
 }
 
 void Enemy::SpriteDraw() {
@@ -182,6 +194,13 @@ void Enemy::CreateBomb() {
 	std::unique_ptr<EnemyBomb> newBomb = std::make_unique<EnemyBomb>();
 	newBomb->Initialize(GetRightHandPos());
 	bombs_.push_back(std::move(newBomb));
+}
+
+void Enemy::CreateEarthquake() {
+	std::unique_ptr<Earthquake> newEarthquake = std::make_unique<Earthquake>();
+	newEarthquake->Initialize(fbxObject3d_->wtf.position);
+	earthquakes_.push_back(std::move(newEarthquake));
+	JISIN = true;
 }
 
 //状態を変更する

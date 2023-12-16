@@ -13,6 +13,7 @@
 #include"EnemyRoundShooting.h"
 #include"EnemyStrongBodyBlow.h"
 #include"EnemyBombShooting.h"
+#include"EnemyEarthquakeAttack.h"
 
 Standby::Standby() {
 	enemy_->AnimationChange(Enemy::STAND);
@@ -41,8 +42,10 @@ void Standby::Update(Vector3 playerPos) {
 		else {
 			if (0 < randNum && randNum <= 35) {
 				enemy_->TransitionTo(new Attack);
-			}else if (35 < randNum && randNum <= 60) {
+			}else if (35 < randNum && randNum <= 55) {
 				enemy_->TransitionTo(new EnemyShooting);
+			}else if (55 < randNum && randNum <= 85) {
+				enemy_->TransitionTo(new EnemyEarthquakeAttack);
 			}else {
 				enemy_->TransitionTo(new Leave);
 			}

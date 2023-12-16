@@ -22,5 +22,5 @@ private:
 	const int limit_ = 60;
 
 	//接近移行距離
-	const float approachDistance_ = 4.0f;
+	const float approachDistance_ = 5.0f;
 };
