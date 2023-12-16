@@ -130,11 +130,13 @@ void GameScene::Update() {
 
 	switch (state_) {
 	case State::game:
+		enemy_->Update(player_->GetWtf().position);
+
 		gameCamera_->SetParentPos(player_->GetWtf().position);
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
+		gameCamera_->SetRockOnPos(enemy_->GetCenterPos());
 		gameCamera_->Update();
 
-		enemy_->Update(player_->GetWtf().position);
 
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();

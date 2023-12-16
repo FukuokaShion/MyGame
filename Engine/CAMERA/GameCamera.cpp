@@ -16,7 +16,8 @@ void GameCamera::Initialize(int window_width, int window_height) {
 	Camera::Initialize(window_width, window_height);
 
 	parentPos_ = { 0,0,0 };
-	localPos_ = { 0,3,0 };
+	localPos_ = { 0,3.5f,0 };
+	distance_ = 6.0f;
 
 	const float PI = 3.141592f;
 	rota_ = { 0.0f,PI,0.f };
@@ -28,9 +29,14 @@ void GameCamera::Initialize(int window_width, int window_height) {
 
 	rotaSpeedTimer_ = 0;
 	rotaSpeedMaxTime_ = 30;
+
+	//ロックオン
+	isRockOn_ = true;
+	rockOnPos_ = { 0,0,0 };
 }
 
 void GameCamera::Update() {
+	ChangeRockOn();
 	Rota();
 	ViewReset();
 
@@ -40,33 +46,42 @@ void GameCamera::Update() {
 }
 
 void GameCamera::Rota() {
-	Vector2 stick = Input::GetInstance()->GetRightStickVec();
-	if (stick.x != 0 || stick.y != 0) {
-		if (rotaSpeedTimer_ < rotaSpeedMaxTime_) {
-			rotaSpeedTimer_++;
+	if (isRockOn_ == true) {
+		target_ = parentPos_ + localPos_;
+		Vector3 vec = rockOnPos_ - target_;
+		eye_ = target_ + (-vec.nomalize() * distance_);
+		rota_.y = atan2f(-vec.x, -vec.z);
+	}else{
+		Vector2 stick = Input::GetInstance()->GetRightStickVec();
+		if (stick.x != 0 || stick.y != 0) {
+			if (rotaSpeedTimer_ < rotaSpeedMaxTime_) {
+				rotaSpeedTimer_++;
+			}
 		}
-	}else {
-		rotaSpeedTimer_ = 0;
+		else {
+			rotaSpeedTimer_ = 0;
+		}
+		Vector2 velocity = { stick.x * sensitivity_.x ,stick.y * sensitivity_.y };
+		velocity *= std::lerp(0, 1, rotaSpeedTimer_ / rotaSpeedMaxTime_);
+		rota_.x += velocity.y;
+		rota_.y += velocity.x;
+		if (rota_.x > upLimit_) {
+			rota_.x = upLimit_;
+		}
+		else if (rota_.x < downLimit_) {
+			rota_.x = downLimit_;
+		}
+
+		Matrix4 cameraRot = Matrix4::Rotation(rota_, 6);
+
+		target_ = parentPos_ + localPos_;
+
+		Vector3 forward = { 0,0,distance_ };
+		forward = Matrix4::bVelocity(forward, cameraRot);
+		forward.nomalize();
+
+		eye_ = target_ + (forward * distance_);
 	}
-	Vector2 velocity = { stick.x * sensitivity_.x ,stick.y * sensitivity_.y };
-	velocity *= std::lerp(0, 1, rotaSpeedTimer_ / rotaSpeedMaxTime_);
-	rota_.x += velocity.y;
-	rota_.y += velocity.x;
-	if (rota_.x > upLimit_) {
-		rota_.x = upLimit_;
-	}else if (rota_.x < downLimit_) {
-		rota_.x = downLimit_;
-	}
-
-	Matrix4 cameraRot = Matrix4::Rotation(rota_, 6);
-
-	target_ = parentPos_ + localPos_;
-
-	Vector3 forward = { 0,0,distance_ };
-	forward = Matrix4::bVelocity(forward, cameraRot);
-	forward.nomalize();
-
-	eye_ = target_ + (forward * distance_);
 }
 
 void GameCamera::ViewReset() {
@@ -112,5 +127,15 @@ void GameCamera::ChangeSensitivity(Vector2 fluctuation) {
 	}
 	else if (sensitivity_.y > sensitivityMax_.y) {
 		sensitivity_.y = sensitivityMax_.y;
+	}
+}
+
+void GameCamera::ChangeRockOn() {
+	if (Input::GetInstance()->PButtonTrigger(RSTICK)) {
+		if (isRockOn_) {
+			isRockOn_ = false;
+		}else {
+			isRockOn_ = true;
+		}
 	}
 }
