@@ -23,12 +23,16 @@ PlayerAttack::PlayerAttack() {
 void PlayerAttack::Update() {
 	timer_++;
 	Transform playerWtf = player_->GetWtf();
+	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
 
 	switch (action_) {
 	case Action::Antic:
 		//予備動作
 		speed_ = anticDistance_ / static_cast<float>(anticTime_);
 		velocity_ = Matrix4::bVelocity(speed_, playerWtf.matWorld);
+		if (player_->IsRockOn()) {
+			player_->RotaY(camAngle);
+		}
 		player_->Move(velocity_);
 
 		if (timer_ > anticTime_) {

@@ -24,6 +24,11 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
 	sowrd_->SetPower(power_);
 	CollisionManager::GetInstance()->AddCollider(sowrd_);
+
+	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
+	if (player_->IsRockOn()) {
+		player_->RotaY(camAngle);
+	}
 }
 
 //攻撃
