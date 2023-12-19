@@ -156,8 +156,9 @@ public:
 	*/
 	float GetRad() { return rad_; };
 
-
 	bool Damage(int damage);
+
+	bool IsRockOn() { return isRockOn_; };
 
 private:
 	Vector3 camViewVec_;
@@ -192,4 +193,6 @@ private:
 
 	//行動
 	PlayerState* state_ = nullptr;
+
+	bool isRockOn_;
 };

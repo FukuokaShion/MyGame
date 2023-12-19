@@ -61,13 +61,21 @@ void Player::Initialize() {
 		colliders_[i]->SetRad(rad_);
 		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
 	}
+	isRockOn_ = true;
 }
 
 void Player::Update() {
 	state_->Update();
 
-	fbxObject3d_->wtf.UpdateMat();
+	if (Input::GetInstance()->PButtonTrigger(RSTICK)) {
+		if (isRockOn_) {
+			isRockOn_ = false;
+		}else {
+			isRockOn_ = true;
+		}
+	}
 
+	fbxObject3d_->wtf.UpdateMat();
 	fbxObject3d_->Update();
 
 	OnCollision();
@@ -76,8 +84,7 @@ void Player::Update() {
 		if (damageGauge_ > hp_->GetHp()) {
 			damageGauge_ -= 10;
 		}
-	}
-	else {
+	}else {
 		gaugeTimer_--;
 	}
 
