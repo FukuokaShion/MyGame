@@ -26,7 +26,7 @@ private:
 
 	///予備動作
 	//時間
-	const int anticTime_ = 20;
+	const int anticTime_ = 45;
 	//移動距離
 	const Vector3 anticDistance_ = { 0,0,1 };
 

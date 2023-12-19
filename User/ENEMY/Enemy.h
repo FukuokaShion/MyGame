@@ -23,11 +23,11 @@ class Enemy {
 public:
 	enum{
 		EARTHQUAKE,
-		BOMBSHOOT,
 		HANDUP,
 		SHOOT,
 		STAND,
 		ATTACK,
+		BOMBSHOOT,
 	};
 
 	enum : uint32_t {
