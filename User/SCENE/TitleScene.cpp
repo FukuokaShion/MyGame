@@ -29,13 +29,13 @@ void TitleScene::Initialize() {
 
 	Object3d::SetCamera(camera_);
 
-	basePic_ = new Sprite();
+	basePic_ = std::make_unique<Sprite>();
 	basePic_->Initialize(SpriteCommon::GetInstance());
 	basePic_->SetSize({ WinApp::window_width,WinApp::window_height });
 
 	startSelect_ = { 1185,327 };
 	optionSelect_ = { 1185,490 };
-	arrow_ = new Sprite();
+	arrow_ = std::make_unique<Sprite>();
 	arrow_->Initialize(SpriteCommon::GetInstance());
 	arrow_->SetPozition(startSelect_);
 	arrow_->SetSize({ 64,64 });
@@ -50,16 +50,13 @@ void TitleScene::Initialize() {
 	ship_ = std::make_unique<Ship>();
 	ship_->Initialize();
 
-	option_ = new Option();
+	option_ = std::make_unique<Option>();
 	option_->Initialize();
 	optionOpen_ = false;
 	isStartSelect_ = true;
 }
 
 TitleScene::~TitleScene() {
-	delete basePic_;
-	delete arrow_;
-	delete option_;
 	audio_->StopWave(pSourceVoice_);
 }
 

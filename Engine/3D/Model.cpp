@@ -21,10 +21,10 @@ ComPtr<ID3D12Device> Model::device_;
 Model::~Model() {
 }
 
-Model* Model::LoadFromOBJ(const std::string& modelname)
+std::unique_ptr<Model> Model::LoadFromOBJ(const std::string& modelname)
 {
 	//新たなModel型のインスタンスのメモリを確保
-	Model* model = new Model();
+	std::unique_ptr<Model> model = std::make_unique<Model>();
 	//デスクリプタヒープの生成
 	model->InitializeDescriptorHeap();
 	//読み込み
