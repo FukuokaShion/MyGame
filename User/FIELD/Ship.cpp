@@ -9,7 +9,7 @@
 void Ship::Initialize() {
 	shipMD_ = Model::LoadFromOBJ("ship");
 	ship_ = Object3d::Create();
-	ship_->SetModel(shipMD_);
+	ship_->SetModel(shipMD_.get());
 	ship_->wtf.position = { -20,0,28 };
 	shipAngle_ = 0.04f * 3.141592f / 180.0f;
 	shipSpeed_ = 0.3f;
@@ -18,17 +18,12 @@ void Ship::Initialize() {
 
 	playerMD_ = Model::LoadFromOBJ("playerObj");
 	player_ = Object3d::Create();
-	player_->SetModel(playerMD_);
+	player_->SetModel(playerMD_.get());
 	player_->wtf.position = { -20,0.5f,28 };
 
-	input_ = Input::GetInstance();
 }
 
 Ship::~Ship() {
-	delete ship_;
-	delete shipMD_;
-	delete player_;
-	delete playerMD_;
 }
 
 void Ship::Update() {

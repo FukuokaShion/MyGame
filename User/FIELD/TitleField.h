@@ -27,15 +27,15 @@ public:
 	void Draw();
 private:
 	//背景や床
-	Object3d* skydome_ = nullptr;
-	Model* skydomeMD_ = nullptr;
-	Object3d* water_ = nullptr;
-	Model* waterMD_ = nullptr;
-	Object3d* coast_ = nullptr;
-	Model* coastMD_ = nullptr;
+	std::unique_ptr<Object3d> skydome_ = nullptr;
+	std::unique_ptr<Model> skydomeMD_ = nullptr;
+	std::unique_ptr<Object3d> water_ = nullptr;
+	std::unique_ptr<Model> waterMD_ = nullptr;
+	std::unique_ptr<Object3d> coast_ = nullptr;
+	std::unique_ptr<Model> coastMD_ = nullptr;
 
-	Object3d* rock01_[2];
-	Model* rock01MD_ = nullptr;
-	Object3d* rock02_[2];
-	Model* rock02MD_ = nullptr;
+	std::unique_ptr<Object3d> rock01_[2];
+	std::unique_ptr<Model> rock01MD_ = nullptr;
+	std::unique_ptr<Object3d> rock02_[2];
+	std::unique_ptr<Model> rock02MD_ = nullptr;
 };

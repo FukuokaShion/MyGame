@@ -42,12 +42,9 @@ public:
 	bool GetIsMoveShip() { return isMoveShip_; };
 
 private:
-	//入力
-	Input* input_ = nullptr;
-
 	//船
-	Object3d* ship_ = nullptr;
-	Model* shipMD_ = nullptr;
+	std::unique_ptr<Object3d> ship_ = nullptr;
+	std::unique_ptr<Model> shipMD_ = nullptr;
 	float shipAngle_;
 	bool isMoveShip_;
 	float shipSpeed_;
@@ -55,7 +52,7 @@ private:
 	int limit_;
 
 	//プレイヤー
-	Object3d* player_ = nullptr;
-	Model* playerMD_ = nullptr;
+	std::unique_ptr<Object3d> player_ = nullptr;
+	std::unique_ptr<Model> playerMD_ = nullptr;
 
 };

@@ -67,7 +67,7 @@ public://可視化関数
 	void DrawCollider();
 
 private://可視化変数
-	Model* model_ = nullptr;
+	std::unique_ptr<Model> model_ = nullptr;
 	int maxCol_ = 20;
-	Object3d* objects_[20];
+	std::unique_ptr<Object3d> objects_[20];
 };

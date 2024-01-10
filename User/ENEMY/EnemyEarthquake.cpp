@@ -8,10 +8,7 @@
 //Model* Earthquake::model_ = nullptr;
 
 Earthquake::Earthquake() {};
-Earthquake::~Earthquake() {
-	delete obj_;
-	delete model_;
-};
+Earthquake::~Earthquake() {};
 
 //void Earthquake::StaticInitialize() {
 //	model_ = Model::LoadFromOBJ("cylinder");
@@ -24,7 +21,7 @@ Earthquake::~Earthquake() {
 void Earthquake::Initialize(Vector3 createPos) {
 	model_ = Model::LoadFromOBJ("cylinder");
 	obj_ = Object3d::Create();
-	obj_->SetModel(model_);
+	obj_->SetModel(model_.get());
 	obj_->wtf.position = createPos;
 	obj_->wtf.scale = { 8,0.01f,8 };
 

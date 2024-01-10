@@ -5,25 +5,23 @@
 
 #include "EnemyBullet.h"
 
-Model* EnemyBullet::model_ = nullptr;
+std::unique_ptr<Model> EnemyBullet::model_ = nullptr;
 
 EnemyBullet::EnemyBullet() {
 }
 
 EnemyBullet::~EnemyBullet() {
-	delete obj_;
 }
 
 void EnemyBullet::StaticInitialize() {
 	model_ = Model::LoadFromOBJ("boll");
 }
 void EnemyBullet::StaticFinalize() {
-	delete model_;
 }
 
 void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
 	obj_ = Object3d::Create();
-	obj_->SetModel(model_);
+	obj_->SetModel(model_.get());
 	obj_->wtf.position = pos;
 	velocity_ = velocity;
 

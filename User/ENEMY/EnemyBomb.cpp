@@ -5,13 +5,12 @@
 
 #include "EnemyBomb.h"
 
-Model* EnemyBomb::model_ = nullptr;
+std::unique_ptr<Model> EnemyBomb::model_ = nullptr;
 
 EnemyBomb::EnemyBomb() {
 }
 
 EnemyBomb::~EnemyBomb() {
-	delete obj_;
 }
 
 void EnemyBomb::StaticInitialize() {
@@ -19,13 +18,12 @@ void EnemyBomb::StaticInitialize() {
 }
 
 void EnemyBomb::StaticFinalize() {
-	delete model_;
 }
 
 void EnemyBomb::Initialize(Vector3 creatPos) {
 	startRad_ = 0.5f;
 	obj_ = Object3d::Create();
-	obj_->SetModel(model_);
+	obj_->SetModel(model_.get());
 	obj_->wtf.scale = { startRad_ ,startRad_ ,startRad_ };
 	obj_->wtf.position = creatPos;
 
