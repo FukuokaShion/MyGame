@@ -13,16 +13,16 @@ void Field::Initialize() {
 	//背景
 	skydomeMD_ = Model::LoadFromOBJ("skydome");
 	skydome_ = Object3d::Create();
-	skydome_->SetModel(skydomeMD_);
+	skydome_->SetModel(skydomeMD_.get());
 	skydome_->wtf.scale = (Vector3{ 1000, 1000, 1000 });
 
 	floorMD_ = Model::LoadFromOBJ("floor");
 	floor_ = Object3d::Create();
-	floor_->SetModel(floorMD_);
+	floor_->SetModel(floorMD_.get());
 
 	waterMD_ = Model::LoadFromOBJ("water");
 	water_ = Object3d::Create();
-	water_->SetModel(waterMD_);
+	water_->SetModel(waterMD_.get());
 	water_->wtf.scale = { 2,1,2 };
 
 	rock01MD_ = Model::LoadFromOBJ("rock01");
@@ -30,9 +30,9 @@ void Field::Initialize() {
 
 	for (int i = 0; i < 3; i++) {
 		rock01_[i] = Object3d::Create();
-		rock01_[i]->SetModel(rock01MD_);
+		rock01_[i]->SetModel(rock01MD_.get());
 		rock02_[i] = Object3d::Create();
-		rock02_[i]->SetModel(rock02MD_);
+		rock02_[i]->SetModel(rock02MD_.get());
 	}
 
 	float PI = 3.141592f;
@@ -62,23 +62,7 @@ void Field::Initialize() {
 	rock02_[2]->wtf.rotation = { 0,3.0f * PI / 20.0f,0 };
 }
 
-Field::~Field() {
-	delete skydome_;
-	delete skydomeMD_;
-
-	delete floor_;
-	delete floorMD_;
-	delete water_;
-	delete waterMD_;
-
-	for (int i = 0; i < 3; i++) {
-		delete rock01_[i];
-		delete rock02_[i];
-	}
-
-	delete rock01MD_;
-	delete rock02MD_;
-}
+Field::~Field() {}
 
 void Field::Update() {
 	skydome_->Update();

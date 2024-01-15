@@ -10,7 +10,7 @@ void CollisionManager::Initialize() {
 	model_ = Model::LoadFromOBJ("collider");
 	for (int i = 0; i < maxCol_; i++) {
 		objects_[i] = Object3d::Create();
-		objects_[i]->SetModel(model_);
+		objects_[i]->SetModel(model_.get());
 	}
 	isPlayerHit_ = false;
 	isEnemyHit_ = false;
@@ -33,10 +33,6 @@ void CollisionManager::RemoveCollider(BaseCollider* collide){
 };
 
 void CollisionManager::Finalize() {
-	for (int i = 0; i < maxCol_; i++) {
-		delete objects_[i];
-	}
-	delete model_;
 	colliders_.clear();
 };
 

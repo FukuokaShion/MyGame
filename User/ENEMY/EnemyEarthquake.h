@@ -47,8 +47,8 @@ public:
 	bool attack();
 
 private:
-	Object3d* obj_ = nullptr;
-	Model* model_;
+	std::unique_ptr<Object3d> obj_ = nullptr;
+	std::unique_ptr<Model> model_;
 
 	int timer_;
 	int liveTime_;

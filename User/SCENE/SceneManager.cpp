@@ -19,8 +19,6 @@ SceneManager::SceneManager() {
 /// デストラクタ
 /// </summary>
 SceneManager::~SceneManager() {
-	delete state_;
-	delete sceneChange_;
 }
 
 /// <summary>
@@ -33,10 +31,10 @@ void SceneManager::Initialize(DirectXCommon* dxCommon) {
 
 	//シーン初期
 	SceneState::SetSceneManager(this);
-	state_ = new TitleScene;
+	state_ = std::make_unique<TitleScene>();
 	state_->Initialize();
 
-	sceneChange_ = new SceneChange();
+	sceneChange_ = std::make_unique<SceneChange>();
 	sceneChange_->Initialize();
 }
 
@@ -80,13 +78,13 @@ void SceneManager::Draw() {
 void SceneManager::ChangeScene() {
 	if (sceneChange_->GetIsFadeOutFin()) {
 		//削除
-		delete state_;
+		//delete state_;
 		//新規作成
 		if (nextScene_ == SCENE::TITLE) {
-			state_ = new TitleScene();
+			state_ = std::make_unique<TitleScene>();
 		}
 		else if (nextScene_ == SCENE::GAME) {
-			state_ = new GameScene();
+			state_ = std::make_unique<GameScene>();
 		}
 		state_->Initialize();
 		sceneChange_->FadeInStart();

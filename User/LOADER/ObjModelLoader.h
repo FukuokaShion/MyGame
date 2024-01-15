@@ -27,7 +27,7 @@ public:
 	/**
 	 * @brief モデル取得
 	*/
-	Model* GetModel(const string& modelname);
+	std::unique_ptr<Model> GetModel(const string& modelname);
 private:
-	std::map<string, Model*> models_;
+	std::map<string, std::unique_ptr<Model>> models_;
 };

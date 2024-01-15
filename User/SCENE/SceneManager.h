@@ -46,7 +46,7 @@ private: //メンバ変数 (固定)
 
 private:
 	//シーン
-	SceneState* state_ = nullptr;
+	std::unique_ptr<SceneState> state_ = nullptr;
 	SCENE nextScene_;
-	SceneChange* sceneChange_ = nullptr;
+	std::unique_ptr<SceneChange> sceneChange_ = nullptr;
 };

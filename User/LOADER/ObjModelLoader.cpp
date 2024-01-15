@@ -21,11 +21,11 @@ void ObjModelLoader::LoadModel(const string& modelname) {
 	}
 }
 
-Model* ObjModelLoader::GetModel(const string& modelname) {
-	Model* newModel = nullptr;
+std::unique_ptr<Model> ObjModelLoader::GetModel(const string& modelname) {
+	std::unique_ptr<Model> newModel = nullptr;
 	decltype(models_)::iterator it = models_.find(modelname);
 	if (it != models_.end()) {
-		newModel = it->second;
+		//newModel = it->second;
 	}
 	return newModel;
 }

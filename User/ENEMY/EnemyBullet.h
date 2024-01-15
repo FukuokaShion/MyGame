@@ -45,8 +45,8 @@ public:
 	bool IsDead() { return isDead_; };
 
 private:
-	Object3d* obj_ = nullptr;
-	static Model* model_;
+	std::unique_ptr<Object3d> obj_ = nullptr;
+	static std::unique_ptr<Model> model_;
 
 	int liveTimer_;
 	Vector3 velocity_;

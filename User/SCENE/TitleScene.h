@@ -54,14 +54,14 @@ private:
 	IXAudio2SourceVoice* pSourceVoice_ = nullptr;
 
 	//オプション
-	Option* option_ = nullptr;
+	std::unique_ptr<Option> option_;
 
 	//カメラ
 	Camera* camera_ = nullptr;
 
 	//画像
-	Sprite* basePic_;
-	Sprite* arrow_;
+	std::unique_ptr<Sprite> basePic_;
+	std::unique_ptr<Sprite> arrow_;
 
 	//フィールド
 	std::unique_ptr<TitleField> field_;

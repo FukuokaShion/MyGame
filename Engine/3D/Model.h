@@ -49,7 +49,7 @@ public://静的メンバ関数
 	~Model();
 
 	//OBJファイルから3Dモデルを読み込む
-	static Model* LoadFromOBJ(const std::string& modelname);
+	static std::unique_ptr<Model> LoadFromOBJ(const std::string& modelname);
 
 	/// <summary>
 	/// 描画

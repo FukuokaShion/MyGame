@@ -46,8 +46,8 @@ public:
 
 private:
 	//モデル
-	Object3d* obj_ = nullptr;
-	static Model* model_;
+	std::unique_ptr<Object3d> obj_ = nullptr;
+	static std::unique_ptr<Model> model_;
 	BaseCollider* sphere_;
 
 	//待機

@@ -13,17 +13,17 @@ void TitleField::Initialize() {
 	//obj
 	skydomeMD_ = Model::LoadFromOBJ("skydome");
 	skydome_ = Object3d::Create();
-	skydome_->SetModel(skydomeMD_);
+	skydome_->SetModel(skydomeMD_.get());
 	skydome_->wtf.scale = (Vector3{ 1000, 1000, 1000 });
 
 	waterMD_ = Model::LoadFromOBJ("water");
 	water_ = Object3d::Create();
-	water_->SetModel(waterMD_);
+	water_->SetModel(waterMD_.get());
 	water_->wtf.scale = { 2,1,2 };
 
 	coastMD_ = Model::LoadFromOBJ("coast");
 	coast_ = Object3d::Create();
-	coast_->SetModel(coastMD_);
+	coast_->SetModel(coastMD_.get());
 	coast_->wtf.scale = { 2,1,2 };
 	coast_->wtf.rotation.y = 3.14f;
 
@@ -32,9 +32,9 @@ void TitleField::Initialize() {
 
 	for (int i = 0; i < 2; i++) {
 		rock01_[i] = Object3d::Create();
-		rock01_[i]->SetModel(rock01MD_);
+		rock01_[i]->SetModel(rock01MD_.get());
 		rock02_[i] = Object3d::Create();
-		rock02_[i]->SetModel(rock02MD_);
+		rock02_[i]->SetModel(rock02MD_.get());
 	}
 
 	rock01_[0]->wtf.position = { -50,0,240 };
@@ -55,19 +55,6 @@ void TitleField::Initialize() {
 }
 
 TitleField::~TitleField() {
-	delete skydome_;
-	delete skydomeMD_;
-	delete water_;
-	delete waterMD_;
-	delete coast_;
-	delete coastMD_;
-	for (int i = 0; i < 2; i++) {
-		delete rock01_[i];
-		delete rock02_[i];
-	}
-
-	delete rock01MD_;
-	delete rock02MD_;
 }
 
 void TitleField::Update() {
