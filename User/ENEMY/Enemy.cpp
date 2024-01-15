@@ -105,7 +105,6 @@ void Enemy::Update(Vector3 playerPos) {
 			colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum_[i]));
 		}
 		OnCollision();
-
 		//行動
 		state_->Update(playerPos);
 	}else {

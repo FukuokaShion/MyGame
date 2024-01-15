@@ -35,7 +35,7 @@ void EnemyShootingParticle::Create(Vector3 createPos) {
 		acc.y = (float)rand() / RAND_MAX * rnd_acc - rnd_acc * half;
 
 		//パーティクルサイズ
-		const float start = 0.1f;
+		const float start = 0.2f;
 		const float end = 0.0f;
 
 		//生存時間

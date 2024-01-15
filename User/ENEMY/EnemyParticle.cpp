@@ -16,7 +16,7 @@ EnemyParticle::~EnemyParticle() {
 }
 
 void EnemyParticle::OnColision(Vector3 hitPos) {
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 50; i++) {
 		const float half = 0.5f;
 
 		const float rnd_pos = 0.3f;
@@ -38,7 +38,7 @@ void EnemyParticle::OnColision(Vector3 hitPos) {
 		acc.x = (float)rand() / RAND_MAX * rnd_acc - rnd_acc * half;
 		acc.y = (float)rand() / RAND_MAX * rnd_acc - rnd_acc * half;
 		//パーティクルサイズ
-		const float start = 0.3f;
+		const float start = 0.15f;
 		const float end = 0.0f;
 
 		//生存時間
