@@ -29,6 +29,11 @@ public:
 	 * @brief 生存フラグ
 	*/
 	bool IsLive() { return isLive_; };
+	
+	/**
+	 * @brief 死んだ瞬間
+	*/
+	bool IsDeadNow();
 
 	/**
 	 * @brief ダメージを受ける
@@ -45,6 +50,10 @@ private:
 	int MaxHp_;
 	//現在のHP
 	int hp_;
+	//直前の体力
+	int oldHp_;
 	//生存フラグ
 	bool isLive_;
+	//死んだ瞬間フラグ
+	bool isDeadNow_;
 };
