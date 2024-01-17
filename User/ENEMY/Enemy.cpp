@@ -96,21 +96,21 @@ Enemy::~Enemy() {
 }
 
 void Enemy::Update(Vector3 playerPos) {
-	if (hp_->IsLive()) {
-		//オブジェクト
-		fbxObject3d_->Update();
+	//オブジェクト
+	fbxObject3d_->Update();
 
+	if (hp_->IsLive()) {
 		//当たり判定
 		for (int i = 0; i < MaxColliderNum; i++) {
 			colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum_[i]));
 		}
 		OnCollision();
-
 		//行動
 		state_->Update(playerPos);
-
-		
 	}else {
+		if (hp_->IsDeadNow()) {
+			fbxObject3d_->PlayAnimation(DEATH, 1.0f, false);
+		}
 		DeathTimer++;
 		if (DeathTimer < DeathLimit) {
 			deatgparticle_->Accrual(fbxObject3d_->wtf.position);
@@ -153,10 +153,9 @@ void Enemy::OnCollision() {
 }
 
 void Enemy::Draw() {
-	if (hp_->IsLive()) {
+	if (DeathTimer < DeathDrawTime_) {
 		fbxObject3d_->Draw();
 	}
-
 }
 
 void Enemy::ObjDraw() {

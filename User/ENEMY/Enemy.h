@@ -22,12 +22,13 @@
 class Enemy {
 public:
 	enum{
-		EARTHQUAKE,
+		DEATH,
 		HANDUP,
 		SHOOT,
 		STAND,
 		ATTACK,
 		BOMBSHOOT,
+		EARTHQUAKE,
 	};
 
 	enum : uint32_t {
@@ -199,6 +200,7 @@ private:
 	//死亡時
 	const int DeathLimit = 210;
 	int DeathTimer;
+	const int DeathDrawTime_ = 90;
 	EnemyDeathParticle* deatgparticle_ = nullptr;
 
 };
