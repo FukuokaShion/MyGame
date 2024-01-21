@@ -75,11 +75,6 @@ private:
 	unique_ptr<Object3d> rock02_[2];
 	unique_ptr<Model> rock02MD_ = nullptr;
 
-	const int bushNum_ = 10;
-	unique_ptr<Object3d> bush_[10];
-	unique_ptr<Model> bushMD_ = nullptr;
-
-	//const int palmTreeNum_ = 10;
-	//unique_ptr<Object3d> palmTree_[10];
-	//unique_ptr<Model> palmTreeMD_ = nullptr;
+	const int wallRockNum_ = 10;
+	unique_ptr<Object3d> wallRock_[10];
 };

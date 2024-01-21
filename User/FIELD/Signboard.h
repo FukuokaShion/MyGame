@@ -42,10 +42,10 @@ public:
 	void CheckCol(Vector3 playerPos);
 
 private:
-	std::unique_ptr<Object3d> obj_;
-	std::unique_ptr<Model> model_;
-	std::unique_ptr<Sprite> pushY_;
-	std::unique_ptr<Sprite> content_;
+	std::unique_ptr<Object3d> obj_ = nullptr;
+	std::unique_ptr<Model> model_ = nullptr;
+	std::unique_ptr<Sprite> pushY_ = nullptr;
+	std::unique_ptr<Sprite> content_ = nullptr;
 	bool isSpriteDraw_;
 	bool isContentDraw_;
 	const float drawDistance = 3.0f;

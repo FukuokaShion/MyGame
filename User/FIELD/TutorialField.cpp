@@ -40,12 +40,13 @@ void TutorialField::Initialize() {
 	waterMD_ = Model::LoadFromOBJ("water");
 	water_ = Object3d::Create();
 	water_->SetModel(waterMD_.get());
+	water_->wtf.position = { 0,-0.4f,0 };
 	water_->wtf.scale = { 2,1,2 };
 
 	coastMD_ = Model::LoadFromOBJ("coast");
 	coast_ = Object3d::Create();
 	coast_->SetModel(coastMD_.get());
-	coast_->wtf.scale = { 2,1,2 };
+	//coast_->wtf.scale = { 2,1,2 };
 	coast_->wtf.rotation.y = 3.14f;
 
 	rock01MD_ = Model::LoadFromOBJ("rock01");
@@ -74,58 +75,43 @@ void TutorialField::Initialize() {
 	rock02_[1]->wtf.scale = { 1.5f,1.5f,1.5f };
 	rock02_[1]->wtf.rotation = { 0,220.0f * 3.141592f / 180,0 };
 
-
-	bushMD_ = Model::LoadFromOBJ("bush");
-	for (int i = 0; i < bushNum_; i++) {
-		bush_[i] = Object3d::Create();
-		bush_[i]->SetModel(bushMD_.get());
+	for (int i = 0; i < wallRockNum_; i++) {
+		wallRock_[i] = Object3d::Create();
+		wallRock_[i]->SetModel(rock01MD_.get());
 	}
-	bush_[0]->wtf.position = { 50,0,0 };
-	bush_[0]->wtf.scale = { 1,1,1 };
-	bush_[0]->wtf.rotation = { 0,0,0 };
-	bush_[1]->wtf.position = { 27.6f,0,-10.02f };
-	bush_[1]->wtf.scale = { 1,1,2 };
-	bush_[1]->wtf.rotation = { 0,0,0 };
-	bush_[2]->wtf.position = { 15,0,-25.8f };
-	bush_[2]->wtf.scale = { 1,1,4 };
-	bush_[2]->wtf.rotation = { 0,0,0 };
-	bush_[3]->wtf.position = { 5.4f,0,-29.4f };
-	bush_[3]->wtf.scale = { 1,1,3 };
-	bush_[3]->wtf.rotation = { 0,0,0 };
-	bush_[4]->wtf.position = { 0,0,-30 };
-	bush_[4]->wtf.scale = { 1,1,2 };
-	bush_[4]->wtf.rotation = { 0,0,0 };
-	bush_[5]->wtf.position = { -10.2f,0,-27.6f };
-	bush_[5]->wtf.scale = { 1,1,1.5f };
-	bush_[5]->wtf.rotation = { 0,0,0 };
-	bush_[6]->wtf.position = { -24.6f,0,-16.8f };
-	bush_[6]->wtf.scale = { 1,1,3 };
-	bush_[6]->wtf.rotation = { 0,0,0 };
-	bush_[7]->wtf.position = { -29.4f,0,-4.8f };
-	bush_[7]->wtf.scale = { 1,1,2 };
-	bush_[7]->wtf.rotation = { 0,0,0 };
-	bush_[8]->wtf.position = { -19.2f,0,-22.8f };
-	bush_[8]->wtf.scale = { 1,1,4 };
-	bush_[8]->wtf.rotation = { 0,0,0 };
-	bush_[9]->wtf.position = { -30,0,0 };
-	bush_[9]->wtf.scale = { 1,1,2 };
-	bush_[9]->wtf.rotation = { 0,0,0 };
+	wallRock_[0]->wtf.position = { -55,0,0 };
+	wallRock_[0]->wtf.scale = { 2.0f,2.0f,4.0f };
+	wallRock_[0]->wtf.rotation = { 0,0,0 };
+	wallRock_[1]->wtf.position = { -53,0,-20 };
+	wallRock_[1]->wtf.scale = { 2.0f,3.0f,5.0f };
+	wallRock_[1]->wtf.rotation = { 0,-0.349066f,0 };
+	wallRock_[2]->wtf.position = { -36,0,-42 };
+	wallRock_[2]->wtf.scale = { 2.0f,5.0f,8.0f };
+	wallRock_[2]->wtf.rotation = { 0,-0.715585f,0 };
+	wallRock_[3]->wtf.position = { 0,0,-60 };
+	wallRock_[3]->wtf.scale = { 12.0f,6.0f,2.0f };
+	wallRock_[3]->wtf.rotation = { 0,0,0 };
+	wallRock_[4]->wtf.position = { 36,0,-42 };
+	wallRock_[4]->wtf.scale = { 2.0f,5.0f,8.0f };
+	wallRock_[4]->wtf.rotation = { 0,0.715585f,0 };
+	wallRock_[5]->wtf.position = { 53,0,-20 };
+	wallRock_[5]->wtf.scale = { 2.0f,3.0f,5.0f };
+	wallRock_[5]->wtf.rotation = { 0,0.349066f,0 };
+	wallRock_[6]->wtf.position = { 55,0,0 };
+	wallRock_[6]->wtf.scale = { 2.0f,3.0f,4.0f };
+	wallRock_[6]->wtf.rotation = { 0,0,0 };
 
-	//palmTreeMD_ = Model::LoadFromOBJ("palmtree");
-	//for (int i = 0; i < palmTreeNum_; i++) {
-	//	palmTree_[i] = Object3d::Create();
-	//	palmTree_[i]->SetModel(palmTreeMD_.get());
-	//}
-	//palmTree_[0]->wtf.position = { 0,0,0 };
-	//palmTree_[1]->wtf.position = { 0,0,0 };
-	//palmTree_[2]->wtf.position = { 0,0,0 };
-	//palmTree_[3]->wtf.position = { 0,0,0 };
-	//palmTree_[4]->wtf.position = { 0,0,0 };
-	//palmTree_[5]->wtf.position = { 0,0,0 };
-	//palmTree_[6]->wtf.position = { 0,0,0 };
-	//palmTree_[7]->wtf.position = { 0,0,0 };
-	//palmTree_[8]->wtf.position = { 0,0,0 };
-	//palmTree_[9]->wtf.position = { 0,0,0 };
+	wallRock_[7]->wtf.position = { 56,0,10 };
+	wallRock_[7]->wtf.scale = { 2.0f,2.0f,4.0f };
+	wallRock_[7]->wtf.rotation = { 0,0,0 };
+
+	wallRock_[8]->wtf.position = { -20,0,-56 };
+	wallRock_[8]->wtf.scale = { 4.0f,5.5f,2.0f };
+	wallRock_[8]->wtf.rotation = { 0,0,0 };
+	
+	wallRock_[9]->wtf.position = { 20,0,-56 };
+	wallRock_[9]->wtf.scale = { 3.0f,5.3f,2.0f };
+	wallRock_[9]->wtf.rotation = { 0,0,0 };
 }
 
 TutorialField::~TutorialField() {}
@@ -148,13 +134,9 @@ void TutorialField::Update() {
 		rock01_[i]->Update();
 		rock02_[i]->Update();
 	}
-
-	for (int i = 0; i < bushNum_; i++) {
-		bush_[i]->Update();
+	for (int i = 0; i < wallRockNum_; i++) {
+		wallRock_[i]->Update();;
 	}
-	//for (int i = 0; i < palmTreeNum_; i++) {
-	//	palmTree_[i]->Update();
-	//}
 }
 
 void TutorialField::ObjDraw() {
@@ -171,12 +153,9 @@ void TutorialField::ObjDraw() {
 		rock01_[i]->Draw();
 		rock02_[i]->Draw();
 	}
-	for (int i = 0; i < bushNum_; i++) {
-		bush_[i]->Draw();
+	for (int i = 0; i < wallRockNum_; i++) {
+		wallRock_[i]->Draw();;
 	}
-	//for (int i = 0; i < palmTreeNum_; i++) {
-	//	palmTree_[i]->Draw();
-	//}
 }
 
 void TutorialField::SpriteDraw() {
