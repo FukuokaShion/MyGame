@@ -61,7 +61,7 @@ void Player::Initialize() {
 		colliders_[i]->SetRad(rad_);
 		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
 	}
-	isRockOn_ = true;
+	isRockOn_ = false;
 }
 
 void Player::Update() {

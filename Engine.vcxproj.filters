@@ -337,6 +337,18 @@
     <ClCompile Include="User\ENEMY\EnemyEarthquakeAttack.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="User\SCENE\TutorialScene.cpp">
+      <Filter>user\ソース\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="User\FIELD\TutorialField.cpp">
+      <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
+    <ClCompile Include="User\FIELD\Scarecrow.cpp">
+      <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
+    <ClCompile Include="User\FIELD\Signboard.cpp">
+      <Filter>user\ソース\FIELD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -557,6 +569,18 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyEarthquakeAttack.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="User\SCENE\TutorialScene.h">
+      <Filter>user\ヘッダー\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="User\FIELD\TutorialField.h">
+      <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\FIELD\Scarecrow.h">
+      <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\FIELD\Signboard.h">
+      <Filter>user\ヘッダー\FIELD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

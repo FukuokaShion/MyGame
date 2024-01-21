@@ -20,4 +20,10 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(TELOPBASE, "telopBase.png");
 	SpriteCommon::GetInstance()->LoadTexture(PUSHB, "pushB.png");
 	SpriteCommon::GetInstance()->LoadTexture(ARROW, "arrow.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_PUSHY, "pushy.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_JUMP, "tutorialJump.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_ATTACK, "tutorialAttack.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_ROLLING, "tutorialRolling.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_CAMERA, "tutorialCamera.png");
+
 }

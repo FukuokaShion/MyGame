@@ -123,6 +123,6 @@ void TitleScene::SpriteDraw() {
 
 void TitleScene::StateTransition() {
 	if (fadeOutPos < ship_->GetPos().z) {
-		sceneManager_->TransitionTo(SceneManager::SCENE::GAME);
+		sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
 	}
 }
