@@ -36,6 +36,17 @@ void TutorialField::Initialize() {
 	rollingBoard_->SetPos({ 11,0,-11 });
 	rollingBoard_->SetRota({ 0,0,0 });
 
+	nextBoard_ = make_unique<Signboard>();
+	nextBoard_->Initialize(SpriteLoader::TUTORIAL_NEXT);
+	nextBoard_->SetPos({ 27,0,4 });
+	nextBoard_->SetRota({ 0,0,0 });
+
+	moveBoard_ = make_unique<Signboard>();
+	moveBoard_->Initialize(SpriteLoader::TUTORIAL_MOVE);
+	moveBoard_->SetPos({ 1.5f,0,-47 });
+	moveBoard_->SetRota({ 0,0,0 });
+
+
 	//背景
 	skydomeMD_ = Model::LoadFromOBJ("skydome");
 	skydome_ = Object3d::Create();
@@ -131,6 +142,10 @@ void TutorialField::Update() {
 	rollingBoard_->CheckCol(playerPos_);
 	cameraBoard_->Update();
 	cameraBoard_->CheckCol(playerPos_);
+	nextBoard_->Update();
+	nextBoard_->CheckCol(playerPos_);
+	moveBoard_->Update();
+	moveBoard_->CheckCol(playerPos_);
 
 	skydome_->Update();
 	water_->Update();
@@ -150,6 +165,8 @@ void TutorialField::ObjDraw() {
 	attackBoard_->ObjDraw();
 	rollingBoard_->ObjDraw();
 	cameraBoard_->ObjDraw();
+	nextBoard_->ObjDraw();
+	moveBoard_->ObjDraw();
 
 	skydome_->Draw();
 	water_->Draw();
@@ -168,4 +185,6 @@ void TutorialField::SpriteDraw() {
 	attackBoard_->SpriteDraw();
 	rollingBoard_->SpriteDraw();
 	cameraBoard_->SpriteDraw();
+	nextBoard_->SpriteDraw();
+	moveBoard_->SpriteDraw();
 }

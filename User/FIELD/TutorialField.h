@@ -60,6 +60,8 @@ private:
 	unique_ptr<Signboard> attackBoard_ = nullptr;
 	unique_ptr<Signboard> rollingBoard_ = nullptr;
 	unique_ptr<Signboard> cameraBoard_ = nullptr;
+	unique_ptr<Signboard> nextBoard_ = nullptr;
+	unique_ptr<Signboard> moveBoard_ = nullptr;
 
 	//背景や床
 	unique_ptr<Object3d> skydome_ = nullptr;

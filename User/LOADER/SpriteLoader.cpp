@@ -25,5 +25,7 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_ATTACK, "tutorialAttack.png");
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_ROLLING, "tutorialRolling.png");
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_CAMERA, "tutorialCamera.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_NEXT, "tutorialNext.png");
+	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_MOVE, "tutorialMove.png");
 
 }
