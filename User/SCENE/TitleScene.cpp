@@ -28,6 +28,7 @@ void TitleScene::Initialize() {
 	camera_->wtf.rotation = { camDegree.x * PI / 180.0f , camDegree.y * PI / 180.0f,camDegree.z * PI / 180.0f };
 
 	Object3d::SetCamera(camera_);
+	FBXObject3d::SetCamera(camera_);
 
 	basePic_ = std::make_unique<Sprite>();
 	basePic_->Initialize(SpriteCommon::GetInstance());
@@ -48,15 +49,24 @@ void TitleScene::Initialize() {
 	field_->Initialize();
 
 	ship_ = std::make_unique<Ship>();
-	ship_->Initialize();
+	ship_->Initialize({ -15,0,21 });
 
 	option_ = std::make_unique<Option>();
 	option_->Initialize();
 	optionOpen_ = false;
 	isStartSelect_ = true;
+
+	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
+	fbxObject3d_ = new FBXObject3d;
+	fbxObject3d_->Initialize();
+	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->PlayAnimation(5, 1.0f);
+	fbxObject3d_->wtf.position = { -5,0,8 };
 }
 
 TitleScene::~TitleScene() {
+	delete fbxObject3d_;
+	delete fbxModel_;
 	audio_->StopWave(pSourceVoice_);
 }
 
@@ -65,7 +75,7 @@ void TitleScene::Update() {
 	if (optionOpen_) {
 		//オプション画面
 		option_->Update();
-		if (Input::GetInstance()->PButtonTrigger(B) || Input::GetInstance()->PButtonTrigger(START)) {
+		if (Input::GetInstance()->PButtonTrigger(A) || Input::GetInstance()->PButtonTrigger(START)) {
 			optionOpen_ = false;
 		}
 	}else {
@@ -82,9 +92,10 @@ void TitleScene::Update() {
 				}
 			}
 			//実行
-			if (Input::GetInstance()->PButtonTrigger(B)) {
+			if (Input::GetInstance()->PButtonTrigger(A)) {
 				if (isStartSelect_) {
-					ship_->Start();
+					//ship_->Start();
+					sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
 				}else {
 					optionOpen_ = true;
 				}
@@ -96,7 +107,8 @@ void TitleScene::Update() {
 		ship_->Update();
 		basePic_->Update();
 		arrow_->Update();
-		StateTransition();
+		fbxObject3d_->Update();
+		//StateTransition();
 	}
 
 }
@@ -108,7 +120,7 @@ void TitleScene::ObjectDraw() {
 }
 
 void TitleScene::FbxDraw() {
-
+	fbxObject3d_->Draw();
 }
 
 void TitleScene::SpriteDraw() {
@@ -123,6 +135,6 @@ void TitleScene::SpriteDraw() {
 
 void TitleScene::StateTransition() {
 	if (fadeOutPos < ship_->GetPos().z) {
-		sceneManager_->TransitionTo(SceneManager::SCENE::GAME);
+		sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
 	}
 }

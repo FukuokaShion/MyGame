@@ -5,6 +5,7 @@
 
 #include "SceneManager.h"
 #include"TitleScene.h"
+#include"TutorialScene.h"
 #include"GameScene.h"
 #include"Object3d.h"
 #include"FBXObject3d.h"
@@ -77,13 +78,12 @@ void SceneManager::Draw() {
 
 void SceneManager::ChangeScene() {
 	if (sceneChange_->GetIsFadeOutFin()) {
-		//削除
-		//delete state_;
 		//新規作成
 		if (nextScene_ == SCENE::TITLE) {
 			state_ = std::make_unique<TitleScene>();
-		}
-		else if (nextScene_ == SCENE::GAME) {
+		}else if (nextScene_ == SCENE::TUTORIAL) {
+			state_ = std::make_unique<TutorialScene>();
+		}else if (nextScene_ == SCENE::GAME) {
 			state_ = std::make_unique<GameScene>();
 		}
 		state_->Initialize();

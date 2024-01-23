@@ -88,7 +88,7 @@ void GameScene::Initialize() {
 	youDiedAddAlpha_ = 0.01f;
 
 	telopBase_->SetTextureIndex(SpriteLoader::TELOPBASE);
-	pushB_->SetTextureIndex(SpriteLoader::PUSHB);
+	pushB_->SetTextureIndex(SpriteLoader::PUSHA);
 	clear_->SetTextureIndex(SpriteLoader::BOSSFELLED);
 	clearEffect_->SetTextureIndex(SpriteLoader::BOSSFELLED);
 	youDiedPic_->SetTextureIndex(SpriteLoader::YOUDIED);
@@ -202,7 +202,7 @@ void GameScene::Update() {
 		}
 
 		if (clear_->GetColor().w >= 1.0f) {
-			if (input_->PButtonTrigger(B)) {
+			if (input_->PButtonTrigger(A)) {
 				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 			}
 		}
@@ -222,7 +222,7 @@ void GameScene::Update() {
 		if (youDiedPic_->GetColor().w < 1.0f) {
 			youDiedPic_->SetColor({ 1, 1, 1, youDiedPic_->GetColor().w + youDiedAddAlpha_ });
 		}else if (youDiedPic_->GetColor().w >= 1.0f) {
-			if(Input::GetInstance()->PButtonTrigger(B)){
+			if(Input::GetInstance()->PButtonTrigger(A)){
 				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 			}
 		}

@@ -11,6 +11,8 @@
 #include"TitleField.h"
 #include"Ship.h"
 #include"Option.h"
+#include "FBXModel.h"
+#include "FBXObject3d.h"
 
 class TitleScene : public SceneState {
 public:
@@ -74,4 +76,8 @@ private:
 	Vector2 optionSelect_;
 	bool optionOpen_;
 	bool isStartSelect_;
+
+
+	FBXModel* fbxModel_ = nullptr;
+	FBXObject3d* fbxObject3d_ = nullptr;
 };

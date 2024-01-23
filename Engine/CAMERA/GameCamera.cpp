@@ -31,7 +31,7 @@ void GameCamera::Initialize(int window_width, int window_height) {
 	rotaSpeedMaxTime_ = 30;
 
 	//ロックオン
-	isRockOn_ = true;
+	isRockOn_ = false;
 	rockOnPos_ = { 0,0,0 };
 }
 
