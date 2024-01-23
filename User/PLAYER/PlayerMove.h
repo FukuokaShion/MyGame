@@ -36,5 +36,7 @@ private:
 
 	float speedTimer_;
 	float speedMaxTime_;
-	float speed;
+	float walkMaxSpeed_;
+	float dashMaxSpeed_;
+	bool isDash_;
 };

@@ -16,7 +16,9 @@ PlayerMove::PlayerMove() {
 	limit_ = 600;
 	timer_ = 0;
 
-	speed = 0.5f;
+	isDash_ = false;
+	walkMaxSpeed_ = 0.3f;
+	dashMaxSpeed_ = 0.5f;
 	speedTimer_ = 0;
 	speedMaxTime_ = 15;
 	player_->PlayWav("run.wav");
@@ -29,6 +31,17 @@ void PlayerMove::Update() {
 }
 
 void PlayerMove::Move() {
+	if (Input::GetInstance()->PButtonTrigger(LSTICK)) {
+		if (isDash_) {
+			isDash_ = false;
+			player_->AnimationChange(Player::Animation::DASH, 0.6f);
+		}else {
+			isDash_ = true;
+			player_->AnimationChange(Player::Animation::DASH);
+		}
+	}
+
+
 	timer_++;
 	if (timer_ > limit_) {
 		timer_ = 0;
@@ -39,7 +52,13 @@ void PlayerMove::Move() {
 	//移動量
 	Vector3 velocity = { 0,0,0 };
 	//移動速度
-	float nowSpeed = nowSpeed = std::lerp(0.0f, speed, speedTimer_ / speedMaxTime_);
+	float nowSpeed;
+	if (isDash_) {
+		nowSpeed = std::lerp(0.0f, dashMaxSpeed_, speedTimer_ / speedMaxTime_);
+	}else {
+		nowSpeed = std::lerp(0.0f, walkMaxSpeed_, speedTimer_ / speedMaxTime_);
+	}
+
 	if (speedTimer_ < speedMaxTime_) {
 		speedTimer_++;
 	}
