@@ -7,6 +7,7 @@
 #include "Object3d.h"
 #include"Scarecrow.h"
 #include"Signboard.h"
+#include"Ship.h"
 
 using namespace std;
 
@@ -63,18 +64,14 @@ private:
 	//背景や床
 	unique_ptr<Object3d> skydome_ = nullptr;
 	unique_ptr<Model> skydomeMD_ = nullptr;
-
 	unique_ptr<Object3d> water_ = nullptr;
 	unique_ptr<Model> waterMD_ = nullptr;
-
 	unique_ptr<Object3d> coast_ = nullptr;
 	unique_ptr<Model> coastMD_ = nullptr;
-
 	unique_ptr<Object3d> rock01_[2];
 	unique_ptr<Model> rock01MD_ = nullptr;
 	unique_ptr<Object3d> rock02_[2];
 	unique_ptr<Model> rock02MD_ = nullptr;
-
 	const int wallRockNum_ = 10;
 	unique_ptr<Object3d> wallRock_[10];
 };

@@ -13,23 +13,28 @@ TutorialField::TutorialField() {
 void TutorialField::Initialize() {
 	scarecrow_ = std::make_unique<Scarecrow>();
 	scarecrow_->Initialize();
+	Vector3 scarecrowNewPos = { 23,0,-12 };
+	scarecrow_->SetPos(scarecrowNewPos);
+
+	cameraBoard_ = make_unique<Signboard>();
+	cameraBoard_->Initialize(SpriteLoader::TUTORIAL_CAMERA);
+	cameraBoard_->SetPos({ 14,0,-32 });
+	cameraBoard_->SetRota({ 0,0,0 });
+
+	attackBoard_ = make_unique<Signboard>();
+	attackBoard_->Initialize(SpriteLoader::TUTORIAL_ATTACK);
+	attackBoard_->SetPos({ 26,0,-24 });
+	attackBoard_->SetRota({ 0,0,0 });
 
 	jampBoard_ = make_unique<Signboard>();
 	jampBoard_->Initialize(SpriteLoader::TUTORIAL_JUMP);
-	jampBoard_->SetPos({-20,0,0});
+	jampBoard_->SetPos({36,0,-6});
 	jampBoard_->SetRota({0,0,0});
-	attackBoard_ = make_unique<Signboard>();
-	attackBoard_->Initialize(SpriteLoader::TUTORIAL_ATTACK);
-	attackBoard_->SetPos({ -10,0,0 });
-	attackBoard_->SetRota({ 0,0,0 });
+
 	rollingBoard_ = make_unique<Signboard>();
 	rollingBoard_->Initialize(SpriteLoader::TUTORIAL_ROLLING);
-	rollingBoard_->SetPos({ 10,0,0 });
+	rollingBoard_->SetPos({ 11,0,-11 });
 	rollingBoard_->SetRota({ 0,0,0 });
-	cameraBoard_ = make_unique<Signboard>();
-	cameraBoard_->Initialize(SpriteLoader::TUTORIAL_CAMERA);
-	cameraBoard_->SetPos({ 20,0,0 });
-	cameraBoard_->SetRota({ 0,0,0 });
 
 	//背景
 	skydomeMD_ = Model::LoadFromOBJ("skydome");

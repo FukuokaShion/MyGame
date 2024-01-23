@@ -34,6 +34,11 @@ public:
 	void OnCollision();
 
 	/**
+	 * @brief 丸太の位置設定
+	*/
+	void SetPos(Vector3 newPos);
+
+	/**
 	 * @brief 丸太の位置取得
 	*/
 	Vector3 GetPos() {return obj_->wtf.position; };

@@ -55,6 +55,7 @@ private:
 	enum class State {
 		game,
 		option,
+		departure,
 	};
 private:
 	State state_;
@@ -66,6 +67,7 @@ private:
 	//メンバ変数
 	//カメラ
 	unique_ptr<GameCamera> gameCamera_ = nullptr;
+	unique_ptr<Camera> camera_ = nullptr;
 	//フィールド
 	unique_ptr<TutorialField> field_ = nullptr;
 
@@ -77,4 +79,8 @@ private:
 
 	//オプション
 	unique_ptr<Option> option_ = nullptr;
+
+	Vector3 shipPos_;
+	const float fadeOutPos = 40.0f;
+	unique_ptr<Ship> ship_ = nullptr;
 };

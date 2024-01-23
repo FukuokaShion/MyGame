@@ -23,9 +23,14 @@ void Scarecrow::Initialize() {
 	sphere_->SetRad(0.7f);
 	CollisionManager::GetInstance()->AddCollider(sphere_);
 
-
 	isHit_ = false;
 }
+
+void Scarecrow::SetPos(Vector3 newPos) {
+	obj_->wtf.position = newPos;
+	targetPos_ = obj_->wtf.position + targetLocalPos_;
+	sphere_->SetCenter(GetTargetPos());
+};
 
 void Scarecrow::Update() {
 	OnCollision();
