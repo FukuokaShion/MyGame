@@ -185,6 +185,7 @@ void GameScene::Update() {
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 		gameCamera_->Update();
 
+		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
 		enemy_->Update(player_->GetWtf().position);
 
