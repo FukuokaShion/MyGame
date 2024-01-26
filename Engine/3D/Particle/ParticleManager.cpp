@@ -8,8 +8,6 @@
 #include <DirectXTex.h>
 #include "Affin.h"
 
-
-
 #pragma comment(lib, "d3dcompiler.lib")
 
 using namespace DirectX;
@@ -18,26 +16,11 @@ using namespace Microsoft::WRL;
 /// <summary>
 /// 静的メンバ変数の実体
 /// </summary>
-//const float ParticleManager::radius = 5.0f;				// 底面の半径
-//const float ParticleManager::prizmHeight = 8.0f;			// 柱の高さ
 Microsoft::WRL::ComPtr<ID3D12Device> ParticleManager::device;
 Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> ParticleManager::cmdList;
-//UINT ParticleManager::descriptorHandleIncrementSize = 0;
-//ID3D12GraphicsCommandList* ParticleManager::cmdList = nullptr;
 ComPtr<ID3D12RootSignature> ParticleManager::rootsignature;
 ComPtr<ID3D12PipelineState> ParticleManager::pipelinestate;
-//ComPtr<ID3D12DescriptorHeap> ParticleManager::descHeap;
-//ComPtr<ID3D12Resource> ParticleManager::vertBuff;
-////<ID3D12Resource> ParticleManager::texbuff;
-//CD3DX12_CPU_DESCRIPTOR_HANDLE ParticleManager::cpuDescHandleSRV;
-//CD3DX12_GPU_DESCRIPTOR_HANDLE ParticleManager::gpuDescHandleSRV;
-//
-//D3D12_VERTEX_BUFFER_VIEW ParticleManager::vbView{};
-//ParticleManager::VertexPos ParticleManager::vertices[vertexCount];
-//
 Camera* ParticleManager::camera_ = nullptr;
-//
-//std::array<ComPtr<ID3D12Resource>, 2050> ParticleManager::texbuff;
 
 ParticleManager::ParticleManager() {
 
@@ -69,6 +52,11 @@ void ParticleManager::StaticInitialize(ID3D12Device* Device, ID3D12GraphicsComma
 	InitializeGraphicsPipeline();
 
 
+}
+
+ParticleManager* ParticleManager::GetInstance() {
+	static ParticleManager instance;
+	return &instance;
 }
 
 ParticleManager* ParticleManager::Create()
@@ -297,7 +285,7 @@ void ParticleManager::LoadTexture()
 	ScratchImage scratchImg{};
 
 	// WICテクスチャのロード
-	result = LoadFromWICFile(L"Resources/blod.png", WIC_FLAGS_NONE, &metadata, scratchImg);
+	result = LoadFromWICFile(L"Resources/particle.png", WIC_FLAGS_NONE, &metadata, scratchImg);
 	assert(SUCCEEDED(result));
 
 	ScratchImage mipChain{};
@@ -509,7 +497,7 @@ bool ParticleManager::Initialize()
 	assert(SUCCEEDED(result));
 
 	//定数バッファのマッピング
-	result = constBuff->Map(0, nullptr, (void**)&constMapMaterial);
+	result = constBuff->Map(0, nullptr, (void**)&constMapMaterial_);
 	assert((SUCCEEDED(result)));
 
 	// テクスチャ読み込み
@@ -548,7 +536,7 @@ void ParticleManager::Update()
 		it->scale = (it->e_scale - it->s_scale) * f;
 		it->scale += it->s_scale;
 		//色
-		constMapMaterial->color = it->color;
+		constMapMaterial_->color = it->color;
 	}
 
 	//頂点バッファへデータ更新
@@ -573,13 +561,11 @@ void ParticleManager::Update()
 	}
 
 	// 定数バッファへデータ転送
-	ConstBufferData* constMap = nullptr;
-	result = constBuff->Map(0, nullptr, (void**)&constMap);
 
 	wtf_.UpdateMat();
 
-	constMap->mat = (wtf_.matWorld * camera_->GetViewProjectionMatrix());
-	constMap->matBillboard = (camera_->GetBillboardMatrix());	// 行列の合成
+	constMapMaterial_->mat = (wtf_.matWorld * camera_->GetViewProjectionMatrix());
+	constMapMaterial_->matBillboard = (camera_->GetBillboardMatrix());	// 行列の合成
 	constBuff->Unmap(0, nullptr);
 }
 
@@ -619,7 +605,7 @@ void ParticleManager::Draw()
 	}
 }
 
-void ParticleManager::Add(int life, Vector3 position, Vector3 velociy, Vector3 accel, float start_scale, float end_scale)
+void ParticleManager::Add(int life, Vector3 position, Vector3 velociy, Vector3 accel, float start_scale, float end_scale, Vector4 color)
 {
 	//リストに要素を追加
 	particles.emplace_front();
@@ -632,7 +618,7 @@ void ParticleManager::Add(int life, Vector3 position, Vector3 velociy, Vector3 a
 	p.num_frame = life;
 	p.s_scale = start_scale;
 	p.e_scale = end_scale;
-
+	p.color = color;
 }
 
 void ParticleManager::RandParticle()
@@ -664,6 +650,6 @@ void ParticleManager::RandParticle()
 		col.z = (float)rand() / RAND_MAX * rnd_col;
 
 		// 追加
-		Add(60, pos, vel, acc, 1.0f, 0.0f);
+		Add(60, pos, vel, acc, 1.0f, 0.0f, { 1,1,1,1 });
 	}
 }
