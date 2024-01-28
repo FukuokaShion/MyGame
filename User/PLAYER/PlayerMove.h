@@ -39,4 +39,7 @@ private:
 	float walkMaxSpeed_;
 	float dashMaxSpeed_;
 	bool isDash_;
+	int pushBTimer_;
+	int avoidSwitchTime_;
+	bool isChangeAvoid_;
 };

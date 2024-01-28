@@ -22,6 +22,9 @@ PlayerMove::PlayerMove() {
 	speedTimer_ = 0;
 	speedMaxTime_ = 15;
 	player_->PlayWav("run.wav");
+	pushBTimer_ = 0;
+	avoidSwitchTime_ = 8;
+	isChangeAvoid_ = false;
 }
 
 void PlayerMove::Update() {
@@ -31,16 +34,17 @@ void PlayerMove::Update() {
 }
 
 void PlayerMove::Move() {
-	if (Input::GetInstance()->PButtonTrigger(LSTICK)) {
-		if (isDash_) {
-			isDash_ = false;
-			player_->AnimationChange(Player::Animation::DASH, 0.6f);
-		}else {
-			isDash_ = true;
-			player_->AnimationChange(Player::Animation::DASH);
-		}
+	if (Input::GetInstance()->ButtonInput(B)) {
+		pushBTimer_++;
+		isDash_ = true;
 	}
-
+	else {
+		if (pushBTimer_ > 0 && pushBTimer_ <= avoidSwitchTime_) {
+			isChangeAvoid_ = true;
+		}
+		pushBTimer_ = 0;
+		isDash_ = false;
+	}
 
 	timer_++;
 	if (timer_ > limit_) {
@@ -96,7 +100,7 @@ void PlayerMove::StateTransition() {
 		player_->TransitionTo(new PlayerJump);
 	}
 	//回避
-	if (Input::GetInstance()->PButtonTrigger(B)) {
+	if (isChangeAvoid_ == true) {
 		player_->TransitionTo(new PlayerAvoid);
 	}
 	//攻撃
