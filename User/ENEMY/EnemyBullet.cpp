@@ -6,6 +6,7 @@
 #include "EnemyBullet.h"
 
 std::unique_ptr<Model> EnemyBullet::model_ = nullptr;
+std::unique_ptr<ParticleManager> EnemyBullet::particle_ = nullptr;
 
 EnemyBullet::EnemyBullet() {
 }
@@ -15,6 +16,8 @@ EnemyBullet::~EnemyBullet() {
 
 void EnemyBullet::StaticInitialize() {
 	model_ = Model::LoadFromOBJ("boll");
+	particle_ = std::make_unique<ParticleManager>();
+	particle_.get()->Initialize();
 }
 void EnemyBullet::StaticFinalize() {
 }
@@ -46,6 +49,7 @@ void EnemyBullet::Update() {
 			isDead_ = true;
 			CollisionManager::GetInstance()->RemoveCollider(sphere_);
 		}
+		CreateParticle();
 		obj_->wtf.position += velocity_;
 	}
 	else {
@@ -60,6 +64,33 @@ void EnemyBullet::Update() {
 	obj_->Update();
 }
 
+void EnemyBullet::ParticleUpdate() {
+	particle_->Update();
+}
+
 void EnemyBullet::Draw() {
 	obj_->Draw();
+}
+
+void EnemyBullet::ParticleDraw() {
+	particle_->Draw();
+}
+
+void EnemyBullet::CreateParticle() {
+	const int accrualNum = 10;
+	for (int i = 0; i < accrualNum; i++) {
+		//生成位置
+		Vector3 pos = obj_->wtf.position - (velocity_ / static_cast<float>(accrualNum) * static_cast<float>(i));
+		//速度
+		Vector3 vel = { 0,0,0 };
+		//加速度
+		Vector3 acc = { 0,0,0 };
+		//パーティクルサイズ
+		const float start = 1.0f;
+		const float end = 0.0f;
+		//生存時間
+		const int lifeTime = 15;
+		//追加
+		particle_->Add(lifeTime, pos, vel, acc, start, end, { 1,1,0.5f,1 });
+	}
 }
