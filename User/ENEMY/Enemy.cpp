@@ -120,6 +120,8 @@ void Enemy::Update(Vector3 playerPos) {
 	particle_->Update();
 	bulletCreateParticle_->Update();
 	deatgparticle_->Update();
+	EnemyBullet::ParticleUpdate();
+	EnemyBomb::ParticleUpdate();
 	//弾
 	bullets_.remove_if([](std::unique_ptr<EnemyBullet>& bullet) {return bullet->IsDead(); });
 	for (std::unique_ptr<EnemyBullet>& bullet : bullets_) {
@@ -172,6 +174,8 @@ void Enemy::ObjDraw() {
 	particle_->Draw();
 	bulletCreateParticle_->Draw();
 	deatgparticle_->Draw();
+	EnemyBullet::ParticleDraw();
+	EnemyBomb::ParticleDraw();
 }
 
 void Enemy::SpriteDraw() {

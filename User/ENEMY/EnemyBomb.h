@@ -8,6 +8,7 @@
 #include "Model.h"
 #include"CollisionPrimitive.h"
 #include"CollisionManager.h"
+#include"ParticleManager.h"
 
 class EnemyBomb{
 public:
@@ -33,6 +34,10 @@ public:
 	 * @brief 更新
 	*/
 	void Update(Vector3 stayPos, Vector3 playerPos);
+	/**
+	 * @brief 更新
+	*/
+	static void ParticleUpdate();
 
 	/**
 	 * @brief 描画
@@ -40,9 +45,20 @@ public:
 	void Draw();
 
 	/**
+	 * @brief パーティクル描画
+	*/
+	static void ParticleDraw();
+
+	/**
 	 * @brief 更新
 	*/
 	bool IsDead() { return isDead_; };
+
+private:
+	/**
+	 * @brief パーティクル生成
+	*/
+	void CreateParticle();
 
 private:
 	//モデル
@@ -69,4 +85,6 @@ private:
 	bool isFired_;
 	int liveTimer_;
 	bool isDead_;
+
+	static std::unique_ptr<ParticleManager> particle_;
 };

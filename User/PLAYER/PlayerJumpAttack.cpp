@@ -40,7 +40,8 @@ void PlayerJumpAttack::Update() {
 	case Action::Attack:
 		velocity = { 0,attackFallSpeed_,0 };
 		player_->Move(velocity);
-
+		//パーティクル
+		player_->CreateParticle();
 		//攻撃判定
 		sowrd_->SetCenter(player_->GetSwordPos());
 		isAttack_ = true;

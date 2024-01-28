@@ -9,6 +9,7 @@
 #include "FBXObject3d.h"
 #include"CollisionPrimitive.h"
 #include"Audio.h"
+#include"ParticleManager.h"
 
 #include"PlayerHp.h"
 #include"PlayerState.h"
@@ -20,12 +21,12 @@ class Player {
 public:
 	//アニメーション番号
 	enum Animation {
-		JUMP,//0
-		JUMPATTACK,//1
-		DASH,//2
-		AVOID,//3
-		ATTACK,//4
-		STAND,//5
+		DASH,
+		AVOID,
+		ATTACK,
+		JUMP,
+		JUMPATTACK,
+		STAND,
 	};
 
 	//攻撃力
@@ -118,7 +119,12 @@ public:
 	/**
 	 * @brief 剣座標取得
 	*/
-	Vector3 GetSwordPos() { return fbxObject3d_->GetBonWorldPos(boneNum[4]); };
+	Vector3 GetSwordPos(float bias = 0);
+
+	/**
+	 * @brief 剣座標取得
+	*/
+	Vector3 GetSwordOldPos(float bias = 0);
 
 	/**
 	 * @brief カメラ方向セット
@@ -160,6 +166,11 @@ public:
 
 	bool IsRockOn() { return isRockOn_; };
 
+	/**
+	 * @brief パーティクル生成
+	*/
+	void CreateParticle();
+
 private:
 	Vector3 camViewVec_;
 	//入力
@@ -175,7 +186,7 @@ private:
 	const float rad_ = 0.4f;
 	const int maxColliderNum = 5;
 	BaseCollider* colliders_[5];
-	uint32_t boneNum[5];
+	uint32_t boneNum[7];
 
 	bool isInvincible_;
 
@@ -195,4 +206,9 @@ private:
 	PlayerState* state_ = nullptr;
 
 	bool isRockOn_;
+
+	//パーティクル
+	std::unique_ptr<ParticleManager> particle_;
+	Vector3 oldSowrdTipPos_;
+	Vector3 oldSowrdRootPos_;
 };

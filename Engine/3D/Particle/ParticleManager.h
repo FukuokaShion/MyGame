@@ -43,6 +43,7 @@ public: // サブクラス
 	// 定数バッファ用データ構造体
 	struct ConstBufferData
 	{
+		Vector4 color;
 		Matrix4 mat;
 		Matrix4 matBillboard;	// ビルボード行列
 	};
@@ -68,7 +69,7 @@ public: // サブクラス
 		//最終値
 		float e_scale = 0.0f;
 
-		Vector4 color; // 色 (RGBA)
+		Vector4 color = { 1,1,1,1 }; // 色 (RGBA)
 
 	};
 
@@ -159,6 +160,11 @@ public: // メンバ関数
 
 	void LoadTexture(const std::string& fileName);
 	bool Initialize();
+
+	/**
+	 * @brief インスタンス取得
+	*/
+	static ParticleManager* GetInstance();
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
@@ -181,7 +187,7 @@ public: // メンバ関数
 	///	<param name="position">初期座標</param>
 	///	<param name="velocity">速度</param>
 	///	<param name="accel">加速度</param>
-	void Add(int life, Vector3 position, Vector3 velociy, Vector3 accel, float start_scale, float end_scale);
+	void Add(int life, Vector3 position, Vector3 velociy, Vector3 accel, float start_scale, float end_scale, Vector4 color);
 
 	static void SetCamera(Camera* camera) { ParticleManager::camera_ = camera; }
 
@@ -197,4 +203,5 @@ private: // メンバ変数
 	Transform wtf_;
 
 	ConstBufferDataMaterial* constMapMaterial = nullptr;
+	ConstBufferData* constMapMaterial_ = nullptr;
 };

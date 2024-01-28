@@ -6,6 +6,7 @@
 #include "EnemyBomb.h"
 
 std::unique_ptr<Model> EnemyBomb::model_ = nullptr;
+std::unique_ptr<ParticleManager> EnemyBomb::particle_ = nullptr;
 
 EnemyBomb::EnemyBomb() {
 }
@@ -15,6 +16,8 @@ EnemyBomb::~EnemyBomb() {
 
 void EnemyBomb::StaticInitialize() {
 	model_ = Model::LoadFromOBJ("boll");
+	particle_ = std::make_unique<ParticleManager>();
+	particle_.get()->Initialize();
 }
 
 void EnemyBomb::StaticFinalize() {
@@ -63,6 +66,7 @@ void EnemyBomb::Update(Vector3 stayPos,Vector3 playerPos) {
 		//地面に接触で移動停止
 		if (obj_->wtf.position.y >= 0) {
 			obj_->wtf.position += velocity_;
+			CreateParticle();
 			timer_ = 0;
 		}
 		else {
@@ -89,7 +93,32 @@ void EnemyBomb::Update(Vector3 stayPos,Vector3 playerPos) {
 	sphere_->SetCenter(obj_->wtf.position);
 	obj_->Update();
 }
+void EnemyBomb::ParticleUpdate() {
+	particle_->Update();
+}
 
 void EnemyBomb::Draw() {
 	obj_->Draw();
+}
+void EnemyBomb::ParticleDraw() {
+	particle_->Draw();
+}
+
+void EnemyBomb::CreateParticle() {
+	const int accrualNum = 10;
+	for (int i = 0; i < accrualNum; i++) {
+		//生成位置
+		Vector3 pos = obj_->wtf.position - (velocity_ / static_cast<float>(accrualNum) * static_cast<float>(i));
+		//速度
+		Vector3 vel = { 0,0,0 };
+		//加速度
+		Vector3 acc = { 0,0,0 };
+		//パーティクルサイズ
+		const float start = startRad_;
+		const float end = 0.0f;
+		//生存時間
+		const int lifeTime = 30;
+		//追加
+		particle_->Add(lifeTime, pos, vel, acc, start, end, { 1,1,0.5f,1 });
+	}
 }

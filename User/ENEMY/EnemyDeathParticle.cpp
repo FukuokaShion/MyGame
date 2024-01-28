@@ -9,7 +9,6 @@ EnemyDeathParticle::EnemyDeathParticle() {
 	//パーティクル生成
 	particle_ = std::make_unique<ParticleManager>();
 	particle_.get()->Initialize();
-	particle_->LoadTexture("deathParticle.png");
 }
 
 EnemyDeathParticle::~EnemyDeathParticle() {
@@ -49,7 +48,7 @@ void EnemyDeathParticle::Accrual(Vector3 centerPos) {
 		const int lifeTime = 90;
 
 		//追加
-		particle_->Add(lifeTime, pos, vel, acc, start, end);
+		particle_->Add(lifeTime, pos, vel, acc, start, end,{1,1,0.5f,1});
 	}
 }
 

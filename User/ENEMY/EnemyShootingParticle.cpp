@@ -9,7 +9,6 @@ EnemyShootingParticle::EnemyShootingParticle() {
 	//パーティクル生成
 	shootingParticle_ = std::make_unique<ParticleManager>();
 	shootingParticle_.get()->Initialize();
-	shootingParticle_->LoadTexture("bulletCreate.png");
 }
 
 EnemyShootingParticle::~EnemyShootingParticle() {
@@ -42,7 +41,7 @@ void EnemyShootingParticle::Create(Vector3 createPos) {
 		const int lifeTime = 40;
 
 		//追加
-		shootingParticle_->Add(lifeTime, pos, vel, acc, start, end);
+		shootingParticle_->Add(lifeTime, pos, vel, acc, start, end, { 0.28f,0.24f,0.24f,1 });
 	}
 }
 

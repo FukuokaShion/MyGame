@@ -8,6 +8,7 @@
 #include "Model.h"
 #include"CollisionPrimitive.h"
 #include"CollisionManager.h"
+#include"ParticleManager.h"
 
 class EnemyBullet {
 public:
@@ -33,6 +34,10 @@ public:
 	 * @brief 更新
 	*/
 	void Update();
+	/**
+	 * @brief 更新
+	*/
+	static void ParticleUpdate();
 
 	/**
 	 * @brief 描画
@@ -40,9 +45,20 @@ public:
 	void Draw();
 
 	/**
+	 * @brief パーティクル描画
+	*/
+	static void ParticleDraw();
+
+	/**
 	 * @brief 更新
 	*/
 	bool IsDead() { return isDead_; };
+
+private:
+	/**
+	 * @brief パーティクル生成
+	*/
+	void CreateParticle();
 
 private:
 	std::unique_ptr<Object3d> obj_ = nullptr;
@@ -54,4 +70,7 @@ private:
 	bool isDead_;
 
 	BaseCollider* sphere_;
+
+	//パーティクル
+	static std::unique_ptr<ParticleManager> particle_;
 };

@@ -9,7 +9,6 @@ EnemyParticle::EnemyParticle() {
 	//パーティクル生成
 	DamageParticle_ = std::make_unique<ParticleManager>();
 	DamageParticle_.get()->Initialize();
-	DamageParticle_->LoadTexture("blod.png");
 }
 
 EnemyParticle::~EnemyParticle() {
@@ -45,7 +44,7 @@ void EnemyParticle::OnColision(Vector3 hitPos) {
 		const int lifeTime = 30;
 
 		//追加
-		DamageParticle_->Add(lifeTime, pos, vel, acc, start, end);
+		DamageParticle_->Add(lifeTime, pos, vel, acc, start, end, { 1,0.1f,0.1f,1 });
 	}
 }
 
