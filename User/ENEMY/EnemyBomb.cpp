@@ -58,7 +58,9 @@ void EnemyBomb::Update(Vector3 stayPos,Vector3 playerPos) {
 		if (timer_ == stayTime_) {
 			//時間経過で発射
 			isFired_ = true;
-			velocity_ = playerPos - obj_->wtf.position;
+			const Vector3 rocalTargetPos = { 0,-1.0f,0 };
+			Vector3 targetPos = playerPos + rocalTargetPos;
+			velocity_ = targetPos - obj_->wtf.position;
 			velocity_.nomalize();
 			velocity_ *= speed_;
 		}
