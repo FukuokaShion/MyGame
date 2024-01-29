@@ -25,6 +25,8 @@ void EnemyBullet::StaticFinalize() {
 void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {
 	obj_ = Object3d::Create();
 	obj_->SetModel(model_.get());
+	const float rad = 0.5f;
+	obj_->wtf.scale = { rad,rad,rad };
 	obj_->wtf.position = pos;
 	velocity_ = velocity;
 
@@ -33,7 +35,7 @@ void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int s
 	isDead_ = false;
 
 	sphere_ = new BaseCollider;
-	sphere_->SetRad(1.0f);
+	sphere_->SetRad(rad);
 	sphere_->SetCenter(pos);
 	const int power = 60;
 	sphere_->SetPower(power);

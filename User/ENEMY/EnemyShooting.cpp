@@ -29,18 +29,16 @@ void EnemyShooting::Update(Vector3 playerPos) {
 		shotTimer_--;
 		if (shotTimer_ < 0) {
 			enemy_->PlayWave("fire.wav");
-
-			//速度設定
-			velocity_ = { 0,0,0 };
-			velocity_ += {0, 0, -speed_};
-
-			//向いている方向に合わせる
-			Matrix4 enemyMat = enemy_->GetWtf().matWorld;
-			velocity_ = Matrix4::bVelocity(velocity_, enemyMat);
-
 			//弾生成
 			Vector3 createPos = enemy_->GetRightHandPos();
 			createPos.y -= 1.0f;
+
+			//速度設定
+			Vector3 rocalTargetPos = { 0,2,0 };
+			Vector3 targetPos = playerPos + rocalTargetPos;
+			Vector3 vec = targetPos - createPos;
+			velocity_ = vec.nomalize() * speed_;
+
 			enemy_->CreatBullet(createPos, velocity_, bulletLiveLimit_);
 
 			//次の発射までの時間
