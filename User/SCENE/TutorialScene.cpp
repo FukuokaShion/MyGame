@@ -36,7 +36,7 @@ void TutorialScene::Initialize() {
 	//フィールド生成
 	field_ = std::make_unique<TutorialField>();
 	field_->Initialize();
-
+	fadeOutPos = 40.0f;
 	ship_ = make_unique<Ship>();
 	shipPos_ = { -26,0,18 };
 	ship_->Initialize(shipPos_);
