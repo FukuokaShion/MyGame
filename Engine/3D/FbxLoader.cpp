@@ -48,7 +48,7 @@ void FbxLoader::Finalize()
     fbxManager->Destroy();
 }
 
-FBXModel* FbxLoader::LoadModelFromFile(const string& modelName)
+std::unique_ptr<FBXModel> FbxLoader::LoadModelFromFile(const string& modelName)
 {
     // モデルと同じ名前のフォルダから読み込む
     const string directoryPath = baseDirectory + modelName + "/";
@@ -69,14 +69,14 @@ FBXModel* FbxLoader::LoadModelFromFile(const string& modelName)
     fbxImporter->Import(fbxScene);
 
     // モデル生成
-    FBXModel* fbxmodel = new FBXModel();
+    std::unique_ptr<FBXModel> fbxmodel = std::make_unique<FBXModel>();
     fbxmodel->name = modelName;
     // FBXノードの数を取得
     int nodeCount = fbxScene->GetNodeCount();
     // あらかじめ必要数分のメモリを確保することで、アドレスがずれるのを予防
     fbxmodel->nodes.reserve(nodeCount);
     // ルートノードから順に解析してモデルに流し込む
-    ParseNodeRecursive(fbxmodel, fbxScene->GetRootNode());
+    ParseNodeRecursive(fbxmodel.get(), fbxScene->GetRootNode());
     // FBXシーン解放
     fbxmodel->fbxScene = fbxScene;
     // バッファ生成

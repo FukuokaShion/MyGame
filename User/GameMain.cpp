@@ -13,11 +13,12 @@ void GameMain::Initialize() {
 	//ゲーム読み込み
 	LoaderManager::Load();
 	//シーンの初期化
-	sceneManager_ = make_unique<SceneManager>();
+	sceneManager_ = new SceneManager();
 	sceneManager_->Initialize(dxCommon_);
 }
 
 void GameMain::Finalize() {
+	delete sceneManager_;
 	Framework::Finalize();
 }
 

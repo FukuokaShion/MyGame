@@ -13,9 +13,9 @@
 Enemy::Enemy() {
 	//モデル生成
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("enemy");
-	fbxObject3d_ = new FBXObject3d;
+	fbxObject3d_ = std::make_unique<FBXObject3d>();
 	fbxObject3d_->Initialize();
-	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->SetModel(fbxModel_.get());
 
 	hp_ = new EnemyHp();
 
@@ -83,8 +83,6 @@ void Enemy::Initialize() {
 }
 
 Enemy::~Enemy() {
-	delete fbxObject3d_;
-	delete fbxModel_;
 	delete hp_;
 	delete state_;
 	delete particle_;

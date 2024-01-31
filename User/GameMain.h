@@ -34,5 +34,5 @@ private:
 	*/
 	bool IsEndRequst() override;
 private:
-	unique_ptr<SceneManager> sceneManager_ = nullptr;
+	SceneManager* sceneManager_ = nullptr;
 };

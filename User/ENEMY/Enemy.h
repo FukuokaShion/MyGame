@@ -181,8 +181,8 @@ private:
 	EnemyUI ui_;
 
 	//モデル
-	FBXModel* fbxModel_ = nullptr;
-	FBXObject3d* fbxObject3d_ = nullptr;
+	std::unique_ptr<FBXModel> fbxModel_ = nullptr;
+	std::unique_ptr<FBXObject3d> fbxObject3d_ = nullptr;
 
 	//弾リスト
 	std::list<std::unique_ptr<EnemyBullet>> bullets_;

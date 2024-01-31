@@ -11,17 +11,15 @@
 Player::Player() {
 	//モデル生成
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
-	fbxObject3d_ = new FBXObject3d;
+	fbxObject3d_ = std::make_unique<FBXObject3d>();
 	fbxObject3d_->Initialize();
-	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->SetModel(fbxModel_.get());
 	hp_ = new PlayerHp;
 
 	state_->SetPlayer(this);
 }
 
 Player::~Player() {
-	delete fbxObject3d_;
-	delete fbxModel_;
 }
 
 void Player::Initialize() {

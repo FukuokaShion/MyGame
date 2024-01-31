@@ -57,16 +57,14 @@ void TitleScene::Initialize() {
 	isStartSelect_ = true;
 
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
-	fbxObject3d_ = new FBXObject3d;
+	fbxObject3d_ = std::make_unique<FBXObject3d>();
 	fbxObject3d_->Initialize();
-	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
 }
 
 TitleScene::~TitleScene() {
-	delete fbxObject3d_;
-	delete fbxModel_;
 	audio_->StopWave(pSourceVoice_);
 }
 
