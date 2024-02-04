@@ -163,7 +163,7 @@ void GameScene::Update() {
 
 		collisionManager_->GetPlayerAttack(player_->GetIsAttack());
 		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
-		collisionManager_->CheakCol();
+		collisionManager_->CheakAllCol();
 
 
 		if (enemy_->IsLive() == false) {
@@ -245,8 +245,10 @@ void GameScene::Update() {
 
 void GameScene::ObjectDraw() {
 	field_->Draw();
-	collisionManager_->DrawCollider();
 	enemy_->ObjDraw();
+#ifdef _DEBUG
+	collisionManager_->DrawCollider();
+#endif
 }
 
 void GameScene::FbxDraw() {

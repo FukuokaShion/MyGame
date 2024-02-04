@@ -5,8 +5,11 @@
 #pragma once
 #include<forward_list>
 #include"CollisionPrimitive.h"
+
+#ifdef _DEBUG
 #include"Model.h"
 #include"Object3d.h"
+#endif
 
 class CollisionManager {
 public:
@@ -20,9 +23,9 @@ public:
 	*/
 	void Finalize();
 	/**
-	 * @brief 衝突チェック
+	 * @brief 全体の衝突チェック
 	*/
-	void CheakCol();
+	void CheakAllCol();
 	/**
 	 * @brief インスタンス取得
 	*/
@@ -38,15 +41,23 @@ public:
 	/**
 	 * @brief プレイヤー攻撃判定
 	*/
-	void GetPlayerAttack(bool playerIsAttack);
+	void GetPlayerAttack(const bool playerIsAttack);
 	/**
 	 * @brief 敵攻撃判定
 	*/
-	void GetEnemyAttack(bool enemyIsAttack);
+	void GetEnemyAttack(const bool enemyIsAttack);
+private:
+	/**
+	 * @brief 個々の衝突判定
+	*/
+	bool CheakCol(BaseCollider* colA, BaseCollider* colB, Attribute wishBttributeX, Attribute wishAttributeY, bool isHit);
+
 private:
 	bool isPlayerHit_;
 	bool isEnemyHit_;
 	std::forward_list<BaseCollider*> colliders_;
+
+#ifdef _DEBUG
 public:
 	/**
 	 * @brief 当たり判定可視化
@@ -56,4 +67,5 @@ private:
 	std::unique_ptr<Model> model_ = nullptr;
 	int maxCol_ = 20;
 	std::unique_ptr<Object3d> objects_[20];
+#endif
 };

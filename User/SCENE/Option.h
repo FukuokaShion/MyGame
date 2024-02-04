@@ -5,6 +5,7 @@
 
 #pragma once
 #include"Sprite.h"
+#include<memory>
 
 class Option {
 public:

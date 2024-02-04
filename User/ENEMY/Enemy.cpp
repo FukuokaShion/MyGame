@@ -169,11 +169,11 @@ void Enemy::ObjDraw() {
 		earthquake->Draw();
 	}
 
-	particle_->Draw();
-	bulletCreateParticle_->Draw();
-	deatgparticle_->Draw();
-	EnemyBullet::ParticleDraw();
-	EnemyBomb::ParticleDraw();
+	//particle_->Draw();
+	//bulletCreateParticle_->Draw();
+	//deatgparticle_->Draw();
+	//EnemyBullet::ParticleDraw();
+	//EnemyBomb::ParticleDraw();
 }
 
 void Enemy::SpriteDraw() {

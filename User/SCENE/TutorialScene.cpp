@@ -114,7 +114,7 @@ void TutorialScene::Update() {
 		}
 
 		CollisionManager::GetInstance()->GetPlayerAttack(player_->GetIsAttack());
-		CollisionManager::GetInstance()->CheakCol();
+		CollisionManager::GetInstance()->CheakAllCol();
 
 		if (ship_->GetIsMoveShip()) {
 			state_ = State::departure;
@@ -146,7 +146,10 @@ void TutorialScene::Update() {
 void TutorialScene::ObjectDraw() {
 	field_->ObjDraw();
 	ship_->Draw();
+
+#ifdef _DEBUG
 	CollisionManager::GetInstance()->DrawCollider();
+#endif
 }
 
 void TutorialScene::FbxDraw() {
