@@ -50,7 +50,7 @@ private:
 	/**
 	 * @brief 個々の衝突判定
 	*/
-	bool CheakCol(BaseCollider* colA, BaseCollider* colB, Attribute wishBttributeX, Attribute wishAttributeY, bool isHit);
+	bool CheakCol(BaseCollider* colA, BaseCollider* colB, Attribute wishBttributeX, Attribute wishAttributeY, bool& isHit);
 
 private:
 	bool isPlayerHit_;

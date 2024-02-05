@@ -57,7 +57,7 @@ void CollisionManager::CheakAllCol() {
 	}
 }
 
-bool CollisionManager::CheakCol(BaseCollider* colA, BaseCollider* colB, Attribute wishAttributeX, Attribute wishAttributeY, bool isHit) {
+bool CollisionManager::CheakCol(BaseCollider* colA, BaseCollider* colB, Attribute wishAttributeX, Attribute wishAttributeY, bool& isHit) {
 	if (colA->GetAttribute() == wishAttributeX && colB->GetAttribute() == wishAttributeY) {
 		Vector3 hitPos;
 		if (isHit == false) {
