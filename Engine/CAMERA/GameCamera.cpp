@@ -62,7 +62,7 @@ void GameCamera::Rota() {
 			rotaSpeedTimer_ = 0;
 		}
 		Vector2 velocity = { stick.x * sensitivity_.x ,stick.y * sensitivity_.y };
-		velocity *= std::lerp(0, 1, rotaSpeedTimer_ / rotaSpeedMaxTime_);
+		velocity *= static_cast<float>(std::lerp(0, 1, rotaSpeedTimer_ / rotaSpeedMaxTime_));
 		rota_.x += velocity.y;
 		rota_.y += velocity.x;
 		if (rota_.x > upLimit_) {

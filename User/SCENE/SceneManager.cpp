@@ -2,35 +2,22 @@
  * @file SceneManager.cpp
  * @brief シーン管理
  */
+#include"Object3d.h"
+#include"FBXObject3d.h"
+#include"SceneManager.h"
 
-#include "SceneManager.h"
 #include"TitleScene.h"
 #include"TutorialScene.h"
 #include"GameScene.h"
-#include"Object3d.h"
-#include"FBXObject3d.h"
 
-/// <summary>
-/// コンストクラタ
-/// </summary>
-SceneManager::SceneManager() {
-}
+SceneManager::SceneManager() {}
 
-/// <summary>
-/// デストラクタ
-/// </summary>
-SceneManager::~SceneManager() {
-}
+SceneManager::~SceneManager() {}
 
-/// <summary>
-/// 初期化
-/// </summary>
 void SceneManager::Initialize(DirectXCommon* dxCommon) {
-	// nullチェック
 	assert(dxCommon);
 	this->dxCommon_ = dxCommon;
 
-	//シーン初期
 	SceneState::SetSceneManager(this);
 	state_ = std::make_unique<TitleScene>();
 	state_->Initialize();
@@ -44,20 +31,13 @@ void SceneManager::TransitionTo(SCENE nextScene) {
 	nextScene_ = nextScene;
 }
 
-/// <summary>
-/// 毎フレーム処理
-/// </summary>
 void SceneManager::Update() {
 	state_->Update();
 	ChangeScene();
 	sceneChange_->Update();
 }
 
-/// <summary>
-/// 描画
-/// </summary>
 void SceneManager::Draw() {
-
 	///fbx描画前処理
 	FBXObject3d::PreDraw(dxCommon_->GetCommandList());
 	///FBX描画

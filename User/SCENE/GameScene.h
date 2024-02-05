@@ -2,44 +2,39 @@
  * @file GameScene.h
  * @brief ゲームプレイシーン
  */
-
 #pragma once
 #include"SceneState.h"
 #include"Sprite.h"
 #include"Audio.h"
-
+#include"GameCamera.h"
 #include"Field.h"
 #include"Player.h"
 #include"Enemy.h"
 #include"CollisionManager.h"
-#include"GameCamera.h"
 #include"Option.h"
+
+using namespace std;
 
 class GameScene : public SceneState {
 public:
 	GameScene();
 	~GameScene();
-
 	/**
 	 * @brief 初期化
 	*/
 	void Initialize();
-
 	/**
 	 * @brief 更新
 	*/
 	void Update() override;
-
 	/**
 	 * @brief obj描画
 	*/
 	void ObjectDraw() override;
-	
 	/**
 	 * @brief fbx描画
 	*/
 	void FbxDraw() override;
-	
 	/**
 	 * @brief スプライト描画
 	*/
@@ -51,6 +46,7 @@ private:
 	*/
 	void StateTransition() override;
 
+private:
 	enum class State {
 		game,
 		clear,
@@ -59,42 +55,30 @@ private:
 	};
 private:
 	State state_;
-
 	//サウンド
 	Audio* audio_ = nullptr;
 	IXAudio2SourceVoice* pSourceVoice_ = nullptr;
-
 	//メンバ変数
 	//カメラ
-	GameCamera* gameCamera_ = nullptr;
+	unique_ptr<GameCamera> gameCamera_ = nullptr;
 	//フィールド
-	Field* field_ = nullptr;
-
+	unique_ptr<Field> field_ = nullptr;
 	//プレイヤー
-	Player* player_ = nullptr;
+	unique_ptr<Player> player_ = nullptr;
 	//エネミー
-	Enemy* enemy_ = nullptr;
-
-	CollisionManager* collisionManager_ = nullptr;
-
-
+	unique_ptr<Enemy> enemy_ = nullptr;
 	//画像
-	Sprite* pushB_;
-	Sprite* telopBase_;
+	unique_ptr<Sprite> pushB_;
+	unique_ptr<Sprite> telopBase_;
 	float telopBaseAddAlpha_;
-
 	//クリア
-	Sprite* clear_;
-
-	Sprite* clearEffect_;
+	unique_ptr<Sprite> clear_;
+	unique_ptr<Sprite> clearEffect_;
 	int clearEffAddSize_;
 	float clearEffSubtractAlpha_;
-
 	//ゲームオーバー
-	Sprite* youDiedPic_;
+	unique_ptr<Sprite> youDiedPic_;
 	float youDiedAddAlpha_;
-
 	//オプション
-	Option* option_ = nullptr;
-
+	unique_ptr<Option> option_ = nullptr;
 };

@@ -47,7 +47,7 @@ public:
 	/// ファイルからFBXモデル読込
 	/// </summary>
 	/// <param name="modelName">モデル名</param>
-	FBXModel* LoadModelFromFile(const string& modelName);
+	std::unique_ptr<FBXModel> LoadModelFromFile(const string& modelName);
 
 	/// <summary>
 	/// FBXの行列XMMatrixに変換

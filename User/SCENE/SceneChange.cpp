@@ -2,7 +2,6 @@
  * @file SceneState.cpp
  * @brief シーン遷移演出
  */
-
 #include"SceneChange.h"
 #include"SpriteLoader.h"
 
@@ -17,7 +16,6 @@ void SceneChange::Initialize() {
 	isFadeOut = false;
 	isFadeOutFin = false;
 	blackAddAlpha = 0.04f;
-
 
 	//画像
 	black_ = std::make_unique<Sprite>();
@@ -36,7 +34,6 @@ void SceneChange::Initialize() {
 void SceneChange::Update() {
 	FadeIn();
 	FadeOut();
-
 	black_->Update();
 	loading_->Update();
 }

@@ -2,14 +2,12 @@
  * @file TitleScene.cpp
  * @brief タイトルシーン
  */
-
 #include"TitleScene.h"
 #include"SceneManager.h"
 #include"GameScene.h"
 #include"SpriteLoader.h"
 
-TitleScene::TitleScene() {
-}
+TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
 	//サウンド
@@ -41,7 +39,6 @@ void TitleScene::Initialize() {
 	arrow_->SetPozition(startSelect_);
 	arrow_->SetSize({ 64,64 });
 
-
 	basePic_->SetTextureIndex(SpriteLoader::TITLE);
 	arrow_->SetTextureIndex(SpriteLoader::ARROW);
 
@@ -57,16 +54,14 @@ void TitleScene::Initialize() {
 	isStartSelect_ = true;
 
 	fbxModel_ = FbxLoader::GetInstance()->LoadModelFromFile("player");
-	fbxObject3d_ = new FBXObject3d;
+	fbxObject3d_ = std::make_unique<FBXObject3d>();
 	fbxObject3d_->Initialize();
-	fbxObject3d_->SetModel(fbxModel_);
+	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
 }
 
 TitleScene::~TitleScene() {
-	delete fbxObject3d_;
-	delete fbxModel_;
 	audio_->StopWave(pSourceVoice_);
 }
 
@@ -94,7 +89,6 @@ void TitleScene::Update() {
 			//実行
 			if (Input::GetInstance()->PButtonTrigger(A)) {
 				if (isStartSelect_) {
-					//ship_->Start();
 					sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
 				}else {
 					optionOpen_ = true;
@@ -108,7 +102,6 @@ void TitleScene::Update() {
 		basePic_->Update();
 		arrow_->Update();
 		fbxObject3d_->Update();
-		//StateTransition();
 	}
 
 }
@@ -126,8 +119,7 @@ void TitleScene::FbxDraw() {
 void TitleScene::SpriteDraw() {
 	if (optionOpen_) {
 		option_->SpriteDraw();
-	}
-	else {
+	}else {
 		basePic_->Draw();
 		arrow_->Draw();
 	}

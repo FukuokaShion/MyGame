@@ -2,42 +2,36 @@
  * @file GameScene.cpp
  * @brief ゲームプレイシーン
  */
-
 #include"GameScene.h"
 #include"SceneManager.h"
 #include"TitleScene.h"
-
 #include"FbxLoader.h"
 #include"SpriteLoader.h"
 #include"Easing.h"
 #include"Collision.h"
 
-GameScene::GameScene() {
-}
+GameScene::GameScene() {}
 
 void GameScene::Initialize() {
 	// カメラ生成
-	gameCamera_ = new GameCamera();
+	gameCamera_ = make_unique<GameCamera>();
 	gameCamera_->Initialize(WinApp::window_width, WinApp::window_height);
-
 	//カメラセット
-	ParticleManager::SetCamera(gameCamera_);
-	Object3d::SetCamera(gameCamera_);
-	FBXObject3d::SetCamera(gameCamera_);
+	ParticleManager::SetCamera(gameCamera_.get());
+	Object3d::SetCamera(gameCamera_.get());
+	FBXObject3d::SetCamera(gameCamera_.get());
 
 	state_ = State::game;
-
 	//フィールド生成
-	field_ = new Field();
+	field_ = make_unique<Field>();
 	field_->Initialize();
 
-
 	//エネミー生成
-	enemy_ = new Enemy();
+	enemy_ = make_unique<Enemy>();
 	enemy_->Initialize();
 
 	//プレイヤー生成
-	player_ = new Player();
+	player_ = make_unique<Player>();
 	player_->Initialize();
 
 	//カメラの設定
@@ -52,26 +46,26 @@ void GameScene::Initialize() {
 	pSourceVoice_->SetVolume(0.8f);
 
 	//画像
-	telopBase_ = new Sprite();
+	telopBase_ = make_unique<Sprite>();
 	telopBase_->Initialize(SpriteCommon::GetInstance());
 	telopBase_->SetSize({ WinApp::window_width,WinApp::window_height });
 	telopBase_->SetColor({ 1,1,1,0 });
 	telopBase_->Update();
 	telopBaseAddAlpha_ = 0.04f;
 
-	pushB_ = new Sprite();
+	pushB_ = make_unique<Sprite>();
 	pushB_->Initialize(SpriteCommon::GetInstance());
 	pushB_->SetSize({ 200,48 });
 	pushB_->SetPozition({1050,650});
 	pushB_->Update();
 
-	clear_ = new Sprite();
+	clear_ = make_unique<Sprite>();
 	clear_->Initialize(SpriteCommon::GetInstance());
 	clear_->SetSize({ WinApp::window_width,WinApp::window_height });
 	clear_->SetColor({1,1,1,0});
 	clear_->Update();
 
-	clearEffect_ = new Sprite();
+	clearEffect_ = make_unique<Sprite>();
 	clearEffect_->Initialize(SpriteCommon::GetInstance());
 	clearEffect_->SetAnchorPoint({ 0.5f,0 });
 	clearEffect_->SetPozition({ 1280 / 2,0 });
@@ -81,7 +75,7 @@ void GameScene::Initialize() {
 	clearEffAddSize_ = 2;
 	clearEffSubtractAlpha_ = -0.005f;
 
-	youDiedPic_ = new Sprite();
+	youDiedPic_ = make_unique<Sprite>();
 	youDiedPic_->Initialize(SpriteCommon::GetInstance());
 	youDiedPic_->SetSize({ WinApp::window_width,WinApp::window_height });
 	youDiedPic_->SetColor({ 1,1,1,0 });
@@ -93,31 +87,15 @@ void GameScene::Initialize() {
 	clearEffect_->SetTextureIndex(SpriteLoader::BOSSFELLED);
 	youDiedPic_->SetTextureIndex(SpriteLoader::YOUDIED);
 
-	collisionManager_ = CollisionManager::GetInstance();
-	collisionManager_->Initialize();
+	CollisionManager::GetInstance()->Initialize();
 
-	option_ = new Option();
+	option_ = make_unique<Option>();
 	option_->Initialize();
 }
 
 GameScene::~GameScene() {
-	delete gameCamera_;
-	delete audio_;
-
-	delete field_;
-
-	delete player_;
-	delete enemy_;
-
-	delete telopBase_;
-	delete pushB_;
-	delete clear_;
-	delete clearEffect_;
-	delete youDiedPic_;
-
-	delete option_;
-
-	collisionManager_->Finalize();
+	audio_->StopWave(pSourceVoice_);
+	CollisionManager::GetInstance()->Finalize();
 }
 
 //更新
@@ -136,7 +114,6 @@ void GameScene::Update() {
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 		gameCamera_->SetRockOnPos(enemy_->GetCenterPos());
 		gameCamera_->Update();
-
 
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
@@ -161,19 +138,15 @@ void GameScene::Update() {
 			}
 		}
 
-		collisionManager_->GetPlayerAttack(player_->GetIsAttack());
-		collisionManager_->GetEnemyAttack(enemy_->GetIsAttack());
-		collisionManager_->CheakCol();
-
+		CollisionManager::GetInstance()->GetPlayerAttack(player_->GetIsAttack());
+		CollisionManager::GetInstance()->GetEnemyAttack(enemy_->GetIsAttack());
+		CollisionManager::GetInstance()->CheakAllCol();
 
 		if (enemy_->IsLive() == false) {
 			state_ = State::clear;
-		}
-		else if (player_->IsLive() == false) {
+		}else if (player_->IsLive() == false) {
 			state_ = State::death;
 		}
-
-
 		if (Input::GetInstance()->PButtonTrigger(START)) {
 			state_ = State::option;
 		}
@@ -203,7 +176,7 @@ void GameScene::Update() {
 		}
 
 		if (clear_->GetColor().w >= 1.0f) {
-			if (input_->PButtonTrigger(A)) {
+			if (Input::GetInstance()->PButtonTrigger(A)) {
 				sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 			}
 		}
@@ -245,8 +218,10 @@ void GameScene::Update() {
 
 void GameScene::ObjectDraw() {
 	field_->Draw();
-	collisionManager_->DrawCollider();
 	enemy_->ObjDraw();
+#ifdef _DEBUG
+	CollisionManager::GetInstance()->DrawCollider();
+#endif
 }
 
 void GameScene::FbxDraw() {
@@ -282,8 +257,7 @@ void GameScene::SpriteDraw() {
 void GameScene::StateTransition() {
 	if (enemy_->IsLive() == false) {
 		sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
-	}
-	else if (player_->IsLive() == false) {
+	}else if (player_->IsLive() == false) {
 		sceneManager_->TransitionTo(SceneManager::SCENE::TITLE);
 	}
 }

@@ -196,8 +196,8 @@ private:
 	int damageGauge_;
 
 	//モデル
-	FBXModel* fbxModel_ = nullptr;
-	FBXObject3d* fbxObject3d_ = nullptr;
+	std::unique_ptr<FBXModel> fbxModel_ = nullptr;
+	std::unique_ptr<FBXObject3d> fbxObject3d_ = nullptr;
 
 	//UI
 	PlayerUI ui_;
