@@ -7,6 +7,7 @@
 #include "Object3d.h"
 #include "FBXObject3d.h"
 #include "ParticleManager.h"
+#include "GlobalVariables.h"
 
 void Framework::Initialize() {
 	//windowsAPIの初期化
@@ -36,6 +37,9 @@ void Framework::Initialize() {
 	
 	//スプライコモン
 	SpriteCommon::SetDxCommon(dxCommon_);
+
+	//調整項目
+	GlobalVariables::GetInstance()->LoadFiles();
 
 	//FPS固定
 	fps_->SetFrameRate(60);
@@ -88,6 +92,9 @@ void  Framework::Run() {
 void  Framework::Update() {
 	//入力の更新
 	input_->Update();
+#ifdef _DEBUG
+	GlobalVariables::GetInstance()->Update();
+#endif
 }
 
 void  Framework::Draw() {

@@ -118,6 +118,12 @@
     <Filter Include="user\ソース\FIELD">
       <UniqueIdentifier>{21b5912b-a2ac-4e8c-808e-eeff69ad6f95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\ソースファイル\LOADER">
+      <UniqueIdentifier>{3126ada4-9bfb-4717-ba8c-f55204669c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ヘッダーファイル\LOADER">
+      <UniqueIdentifier>{625a6816-7120-4db0-991b-6af1a7a19a9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -349,8 +355,8 @@
     <ClCompile Include="User\FIELD\Signboard.cpp">
       <Filter>user\ソース\FIELD</Filter>
     </ClCompile>
-    <ClCompile Include="User\LOADER\GlobalVariables.cpp">
-      <Filter>user\ソース\LOADER</Filter>
+    <ClCompile Include="Engine\Loader\GlobalVariables.cpp">
+      <Filter>Engine\ソースファイル\LOADER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -585,8 +591,8 @@
     <ClInclude Include="User\FIELD\Signboard.h">
       <Filter>user\ヘッダー\FIELD</Filter>
     </ClInclude>
-    <ClInclude Include="User\LOADER\GlobalVariables.h">
-      <Filter>user\ヘッダー\LOADER</Filter>
+    <ClInclude Include="Engine\Loader\GlobalVariables.h">
+      <Filter>Engine\ヘッダーファイル\LOADER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
