@@ -45,13 +45,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(ProjectDir)lib\fbx_sdk\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(ProjectDir)lib\fbx_sdk\include;$(ProjectDir)nlohmann;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22000.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22000.0\um\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(ProjectDir)lib\fbx_sdk\lib;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Generated\Outputs\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(ProjectDir)lib\fbx_sdk\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(ProjectDir)lib\fbx_sdk\include;$(ProjectDir)nlohmann;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22000.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22000.0\um\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(ProjectDir)lib\fbx_sdk\lib;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Generated\Outputs\$(Configuration)\</OutDir>
@@ -158,6 +158,7 @@
     <ClCompile Include="User\FIELD\Field.cpp" />
     <ClCompile Include="User\FIELD\TutorialField.cpp" />
     <ClCompile Include="User\GameMain.cpp" />
+    <ClCompile Include="User\LOADER\GlobalVariables.cpp" />
     <ClCompile Include="User\LOADER\LoaderManager.cpp" />
     <ClCompile Include="User\LOADER\ObjModelLoader.cpp" />
     <ClCompile Include="User\LOADER\SpriteLoader.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="User\FIELD\Field.h" />
     <ClInclude Include="User\FIELD\TutorialField.h" />
     <ClInclude Include="User\GameMain.h" />
+    <ClInclude Include="User\LOADER\GlobalVariables.h" />
     <ClInclude Include="User\LOADER\LoaderManager.h" />
     <ClInclude Include="User\LOADER\ObjModelLoader.h" />
     <ClInclude Include="User\LOADER\SpriteLoader.h" />

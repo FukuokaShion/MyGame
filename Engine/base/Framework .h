@@ -4,11 +4,12 @@
  */
 
 #pragma once
-#include "WinApp.h"
-#include "DirectXCommon.h"
-#include "FPS.h"
-#include "Input.h"
-#include "SpriteCommon.h"
+#include"WinApp.h"
+#include"DirectXCommon.h"
+#include"FPS.h"
+#include"Input.h"
+#include"ImGuiManager.h"
+#include"SpriteCommon.h"
 
 class Framework {
 public:
@@ -51,4 +52,5 @@ protected:
 	DirectXCommon* dxCommon_ = nullptr;
 	FPS* fps_ = new FPS;
 	Input* input_ = nullptr;
+	std::unique_ptr<ImGuiManager> imGui_;
 };

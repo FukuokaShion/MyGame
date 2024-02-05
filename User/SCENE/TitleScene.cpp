@@ -7,6 +7,8 @@
 #include"GameScene.h"
 #include"SpriteLoader.h"
 
+#include"GlobalVariables.h"
+
 TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
@@ -59,6 +61,21 @@ void TitleScene::Initialize() {
 	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
+
+///----------
+	GlobalVariables::GetInstance()->LoadFiles();
+	const char* groupName = "test";
+	GlobalVariables::GetInstance()->CreateGroup(groupName);
+	GlobalVariables::GetInstance()->AddItem(groupName, "Test1", 1);
+	GlobalVariables::GetInstance()->AddItem(groupName, "Test2", 2.0f);
+	GlobalVariables::GetInstance()->AddItem(groupName, "Test3", Vector3(3,4,5));
+	int a;
+	a = GlobalVariables::GetInstance()->GetIntValue(groupName, "Test1");
+	float b;
+	b = GlobalVariables::GetInstance()->GetFloatValue(groupName, "Test2");
+	Vector3 c;
+	c = GlobalVariables::GetInstance()->GetVector3Value(groupName, "Test3");
+///----------
 }
 
 TitleScene::~TitleScene() {
@@ -67,6 +84,9 @@ TitleScene::~TitleScene() {
 
 //更新
 void TitleScene::Update() {
+///----------
+	GlobalVariables::GetInstance()->Update();
+///----------
 	if (optionOpen_) {
 		//オプション画面
 		option_->Update();

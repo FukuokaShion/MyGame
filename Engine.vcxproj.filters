@@ -349,6 +349,9 @@
     <ClCompile Include="User\FIELD\Signboard.cpp">
       <Filter>user\ソース\FIELD</Filter>
     </ClCompile>
+    <ClCompile Include="User\LOADER\GlobalVariables.cpp">
+      <Filter>user\ソース\LOADER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -581,6 +584,9 @@
     </ClInclude>
     <ClInclude Include="User\FIELD\Signboard.h">
       <Filter>user\ヘッダー\FIELD</Filter>
+    </ClInclude>
+    <ClInclude Include="User\LOADER\GlobalVariables.h">
+      <Filter>user\ヘッダー\LOADER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

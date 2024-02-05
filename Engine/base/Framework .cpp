@@ -20,6 +20,9 @@ void Framework::Initialize() {
 	input_ = Input::GetInstance();
 	input_->Initialize(winApp_);
 
+	imGui_ = std::make_unique<ImGuiManager>();
+	imGui_->Initialize(winApp_, dxCommon_);
+
 	//fbx
 	FbxLoader::GetInstance()->Initialize(dxCommon_->GetDevice());
 	FBXObject3d::SetDevice(dxCommon_->GetDevice());
@@ -41,6 +44,7 @@ void Framework::Initialize() {
 void  Framework::Finalize() {
 	delete fps_;
 	delete dxCommon_;
+	imGui_->Finalize();
 	FbxLoader::GetInstance()->Finalize();
 	winApp_->Finalize();
 }
@@ -59,13 +63,16 @@ void  Framework::Run() {
 		//fps管理
 		fps_->FpsControlBegin();
 
+		imGui_->Begin();
 		//更新処理
 		Update();
 
+		imGui_->End();
 		//描画開始
 		dxCommon_->PreDraw();
 		//描画処理
 		Draw();
+		imGui_->Draw();
 		//描画終了
 		dxCommon_->PostDraw();
 
