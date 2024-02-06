@@ -19,6 +19,10 @@ PlayerAvoid::PlayerAvoid() {
 	player_->SetInvincible(true);
 }
 
+void PlayerAvoid::ApplyGlobalVariables() {
+
+}
+
 //待機
 void PlayerAvoid::Update() {
 	timer_--;

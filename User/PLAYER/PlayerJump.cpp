@@ -18,6 +18,10 @@ PlayerJump::PlayerJump() {
 	player_->PlayWav("jump.wav");
 }
 
+void PlayerJump::ApplyGlobalVariables() {
+
+}
+
 void PlayerJump::Update() {
 	if (up_ == true) {
 		timer_++;

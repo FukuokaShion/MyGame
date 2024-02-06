@@ -31,6 +31,10 @@ PlayerJumpAttack::PlayerJumpAttack() {
 	}
 }
 
+void PlayerJumpAttack::ApplyGlobalVariables() {
+
+}
+
 //攻撃
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;

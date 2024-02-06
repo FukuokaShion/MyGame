@@ -17,14 +17,14 @@ void GlobalVariables::Update() {
 	if (!ImGui::BeginMenuBar())
 		return;
 
-	for (map<string, Group>::iterator itGroup = datas_.begin(); itGroup != datas_.end(); ++itGroup) {
-		const string& groupName = itGroup->first;
+	for (std::map<std::string, Group>::iterator itGroup = datas_.begin(); itGroup != datas_.end(); ++itGroup) {
+		const std::string& groupName = itGroup->first;
 		Group& group = itGroup->second;
 
 		if (!ImGui::BeginMenu(groupName.c_str()))
 			continue;
-		for (map<string, Item>::iterator itItem = group.items.begin(); itItem != group.items.end(); ++itItem) {
-			const string& itemName = itItem->first;
+		for (std::map<std::string, Item>::iterator itItem = group.items.begin(); itItem != group.items.end(); ++itItem) {
+			const std::string& itemName = itItem->first;
 			Item& item = itItem->second;
 			
 			//int32_t型
@@ -47,7 +47,7 @@ void GlobalVariables::Update() {
 		ImGui::Text("\n");
 		if (ImGui::Button("Save")) {
 			SaveFile(groupName);
-			string message = format("{}.json saved.", groupName);
+			std::string message = format("{}.json saved.", groupName);
 			MessageBoxA(nullptr, message.c_str(), "GlobalVariables", 0);
 		}
 		ImGui::EndMenu();
@@ -58,19 +58,19 @@ void GlobalVariables::Update() {
 }
 
 void GlobalVariables::LoadFiles() {
-	filesystem::path dir(kDirectoryPath);
+	std::filesystem::path dir(kDirectoryPath);
 	//保存先ディレクトリ確認
-	if (!filesystem::exists(kDirectoryPath)) {
+	if (!std::filesystem::exists(kDirectoryPath)) {
 		return;
 	}
 
 	//ディレクトリ内各ファイル処理
-	filesystem::directory_iterator dir_it(dir);
-	for (const filesystem::directory_entry& entry : dir_it) {
+	std::filesystem::directory_iterator dir_it(dir);
+	for (const std::filesystem::directory_entry& entry : dir_it) {
 		//ファイルパス取得
-		const filesystem::path& filePath = entry.path();
+		const std::filesystem::path& filePath = entry.path();
 		//ファイル拡張子取得
-		string extension = filePath.extension().string();
+		std::string extension = filePath.extension().string();
 		//jsonファイル以外スキップ
 		if (extension.compare(".json") != 0) {
 			continue;
@@ -80,9 +80,9 @@ void GlobalVariables::LoadFiles() {
 	}
 }
 
-void GlobalVariables::LoadFile(const string& groupName) {
-	string filePath = kDirectoryPath + groupName + ".json";
-	ifstream ifs;
+void GlobalVariables::LoadFile(const std::string& groupName) {
+	std::string filePath = kDirectoryPath + groupName + ".json";
+	std::ifstream ifs;
 	//ファイル開く
 	ifs.open(filePath);
 	if (ifs.fail()) {
@@ -99,7 +99,7 @@ void GlobalVariables::LoadFile(const string& groupName) {
 	assert(itGroup != root.end());
 	for (json::iterator itItem = itGroup->begin(); itItem != itGroup->end(); ++itItem) {
 		//アイテム名取得
-		const string& itemName = itItem.key();
+		const std::string& itemName = itItem.key();
 		//int32_t型
 		if (itItem->is_number_integer()) {
 			int32_t value = itItem->get<int32_t>();
@@ -118,9 +118,9 @@ void GlobalVariables::LoadFile(const string& groupName) {
 	}
 }
 
-void GlobalVariables::SaveFile(const string& groupName) {
+void GlobalVariables::SaveFile(const std::string& groupName) {
 	//グループ検索
-	map<string, Group>::iterator itGroup = datas_.find(groupName);
+	std::map<std::string, Group>::iterator itGroup = datas_.find(groupName);
 	//未登録チェック
 	assert(itGroup != datas_.end());
 	
@@ -130,9 +130,9 @@ void GlobalVariables::SaveFile(const string& groupName) {
 	root[groupName] = json::object();
 
 	//各項目について
-	for (map<string, Item>::iterator itItem = itGroup->second.items.begin(); itItem != itGroup->second.items.end(); ++itItem) {
+	for (std::map<std::string, Item>::iterator itItem = itGroup->second.items.begin(); itItem != itGroup->second.items.end(); ++itItem) {
 		//項目名取得
-		const string& itemName = itItem->first;
+		const std::string& itemName = itItem->first;
 		//項目の参照取得
 		Item& item = itItem->second;
 		//int32_t型
@@ -151,90 +151,90 @@ void GlobalVariables::SaveFile(const string& groupName) {
 	}
 
 	//ディレクトリが無ければ作成
-	filesystem::path dir(kDirectoryPath);
-	if (!filesystem::exists(kDirectoryPath)) {
-		filesystem::create_directory(kDirectoryPath);
+	std::filesystem::path dir(kDirectoryPath);
+	if (!std::filesystem::exists(kDirectoryPath)) {
+		std::filesystem::create_directory(kDirectoryPath);
 	}
 	//書き込むjsonファイルのフルパス合成
-	string filePath = kDirectoryPath + groupName + ".json";
+	std::string filePath = kDirectoryPath + groupName + ".json";
 	//書き込み用ファイルストリーム
 	std::ofstream ofs;
 	ofs.open(filePath);
 	if (ofs.fail()) {
 		assert(0);
 	}
-	ofs << setw(4) << root << endl;
+	ofs << std::setw(4) << root << std::endl;
 	ofs.close();
 }
 
-void GlobalVariables::CreateGroup(const string& groupNmae) {
+void GlobalVariables::CreateGroup(const std::string& groupNmae) {
 	datas_[groupNmae];
 }
 
-void GlobalVariables::AddItem(const string& groupName, const string& key, int32_t value) {
+void GlobalVariables::AddItem(const std::string& groupName, const std::string& key, int32_t value) {
 	//グループ検索
-	map<string, Group>::iterator itGroup = datas_.find(groupName);
-	map<string, Item>::iterator itItem = itGroup->second.items.find(key);
+	std::map<std::string, Group>::iterator itGroup = datas_.find(groupName);
+	std::map<std::string, Item>::iterator itItem = itGroup->second.items.find(key);
 	//ないなら登録
 	if (itItem == itGroup->second.items.end()) {
 		SetValue(groupName, key, value);
 	}
 }
 
-void GlobalVariables::AddItem(const string& groupName, const string& key, float value) {
+void GlobalVariables::AddItem(const std::string& groupName, const std::string& key, float value) {
 	//グループ検索
-	map<string, Group>::iterator itGroup = datas_.find(groupName);
-	map<string, Item>::iterator itItem = itGroup->second.items.find(key);
+	std::map<std::string, Group>::iterator itGroup = datas_.find(groupName);
+	std::map<std::string, Item>::iterator itItem = itGroup->second.items.find(key);
 	//ないなら登録
 	if (itItem == itGroup->second.items.end()) {
 		SetValue(groupName, key, value);
 	}
 }
 
-void GlobalVariables::AddItem(const string& groupName, const string& key, const Vector3& value) {
+void GlobalVariables::AddItem(const std::string& groupName, const std::string& key, const Vector3& value) {
 	//グループ検索
-	map<string, Group>::iterator itGroup = datas_.find(groupName);
-	map<string, Item>::iterator itItem = itGroup->second.items.find(key);
+	std::map<std::string, Group>::iterator itGroup = datas_.find(groupName);
+	std::map<std::string, Item>::iterator itItem = itGroup->second.items.find(key);
 	//ないなら登録
 	if (itItem == itGroup->second.items.end()) {
 		SetValue(groupName, key, value);
 	}
 }
 
-void GlobalVariables::SetValue(const string& groupName, const string& key, int32_t value) {
+void GlobalVariables::SetValue(const std::string& groupName, const std::string& key, int32_t value) {
 	Group& group = datas_[groupName];
 	Item newItem{};
 	newItem.value = value;
 	group.items[key] = newItem;
 }
 
-void GlobalVariables::SetValue(const string& groupName, const string& key, float value) {
+void GlobalVariables::SetValue(const std::string& groupName, const std::string& key, float value) {
 	Group& group = datas_[groupName];
 	Item newItem{};
 	newItem.value = value;
 	group.items[key] = newItem;
 }
 
-void GlobalVariables::SetValue(const string& groupName, const string& key, const Vector3& value) {
+void GlobalVariables::SetValue(const std::string& groupName, const std::string& key, const Vector3& value) {
 	Group& group = datas_[groupName];
 	Item newItem{};
 	newItem.value = value;
 	group.items[key] = newItem;
 }
 
-int32_t GlobalVariables::GetIntValue(const string& groupName, const string& key)const {
+int32_t GlobalVariables::GetIntValue(const std::string& groupName, const std::string& key)const {
 	const Group& group = datas_.at(groupName);
 	const Item& item = group.items.at(key);
 	return get<int32_t>(item.value);
 }
 
-float GlobalVariables::GetFloatValue(const string& groupName, const string& key)const {
+float GlobalVariables::GetFloatValue(const std::string& groupName, const std::string& key)const {
 	const Group& group = datas_.at(groupName);
 	const Item& item = group.items.at(key);
 	return get<float>(item.value);
 }
 
-Vector3 GlobalVariables::GetVector3Value(const string& groupName, const string& key)const {
+Vector3 GlobalVariables::GetVector3Value(const std::string& groupName, const std::string& key)const {
 	const Group& group = datas_.at(groupName);
 	const Item& item = group.items.at(key);
 	return get<Vector3>(item.value);

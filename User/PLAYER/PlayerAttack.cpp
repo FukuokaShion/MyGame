@@ -19,6 +19,10 @@ PlayerAttack::PlayerAttack() {
 	sowrd_->SetPower(sowrdPower_);
 }
 
+void PlayerAttack::ApplyGlobalVariables() {
+
+}
+
 //攻撃
 void PlayerAttack::Update() {
 	timer_++;

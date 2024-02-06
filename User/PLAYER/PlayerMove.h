@@ -29,13 +29,19 @@ private:
 	 * @brief 状態移行
 	*/
 	void StateTransition() override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_= "playerMove";
+	
 	int timer_;
 	int limit_;
 
-	float speedTimer_;
-	float speedMaxTime_;
+	int speedTimer_;
+	int speedMaxTime_;
 	float walkMaxSpeed_;
 	float dashMaxSpeed_;
 	bool isDash_;

@@ -3,6 +3,7 @@
  * @brief プレイヤーの移動パターン
  */
 
+#include"GlobalVariables.h"
 #include"Player.h"
 #include"PlayerStandby.h"
 #include"PlayerAttack.h"
@@ -13,19 +14,30 @@
 
 PlayerMove::PlayerMove() {
 	player_->AnimationChange(Player::Animation::DASH);
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "walkMaxSpeed", 0.3f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "dashMaxSpeed", 0.5f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "speedMaxTime", 15);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "avoidSwitchTime", 8);
+
 	limit_ = 600;
 	timer_ = 0;
+	speedTimer_ = 0;
+	pushBTimer_ = 0;
 
 	isDash_ = false;
-	walkMaxSpeed_ = 0.3f;
-	dashMaxSpeed_ = 0.5f;
-	speedTimer_ = 0;
-	speedMaxTime_ = 15;
 	player_->PlayWav("run.wav");
-	pushBTimer_ = 0;
-	avoidSwitchTime_ = 8;
 	isChangeAvoid_ = false;
+	ApplyGlobalVariables();
 }
+
+void PlayerMove::ApplyGlobalVariables() {
+	walkMaxSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "walkMaxSpeed");
+	dashMaxSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "dashMaxSpeed");
+	speedMaxTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "speedMaxTime");
+	avoidSwitchTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "avoidSwitchTime");
+}
+
 
 void PlayerMove::Update() {
 	Move();
@@ -58,9 +70,9 @@ void PlayerMove::Move() {
 	//移動速度
 	float nowSpeed;
 	if (isDash_) {
-		nowSpeed = std::lerp(0.0f, dashMaxSpeed_, speedTimer_ / speedMaxTime_);
+		nowSpeed = std::lerp(0.0f, dashMaxSpeed_, static_cast<float>(speedTimer_) / static_cast<float>(speedMaxTime_));
 	}else {
-		nowSpeed = std::lerp(0.0f, walkMaxSpeed_, speedTimer_ / speedMaxTime_);
+		nowSpeed = std::lerp(0.0f, walkMaxSpeed_, static_cast<float>(speedTimer_) / static_cast<float>(speedMaxTime_));
 	}
 
 	if (speedTimer_ < speedMaxTime_) {

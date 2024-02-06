@@ -20,6 +20,10 @@ private:
 	 * @brief 状態移行
 	*/
 	void StateTransition() override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
 	const int limit_ = 42;
