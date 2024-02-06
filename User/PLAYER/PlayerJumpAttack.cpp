@@ -9,16 +9,17 @@
 #include"CollisionManager.h"
 
 PlayerJumpAttack::PlayerJumpAttack() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "attackFallSpeed", -0.2f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "power", 100);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "afterTime", 40);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "animationSpeed", 1.5f);
+	ApplyGlobalVariables();
+
 	player_->PlayWav("jumpAttack.wav");
-	animationSpeed = 1.5f;
-	player_->AnimationChange(Player::Animation::JUMPATTACK, animationSpeed);
-	attackFallSpeed_ = -0.2f;
-
+	player_->AnimationChange(Player::Animation::JUMPATTACK, animationSpeed_);
 	action_ = Action::Attack;
-	power_ = 100;
-
 	timer_ = 0;
-	afterTime_ = 40;
 
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
@@ -32,7 +33,10 @@ PlayerJumpAttack::PlayerJumpAttack() {
 }
 
 void PlayerJumpAttack::ApplyGlobalVariables() {
-
+	attackFallSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "attackFallSpeed");
+	power_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "power");
+	afterTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "afterTime");
+	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
 //攻撃

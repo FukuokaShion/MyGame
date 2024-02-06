@@ -6,6 +6,7 @@
 #pragma once
 #include"Transform.h"
 #include"Input.h"
+#include"GlobalVariables.h"
 
 class Player;
 

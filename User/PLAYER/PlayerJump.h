@@ -34,13 +34,15 @@ private:
 	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "playerJump";
+
 	int timer_;
 	int limit_;
 
 	bool up_;
 
-	float MaxSpeed_;
+	float maxSpeed_;
 
-	const float maxPos = 2.0f;
-	const float groundPos = 0;
+	float maxPos_;
+	float groundPos;
 };

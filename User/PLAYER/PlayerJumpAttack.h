@@ -26,6 +26,7 @@ private:
 	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "playerJumpAttack";
 	enum class Action {
 		Attack,
 		After,
@@ -43,5 +44,5 @@ private:
 	//当たり判定
 	BaseCollider* sowrd_;
 
-	float animationSpeed;
+	float animationSpeed_;
 };

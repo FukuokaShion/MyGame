@@ -2,8 +2,6 @@
  * @file PlayerMove.cpp
  * @brief プレイヤーの移動パターン
  */
-
-#include"GlobalVariables.h"
 #include"Player.h"
 #include"PlayerStandby.h"
 #include"PlayerAttack.h"
@@ -13,13 +11,13 @@
 #include<cmath>
 
 PlayerMove::PlayerMove() {
-	player_->AnimationChange(Player::Animation::DASH);
 	GlobalVariables::GetInstance()->CreateGroup(groupName_);
 	GlobalVariables::GetInstance()->AddItem(groupName_, "walkMaxSpeed", 0.3f);
 	GlobalVariables::GetInstance()->AddItem(groupName_, "dashMaxSpeed", 0.5f);
 	GlobalVariables::GetInstance()->AddItem(groupName_, "speedMaxTime", 15);
 	GlobalVariables::GetInstance()->AddItem(groupName_, "avoidSwitchTime", 8);
 
+	player_->AnimationChange(Player::Animation::DASH);
 	limit_ = 600;
 	timer_ = 0;
 	speedTimer_ = 0;

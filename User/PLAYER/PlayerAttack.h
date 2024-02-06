@@ -26,6 +26,7 @@ private:
 	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "playerAttack";
 	enum class Action {
 		Antic,
 		Attack,
@@ -40,24 +41,24 @@ private:
 
 	///予備動作
 	//時間
-	const int anticTime_ = 16;
+	int anticTime_ = 16;
 	//移動距離
-	const Vector3 anticDistance_ = { 0,0,1 };
+	Vector3 anticDistance_ = { 0,0,1 };
 
 	///攻撃
 	//時間
-	const int attackTime_ = 11;
+	int attackTime_ = 11;
 	//移動距離
-	const Vector3 attackDistance_ = { 0,0,1 };
+	Vector3 attackDistance_ = { 0,0,1 };
 	//攻撃力
-	const int sowrdPower_ = 60;
+	int sowrdPower_ = 60;
 
 	///後隙
-	const int afterTime_ = 6;
+	int afterTime_ = 6;
 
 	//当たり判定
 	BaseCollider* sowrd_;
 
 	//アニメーションスピード
-	const float animationSpeed_ = 1.5f;
+	float animationSpeed_ = 1.5f;
 };
