@@ -7,6 +7,18 @@
 #include"EnemyLeave.h"
 #include"EnemyStandby.h"
 
+Leave::Leave() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "limit", 10);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "distance", { 0,0,10 });
+	ApplyGlobalVariables();
+}
+
+void Leave::ApplyGlobalVariables() {
+	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
+	distance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "distance");
+}
+
 void Leave::Update([[maybe_unused]]Vector3 playerPos) {
 	timer++;
 

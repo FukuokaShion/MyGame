@@ -15,8 +15,13 @@ public:
 	 * @brief 更新
 	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "enemyAttack";
 	enum class Action {
 		Antic,
 		Attack,
@@ -26,22 +31,22 @@ private:
 
 	///予備動作
 	//時間
-	const int anticTime_ = 45;
+	int anticTime_;
 	//移動距離
-	const Vector3 anticDistance_ = { 0,0,1 };
+	Vector3 anticDistance_;
 
 	///攻撃
 	//時間
-	const int attackTime_ = 15;
+	int attackTime_;
 	//移動距離
-	const Vector3 attackDistance_ = { 0,0,-3 };
+	Vector3 attackDistance_;
 	//攻撃力
-	const int power_ = 220;
+	int power_;
 
 	///後隙
-	const int afterTime_ = 45;
+	int afterTime_;
 
 	//当たり判定
 	BaseCollider* attackCol_;
-	const float colRad = 3.0f;
+	float colRad_;
 };

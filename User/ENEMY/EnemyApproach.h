@@ -14,12 +14,17 @@ public:
 	 * @brief 更新
 	*/
 	void Update(Vector3 playerPos) override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "enemyApproach";
 	//移動速度
-	const float speed_ = 0.3f;
+	float speed_;
 	//最終的な距離
-	const float distance_ = 4.0f;
+	float distance_;
 	//
 	int limit_;
 	int timer_;

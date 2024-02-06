@@ -5,6 +5,7 @@
 
 #pragma once
 #include"Transform.h"
+#include"GlobalVariables.h"
 
 class Enemy;
 
@@ -23,6 +24,10 @@ public:
 	 * @brief 更新
 	*/
 	virtual void Update(Vector3 playerPos) = 0;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	virtual void ApplyGlobalVariables() = 0;
 
 protected:
 	static Enemy* enemy_;

@@ -15,8 +15,13 @@ public:
 	 * @brief 更新
 	*/
 	void Update(Vector3 playerPos) override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "enemyShooting";
 	int interval_;
 	int shotTimer_;
 

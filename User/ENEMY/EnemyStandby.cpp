@@ -16,7 +16,17 @@
 #include"EnemyEarthquakeAttack.h"
 
 Standby::Standby() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "limit", 60);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "approachDistance", 5.0f);
+	ApplyGlobalVariables();
+
 	enemy_->AnimationChange(Enemy::STAND);
+}
+
+void Standby::ApplyGlobalVariables() {
+	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
+	approachDistance_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "approachDistance");
 }
 
 //待機

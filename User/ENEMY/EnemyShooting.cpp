@@ -8,15 +8,26 @@
 #include"EnemyStandby.h"
 
 EnemyShooting::EnemyShooting() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "interval", 25);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "shotMax", 3);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "bulletLiveLimit", 60);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "speed", 2.0f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "afterTime", 15);
+	ApplyGlobalVariables();
+
 	enemy_->AnimationChange(Enemy::SHOOT);
-	interval_ = 25;
 	shotTimer_ = interval_;
-	shotMax_ = 3;
 	shotNum_ = 0;
-	bulletLiveLimit_ = 60;
-	speed_ = 2;
-	afterTime_ = 15;
 	timer = 0;
+}
+
+void EnemyShooting::ApplyGlobalVariables() {
+	interval_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "interval");
+	shotMax_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "shotMax");
+	bulletLiveLimit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "bulletLiveLimit");
+	speed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "speed");
+	afterTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "afterTime");
 }
 
 void EnemyShooting::Update(Vector3 playerPos) {
