@@ -10,12 +10,23 @@
 #include"Easing.h"
 
 PlayerJump::PlayerJump() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "limit", 20);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "maxSpeed", 0.2f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "maxPos", 2.0f);
+	ApplyGlobalVariables();
+
 	player_->AnimationChange(Player::Animation::JUMP);
-	limit_ = 20;
 	timer_ = 0;
-	MaxSpeed_ = 0.2f;
+	groundPos = 0;
 	up_ = true;
 	player_->PlayWav("jump.wav");
+}
+
+void PlayerJump::ApplyGlobalVariables() {
+	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
+	maxSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "maxSpeed");
+	maxPos_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "maxPos");
 }
 
 void PlayerJump::Update() {
@@ -31,7 +42,7 @@ void PlayerJump::Update() {
 
 	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
 
-	float newPos = Easing::OutQuad(groundPos, maxPos, t);
+	float newPos = Easing::OutQuad(groundPos, maxPos_, t);
 
 	player_->SetPosY(newPos);
 
@@ -48,7 +59,7 @@ void PlayerJump::Move() {
 
 	//スティック入力
 	if (Input::GetInstance()->LeftStickInput()) {
-		speed = MaxSpeed_;
+		speed = maxSpeed_;
 	}
 	float  sticAngle = atan2f(Input::GetInstance()->GetLeftStickVec().x, Input::GetInstance()->GetLeftStickVec().y);
 	//カメラ角度

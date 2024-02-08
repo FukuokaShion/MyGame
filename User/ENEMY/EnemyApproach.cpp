@@ -8,8 +8,18 @@
 #include"EnemyStandby.h"
 
 Approach::Approach() {
-	limit_ = 180;
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "speed", 0.3f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "distance", 4.0f);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "limit", 180);;
+	ApplyGlobalVariables();
 	timer_ = limit_;
+}
+
+void Approach::ApplyGlobalVariables() {
+	speed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "speed");
+	distance_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "distance");
+	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
 }
 
 void Approach::Update(Vector3 playerPos) {

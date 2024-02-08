@@ -8,13 +8,33 @@
 #include"EnemyStandby.h"
 
 Attack::Attack() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "anticTime", 45);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "anticDistance", { 0,0,1 });
+	GlobalVariables::GetInstance()->AddItem(groupName_, "attackTime", 15);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "attackDistance", { 0,0,-3 });
+	GlobalVariables::GetInstance()->AddItem(groupName_, "power", 220);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "afterTime", 45);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "colRad", 3.0f);
+	ApplyGlobalVariables();
+	
 	action_ = Action::Antic;
 	enemy_->AnimationChange(Enemy::ATTACK);
 
 	attackCol_ = new BaseCollider;
-	attackCol_->SetRad(colRad);
+	attackCol_->SetRad(colRad_);
 	attackCol_->SetPower(power_);
 	attackCol_->SetAttribute(Attribute::EnemyAttack);
+}
+
+void Attack::ApplyGlobalVariables() {
+	anticTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "anticTime");
+	anticDistance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "anticDistance");
+	attackTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "attackTime");
+	attackDistance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "attackDistance");
+	power_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "power");
+	afterTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "afterTime");
+	colRad_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "colRad");
 }
 
 //攻撃

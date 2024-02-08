@@ -8,6 +8,12 @@
 #include"EnemyStandby.h"
 
 EnemyRoundShooting::EnemyRoundShooting() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "interval", 25);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "shotMax", 5);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "bulletLiveLimit", 60);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "speed", 2.0f);
+	ApplyGlobalVariables();
 	enemy_->AnimationChange(Enemy::HANDUP);
 	interval_ = 25;
 	shotTimer_ = interval_;
@@ -15,6 +21,13 @@ EnemyRoundShooting::EnemyRoundShooting() {
 	shotNum_ = 0;
 	bulletLiveLimit_ = 60;
 	speed_ = 2;
+}
+
+void EnemyRoundShooting::ApplyGlobalVariables() {
+	interval_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "interval");
+	shotMax_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "shotMax");
+	bulletLiveLimit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "bulletLiveLimit");
+	speed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "speed");
 }
 
 void EnemyRoundShooting::Update(Vector3 playerPos) {

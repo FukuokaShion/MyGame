@@ -10,13 +10,24 @@
 #include"Easing.h"
 
 PlayerAvoid::PlayerAvoid() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "limit", 42);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "speed", { 0,0,0.6f });
+	GlobalVariables::GetInstance()->AddItem(groupName_, "animationSpeed", 1.7f);
+	ApplyGlobalVariables();
+
 	player_->PlayWav("avoid.wav");
 	player_->AnimationChange(Player::Animation::AVOID, animationSpeed_);
-	speed_ = { 0,0,0.6f };
 	Matrix4 playerMat = player_->GetWtf().matWorld;
 	velocity_ = Matrix4::bVelocity(speed_, playerMat);
 	timer_ = limit_;
 	player_->SetInvincible(true);
+}
+
+void PlayerAvoid::ApplyGlobalVariables() {
+	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
+	speed_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "speed");
+	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
 //待機

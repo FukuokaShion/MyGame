@@ -8,10 +8,17 @@
 #include"EnemyStandby.h"
 
 EnemyBombShooting::EnemyBombShooting() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "createTime", 20);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "finTime", 140);
+	ApplyGlobalVariables();
 	enemy_->AnimationChange(Enemy::BOMBSHOOT);
 	timer = 0;
-	createTime_ = 20;
-	finTime_ = 140;
+}
+
+void EnemyBombShooting::ApplyGlobalVariables() {
+	createTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "createTime");
+	finTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "finTime");
 }
 
 void EnemyBombShooting::Update(Vector3 playerPos) {

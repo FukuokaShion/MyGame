@@ -6,6 +6,7 @@
 #pragma once
 #include"Transform.h"
 #include"Input.h"
+#include"GlobalVariables.h"
 
 class Player;
 
@@ -35,6 +36,10 @@ protected:
 	 * @brief 状態移行
 	*/
 	virtual void StateTransition() = 0;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	virtual void ApplyGlobalVariables() = 0;
 
 protected:
 	static Player* player_;

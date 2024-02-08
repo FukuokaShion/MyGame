@@ -15,6 +15,10 @@ PlayerStandby::PlayerStandby() {
 	player_->AnimationChange(Player::Animation::STAND);
 }
 
+void PlayerStandby::ApplyGlobalVariables() {
+
+}
+
 //待機
 void PlayerStandby::Update() {
 	StateTransition();

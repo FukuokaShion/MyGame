@@ -9,6 +9,16 @@
 #include"CollisionManager.h"
 
 PlayerAttack::PlayerAttack() {
+	GlobalVariables::GetInstance()->CreateGroup(groupName_);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "anticTime", 16);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "anticDistance", { 0,0,1 });
+	GlobalVariables::GetInstance()->AddItem(groupName_, "attackTime", 11);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "attackDistance", { 0,0,1 });
+	GlobalVariables::GetInstance()->AddItem(groupName_, "sowrdPower", 60);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "afterTime", 6);
+	GlobalVariables::GetInstance()->AddItem(groupName_, "animationSpeed", 1.5f);
+	ApplyGlobalVariables();
+
 	player_->PlayWav("attack.wav");
 	action_ = Action::Antic;
 	timer_ = 0;
@@ -17,6 +27,16 @@ PlayerAttack::PlayerAttack() {
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
 	sowrd_->SetPower(sowrdPower_);
+}
+
+void PlayerAttack::ApplyGlobalVariables() {
+	anticTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "anticTime");
+	anticDistance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "anticDistance");
+	attackTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "attackTime");
+	attackDistance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "attackDistance");
+	sowrdPower_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "sowrdPower");
+	afterTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "afterTime");
+	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
 //攻撃

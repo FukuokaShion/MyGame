@@ -20,13 +20,18 @@ private:
 	 * @brief 状態移行
 	*/
 	void StateTransition() override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
-	const int limit_ = 42;
-	int timer_ = limit_;
+	const char* groupName_ = "playerAvoid";
+	int limit_;
+	int timer_;
 
 	Vector3 speed_;
 	Vector3 velocity_;
 
-	const float animationSpeed_ = 1.7f;
+	float animationSpeed_;
 };

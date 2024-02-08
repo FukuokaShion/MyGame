@@ -20,8 +20,13 @@ private:
 	 * @brief 状態移行
 	*/
 	void StateTransition() override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "playerJumpAttack";
 	enum class Action {
 		Attack,
 		After,
@@ -39,5 +44,5 @@ private:
 	//当たり判定
 	BaseCollider* sowrd_;
 
-	float animationSpeed;
+	float animationSpeed_;
 };

@@ -16,11 +16,16 @@ public:
 	 * @brief 更新
 	*/
 	void Update(Vector3 playerPos) override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "enemyStandby";
 	//待機時間
-	const int limit_ = 60;
+	int limit_;
 
 	//接近移行距離
-	const float approachDistance_ = 5.0f;
+	float approachDistance_;
 };

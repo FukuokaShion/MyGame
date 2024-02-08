@@ -9,15 +9,20 @@
 //接近
 class Leave : public EnemyState {
 public:
-
+	Leave();
 	/**
 	 * @brief 更新
 	*/
 	void Update([[maybe_unused]]Vector3 playerPos) override;
+	/**
+	 * @brief 調整項目の適用
+	*/
+	void ApplyGlobalVariables() override;
 
 private:
+	const char* groupName_ = "enemyLeave";
 	//時間
-	const int limit_ = 10;
+	int limit_ = 10;
 	//移動距離
-	const Vector3 distance_ = { 0,0,10 };
+	Vector3 distance_ = { 0,0,10 };
 };
