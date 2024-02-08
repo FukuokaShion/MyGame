@@ -12,10 +12,10 @@ GlobalVariables* GlobalVariables::GetInstance() {
 }
 
 void GlobalVariables::Update() {
-	if (!ImGui::Begin("GlobalVariables", nullptr, ImGuiWindowFlags_MenuBar))
+	if (!ImGui::Begin("GlobalVariables", nullptr, ImGuiWindowFlags_MenuBar)) {
+		ImGui::End();
 		return;
-	if (!ImGui::BeginMenuBar())
-		return;
+	}
 
 	for (std::map<std::string, Group>::iterator itGroup = datas_.begin(); itGroup != datas_.end(); ++itGroup) {
 		const std::string& groupName = itGroup->first;
@@ -52,8 +52,6 @@ void GlobalVariables::Update() {
 		}
 		ImGui::EndMenu();
 	}
-
-	ImGui::EndMenuBar();
 	ImGui::End();
 }
 
