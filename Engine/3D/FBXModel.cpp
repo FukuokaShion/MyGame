@@ -5,6 +5,7 @@
 
 #include "FBXModel.h"
 
+using namespace MyEngine;
 
 FBXModel::~FBXModel() {
     fbxScene->Destroy();

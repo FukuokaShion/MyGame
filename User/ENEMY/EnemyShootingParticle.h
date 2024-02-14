@@ -6,6 +6,8 @@
 #pragma once
 #include "ParticleManager.h"
 
+using namespace MyEngine;
+
 class EnemyShootingParticle {
 public:
 	EnemyShootingParticle();

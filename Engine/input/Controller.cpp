@@ -7,6 +7,8 @@
 #include <assert.h>
 #include <winerror.h>
 
+using namespace MyEngine;
+
 Controller::Controller() {}
 Controller::~Controller() {}
 

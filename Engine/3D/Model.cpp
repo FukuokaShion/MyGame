@@ -14,6 +14,7 @@
 using namespace DirectX;
 using namespace Microsoft::WRL;
 using namespace std;
+using namespace MyEngine;
 
 //静的メンバ変数の実体
 ComPtr<ID3D12Device> Model::device_;

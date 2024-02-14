@@ -7,6 +7,7 @@
 #include "Vector3.h"
 #include <math.h>
 
+using namespace MyEngine;
 
 Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
 {
@@ -118,43 +119,44 @@ Vector4& Vector4::operator/=(float s)
 	return *this;
 }
 
-const Vector4 operator+(const Vector4& v1, const Vector4& v2)
+const Vector4 MyEngine::operator+(const Vector4& v1, const Vector4& v2)
 {
 	Vector4 temp(v1);
 	return temp += v2;
 }
 
-const Vector4 operator-(const Vector4& v1, const Vector4& v2)
+const Vector4 MyEngine::operator-(const Vector4& v1, const Vector4& v2)
 {
 	Vector4 temp(v1);
 	return temp -= v2;
 }
 
-const Vector4 operator*(const Vector4& v, float s)
+const Vector4 MyEngine::operator*(const Vector4& v, float s)
 {
 	Vector4 temp(v);
 	return temp *= s;
 }
 
-const Vector4 operator*(float s, const Vector4& v)
+const Vector4 MyEngine::operator*(float s, const Vector4& v)
 {
-	return v * s;
+	Vector4 temp(v);
+	return temp *= s;
 }
 
-const Vector4 operator/(const Vector4& v, float s)
+const Vector4 MyEngine::operator/(const Vector4& v, float s)
 {
 	Vector4 temp(v);
 	return temp /= s;
 }
 
-Vector4 Vector4Lerp(const Vector4& src1, const Vector4& src2, float t)
+Vector4 MyEngine::Vector4Lerp(const Vector4& src1, const Vector4& src2, float t)
 {
 	Vector4 temp;
 	Vector4Lerp(src1, src2, t, temp);
 	return temp;
 }
 
-void Vector4Lerp(const Vector4& src1, const Vector4& src2, float t, Vector4& dest)
+void MyEngine::Vector4Lerp(const Vector4& src1, const Vector4& src2, float t, Vector4& dest)
 {
 	dest.x = src1.x + (src2.x - src1.x) * t;
 	dest.y = src1.y + (src2.y - src1.y) * t;

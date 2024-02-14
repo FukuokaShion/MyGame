@@ -9,6 +9,8 @@
 #include "ParticleManager.h"
 #include "GlobalVariables.h"
 
+using namespace MyEngine;
+
 void Framework::Initialize() {
 	//windowsAPIの初期化
 	winApp_ = new WinApp();

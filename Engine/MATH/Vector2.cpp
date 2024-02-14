@@ -6,6 +6,8 @@
 #include "Vector2.h"
 #include <cmath>
 
+using namespace MyEngine;
+
 Vector2::Vector2()
 {
 	x = 0;
@@ -71,35 +73,35 @@ Vector2& Vector2::operator/=(float s) {
 
 //Vector2D　クラスに属さない関数群
 //二項演算子
-const Vector2 operator+(const Vector2& v1, const Vector2& v2) {
+const Vector2 MyEngine::operator+(const Vector2& v1, const Vector2& v2) {
 	Vector2 temp(v1);
 	temp.x += v2.x;
 	temp.y += v2.y;
 	return temp;
 }
 
-const Vector2 operator-(const Vector2& v1, const Vector2& v2) {
+const Vector2 MyEngine::operator-(const Vector2& v1, const Vector2& v2) {
 	Vector2 temp(v1);
 	temp.x -= v2.x;
 	temp.y -= v2.y;
 	return temp;
 }
 
-const Vector2 operator*(const Vector2& v, float s) {
+const Vector2 MyEngine::operator*(const Vector2& v, float s) {
 	Vector2 temp(v);
 	temp.x *= s;
 	temp.y *= s;
 	return temp;
 }
 
-const Vector2 operator*(float s, const Vector2& v) {
+const Vector2 MyEngine::operator*(float s, const Vector2& v) {
 	Vector2 temp(v);
 	temp.x *= s;
 	temp.y *= s;
 	return temp;
 }
 
-const Vector2 operator/(const Vector2& v, float s) {
+const Vector2 MyEngine::operator/(const Vector2& v, float s) {
 	Vector2 temp(v);
 	return temp /= s;
 }

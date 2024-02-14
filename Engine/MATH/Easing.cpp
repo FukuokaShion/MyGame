@@ -5,6 +5,7 @@
 
 #include "Easing.h"
 
+using namespace MyEngine;
 float Easing::InQuad(const float& start, const float& end, const float time)
 {
 	float t = powf(time, 2);

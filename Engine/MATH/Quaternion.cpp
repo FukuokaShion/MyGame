@@ -7,6 +7,8 @@
 #include<cmath>
 #include "Affin.h"
 
+using namespace MyEngine;
+
 Quaternion::Quaternion()
 {
 	this->w = 1;
@@ -176,7 +178,7 @@ Quaternion& Quaternion::operator/=(float s)
 	return *this;
 }
 
-Vector3 MatVector(const Vector3& vector, const Matrix4& matrix)
+Vector3 MyEngine::MatVector(const Vector3& vector, const Matrix4& matrix)
 {
 	float w = vector.x * matrix.m[0][3] + vector.y * matrix.m[1][3] + vector.z * matrix.m[2][3] + matrix.m[3][3];
 
@@ -190,7 +192,7 @@ Vector3 MatVector(const Vector3& vector, const Matrix4& matrix)
 	return result;
 }
 
-Quaternion MakeAxisAngle(const Vector3& axis, float radian)
+Quaternion MyEngine::MakeAxisAngle(const Vector3& axis, float radian)
 {
 	Quaternion quaternion;
 	Vector3 vector;
@@ -207,7 +209,7 @@ Quaternion MakeAxisAngle(const Vector3& axis, float radian)
 	return quaternion;
 }
 
-Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t)
+Quaternion MyEngine::Slerp(const Quaternion& q0, const Quaternion& q1, float t)
 {
 
 	Quaternion r0 = q0;
@@ -267,30 +269,30 @@ Quaternion DirectionToDirection(const Vector3& u, const Vector3& v)
 	return ans;
 }
 
-const Quaternion operator+(const Quaternion& v1, const Quaternion& v2)
+const Quaternion  MyEngine::operator+(const Quaternion& v1, const Quaternion& v2)
 {
 	Quaternion temp(v1);
 	return temp += v2;//v1+v2
 }
 
-const Quaternion operator-(const Quaternion& v1, const Quaternion& v2)
+const Quaternion  MyEngine::operator-(const Quaternion& v1, const Quaternion& v2)
 {
 	Quaternion temp(v1);
 	return temp -= v2;//v1+v2
 }
 
-const Quaternion operator*(const Quaternion& v, float s)
+const Quaternion  MyEngine::operator*(const Quaternion& v, float s)
 {
 	Quaternion temp(v);
 	return temp *= s;//v*s
 }
 
-const Quaternion operator*(float s, const Quaternion& v)
+const Quaternion  MyEngine::operator*(float s, const Quaternion& v)
 {
 	return v * s;//v*s
 }
 
-const Quaternion operator/(const Quaternion& v, float s)
+const Quaternion  MyEngine::operator/(const Quaternion& v, float s)
 {
 	Quaternion temp(v);
 	return temp /= s;

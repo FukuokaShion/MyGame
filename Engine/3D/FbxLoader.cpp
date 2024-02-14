@@ -8,6 +8,7 @@
 #include <cassert>
 
 using namespace DirectX;
+using namespace MyEngine;
 
 
 /// <summary>

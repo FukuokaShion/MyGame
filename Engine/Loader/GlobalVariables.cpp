@@ -6,6 +6,9 @@
 #include"GlobalVariables.h"
 #include"ImGui.h"
 #include<fstream>
+
+using namespace MyEngine;
+
 GlobalVariables* GlobalVariables::GetInstance() {
 	static GlobalVariables instance;
 	return &instance;

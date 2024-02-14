@@ -6,6 +6,7 @@
 #include "Collision.h"
 
 using namespace DirectX;
+using namespace MyEngine;
 
 void Collision::ClosestPtPoint2Triangle(const Vector3& point, const Triangle& triangle, Vector3* closest)
 {

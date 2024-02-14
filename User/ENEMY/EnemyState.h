@@ -8,6 +8,7 @@
 #include"GlobalVariables.h"
 
 class Enemy;
+using namespace MyEngine;
 
 class EnemyState {
 public:

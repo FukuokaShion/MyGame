@@ -6,6 +6,8 @@
 #include"GameCamera.h"
 #include<cmath>
 
+using namespace MyEngine;
+
 Vector2 GameCamera::sensitivity_ = { 0.05f,0.05f };
 Vector2 GameCamera::sensitivityMax_ = { 0.1f,0.1f };
 Vector2 GameCamera::sensitivityLimit_ = { 0.02f,0.02f };

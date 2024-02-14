@@ -5,8 +5,9 @@
 
 #include "WinApp.h"
 #include <tchar.h>
-
 #include <imgui_impl_win32.h>
+
+using namespace MyEngine;
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

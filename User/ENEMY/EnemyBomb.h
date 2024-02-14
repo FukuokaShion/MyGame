@@ -10,6 +10,8 @@
 #include"CollisionManager.h"
 #include"ParticleManager.h"
 
+using namespace MyEngine;
+
 class EnemyBomb{
 public:
 	EnemyBomb();

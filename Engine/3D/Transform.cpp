@@ -5,6 +5,8 @@
 
 #include "Transform.h"
 
+using namespace MyEngine;
+
 Transform::Transform() {
 	// ローカルスケール
 	scale = { 1,1,1 };

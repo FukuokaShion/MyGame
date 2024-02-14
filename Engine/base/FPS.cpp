@@ -5,6 +5,8 @@
 
 #include "FPS.h"
 
+using namespace MyEngine;
+
 void FPS::FpsControlBegin() {
 	//周波数取得
 	QueryPerformanceFrequency(&cpuClock);

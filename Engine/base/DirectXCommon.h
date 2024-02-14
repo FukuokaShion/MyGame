@@ -16,95 +16,97 @@
 //template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 //DirectX基盤
-class DirectXCommon{
-public://メンバ関数
-	// Microsoft::WRL::を省略
-	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
-	
-	/**
-	 * @brief 初期化
-	*/
-	void Initialize(WinApp* winApp);
+namespace MyEngine {
+	class DirectXCommon {
+	public://メンバ関数
+		// Microsoft::WRL::を省略
+		template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
-	/**
-	 * @brief デバイス初期化
-	*/
-	void InitializeDevice();
+		/**
+		 * @brief 初期化
+		*/
+		void Initialize(WinApp* winApp);
 
-	/**
-	 * @brief コマンドリスト初期化
-	*/
-	void InitializeCommand();
+		/**
+		 * @brief デバイス初期化
+		*/
+		void InitializeDevice();
 
-	/**
-	 * @brief スワップチェーン初期化
-	*/
-	void InitializeSwapchain();
+		/**
+		 * @brief コマンドリスト初期化
+		*/
+		void InitializeCommand();
 
-	/**
-	 * @brief レンダーターゲットビュー初期化
-	*/
-	void InitializeRenderTargetView();
+		/**
+		 * @brief スワップチェーン初期化
+		*/
+		void InitializeSwapchain();
 
-	/**
-	 * @brief 深度バッファ初期化
-	*/
-	void InitializeDepthBuffer();
+		/**
+		 * @brief レンダーターゲットビュー初期化
+		*/
+		void InitializeRenderTargetView();
 
-	/**
-	 * @brief フェンスの初期化
-	*/
-	void InitializeFence();
+		/**
+		 * @brief 深度バッファ初期化
+		*/
+		void InitializeDepthBuffer();
 
-	/**
-	 * @brief 描画前処理
-	*/
-	void PreDraw();
-	/**
-	 * @brief 描画後処理
-	*/
-	void PostDraw();
+		/**
+		 * @brief フェンスの初期化
+		*/
+		void InitializeFence();
 
-	/**
-	 * @brief デバイス取得
-	*/
-	ID3D12Device* GetDevice() const { return device.Get(); }
+		/**
+		 * @brief 描画前処理
+		*/
+		void PreDraw();
+		/**
+		 * @brief 描画後処理
+		*/
+		void PostDraw();
 
-	/**
-	 * @brief コマンドリスト取得
-	*/
-	ID3D12GraphicsCommandList* GetCommandList()const { return commandList.Get(); }
+		/**
+		 * @brief デバイス取得
+		*/
+		ID3D12Device* GetDevice() const { return device.Get(); }
 
-	/**
-	 * @brief バックバッファの数を取得
-	*/
-	size_t GetBackBufferCount() const { return backBuffers.size(); }
+		/**
+		 * @brief コマンドリスト取得
+		*/
+		ID3D12GraphicsCommandList* GetCommandList()const { return commandList.Get(); }
 
-private:
-	//DirectX12デバイス
-	ComPtr<ID3D12Device> device;
-	//DXGIファクトリ
-	ComPtr<IDXGIFactory7> dxgiFactory;
-	//バックバッファ
-	std::vector<ComPtr<ID3D12Resource>> backBuffers;
+		/**
+		 * @brief バックバッファの数を取得
+		*/
+		size_t GetBackBufferCount() const { return backBuffers.size(); }
 
-	DXGI_SWAP_CHAIN_DESC1 swapChainDesc{};
+	private:
+		//DirectX12デバイス
+		ComPtr<ID3D12Device> device;
+		//DXGIファクトリ
+		ComPtr<IDXGIFactory7> dxgiFactory;
+		//バックバッファ
+		std::vector<ComPtr<ID3D12Resource>> backBuffers;
 
-	D3D12_RESOURCE_DESC depthResourceDesc{};
+		DXGI_SWAP_CHAIN_DESC1 swapChainDesc{};
 
-	//WindowsAPI
-	WinApp* winApp_ = nullptr;
+		D3D12_RESOURCE_DESC depthResourceDesc{};
 
-	HRESULT result;
-	ComPtr<IDXGISwapChain4> swapChain;
-	ComPtr<ID3D12CommandAllocator> cmdAllocator;
-	ComPtr<ID3D12GraphicsCommandList> commandList;
-	ComPtr<ID3D12CommandQueue> commandQueue;
-	ComPtr<ID3D12DescriptorHeap> rtvHeap;
-	ComPtr<ID3D12Fence> fence;
-	D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc{};
-	ComPtr<ID3D12DescriptorHeap> dsvHeap;
-	D3D12_RESOURCE_BARRIER barrierDesc{};
-	UINT64 fenceVal = 0;
-	ComPtr<ID3D12Resource> depthBuff;
-};
+		//WindowsAPI
+		WinApp* winApp_ = nullptr;
+
+		HRESULT result;
+		ComPtr<IDXGISwapChain4> swapChain;
+		ComPtr<ID3D12CommandAllocator> cmdAllocator;
+		ComPtr<ID3D12GraphicsCommandList> commandList;
+		ComPtr<ID3D12CommandQueue> commandQueue;
+		ComPtr<ID3D12DescriptorHeap> rtvHeap;
+		ComPtr<ID3D12Fence> fence;
+		D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc{};
+		ComPtr<ID3D12DescriptorHeap> dsvHeap;
+		D3D12_RESOURCE_BARRIER barrierDesc{};
+		UINT64 fenceVal = 0;
+		ComPtr<ID3D12Resource> depthBuff;
+	};
+}

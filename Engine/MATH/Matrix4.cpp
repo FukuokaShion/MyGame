@@ -6,6 +6,7 @@
 #include "Matrix4.h"
 #include "Affin.h"
 
+using namespace MyEngine;
 Matrix4::Matrix4() {
 
 	for (int i = 0; i < 4; i++) {
@@ -336,7 +337,7 @@ Matrix4 Matrix4::Rotation(const Vector3& rotation, int X_1_Y_2_Z_3_XYZ_6) {
 //	| m n o p |			| M N O P |
 //	--		 --			--		 --
 
-Matrix4& operator*=(Matrix4& m1, const Matrix4& m2) {
+Matrix4& MyEngine::operator*=(Matrix4& m1, const Matrix4& m2) {
 
 	Matrix4 result{ 0 };
 
@@ -354,13 +355,13 @@ Matrix4& operator*=(Matrix4& m1, const Matrix4& m2) {
 }
 
 // 2項演算子オーバーロード ( 行列と行列の積 )
-const Matrix4 operator*(const Matrix4& m1, const Matrix4& m2) {
+const Matrix4 MyEngine::operator*(const Matrix4& m1, const Matrix4& m2) {
 	Matrix4 result = m1;
 
 	return result *= m2;
 }
 //2項演算子オーバーロード ( ベクトルと行列の積 )
-const Vector3 operator*(const Vector3& v, const Matrix4& m2) {
+const Vector3 MyEngine::operator*(const Vector3& v, const Matrix4& m2) {
 	Matrix4 mat = Affin::matUnit();
 	Vector3 result = mat.transform(v, m2);
 	return result;

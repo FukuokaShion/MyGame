@@ -9,6 +9,8 @@
 #include"CollisionPrimitive.h"
 #include"CollisionManager.h"
 
+using namespace MyEngine;
+
 class Earthquake {
 public:
 	Earthquake();
