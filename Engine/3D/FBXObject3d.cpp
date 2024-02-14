@@ -10,6 +10,7 @@
 
 using namespace Microsoft::WRL;
 using namespace DirectX;
+using namespace MyEngine;
 
 /// <summary>
 /// 静的メンバ変数の実体

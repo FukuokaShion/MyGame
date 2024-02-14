@@ -6,6 +6,7 @@
 #include "CollisionPrimitive.h"
 
 using namespace DirectX;
+using namespace MyEngine;
 
 void BaseCollider::IsHit(Attribute attribute, Vector3 hitPos) {
 	if (attribute == Attribute::PlayerAttack) {

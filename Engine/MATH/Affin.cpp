@@ -7,6 +7,7 @@
 #include "math.h"
 #include <cmath>
 
+using namespace MyEngine;
 /// <summary>
 /// 単位行列設定
 /// </summary>

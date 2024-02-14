@@ -8,6 +8,8 @@
 #include <cassert>
 #pragma comment (lib,"xaudio2.lib")
 
+using namespace MyEngine;
+
 void Audio::Initialize(const std::string& directoryPath)
 {
 

@@ -6,6 +6,8 @@
 #include "Vector3.h"
 #include <cmath>
 
+using namespace MyEngine;
+
 Vector3::Vector3()
 	:x(0), y(0), z(0)
 {
@@ -116,25 +118,25 @@ Vector3& Vector3::operator/=(float s) {
 	return*this;
 }
 
-const Vector3 operator+(const Vector3& v1, const Vector3& v2) {
+const Vector3  MyEngine::operator+(const Vector3& v1, const Vector3& v2) {
 	Vector3 temp(v1);
 	return temp += v2;
 }
-const Vector3 operator-(const Vector3& v1, const Vector3& v2) {
+const Vector3  MyEngine::operator-(const Vector3& v1, const Vector3& v2) {
 	Vector3 tenp(v1);
 	return tenp -= v2;
 }
 
-const Vector3 operator*(const Vector3& v, float s) {
+const Vector3  MyEngine::operator*(const Vector3& v, float s) {
 	Vector3 temp(v);
 	return temp *= s;
 }
 
-const Vector3 operator*(float s, const Vector3& v) {
+const Vector3  MyEngine::operator*(float s, const Vector3& v) {
 	return v * s;
 }
 
-const Vector3 operator/(const Vector3& v, float s) {
+const Vector3  MyEngine::operator/(const Vector3& v, float s) {
 	Vector3 temp(v);
 	temp.x /= s;
 	temp.y /= s;

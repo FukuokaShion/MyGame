@@ -6,6 +6,7 @@
 #include "Camera.h"
 
 using namespace DirectX;
+using namespace MyEngine;
 
 Camera::Camera() {}
 

@@ -9,6 +9,7 @@
 #pragma comment(lib, "dxguid.lib")
 
 //using namespace Microsoft::WRL;
+using namespace MyEngine;
 
 void Input::Initialize(WinApp* winApp)
 {

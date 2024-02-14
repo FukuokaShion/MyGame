@@ -9,6 +9,7 @@
 #include<map>
 
 using string = std::string;
+using namespace MyEngine;
 
 class ObjModelLoader {
 public:

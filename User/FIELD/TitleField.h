@@ -5,6 +5,7 @@
 
 #pragma once
 #include "Object3d.h"
+using namespace MyEngine;
 
 class TitleField {
 public:

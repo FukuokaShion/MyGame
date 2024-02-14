@@ -8,6 +8,7 @@
 #include <d3dcompiler.h>
 
 #pragma comment(lib, "d3dcompiler.lib")
+using namespace MyEngine;
 
 //デフォルトテクスチャ格納ディレクトリ
 std::string SpriteCommon::kDefaultTextureDirectoryPath = "Resources/";

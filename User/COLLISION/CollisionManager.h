@@ -11,6 +11,8 @@
 #include"Object3d.h"
 #endif
 
+using namespace MyEngine;
+
 class CollisionManager {
 public:
 	~CollisionManager();

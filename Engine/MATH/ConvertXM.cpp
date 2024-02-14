@@ -5,6 +5,7 @@
 
 #include "ConvertXM.h"
 
+using namespace MyEngine;
 Matrix4 ConvertXM::ConvertXMMATtoMat4(XMMATRIX XMMat) {
 	Matrix4 result;
 	for (int i = 0; i < 4; i++) {
