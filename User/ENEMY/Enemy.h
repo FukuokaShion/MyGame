@@ -75,6 +75,11 @@ public:
 	void SpriteDraw();
 
 	/**
+	 * @brief パーティクル描画
+	*/
+	void ParticleDraw();
+
+	/**
 	 * @brief 状態移行
 	*/
 	void TransitionTo(EnemyState* state);
