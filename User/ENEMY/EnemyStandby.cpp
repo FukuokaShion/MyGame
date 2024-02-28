@@ -14,6 +14,7 @@
 #include"EnemyStrongBodyBlow.h"
 #include"EnemyBombShooting.h"
 #include"EnemyEarthquakeAttack.h"
+#include"EnemyStumb.h"
 
 Standby::Standby() {
 	GlobalVariables::GetInstance()->CreateGroup(groupName_);
@@ -28,6 +29,8 @@ void Standby::ApplyGlobalVariables() {
 	limit_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "limit");
 	approachDistance_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "approachDistance");
 }
+
+Standby::~Standby() {}
 
 //待機
 void Standby::Update(Vector3 playerPos) {

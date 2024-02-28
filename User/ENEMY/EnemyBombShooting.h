@@ -11,6 +11,7 @@
 class EnemyBombShooting : public EnemyState {
 public:
 	EnemyBombShooting();
+	~EnemyBombShooting();
 
 	/**
 	 * @brief 更新

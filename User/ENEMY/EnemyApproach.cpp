@@ -16,6 +16,8 @@ Approach::Approach() {
 	timer_ = limit_;
 }
 
+Approach::~Approach() {}
+
 void Approach::ApplyGlobalVariables() {
 	speed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "speed");
 	distance_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "distance");

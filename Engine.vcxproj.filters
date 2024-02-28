@@ -358,6 +358,9 @@
     <ClCompile Include="Engine\Loader\GlobalVariables.cpp">
       <Filter>Engine\ソースファイル\LOADER</Filter>
     </ClCompile>
+    <ClCompile Include="User\ENEMY\EnemyStumb.cpp">
+      <Filter>user\ソース\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -593,6 +596,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Loader\GlobalVariables.h">
       <Filter>Engine\ヘッダーファイル\LOADER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\ENEMY\EnemyStumb.h">
+      <Filter>user\ヘッダー\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -30,6 +30,8 @@ void EnemyShooting::ApplyGlobalVariables() {
 	afterTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "afterTime");
 }
 
+EnemyShooting::~EnemyShooting() {}
+
 void EnemyShooting::Update(Vector3 playerPos) {
 	//プレイヤーの方を向く
 	float angle;

@@ -37,7 +37,12 @@ void Attack::ApplyGlobalVariables() {
 	colRad_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "colRad");
 }
 
-//攻撃
+Attack::~Attack() {
+	enemy_->SetIsAttack(false);
+	CollisionManager::GetInstance()->RemoveCollider(attackCol_);
+}
+
+	//攻撃
 void Attack::Update([[maybe_unused]] Vector3 playerPos) {
 	timer++;
 

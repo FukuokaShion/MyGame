@@ -9,6 +9,7 @@
 class Approach : public EnemyState {
 public:
 	Approach();
+	~Approach();
 
 	/**
 	 * @brief 更新

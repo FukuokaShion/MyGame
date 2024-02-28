@@ -21,6 +21,8 @@ void EnemyBombShooting::ApplyGlobalVariables() {
 	finTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "finTime");
 }
 
+EnemyBombShooting::~EnemyBombShooting() {}
+
 void EnemyBombShooting::Update(Vector3 playerPos) {
 	timer++;
 	//プレイヤーの方を向く

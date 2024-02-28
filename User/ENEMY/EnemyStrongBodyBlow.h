@@ -10,6 +10,7 @@
 class EnemyStrongBodyBlow : public EnemyState {
 public:
 	EnemyStrongBodyBlow();
+	~EnemyStrongBodyBlow();
 
 	/**
 	 * @brief 更新

@@ -21,14 +21,15 @@
 
 class Enemy {
 public:
-	enum{
+	enum {
 		DEATH,
-		HANDUP,
+		STUMB,
 		SHOOT,
 		STAND,
 		ATTACK,
 		BOMBSHOOT,
 		EARTHQUAKE,
+		HANDUP,
 	};
 
 	enum : uint32_t {

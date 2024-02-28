@@ -21,6 +21,8 @@ void EnemyEarthquakeAttack::ApplyGlobalVariables() {
 	finTime_ = GlobalVariables::GetInstance()->GetIntValue(groupName_, "finTime");
 }
 
+EnemyEarthquakeAttack::~EnemyEarthquakeAttack() {}
+
 void EnemyEarthquakeAttack::Update(Vector3 playerPos) {
 	timer++;
 	//プレイヤーの方を向く

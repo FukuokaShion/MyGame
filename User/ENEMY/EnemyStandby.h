@@ -11,6 +11,7 @@
 class Standby : public EnemyState {
 public:
 	Standby();
+	~Standby();
 
 	/**
 	 * @brief 更新
