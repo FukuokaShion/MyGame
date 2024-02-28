@@ -20,6 +20,10 @@ public:
 	*/
 	void SetEnemy(Enemy* enemy) { enemy_ = enemy; }
 
+	void StumbGaugeUpdate();
+
+	void StumbGaugeIncrease(int damage);
+
 public:
 	/**
 	 * @brief 更新
@@ -32,6 +36,12 @@ public:
 
 protected:
 	static Enemy* enemy_;
+
+	static float stumbGauge_;
+	static float stumbGaugeMax_;
+	static float stumbGaugeDecrease_;
+	static 	bool isStumb_;
+
 	int timer;
 	//プレイヤー座標
 	Transform* playerWtf_ = nullptr;

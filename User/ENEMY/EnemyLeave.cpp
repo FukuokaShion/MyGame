@@ -19,7 +19,9 @@ void Leave::ApplyGlobalVariables() {
 	distance_ = GlobalVariables::GetInstance()->GetVector3Value(groupName_, "distance");
 }
 
-void Leave::Update([[maybe_unused]]Vector3 playerPos) {
+Leave::~Leave() {}
+
+	void Leave::Update([[maybe_unused]]Vector3 playerPos) {
 	timer++;
 
 	speed_ = distance_ / static_cast<float>(limit_);

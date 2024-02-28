@@ -104,6 +104,7 @@ void Enemy::Update(Vector3 playerPos) {
 		}
 		OnCollision();
 		//行動
+		state_->StumbGaugeUpdate();
 		state_->Update(playerPos);
 	}else {
 		if (hp_->IsDeadNow()) {
@@ -146,6 +147,7 @@ void Enemy::OnCollision() {
 	for (int i = 0; i < MaxColliderNum; i++) {
 		if (colliders_[i]->GetIsHit().playerAttack) {
 			hp_->Damage(colliders_[i]->GetDamage());
+			state_->StumbGaugeIncrease(colliders_[i]->GetDamage());
 			particle_->OnColision(colliders_[i]->GetHitPos().playerAttack);
 			colliders_[i]->RemoveHit(Attribute::PlayerAttack);
 		}
@@ -169,15 +171,18 @@ void Enemy::ObjDraw() {
 		earthquake->Draw();
 	}
 
-	//particle_->Draw();
-	//bulletCreateParticle_->Draw();
-	//deatgparticle_->Draw();
-	//EnemyBullet::ParticleDraw();
-	//EnemyBomb::ParticleDraw();
 }
 
 void Enemy::SpriteDraw() {
 	ui_.Draw();
+}
+
+void Enemy::ParticleDraw() {
+	particle_->Draw();
+	bulletCreateParticle_->Draw();
+	deatgparticle_->Draw();
+	EnemyBullet::ParticleDraw();
+	EnemyBomb::ParticleDraw();
 }
 
 void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTime) {

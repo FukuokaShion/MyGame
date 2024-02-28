@@ -10,6 +10,7 @@
 class Attack : public EnemyState {
 public:
 	Attack();
+	~Attack();
 
 	/**
 	 * @brief 更新

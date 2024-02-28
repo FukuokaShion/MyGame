@@ -11,6 +11,7 @@
 class EnemyEarthquakeAttack : public EnemyState {
 public:
 	EnemyEarthquakeAttack();
+	~EnemyEarthquakeAttack();
 
 	/**
 	 * @brief 更新

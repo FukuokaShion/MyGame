@@ -36,6 +36,11 @@ void EnemyStrongBodyBlow::ApplyGlobalVariables() {
 	colRad_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "colRad");
 }
 
+EnemyStrongBodyBlow::~EnemyStrongBodyBlow() {
+	enemy_->SetIsAttack(false);
+	CollisionManager::GetInstance()->RemoveCollider(attackCol_);
+}
+
 //攻撃
 void EnemyStrongBodyBlow::Update([[maybe_unused]] Vector3 playerPos) {
 	timer++;

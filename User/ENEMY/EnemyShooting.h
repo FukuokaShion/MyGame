@@ -10,6 +10,7 @@
 class EnemyShooting : public EnemyState {
 public:
 	EnemyShooting();
+	~EnemyShooting();
 
 	/**
 	 * @brief 更新

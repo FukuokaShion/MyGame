@@ -30,6 +30,8 @@ void EnemyRoundShooting::ApplyGlobalVariables() {
 	speed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "speed");
 }
 
+EnemyRoundShooting::~EnemyRoundShooting() {}
+
 void EnemyRoundShooting::Update(Vector3 playerPos) {
 	//プレイヤーの方を向く
 	float angle;

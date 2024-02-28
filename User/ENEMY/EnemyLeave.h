@@ -10,6 +10,7 @@
 class Leave : public EnemyState {
 public:
 	Leave();
+	~Leave();
 	/**
 	 * @brief 更新
 	*/

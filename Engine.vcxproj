@@ -140,6 +140,7 @@
     <ClCompile Include="User\ENEMY\EnemyEarthquakeAttack.cpp" />
     <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp" />
     <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp" />
+    <ClCompile Include="User\ENEMY\EnemyStumb.cpp" />
     <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Scarecrow.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="User\ENEMY\EnemyEarthquakeAttack.h" />
     <ClInclude Include="User\ENEMY\EnemyShootingParticle.h" />
     <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h" />
+    <ClInclude Include="User\ENEMY\EnemyStumb.h" />
     <ClInclude Include="User\ENEMY\EnemyUI.h" />
     <ClInclude Include="User\ENEMY\EnemyEarthquake.h" />
     <ClInclude Include="User\FIELD\Scarecrow.h" />

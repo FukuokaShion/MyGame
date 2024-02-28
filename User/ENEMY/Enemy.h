@@ -21,14 +21,15 @@
 
 class Enemy {
 public:
-	enum{
+	enum {
 		DEATH,
-		HANDUP,
+		STUMB,
 		SHOOT,
 		STAND,
 		ATTACK,
 		BOMBSHOOT,
 		EARTHQUAKE,
+		HANDUP,
 	};
 
 	enum : uint32_t {
@@ -73,6 +74,11 @@ public:
 	 * @brief スプライト描画
 	*/
 	void SpriteDraw();
+
+	/**
+	 * @brief パーティクル描画
+	*/
+	void ParticleDraw();
 
 	/**
 	 * @brief 状態移行

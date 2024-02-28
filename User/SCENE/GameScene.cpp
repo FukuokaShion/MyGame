@@ -234,15 +234,17 @@ void GameScene::SpriteDraw() {
 	case State::game:
 		player_->DrawSprite();
 		enemy_->SpriteDraw();
-
+		enemy_->ParticleDraw();
 		break;
 	case State::clear:
+		enemy_->ParticleDraw();
 		telopBase_->Draw();
 		clearEffect_->Draw();
 		clear_->Draw();
 		pushB_->Draw();
 		break;
 	case State::death:
+		enemy_->ParticleDraw();
 		telopBase_->Draw();
 		youDiedPic_->Draw();
 		pushB_->Draw();
