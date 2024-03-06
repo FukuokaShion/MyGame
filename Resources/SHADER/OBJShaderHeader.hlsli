@@ -1,6 +1,7 @@
-cbuffer cbuff0 : register(b0)
-{
-	matrix mat; // ３Ｄ変換行列
+cbuffer cbuff0 : register(b0){
+	matrix viewProj;
+    matrix world;
+    float3 cameraPos;
 };
 
 cbuffer cbuff1 : register(b1) {
@@ -10,7 +11,10 @@ cbuffer cbuff1 : register(b1) {
 	float m_alpha : packoffset(c2.w); //アルファ
 }
 
-
+cbuffer cbuff0 : register(b2){
+	float3 lightVec;
+	float3 lightColor;
+}
 
 // 頂点シェーダーからピクセルシェーダーへのやり取りに使用する構造体
 struct VSOutput
@@ -18,4 +22,5 @@ struct VSOutput
 	float4 svpos : SV_POSITION; // システム用頂点座標
 	float3 normal :NORMAL; // 法線ベクトル
 	float2 uv  :TEXCOORD; // uv値
+	float3 diffuse : DIFFUSE; //陰影
 };

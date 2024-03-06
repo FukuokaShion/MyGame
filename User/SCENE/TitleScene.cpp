@@ -10,6 +10,13 @@
 TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
+	light_ = DirectionalLight::Create();
+	light_->SetLightColor({ 1,1,1 });
+	dir_ = { -1,-1,0,0 };
+	light_->SetLightDir(dir_);
+	light_->SetActive(true);
+	Object3d::SetLight(light_);
+
 	//サウンド
 	audio_ = new Audio();
 	audio_->Initialize();
@@ -74,6 +81,8 @@ void TitleScene::Update() {
 			optionOpen_ = false;
 		}
 	}else {
+		light_->SetLightDir(dir_);
+		light_->Update();
 		//スタート画面
 		if (ship_->GetIsMoveShip() == false) {
 			//選択変更

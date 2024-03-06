@@ -34,7 +34,7 @@ Vector3 Object3d::eye = { 0, 0, -50.0f };
 Vector3 Object3d::target = { 0, 0, 0 };
 Vector3 Object3d::up = { 0, 1, 0 };
 float Object3d::focalLengs = 50.0f;
-
+DirectionalLight* Object3d::light_ = nullptr;
 Camera* Object3d::camera_ = nullptr;
 
 Object3d::Object3d() {
@@ -227,13 +227,11 @@ void Object3d::InitializeGraphicsPipeline()
 	descRangeSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0); // t0 レジスタ
 
 	// ルートパラメータ
-	/*CD3DX12_ROOT_PARAMETER rootparams[2];
-	rootparams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
-	rootparams[1].InitAsDescriptorTable(1, &descRangeSRV, D3D12_SHADER_VISIBILITY_ALL);*/
-	CD3DX12_ROOT_PARAMETER rootparams[3];
+	CD3DX12_ROOT_PARAMETER rootparams[4];
 	rootparams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
 	rootparams[1].InitAsConstantBufferView(1, 0, D3D12_SHADER_VISIBILITY_ALL);
 	rootparams[2].InitAsDescriptorTable(1, &descRangeSRV, D3D12_SHADER_VISIBILITY_ALL);
+	rootparams[3].InitAsConstantBufferView(2, 0, D3D12_SHADER_VISIBILITY_ALL);
 
 	// スタティックサンプラー
 	CD3DX12_STATIC_SAMPLER_DESC samplerDesc = CD3DX12_STATIC_SAMPLER_DESC(0);
@@ -331,14 +329,18 @@ void Object3d::Update() {
 
 	UpdateMat();
 
+	const Matrix4 matViewProjection = camera_->GetViewProjectionMatrix();
+	const Vector3& cameraPos = camera_->wtf.position;
+
 	// 定数バッファへデータ転送
 	ConstBufferDataB0* constMap = nullptr;
 	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
-	resultMat = wtf.matWorld * camera_->GetViewProjectionMatrix();	// 行列の合成
 
-	constMap->mat = resultMat;
+	constMap->viewProj = matViewProjection;
+	constMap->world = wtf.matWorld;
+	constMap->cameraPos = cameraPos;
+
 	constBuffB0->Unmap(0, nullptr);
-
 }
 
 void Object3d::Update(Transform* parentWtf) {
@@ -351,14 +353,19 @@ void Object3d::Update(Transform* parentWtf) {
 
 	wtf.matWorld *= parentWtf->matWorld;
 
+	const Matrix4 matViewProjection = camera_->GetViewProjectionMatrix();
+	const Vector3& cameraPos = camera_->GetEye();
+
 	// 定数バッファへデータ転送
 	ConstBufferDataB0* constMap = nullptr;
 	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
 	resultMat = wtf.matWorld * camera_->GetViewProjectionMatrix();	// 行列の合成
 
-	constMap->mat = resultMat;
-	constBuffB0->Unmap(0, nullptr);
+	constMap->viewProj = matView;
+	constMap->world = wtf.matWorld;
+	constMap->cameraPos = cameraPos;
 
+	constBuffB0->Unmap(0, nullptr);
 }
 
 void Object3d::Draw()
@@ -372,7 +379,7 @@ void Object3d::Draw()
 
 	// 定数バッファビューをセット
 	cmdList_->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
-
+	light_->Draw(cmdList_.Get(), 3);
 	//モデルを描画
 	model_->Draw(cmdList_.Get(), 1);
 }

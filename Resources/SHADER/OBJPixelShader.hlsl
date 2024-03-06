@@ -5,11 +5,11 @@ SamplerState smp : register(s0);      // 0番スロットに設定されたサ�
 
 float4 main(VSOutput input) : SV_TARGET
 {
-	float3 light = normalize(float3(1,-1,1)); // 右下奥　向きのライト
-	float light_diffuse = saturate(dot(-light, input.normal));
-	float3 shade_color;
-	shade_color = m_ambient;
-	shade_color += m_diffuse * light_diffuse;
+	float3 ambient = m_ambient;
+	float3 diffuse = m_diffuse * input.diffuse;
+	float3 shade_color = ambient + diffuse;
+
 	float4 texcolor = tex.Sample(smp, input.uv);
+
 	return float4(texcolor.rgb * shade_color, texcolor.a * m_alpha);
 }
