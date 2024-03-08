@@ -1,7 +1,13 @@
-cbuffer cbuff0 : register(b0)
-{
-	matrix mat; // ３Ｄ変換行列
+cbuffer cbuff0 : register(b0){
+	matrix viewProj;
+    matrix world;
+    float3 cameraPos;
 };
+
+cbuffer cbuff0 : register(b2){
+	float3 lightVec;
+	float3 lightColor;
+}
 
 //ボーンの最大数
 static const int MAX_BONES = 32;
@@ -27,5 +33,6 @@ struct VSOutput
 	float4 svpos : SV_POSITION; // システム用頂点座標
 	float3 normal :NORMAL; // 法線
 	float2 uv  :TEXCOORD; // uv値
+	float3 diffuse : DIFFUSE; //陰影
 };
 

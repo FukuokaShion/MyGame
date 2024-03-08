@@ -19,6 +19,7 @@
 #include "FbxLoader.h"
 #include "FBXModel.h"
 
+#include "DirectionalLight.h"
 #include "Camera.h"
 #include "Transform.h"
 
@@ -36,9 +37,10 @@ namespace MyEngine {
 
 	public:
 		// 定数バッファ用データ構造体
-		struct ConstBufferDataB0
-		{
-			Matrix4 mat;	// ３Ｄ変換行列
+		struct ConstBufferDataB0{
+			Matrix4 viewProj;
+			Matrix4 world;
+			Vector3 cameraPos;
 		};
 
 		//ボーンの最大数
@@ -75,12 +77,15 @@ namespace MyEngine {
 		*/
 		static void PostDraw();
 
+		static void SetLight(DirectionalLight* light) { light_ = light; }
 
 	private: // 静的メンバ変数
 		// デバイス
 		static ID3D12Device* device_;
 		// カメラ
 		static Camera* camera_;
+
+		static DirectionalLight* light_;
 		// ルートシグネチャ
 		static ComPtr<ID3D12RootSignature> rootsignature;
 		// パイプラインステートオブジェクト

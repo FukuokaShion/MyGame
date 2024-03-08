@@ -16,6 +16,7 @@ void TitleScene::Initialize() {
 	light_->SetLightDir(dir_);
 	light_->SetActive(true);
 	Object3d::SetLight(light_);
+	FBXObject3d::SetLight(light_);
 
 	//サウンド
 	audio_ = new Audio();
