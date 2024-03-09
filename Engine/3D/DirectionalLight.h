@@ -34,11 +34,12 @@ namespace MyEngine {
 		struct ConstBufferData{
 			Vector4 lightVec;
 			Vector3 lightColor;
+			unsigned int active;
 		};
 	private:
+		template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 		static ID3D12Device* device_;
 		HRESULT result;
-		template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 		ComPtr<ID3D12Resource> constBuff;
 		Vector4 lightDir_ = { 1,0,0,0 };
 		Vector3 lightColor_ = { 1,1,1 };

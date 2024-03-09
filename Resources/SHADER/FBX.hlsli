@@ -4,10 +4,19 @@ cbuffer cbuff0 : register(b0){
     float3 cameraPos;
 };
 
-cbuffer cbuff0 : register(b2){
+static const uint DIR_LIGHT_NUM = 3;
+
+struct DirLight{
 	float3 lightVec;
 	float3 lightColor;
+	uint active;
+};
+
+cbuffer cbuff0 : register(b2){
+	float3 ambientColor;
+	DirLight dirLights[DIR_LIGHT_NUM];
 }
+
 
 //ボーンの最大数
 static const int MAX_BONES = 32;
@@ -33,6 +42,5 @@ struct VSOutput
 	float4 svpos : SV_POSITION; // システム用頂点座標
 	float3 normal :NORMAL; // 法線
 	float2 uv  :TEXCOORD; // uv値
-	float3 diffuse : DIFFUSE; //陰影
 };
 

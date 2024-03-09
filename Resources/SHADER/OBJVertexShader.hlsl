@@ -9,6 +9,5 @@ VSOutput main(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOOR
     output.svpos = mul(mul(viewProj, world), pos);
 	output.normal = wnormal.xyz;
 	output.uv = uv;
-	output.diffuse = saturate(dot(lightVec, wnormal.xyz));
 	return output;
 }

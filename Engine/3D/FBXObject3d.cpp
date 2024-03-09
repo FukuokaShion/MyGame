@@ -20,7 +20,7 @@ Camera* FBXObject3d::camera_ = nullptr;
 ComPtr<ID3D12RootSignature> FBXObject3d::rootsignature;
 ComPtr<ID3D12PipelineState> FBXObject3d::pipelinestate;
 ComPtr<ID3D12GraphicsCommandList> FBXObject3d::cmdList_;
-DirectionalLight* FBXObject3d::light_ = nullptr;
+LightGroup* FBXObject3d::lightGroup_ = nullptr;
 
 void FBXObject3d::CreateGraphicsPipeline()
 {
@@ -307,7 +307,7 @@ void FBXObject3d::Draw()
 	cmdList_->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 	// 定数バッファビューをセット
 	cmdList_->SetGraphicsRootConstantBufferView(2, constBuffSkin->GetGPUVirtualAddress());
-	light_->Draw(cmdList_.Get(), 3);
+	lightGroup_->Draw(cmdList_.Get(), 3);
 	// モデル描画
 	fbxmodel_->Draw(cmdList_.Get());
 }

@@ -63,6 +63,5 @@ VSOutput main(VSInput input)
 	output.normal = wnormal.xyz;
 	// 入力値をそのまま次のステージに渡す
 	output.uv = input.uv;
-	output.diffuse = saturate(dot(lightVec, wnormal.xyz));
 	return output;
 }

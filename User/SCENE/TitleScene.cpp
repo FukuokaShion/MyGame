@@ -10,13 +10,9 @@
 TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
-	light_ = DirectionalLight::Create();
-	light_->SetLightColor({ 1,1,1 });
-	dir_ = { -1,-1,0,0 };
-	light_->SetLightDir(dir_);
-	light_->SetActive(true);
-	Object3d::SetLight(light_);
-	FBXObject3d::SetLight(light_);
+	lightGroup_ = LightGroup::Create();
+	Object3d::SetLight(lightGroup_);
+	FBXObject3d::SetLight(lightGroup_);
 
 	//サウンド
 	audio_ = new Audio();
@@ -82,8 +78,7 @@ void TitleScene::Update() {
 			optionOpen_ = false;
 		}
 	}else {
-		light_->SetLightDir(dir_);
-		light_->Update();
+		lightGroup_->Update();
 		//スタート画面
 		if (ship_->GetIsMoveShip() == false) {
 			//選択変更

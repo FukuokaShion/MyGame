@@ -34,7 +34,7 @@ Vector3 Object3d::eye = { 0, 0, -50.0f };
 Vector3 Object3d::target = { 0, 0, 0 };
 Vector3 Object3d::up = { 0, 1, 0 };
 float Object3d::focalLengs = 50.0f;
-DirectionalLight* Object3d::light_ = nullptr;
+LightGroup* Object3d::lightGroup_ = nullptr;
 Camera* Object3d::camera_ = nullptr;
 
 Object3d::Object3d() {
@@ -379,7 +379,7 @@ void Object3d::Draw()
 
 	// 定数バッファビューをセット
 	cmdList_->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
-	light_->Draw(cmdList_.Get(), 3);
+	lightGroup_->Draw(cmdList_.Get(), 3);
 	//モデルを描画
 	model_->Draw(cmdList_.Get(), 1);
 }

@@ -20,7 +20,7 @@
 
 #include "Transform.h"
 #include "Camera.h"
-#include"DirectionalLight.h"
+#include"LightGroup.h"
 
 
 /// <summary>
@@ -79,7 +79,7 @@ namespace MyEngine {
 		*/
 		bool IsDead() const { return  isDead_; }
 
-		static void SetLight(DirectionalLight* light) { light_ = light; }
+		static void SetLight(LightGroup* lightGroup) { lightGroup_ = lightGroup; }
 
 	private: // 静的メンバ変数
 		// デバイス
@@ -92,7 +92,7 @@ namespace MyEngine {
 		// パイプラインステートオブジェクト
 		static ComPtr<ID3D12PipelineState> pipelinestate;
 
-		static DirectionalLight* light_;
+		static LightGroup* lightGroup_;
 
 		// ビュー行列
 		static Matrix4 matView;

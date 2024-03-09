@@ -12,7 +12,7 @@
 #include"TitleField.h"
 #include"Ship.h"
 #include"Option.h"
-#include"DirectionalLight.h"
+#include"LightGroup.h"
 
 class TitleScene : public SceneState {
 public:
@@ -68,6 +68,6 @@ private:
 	bool optionOpen_;
 	bool isStartSelect_;
 
-	DirectionalLight* light_;
+	LightGroup* lightGroup_;
 	Vector4 dir_;
 };

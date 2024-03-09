@@ -19,7 +19,7 @@
 #include "FbxLoader.h"
 #include "FBXModel.h"
 
-#include "DirectionalLight.h"
+#include "LightGroup.h"
 #include "Camera.h"
 #include "Transform.h"
 
@@ -77,7 +77,7 @@ namespace MyEngine {
 		*/
 		static void PostDraw();
 
-		static void SetLight(DirectionalLight* light) { light_ = light; }
+		static void SetLight(LightGroup* lightGroup) { lightGroup_ = lightGroup; }
 
 	private: // 静的メンバ変数
 		// デバイス
@@ -85,7 +85,7 @@ namespace MyEngine {
 		// カメラ
 		static Camera* camera_;
 
-		static DirectionalLight* light_;
+		static LightGroup* lightGroup_;
 		// ルートシグネチャ
 		static ComPtr<ID3D12RootSignature> rootsignature;
 		// パイプラインステートオブジェクト

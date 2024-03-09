@@ -7,9 +7,20 @@ float4 main(VSOutput input) : SV_TARGET
 {
 	// テクスチャマッピング
 	float4 texcolor = tex.Sample(smp, input.uv);
+
 	// Lambert反射
-	float brightness = input.diffuse + 0.3f;
-	float4 shadecolor = float4(brightness, brightness, brightness, 1.0f);
+	float4 shade_color={0, 0, 0, 1};
+
+	for(int i = 0; i < 3; i++)
+	{
+		if(dirLights[i].active){
+			float3 dotlightnormal = dot(dirLights[i].lightVec,input.normal);
+			float3 diffuse = dotlightnormal;
+
+			shade_color.rgb += (diffuse) * dirLights[i].lightColor;
+		}
+	}
+
 	// 陰影とテクスチャの色を合成
-	return shadecolor * texcolor;
+	return shade_color * texcolor;
 }
