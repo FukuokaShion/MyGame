@@ -11,6 +11,7 @@
 #include"TutorialField.h"
 #include"Player.h"
 #include"Option.h"
+#include"LightGroup.h"
 
 using namespace std;
 
@@ -67,4 +68,7 @@ private:
 	Vector3 shipPos_;
 	float fadeOutPos;
 	unique_ptr<Ship> ship_ = nullptr;
+
+
+	LightGroup* lightGroup_;
 };

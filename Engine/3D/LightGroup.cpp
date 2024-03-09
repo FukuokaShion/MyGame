@@ -35,11 +35,21 @@ void LightGroup::Initialize(){
 	TransferConstBuffer();
 }
 
+LightGroup* LightGroup::Create() {
+	LightGroup* instance = new LightGroup();
+	instance->Initialize();
+	return instance;
+}
+
 void LightGroup::Update(){
 	if (dirty_){
 		TransferConstBuffer();
 		dirty_ = false;
 	}
+}
+
+void LightGroup::Draw(ID3D12GraphicsCommandList* cmdList, UINT rootParameterIndex) {
+	cmdList->SetGraphicsRootConstantBufferView(rootParameterIndex, constBuff->GetGPUVirtualAddress());
 }
 
 void LightGroup::TransferConstBuffer(){
@@ -53,7 +63,7 @@ void LightGroup::TransferConstBuffer(){
 		constMap->spotLightCount = static_cast<uint32_t>(spotLights.size());
 		constMap->circleShadowCount = static_cast<uint32_t>(circleShadows.size());*/
 
-		//点ライト
+		//ライト
 		for (int i = 0; i < DirLightNum; i++){
 			if (dirLights_[i].IsActive()){
 				constMap->dirLights[i].active = 1;
@@ -61,6 +71,20 @@ void LightGroup::TransferConstBuffer(){
 				constMap->dirLights[i].lightColor = dirLights_[i].GetLightColor();
 			}else{
 				constMap->dirLights[i].active = 0;
+			}
+		}
+
+		//丸影
+		for (int i = 0; i < CircleShadowNum; i++){
+			if (circleShadows_[i].IsActive()){
+				constMap->circleShadows[i].active = 1;
+				constMap->circleShadows[i].dir = -circleShadows_[i].GetDir();
+				constMap->circleShadows[i].casterPos = circleShadows_[i].GetCasterPos();
+				constMap->circleShadows[i].distanceCasterLight = circleShadows_[i].GetDistanceCasterLight();
+				constMap->circleShadows[i].atten = circleShadows_[i].GetAtten();
+				constMap->circleShadows[i].factorAngleCos = circleShadows_[i].GetFactorAngleCos();
+			}else{
+				constMap->circleShadows[i].active = 0;
 			}
 		}
 
@@ -80,25 +104,6 @@ void LightGroup::TransferConstBuffer(){
 		//	else
 		//	{//ライトが無効ならライトを0に
 		//		constMap->spotLights[i].active = 0;
-		//	}
-		//}
-
-		////丸影
-		//for (int i = 0; i < circleShadows.size(); i++)
-		//{
-		//	//有効なら設定を転送
-		//	if (circleShadows[i].IsActive())
-		//	{
-		//		constMap->circleShadows[i].active = 1;
-		//		constMap->circleShadows[i].dir = -circleShadows[i].GetDir();
-		//		constMap->circleShadows[i].casterPos = circleShadows[i].GetCasterPos();
-		//		constMap->circleShadows[i].distanceCasterLight = circleShadows[i].GetDistanceCasterLight();
-		//		constMap->circleShadows[i].atten = circleShadows[i].GetAtten();
-		//		constMap->circleShadows[i].factorAngleCos = circleShadows[i].GetFactorAngleCos();
-		//	}
-		//	else
-		//	{
-		//		constMap->circleShadows[i].active = 0;
 		//	}
 		//}
 
@@ -143,12 +148,37 @@ void LightGroup::DefaultLightSetting() {
 	dirLights_[2].SetLightDir({ 1,1,0,0 });
 }
 
-void LightGroup::Draw(ID3D12GraphicsCommandList* cmdList, UINT rootParameterIndex) {
-	cmdList->SetGraphicsRootConstantBufferView(rootParameterIndex, constBuff->GetGPUVirtualAddress());
+void LightGroup::SetCircleShadowActive(int index, bool active) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetActive(active);
 }
 
-LightGroup* LightGroup::Create() {
-	LightGroup* instance = new LightGroup();
-	instance->Initialize();
-	return instance;
+void LightGroup::SetCircleShadowCasterPos(int index, const Vector3& casterPos) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetCasterPos(casterPos);
+	dirty_ = true;
+}
+
+void LightGroup::SetCircleShadowDir(int index, Vector4& lightDir) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetDir(lightDir);
+	dirty_ = true;
+}
+
+void LightGroup::SetCircleShadowDistanceCasterLight(int index, float distanceCasterLight) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetDistanceCasterLight(distanceCasterLight);
+	dirty_ = true;
+}
+
+void LightGroup::SetCircleShadowAtten(int index, const Vector3& lightAtten) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetAtten(lightAtten);
+	dirty_ = true;
+}
+
+void LightGroup::SetCircleShadowFactorAngle(int index, const Vector2& lightFactorAngle) {
+	assert(0 <= index && index < CircleShadowNum);
+	circleShadows_[index].SetFactorAngle(lightFactorAngle);
+	dirty_ = true;
 }

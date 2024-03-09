@@ -63,6 +63,9 @@ void TitleScene::Initialize() {
 	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
+
+
+	lightGroup_->SetCircleShadowActive(0, true);
 }
 
 TitleScene::~TitleScene() {
@@ -77,7 +80,8 @@ void TitleScene::Update() {
 		if (Input::GetInstance()->PButtonTrigger(A) || Input::GetInstance()->PButtonTrigger(START)) {
 			optionOpen_ = false;
 		}
-	}else {
+	}
+	else {
 		lightGroup_->Update();
 		//スタート画面
 		if (ship_->GetIsMoveShip() == false) {
@@ -86,7 +90,8 @@ void TitleScene::Update() {
 				if (Input::GetInstance()->GetLeftStickVec().y > 0) {
 					arrow_->SetPozition(startSelect_);
 					isStartSelect_ = true;
-				}else if (Input::GetInstance()->GetLeftStickVec().y < 0) {
+				}
+				else if (Input::GetInstance()->GetLeftStickVec().y < 0) {
 					arrow_->SetPozition(optionSelect_);
 					isStartSelect_ = false;
 				}
@@ -95,11 +100,15 @@ void TitleScene::Update() {
 			if (Input::GetInstance()->PButtonTrigger(A)) {
 				if (isStartSelect_) {
 					sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
-				}else {
+				}
+				else {
 					optionOpen_ = true;
 				}
 			}
 		}
+
+		lightGroup_->SetCircleShadowCasterPos(0, {-5, 1, 8});
+		lightGroup_->Update();
 
 		camera_->Update();
 		field_->Update();

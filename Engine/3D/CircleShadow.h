@@ -19,7 +19,7 @@ namespace MyEngine {
 			factorAngleCos_.x = cosf(factorAngle.x);
 			factorAngleCos_.y = cosf(factorAngle.y);
 		}
-		inline void SetActive(bool active) { active_ = active_; }
+		inline void SetActive(bool active) { active_ = active; }
 
 		inline const Vector4& GetDir() { return dir_; }
 		inline const Vector3& GetCasterPos() { return casterPos_; }
@@ -40,11 +40,11 @@ namespace MyEngine {
 			float pad4;
 		};
 	private:
-		Vector4 dir_ = { 1,0,0,0 };
-		float distanceCasterLight_ = 100.0f;
+		Vector4 dir_ = { 0,-1,0,0 };
+		float distanceCasterLight_ = 10.0f;
 		Vector3 casterPos_ = { 0,0,0 };
 		Vector3 atten_ = { 0.5f,0.6f,0.0f };
-		Vector2 factorAngleCos_ = { 0.2f,0.5f };
+		Vector2 factorAngleCos_ = { 0.5f,1.0f };
 		int active_ = false;
 	};
 }

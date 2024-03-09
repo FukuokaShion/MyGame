@@ -5,16 +5,26 @@ cbuffer cbuff0 : register(b0){
 };
 
 static const uint DIR_LIGHT_NUM = 3;
-
 struct DirLight{
 	float3 lightVec;
 	float3 lightColor;
 	uint active;
 };
 
+static const uint CIRCLESHADOW_NUM = 1;
+struct CircleShadow{
+	float3 dir;
+	float3 casterPos;
+	float distanceCasterLight;
+	float3 atten;
+	float2 factorAngleCos;
+	uint active;
+};
+
 cbuffer cbuff0 : register(b2){
 	float3 ambientColor;
 	DirLight dirLights[DIR_LIGHT_NUM];
+	CircleShadow circleShadows[CIRCLESHADOW_NUM];
 }
 
 
