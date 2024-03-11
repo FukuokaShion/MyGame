@@ -339,6 +339,7 @@ void Object3d::Update() {
 	constMap->viewProj = matViewProjection;
 	constMap->world = wtf.matWorld;
 	constMap->cameraPos = cameraPos;
+	constMap->enableLighting = lightingActive_;
 
 	constBuffB0->Unmap(0, nullptr);
 }
@@ -364,6 +365,7 @@ void Object3d::Update(Transform* parentWtf) {
 	constMap->viewProj = matView;
 	constMap->world = wtf.matWorld;
 	constMap->cameraPos = cameraPos;
+	constMap->enableLighting = lightingActive_;
 
 	constBuffB0->Unmap(0, nullptr);
 }

@@ -15,6 +15,7 @@ void Field::Initialize() {
 	skydome_ = Object3d::Create();
 	skydome_->SetModel(skydomeMD_.get());
 	skydome_->wtf.scale = (Vector3{ 1000, 1000, 1000 });
+	skydome_->SetLightingActive(false);
 
 	floorMD_ = Model::LoadFromOBJ("floor");
 	floor_ = Object3d::Create();

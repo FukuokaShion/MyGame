@@ -2,6 +2,7 @@ cbuffer cbuff0 : register(b0){
 	matrix viewProj;
     matrix world;
     float3 cameraPos;
+	uint enableLighting;
 };
 
 cbuffer cbuff1 : register(b1) {

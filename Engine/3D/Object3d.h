@@ -39,6 +39,7 @@ namespace MyEngine {
 			Matrix4 viewProj;
 			Matrix4 world;
 			Vector3 cameraPos;
+			unsigned int enableLighting;
 		};
 
 	private: // 定数
@@ -80,6 +81,7 @@ namespace MyEngine {
 		bool IsDead() const { return  isDead_; }
 
 		static void SetLight(LightGroup* lightGroup) { lightGroup_ = lightGroup; }
+		void SetLightingActive(bool active) {lightingActive_ = active; }
 
 	private: // 静的メンバ変数
 		// デバイス
@@ -169,6 +171,7 @@ namespace MyEngine {
 		//モデル
 		Model* model_ = nullptr;
 		static Camera* camera_;
+		bool lightingActive_ = true;
 
 		static float win_wi, win_hi;
 	public:
