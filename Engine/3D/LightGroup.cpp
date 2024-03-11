@@ -137,11 +137,11 @@ void LightGroup::SetDirLightColor(int index, Vector3& lightColor) {
 void LightGroup::DefaultLightSetting() {
 	dirLights_[0].SetActive(true);
 	dirLights_[0].SetLightColor({ 1, 1, 1 });
-	dirLights_[0].SetLightDir({ 1,1,0,0 });
+	dirLights_[0].SetLightDir({ 0,1,-1,0 });
 
 	dirLights_[1].SetActive(false);
 	dirLights_[1].SetLightColor({ 1, 1, 1 });
-	dirLights_[1].SetLightDir({ 1,1,0,0 });
+	dirLights_[1].SetLightDir({ 0,-1,0,0 });
 
 	dirLights_[2].SetActive(false);
 	dirLights_[2].SetLightColor({ 1, 1, 1 });

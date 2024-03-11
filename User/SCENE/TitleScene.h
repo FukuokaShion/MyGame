@@ -69,5 +69,4 @@ private:
 	bool isStartSelect_;
 
 	LightGroup* lightGroup_;
-	Vector4 dir_;
 };

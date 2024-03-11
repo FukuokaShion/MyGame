@@ -15,12 +15,14 @@ float4 main(VSOutput input) : SV_TARGET
 	for(int i = 0; i < 3; i++)
 	{
 		if(dirLights[i].active){
-			float3 dotlightnormal = dot(dirLights[i].lightVec,input.normal);
-			float3 diffuse = dotlightnormal;
+			//HalfLamberet
+			float NdotL = dot(dirLights[i].lightVec,input.normal);
+			float cos = pow(NdotL * 0.5f + 0.7f, 2.0f);
 
-			shade_color.rgb += (diffuse) * dirLights[i].lightColor;
+			shade_color.rgb += cos * dirLights[i].lightColor;
 		}
 	}
+	shade_color.rgb = saturate(shade_color.rgb);
 
 	//丸影
 	for(int i = 0; i < 1; i++)

@@ -44,7 +44,7 @@ namespace MyEngine {
 
 	public:
 		static const int DirLightNum = 3;
-		static const int CircleShadowNum = 1;
+		static const int CircleShadowNum = 2;
 
 		struct ConstBufferData {
 			Vector3 ambientColor;

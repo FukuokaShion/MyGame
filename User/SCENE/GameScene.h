@@ -81,4 +81,6 @@ private:
 	float youDiedAddAlpha_;
 	//オプション
 	unique_ptr<Option> option_ = nullptr;
+
+	LightGroup* lightGroup_;
 };

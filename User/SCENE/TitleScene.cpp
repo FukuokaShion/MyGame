@@ -64,7 +64,6 @@ void TitleScene::Initialize() {
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
 
-
 	lightGroup_->SetCircleShadowActive(0, true);
 }
 
@@ -82,7 +81,6 @@ void TitleScene::Update() {
 		}
 	}
 	else {
-		lightGroup_->Update();
 		//スタート画面
 		if (ship_->GetIsMoveShip() == false) {
 			//選択変更
@@ -106,10 +104,8 @@ void TitleScene::Update() {
 				}
 			}
 		}
-
-		lightGroup_->SetCircleShadowCasterPos(0, {-5, 1, 8});
+		lightGroup_->SetCircleShadowCasterPos(0,fbxObject3d_->wtf.position);
 		lightGroup_->Update();
-
 		camera_->Update();
 		field_->Update();
 		ship_->Update();

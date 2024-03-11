@@ -69,6 +69,5 @@ private:
 	float fadeOutPos;
 	unique_ptr<Ship> ship_ = nullptr;
 
-
 	LightGroup* lightGroup_;
 };
