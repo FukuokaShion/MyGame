@@ -209,4 +209,5 @@ private:
 	const int DeathDrawTime_ = 90;
 	EnemyDeathParticle* deatgparticle_ = nullptr;
 
+	CircleShadow* circleShadow_;
 };

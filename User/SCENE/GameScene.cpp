@@ -13,9 +13,6 @@
 GameScene::GameScene() {}
 
 void GameScene::Initialize() {
-	lightGroup_ = LightGroup::Create();
-	Object3d::SetLight(lightGroup_);
-	FBXObject3d::SetLight(lightGroup_);
 	// カメラ生成
 	gameCamera_ = make_unique<GameCamera>();
 	gameCamera_->Initialize(WinApp::window_width, WinApp::window_height);
@@ -94,12 +91,10 @@ void GameScene::Initialize() {
 
 	option_ = make_unique<Option>();
 	option_->Initialize();
-
-	lightGroup_->SetCircleShadowActive(0, true);
-	lightGroup_->SetCircleShadowActive(1, true);
 }
 
 GameScene::~GameScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	audio_->StopWave(pSourceVoice_);
 	CollisionManager::GetInstance()->Finalize();
 }
@@ -114,11 +109,6 @@ void GameScene::Update() {
 
 	switch (state_) {
 	case State::game:
-
-		lightGroup_->SetCircleShadowCasterPos(0, player_->GetWtf().position);
-		lightGroup_->SetCircleShadowCasterPos(1, enemy_->GetWtf().position);
-		lightGroup_->Update();
-
 		enemy_->Update(player_->GetWtf().position);
 
 		gameCamera_->SetParentPos(player_->GetWtf().position);

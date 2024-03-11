@@ -211,4 +211,6 @@ private:
 	std::unique_ptr<ParticleManager> particle_;
 	Vector3 oldSowrdTipPos_;
 	Vector3 oldSowrdRootPos_;
+
+	CircleShadow* circleShadow_;
 };

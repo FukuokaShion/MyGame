@@ -27,16 +27,18 @@ void Framework::Initialize() {
 	imGui_ = std::make_unique<ImGuiManager>();
 	imGui_->Initialize(winApp_, dxCommon_);
 
+	//ライト
+	LightGroup::StaticInitialize(dxCommon_->GetDevice());
+	LightGroup::GetInstance()->Initialize();
+
 	//fbx
 	FbxLoader::GetInstance()->Initialize(dxCommon_->GetDevice());
 	FBXObject3d::SetDevice(dxCommon_->GetDevice());
 	FBXObject3d::CreateGraphicsPipeline();
-	
+	FBXObject3d::SetLight(LightGroup::GetInstance());
 	//obj
 	Object3d::StaticInitialize(dxCommon_->GetDevice());
-
-	//ライト
-	LightGroup::StaticInitialize(dxCommon_->GetDevice());
+	Object3d::SetLight(LightGroup::GetInstance());
 
 	//パーティクル
 	ParticleManager::StaticInitialize(dxCommon_->GetDevice(), dxCommon_->GetCommandList());
@@ -76,8 +78,10 @@ void  Framework::Run() {
 		imGui_->Begin();
 		//更新処理
 		Update();
-
 		imGui_->End();
+
+		LightGroup::GetInstance()->Update();
+
 		//描画開始
 		dxCommon_->PreDraw();
 		//描画処理

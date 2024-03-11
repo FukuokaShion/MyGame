@@ -80,6 +80,10 @@ void Enemy::Initialize() {
 	colliders_[8]->SetRad(0.3f);
 	colliders_[9]->SetRad(0.6f);
 	colliders_[10]->SetRad(0.6f);
+	
+	circleShadow_ = new CircleShadow();
+	circleShadow_->SetActive(true);
+	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 
 Enemy::~Enemy() {
@@ -91,9 +95,11 @@ Enemy::~Enemy() {
 	bullets_.clear();
 	EnemyBullet::StaticFinalize();
 	EnemyBomb::StaticFinalize();
+	LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 }
 
 void Enemy::Update(Vector3 playerPos) {
+	circleShadow_->SetCasterPos(fbxObject3d_->wtf.position);
 	//オブジェクト
 	fbxObject3d_->Update();
 
@@ -109,6 +115,7 @@ void Enemy::Update(Vector3 playerPos) {
 	}else {
 		if (hp_->IsDeadNow()) {
 			fbxObject3d_->PlayAnimation(DEATH, 1.0f, false);
+			LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 		}
 		DeathTimer++;
 		if (DeathTimer < DeathLimit) {

@@ -6,6 +6,7 @@
 #pragma once
 #include <d3d12.h>
 #include <wrl.h>
+#include <forward_list>
 #include"Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
@@ -16,7 +17,7 @@
 namespace MyEngine {
 	class LightGroup {
 	public:
-		static LightGroup* Create();
+		static LightGroup* GetInstance();
 		static void StaticInitialize(ID3D12Device* device) { device_ = device; }
 
 		void Initialize();
@@ -32,19 +33,16 @@ namespace MyEngine {
 		void SetDirLightDir(int index, Vector4& lightDir);
 		void SetDirLightColor(int index, Vector3& lightColor);
 
-		void SetCircleShadowActive(int index, bool active);
-		void SetCircleShadowCasterPos(int index, const Vector3& casterPos);
-		void SetCircleShadowDir(int index, Vector4& lightDir);
-		void SetCircleShadowDistanceCasterLight(int index, float distanceCasterLight);
-		void SetCircleShadowAtten(int index, const Vector3& lightAtten);
-		void SetCircleShadowFactorAngle(int index, const Vector2& lightFactorAngle);
+		void SetCircleShadow(CircleShadow* circleShadow) { circleShadows_.push_front(circleShadow); }
+		void RemoveCircleShadow(CircleShadow* circleShadow) { circleShadows_.remove(circleShadow); }
+		void ClearCircleShadow() { circleShadows_.clear(); }
 
 	private:
 		template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 	public:
 		static const int DirLightNum = 3;
-		static const int CircleShadowNum = 2;
+		static const int CircleShadowNum = 30;
 
 		struct ConstBufferData {
 			Vector3 ambientColor;
@@ -58,7 +56,7 @@ namespace MyEngine {
 		ComPtr<ID3D12Resource> constBuff;
 		Vector3 ambientColor_ = { 1,1,1 };
 		DirectionalLight dirLights_[DirLightNum];
-		CircleShadow circleShadows_[CircleShadowNum];
+		std::forward_list<CircleShadow*> circleShadows_;
 		bool dirty_ = false;
 	};
 }

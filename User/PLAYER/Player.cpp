@@ -20,6 +20,7 @@ Player::Player() {
 }
 
 Player::~Player() {
+	LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 }
 
 void Player::Initialize() {
@@ -66,11 +67,15 @@ void Player::Initialize() {
 
 	particle_ = std::make_unique<ParticleManager>();
 	particle_.get()->Initialize();
+
+	circleShadow_ = new CircleShadow();
+	circleShadow_->SetActive(true);
+	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 
 void Player::Update(){
 	state_->Update();
-
+	circleShadow_->SetCasterPos(fbxObject3d_->wtf.position);
 	if (Input::GetInstance()->PButtonTrigger(RSTICK)) {
 		if (isRockOn_) {
 			isRockOn_ = false;

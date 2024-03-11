@@ -17,9 +17,6 @@ TutorialScene::TutorialScene() {
 }
 
 void TutorialScene::Initialize() {
-	lightGroup_ = LightGroup::Create();
-	Object3d::SetLight(lightGroup_);
-	FBXObject3d::SetLight(lightGroup_);
 	// カメラ生成
 	gameCamera_ = make_unique<GameCamera>();
 	gameCamera_->Initialize(WinApp::window_width, WinApp::window_height);
@@ -74,10 +71,10 @@ void TutorialScene::Initialize() {
 	option_ = make_unique<Option>();
 	option_->Initialize();
 
-	lightGroup_->SetCircleShadowActive(0, true);
 }
 
 TutorialScene::~TutorialScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	CollisionManager::GetInstance()->Finalize();
 }
 
@@ -87,10 +84,6 @@ void TutorialScene::Update() {
 	Vector3 pushVelocity;
 	switch (state_) {
 	case State::game:
-
-		lightGroup_->SetCircleShadowCasterPos(0, player_->GetWtf().position);
-		lightGroup_->Update();
-
 		gameCamera_->SetParentPos(player_->GetWtf().position);
 		gameCamera_->SetParentViewVec(player_->GetWtf().rotation);
 		gameCamera_->SetRockOnPos(field_->GetScarecrowTargetPos());

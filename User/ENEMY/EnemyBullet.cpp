@@ -12,6 +12,7 @@ EnemyBullet::EnemyBullet() {
 }
 
 EnemyBullet::~EnemyBullet() {
+	LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 }
 
 void EnemyBullet::StaticInitialize() {
@@ -42,14 +43,19 @@ void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int s
 	sphere_->SetAttribute(Attribute::EnemyBullet);
 
 	CollisionManager::GetInstance()->AddCollider(sphere_);
+	circleShadow_ = new CircleShadow();
+	circleShadow_->SetActive(true);
+	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 
 void EnemyBullet::Update() {
+	circleShadow_->SetCasterPos(obj_->wtf.position);
 	if (stayTime_ < 0) {
 		liveTimer_--;
 		if (liveTimer_ < 0) {
 			isDead_ = true;
 			CollisionManager::GetInstance()->RemoveCollider(sphere_);
+			LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 		}
 		CreateParticle();
 		obj_->wtf.position += velocity_;
@@ -61,6 +67,7 @@ void EnemyBullet::Update() {
 	if (sphere_->GetIsHit().playerBody == true) {
 		isDead_ = true;
 		CollisionManager::GetInstance()->RemoveCollider(sphere_);
+		LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 	}
 	sphere_->SetCenter(obj_->wtf.position);
 	obj_->Update();

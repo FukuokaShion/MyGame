@@ -10,10 +10,6 @@
 TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
-	lightGroup_ = LightGroup::Create();
-	Object3d::SetLight(lightGroup_);
-	FBXObject3d::SetLight(lightGroup_);
-
 	//サウンド
 	audio_ = new Audio();
 	audio_->Initialize();
@@ -63,11 +59,10 @@ void TitleScene::Initialize() {
 	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(5, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
-
-	lightGroup_->SetCircleShadowActive(0, true);
 }
 
 TitleScene::~TitleScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	audio_->StopWave(pSourceVoice_);
 }
 
@@ -104,8 +99,6 @@ void TitleScene::Update() {
 				}
 			}
 		}
-		lightGroup_->SetCircleShadowCasterPos(0,fbxObject3d_->wtf.position);
-		lightGroup_->Update();
 		camera_->Update();
 		field_->Update();
 		ship_->Update();
@@ -113,7 +106,6 @@ void TitleScene::Update() {
 		arrow_->Update();
 		fbxObject3d_->Update();
 	}
-
 }
 
 
