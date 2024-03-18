@@ -52,6 +52,7 @@ void EnemyBomb::Initialize(Vector3 creatPos) {
 	
 	circleShadow_ = new CircleShadow();
 	circleShadow_->SetActive(true);
+	circleShadow_->SetDistanceCasterLight(-startRad_);
 	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 

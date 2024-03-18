@@ -83,6 +83,7 @@ void Enemy::Initialize() {
 	
 	circleShadow_ = new CircleShadow();
 	circleShadow_->SetActive(true);
+	circleShadow_->SetDistanceCasterLight(3.5f);
 	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 

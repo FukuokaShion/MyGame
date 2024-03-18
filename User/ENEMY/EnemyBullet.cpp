@@ -45,6 +45,7 @@ void EnemyBullet::Initialize(Vector3 pos, Vector3 velocity, int liveLimit, int s
 	CollisionManager::GetInstance()->AddCollider(sphere_);
 	circleShadow_ = new CircleShadow();
 	circleShadow_->SetActive(true);
+	circleShadow_->SetDistanceCasterLight(-rad);
 	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 

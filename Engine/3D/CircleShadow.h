@@ -43,8 +43,8 @@ namespace MyEngine {
 		Vector4 dir_ = { 0,-1,0,0 };
 		float distanceCasterLight_ = 1.0f;
 		Vector3 casterPos_ = { 0,0,0 };
-		Vector3 atten_ = { 0,0,0 };
-		Vector2 factorAngleCos_ = { 0.6f,1.0f };
+		Vector3 atten_ = { 0.0f, 0.2f, 0.0f };
+		Vector2 factorAngleCos_ = { 0.9f,1.0f };
 		int active_ = false;
 	};
 }
