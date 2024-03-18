@@ -67,6 +67,7 @@ private:
 	std::unique_ptr<Object3d> obj_ = nullptr;
 	static std::unique_ptr<Model> model_;
 	BaseCollider* sphere_;
+	CircleShadow* circleShadow_;
 
 	//待機
 	int stayTime_;

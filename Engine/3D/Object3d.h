@@ -20,6 +20,7 @@
 
 #include "Transform.h"
 #include "Camera.h"
+#include"LightGroup.h"
 
 
 /// <summary>
@@ -34,10 +35,11 @@ namespace MyEngine {
 		// DirectX::を省略
 
 		// 定数バッファ用データ構造体
-		struct ConstBufferDataB0
-		{
-			//XMFLOAT4 color;	// 色 (RGBA)
-			Matrix4 mat;	// ３Ｄ変換行列
+		struct ConstBufferDataB0 {
+			Matrix4 viewProj;
+			Matrix4 world;
+			Vector3 cameraPos;
+			unsigned int enableLighting;
 		};
 
 	private: // 定数
@@ -78,6 +80,9 @@ namespace MyEngine {
 		*/
 		bool IsDead() const { return  isDead_; }
 
+		static void SetLight(LightGroup* lightGroup) { lightGroup_ = lightGroup; }
+		void SetLightingActive(bool active) {lightingActive_ = active; }
+
 	private: // 静的メンバ変数
 		// デバイス
 		static ComPtr<ID3D12Device> device;
@@ -89,8 +94,7 @@ namespace MyEngine {
 		// パイプラインステートオブジェクト
 		static ComPtr<ID3D12PipelineState> pipelinestate;
 
-
-
+		static LightGroup* lightGroup_;
 
 		// ビュー行列
 		static Matrix4 matView;
@@ -167,6 +171,7 @@ namespace MyEngine {
 		//モデル
 		Model* model_ = nullptr;
 		static Camera* camera_;
+		bool lightingActive_ = true;
 
 		static float win_wi, win_hi;
 	public:

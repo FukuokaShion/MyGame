@@ -361,6 +361,12 @@
     <ClCompile Include="User\ENEMY\EnemyStumb.cpp">
       <Filter>user\ソース\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\3D\DirectionalLight.cpp">
+      <Filter>Engine\ソースファイル\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\3D\LightGroup.cpp">
+      <Filter>Engine\ソースファイル\3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -599,6 +605,15 @@
     </ClInclude>
     <ClInclude Include="User\ENEMY\EnemyStumb.h">
       <Filter>user\ヘッダー\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\3D\CircleShadow.h">
+      <Filter>Engine\ヘッダーファイル\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\3D\DirectionalLight.h">
+      <Filter>Engine\ヘッダーファイル\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\3D\LightGroup.h">
+      <Filter>Engine\ヘッダーファイル\3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

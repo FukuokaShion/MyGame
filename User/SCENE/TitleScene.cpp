@@ -62,6 +62,7 @@ void TitleScene::Initialize() {
 }
 
 TitleScene::~TitleScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	audio_->StopWave(pSourceVoice_);
 }
 
@@ -73,7 +74,8 @@ void TitleScene::Update() {
 		if (Input::GetInstance()->PButtonTrigger(A) || Input::GetInstance()->PButtonTrigger(START)) {
 			optionOpen_ = false;
 		}
-	}else {
+	}
+	else {
 		//スタート画面
 		if (ship_->GetIsMoveShip() == false) {
 			//選択変更
@@ -81,7 +83,8 @@ void TitleScene::Update() {
 				if (Input::GetInstance()->GetLeftStickVec().y > 0) {
 					arrow_->SetPozition(startSelect_);
 					isStartSelect_ = true;
-				}else if (Input::GetInstance()->GetLeftStickVec().y < 0) {
+				}
+				else if (Input::GetInstance()->GetLeftStickVec().y < 0) {
 					arrow_->SetPozition(optionSelect_);
 					isStartSelect_ = false;
 				}
@@ -90,12 +93,12 @@ void TitleScene::Update() {
 			if (Input::GetInstance()->PButtonTrigger(A)) {
 				if (isStartSelect_) {
 					sceneManager_->TransitionTo(SceneManager::SCENE::TUTORIAL);
-				}else {
+				}
+				else {
 					optionOpen_ = true;
 				}
 			}
 		}
-
 		camera_->Update();
 		field_->Update();
 		ship_->Update();
@@ -103,7 +106,6 @@ void TitleScene::Update() {
 		arrow_->Update();
 		fbxObject3d_->Update();
 	}
-
 }
 
 

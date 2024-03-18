@@ -15,6 +15,7 @@ void TitleField::Initialize() {
 	skydome_ = Object3d::Create();
 	skydome_->SetModel(skydomeMD_.get());
 	skydome_->wtf.scale = (Vector3{ 1000, 1000, 1000 });
+	skydome_->SetLightingActive(false);
 
 	waterMD_ = Model::LoadFromOBJ("water");
 	water_ = Object3d::Create();

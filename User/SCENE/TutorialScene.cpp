@@ -70,9 +70,11 @@ void TutorialScene::Initialize() {
 
 	option_ = make_unique<Option>();
 	option_->Initialize();
+
 }
 
 TutorialScene::~TutorialScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	CollisionManager::GetInstance()->Finalize();
 }
 
@@ -92,7 +94,7 @@ void TutorialScene::Update() {
 
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
-		
+
 		ship_->Update();
 		ship_->CheckCol(player_->GetWtf().position);
 		

@@ -65,6 +65,7 @@ private:
 private:
 	std::unique_ptr<Object3d> obj_ = nullptr;
 	static std::unique_ptr<Model> model_;
+	CircleShadow* circleShadow_;
 
 	int liveTimer_;
 	Vector3 velocity_;

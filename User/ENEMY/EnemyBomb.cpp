@@ -49,9 +49,15 @@ void EnemyBomb::Initialize(Vector3 creatPos) {
 	sphere_->SetAttribute(Attribute::EnemyBullet);
 
 	CollisionManager::GetInstance()->AddCollider(sphere_);
+	
+	circleShadow_ = new CircleShadow();
+	circleShadow_->SetActive(true);
+	circleShadow_->SetDistanceCasterLight(-startRad_);
+	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 
 void EnemyBomb::Update(Vector3 stayPos,Vector3 playerPos) {
+	circleShadow_->SetCasterPos(obj_->wtf.position);
 	timer_++;
 	if (isFired_ == false) {
 		obj_->wtf.position = stayPos;
@@ -89,6 +95,7 @@ void EnemyBomb::Update(Vector3 stayPos,Vector3 playerPos) {
 	}
 
 	if (sphere_->GetIsHit().playerBody == true || isDead_ == true) {
+		LightGroup::GetInstance()->RemoveCircleShadow(circleShadow_);
 		CollisionManager::GetInstance()->RemoveCollider(sphere_);
 	}
 

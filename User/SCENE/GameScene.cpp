@@ -94,6 +94,7 @@ void GameScene::Initialize() {
 }
 
 GameScene::~GameScene() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	audio_->StopWave(pSourceVoice_);
 	CollisionManager::GetInstance()->Finalize();
 }

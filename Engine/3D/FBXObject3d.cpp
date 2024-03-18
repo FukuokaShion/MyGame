@@ -20,6 +20,7 @@ Camera* FBXObject3d::camera_ = nullptr;
 ComPtr<ID3D12RootSignature> FBXObject3d::rootsignature;
 ComPtr<ID3D12PipelineState> FBXObject3d::pipelinestate;
 ComPtr<ID3D12GraphicsCommandList> FBXObject3d::cmdList_;
+LightGroup* FBXObject3d::lightGroup_ = nullptr;
 
 void FBXObject3d::CreateGraphicsPipeline()
 {
@@ -152,7 +153,7 @@ void FBXObject3d::CreateGraphicsPipeline()
 	descRangeSRV.Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0); // t0 レジスタ
 
 	// ルートパラメータ
-	CD3DX12_ROOT_PARAMETER rootparams[3];
+	CD3DX12_ROOT_PARAMETER rootparams[4];
 	// CBV（座標変換行列用）
 	rootparams[0].InitAsConstantBufferView(0, 0, D3D12_SHADER_VISIBILITY_ALL);
 	// SRV（テクスチャ）
@@ -160,6 +161,8 @@ void FBXObject3d::CreateGraphicsPipeline()
 
 	//CBV(スキニング用)
 	rootparams[2].InitAsConstantBufferView(3, 0, D3D12_SHADER_VISIBILITY_ALL);
+
+	rootparams[3].InitAsConstantBufferView(2, 0, D3D12_SHADER_VISIBILITY_ALL);
 
 	// スタティックサンプラー
 	CD3DX12_STATIC_SAMPLER_DESC samplerDesc = CD3DX12_STATIC_SAMPLER_DESC(0);
@@ -222,12 +225,17 @@ void FBXObject3d::Update() {
 
 	wtf.UpdateMat();
 
+	const Matrix4 matViewProjection = camera_->GetViewProjectionMatrix();
+	const Vector3& cameraPos = camera_->wtf.position;
+
 	// 定数バッファへデータ転送
 	ConstBufferDataB0* constMap = nullptr;
 	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
-	resultMat = wtf.matWorld * camera_->GetViewProjectionMatrix();	// 行列の合成
 
-	constMap->mat = resultMat;
+	constMap->viewProj = matViewProjection;
+	constMap->world = wtf.matWorld;
+	constMap->cameraPos = cameraPos;
+
 	constBuffB0->Unmap(0, nullptr);
 
 	std::vector<FBXModel::Bone>& bones = fbxmodel_->GetBones();
@@ -299,6 +307,7 @@ void FBXObject3d::Draw()
 	cmdList_->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 	// 定数バッファビューをセット
 	cmdList_->SetGraphicsRootConstantBufferView(2, constBuffSkin->GetGPUVirtualAddress());
+	lightGroup_->Draw(cmdList_.Get(), 3);
 	// モデル描画
 	fbxmodel_->Draw(cmdList_.Get());
 }
