@@ -39,6 +39,11 @@ void PlayerJumpAttack::ApplyGlobalVariables() {
 	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
+PlayerJumpAttack::~PlayerJumpAttack() {
+	isAttack_ = false;
+	CollisionManager::GetInstance()->RemoveCollider(sowrd_);
+}
+
 //攻撃
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;

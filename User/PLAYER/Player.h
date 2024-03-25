@@ -21,13 +21,15 @@ class Player {
 public:
 	//アニメーション番号
 	enum Animation {
-		DASH,
 		AVOID,
 		ATTACK,
 		JUMP,
 		JUMPATTACK,
 		STAND,
+		STUMB,
+		DASH,
 	};
+
 
 	//攻撃力
 	enum Power {

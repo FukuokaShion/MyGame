@@ -39,6 +39,11 @@ void PlayerAttack::ApplyGlobalVariables() {
 	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
+PlayerAttack::~PlayerAttack() {
+	isAttack_ = false;
+	CollisionManager::GetInstance()->RemoveCollider(sowrd_);
+}
+
 //攻撃
 void PlayerAttack::Update() {
 	timer_++;

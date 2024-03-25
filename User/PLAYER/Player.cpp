@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "FbxLoader.h"
 #include"PlayerStandby.h"
+#include"PlayerStumb.h"
 #include"CollisionManager.h"
 
 Player::Player() {
@@ -118,12 +119,14 @@ void Player::OnCollision() {
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
 				isHitNow_ = true;
+				TransitionTo(new PlayerStumb);
 			}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
 				PlayWav("col.wav");
 				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
 				isHitNow_ = true;
+				TransitionTo(new PlayerStumb);
 			}
 		}
 		colliders_[i]->RemoveHit(Attribute::EnemyAttack);
@@ -205,6 +208,8 @@ bool Player::Damage(int damage) {
 	if (isInvincible_ == false) {
 		if (fbxObject3d_->wtf.position.y < 0.5f) {
 			hp_->Damage(damage);
+			isHitNow_ = true;
+			TransitionTo(new PlayerStumb);
 			return true;
 		}
 	}

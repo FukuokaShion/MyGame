@@ -10,6 +10,7 @@
 class PlayerAttack : public PlayerState {
 public:
 	PlayerAttack();
+	~PlayerAttack();
 	/**
 	 * @brief 更新
 	*/
