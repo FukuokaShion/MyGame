@@ -43,9 +43,9 @@ void Standby::Update(Vector3 playerPos) {
 		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
 			if (0 < randNum && randNum <= 20) {
 				enemy_->TransitionTo(new Approach);
-			}else if (20 < randNum && randNum <= 60) {
+			}else if (20 < randNum && randNum <= 55) {
 				enemy_->TransitionTo(new EnemyShooting);
-			}else if(60 < randNum && randNum <= 75) {
+			}else if(55 < randNum && randNum <= 75) {
 				enemy_->TransitionTo(new EnemyRoundShooting);
 			}else {
 				enemy_->TransitionTo(new EnemyBombShooting);
@@ -53,11 +53,9 @@ void Standby::Update(Vector3 playerPos) {
 		}
 		//近い場合
 		else {
-			if (0 < randNum && randNum <= 35) {
+			if (0 < randNum && randNum <= 37) {
 				enemy_->TransitionTo(new Attack);
-			}else if (35 < randNum && randNum <= 55) {
-				enemy_->TransitionTo(new EnemyShooting);
-			}else if (55 < randNum && randNum <= 85) {
+			}else if (37 < randNum && randNum <= 74) {
 				enemy_->TransitionTo(new EnemyEarthquakeAttack);
 			}else {
 				enemy_->TransitionTo(new Leave);

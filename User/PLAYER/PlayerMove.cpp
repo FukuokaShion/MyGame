@@ -17,7 +17,7 @@ PlayerMove::PlayerMove() {
 	GlobalVariables::GetInstance()->AddItem(groupName_, "speedMaxTime", 15);
 	GlobalVariables::GetInstance()->AddItem(groupName_, "avoidSwitchTime", 8);
 
-	player_->AnimationChange(Player::Animation::DASH);
+	player_->AnimationChange(Player::Animation::DASH,0.75f);
 	limit_ = 600;
 	timer_ = 0;
 	speedTimer_ = 0;
