@@ -46,6 +46,7 @@ namespace MyEngine {
 		*/
 		void SetParentViewVec(Vector3 SetParentViewVec);
 
+
 	private:
 		/**
 		 * @brief 回転

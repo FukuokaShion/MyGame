@@ -25,6 +25,10 @@ void Camera::Initialize(int window_width, int window_height){
 
 	// ビュープロジェクションの合成
 	matViewProjection_ = matView_ * matProjection_;
+
+	isShake_=false;
+	shakeTimer_ = 0;
+	shakeLimit_ = 10;
 }
 
 void Camera::Update() {
@@ -39,9 +43,9 @@ void Camera::Update() {
 void Camera::UpdateViewMatrix() {
 
 	// 視点座標
-	Vector3 eyePosition = eye_ * wtf.matWorld;
+	Vector3 eyePosition = eye_ * wtf.matWorld + Shake();
 	// 注視点座標
-	Vector3 targetPosition = target_ * wtf.matWorld;
+	Vector3 targetPosition = target_ * wtf.matWorld + Shake();
 	// （仮の）上方向
 	Vector3 upVector = up_;
 
@@ -205,3 +209,30 @@ Vector3 Camera::GetViewVec() {
 	Vector3 viewVec = target_ - eye_;
 	return viewVec.nomalize();
 };
+
+void Camera::StartShake() {
+	if (isShake_ == false) {
+		isShake_ = true;
+		shakeTimer_ = 0;
+	}
+}
+
+Vector3 Camera::Shake() {
+	Vector3 shakeVec = { 0,0,0 };
+
+	if (isShake_) {
+		shakeTimer_++;
+		if (shakeTimer_ < shakeLimit_) {
+			float range = 0.1f;
+			shakeVec.x = (float)rand() / RAND_MAX * range * 2.0f - range;
+			shakeVec.y = (float)rand() / RAND_MAX * range * 2.0f - range;
+			shakeVec* matProjection_;
+		}
+		else {
+			isShake_ = false;
+		}
+
+	}
+
+	return shakeVec;
+}

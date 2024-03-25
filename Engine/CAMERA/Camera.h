@@ -10,6 +10,7 @@
 #include "Affin.h"
 #include"Transform.h"
 #include "ConvertXM.h"
+#include"stdlib.h"
 
 /// <summary>
 /// カメラ基本機能
@@ -122,6 +123,15 @@ namespace MyEngine {
 
 		Vector3 GetViewVec();
 
+		/**
+		 * @brief シェイク
+		*/
+		void StartShake();
+		/**
+		 * @brief シェイク
+		*/
+		Vector3 Shake();
+
 		//親との回転同期
 		bool isSyncRota;
 
@@ -155,5 +165,10 @@ namespace MyEngine {
 
 		float focalLengs_ = 50;
 		float sensor_ = 35;
+
+		//カメラシェイク
+		bool isShake_;
+		int shakeTimer_;
+		int shakeLimit_;
 	};
 }

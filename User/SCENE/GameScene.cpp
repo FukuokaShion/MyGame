@@ -119,6 +119,10 @@ void GameScene::Update() {
 		player_->SetCamViewVec(gameCamera_->GetViewVec());
 		player_->Update();
 
+		if (player_->CameShake()) {
+			gameCamera_->StartShake();
+		}
+
 		//押し出し処理
 		if (Collision::CircleCollisionXZ(player_->GetWtf().position, enemy_->GetWtf().position, player_->GetRad(), enemy_->GetRad())) {
 			distance = player_->GetWtf().position - enemy_->GetWtf().position;

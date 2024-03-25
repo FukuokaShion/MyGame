@@ -74,6 +74,7 @@ void Player::Initialize() {
 }
 
 void Player::Update(){
+	isHitNow_ = false;
 	state_->Update();
 	circleShadow_->SetCasterPos(fbxObject3d_->wtf.position);
 	if (Input::GetInstance()->PButtonTrigger(RSTICK)) {
@@ -116,11 +117,13 @@ void Player::OnCollision() {
 				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
+				isHitNow_ = true;
 			}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
 				PlayWav("col.wav");
 				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
+				isHitNow_ = true;
 			}
 		}
 		colliders_[i]->RemoveHit(Attribute::EnemyAttack);
@@ -241,4 +244,8 @@ void Player::CreateParticle() {
 			particle_->Add(lifeTime, pos, vel, acc, start, end, { 0.7f,0.7f,0.7f,0.3f });
 		}
 	}
+}
+
+bool Player::CameShake() {
+	return isHitNow_;
 }

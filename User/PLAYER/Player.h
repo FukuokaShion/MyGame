@@ -171,6 +171,7 @@ public:
 	*/
 	void CreateParticle();
 
+	bool CameShake();
 private:
 	Vector3 camViewVec_;
 	//入力
@@ -213,4 +214,6 @@ private:
 	Vector3 oldSowrdRootPos_;
 
 	CircleShadow* circleShadow_;
+
+	bool isHitNow_;
 };
