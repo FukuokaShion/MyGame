@@ -23,6 +23,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	sowrd_->SetRad(0.3f);
 	sowrd_->SetPower(power_);
 	CollisionManager::GetInstance()->AddCollider(sowrd_);
 
