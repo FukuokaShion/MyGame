@@ -100,6 +100,8 @@ namespace MyEngine {
 		std::vector<Bone> bones;
 		//getter
 		std::vector<Bone>& GetBones() { return bones; }
+		
+		int GetBoneNum(const std::string& boneName);
 
 	private:
 		// モデル名
