@@ -21,17 +21,22 @@ void PlayerStandby::ApplyGlobalVariables() {
 
 //待機
 void PlayerStandby::Update() {
+	stamina_->Update();
 	StateTransition();
 }
 
 void PlayerStandby::StateTransition() {
 	//ジャンプ
 	if (Input::GetInstance()->PButtonTrigger(A)) {
-		player_->TransitionTo(new PlayerJump);
+		if(stamina_->Use(staminaCost::JUMP)) {
+			player_->TransitionTo(new PlayerJump);
+		}
 	}
 	//攻撃
 	if (Input::GetInstance()->PButtonTrigger(RB)) {
-		player_->TransitionTo(new PlayerAttack);
+		if (stamina_->Use(staminaCost::ATTACK)) {
+			player_->TransitionTo(new PlayerAttack);
+		}
 	}
 	//移動
 	if (Input::GetInstance()->LeftStickInput()) {

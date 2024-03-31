@@ -47,6 +47,7 @@ PlayerAttack::~PlayerAttack() {
 
 //攻撃
 void PlayerAttack::Update() {
+	stamina_->Update();
 	timer_++;
 	Transform playerWtf = player_->GetWtf();
 	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);

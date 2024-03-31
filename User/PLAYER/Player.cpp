@@ -39,6 +39,7 @@ void Player::Initialize() {
 	audio->LoadWave("run.wav");
 
 	hp_->Initialize();
+
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.scale = { 0.8f,0.8f,0.8f };
@@ -108,7 +109,7 @@ void Player::Update(){
 		gaugeTimer_--;
 	}
 
-	ui_.Update(GetDamage(), GetHp());
+	ui_.Update(GetDamage(), GetHp(), state_->GetStamina());
 
 	for (int i = 0; i < maxColliderNum; i++) {
 		if (i < maxBonesNum) {

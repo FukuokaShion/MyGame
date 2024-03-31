@@ -171,6 +171,7 @@
     <ClCompile Include="User\PLAYER\PlayerHp.cpp" />
     <ClCompile Include="User\PLAYER\PlayerJump.cpp" />
     <ClCompile Include="User\PLAYER\PlayerMove.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerStamina.cpp" />
     <ClCompile Include="User\PLAYER\PlayerStandby.cpp" />
     <ClCompile Include="User\PLAYER\PlayerState.cpp" />
     <ClCompile Include="User\PLAYER\PlayerJumpAttack.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="User\PLAYER\PlayerJump.h" />
     <ClInclude Include="User\PLAYER\PlayerJumpAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerMove.h" />
+    <ClInclude Include="User\PLAYER\PlayerStamina.h" />
     <ClInclude Include="User\PLAYER\PlayerStandby.h" />
     <ClInclude Include="User\PLAYER\PlayerState.h" />
     <ClInclude Include="User\PLAYER\PlayerStumb.h" />

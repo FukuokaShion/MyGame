@@ -23,6 +23,7 @@ void PlayerStumb::ApplyGlobalVariables() {
 }
 
 void PlayerStumb::Update() {
+	stamina_->Update();
 	if (player_->GetWtf().position.y <= 0) {
 		IsOnGround_ = true;
 	}

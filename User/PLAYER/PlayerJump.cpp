@@ -31,6 +31,7 @@ void PlayerJump::ApplyGlobalVariables() {
 }
 
 void PlayerJump::Update() {
+	stamina_->Update();
 	if (up_ == true) {
 		timer_++;
 		if (timer_ > limit_) {
@@ -95,7 +96,9 @@ void PlayerJump::StateTransition() {
 		player_->TransitionTo(new PlayerStandby);
 	}else {
 		if (up_ == false && isPushRB_ == true) {
-			player_->TransitionTo(new PlayerJumpAttack);
+			if (stamina_->Use(staminaCost::JUMPATTACK)) {
+				player_->TransitionTo(new PlayerJumpAttack);
+			}
 		}
 	}
 }
