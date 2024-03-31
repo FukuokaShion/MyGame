@@ -10,7 +10,7 @@
 Enemy* EnemyState::enemy_ = nullptr;
 float EnemyState::stumbGauge_ = 0;
 float EnemyState::stumbGaugeMax_ = 200;
-float EnemyState::stumbGaugeDecrease_ = 0.01f;
+float EnemyState::stumbGaugeDecrease_ = 0.2f;
 bool EnemyState::isStumb_ = false;
 
 EnemyState::EnemyState() {
@@ -20,7 +20,7 @@ EnemyState::EnemyState() {
 }
 
 void EnemyState::StumbGaugeUpdate() {
-	if (stumbGauge_ > 0) {
+	if (stumbGauge_ > 0 && isStumb_ == false) {
 		stumbGauge_ -= stumbGaugeDecrease_;
 		if (stumbGauge_ < 0) {
 			stumbGauge_ = 0.0f;
@@ -30,7 +30,7 @@ void EnemyState::StumbGaugeUpdate() {
 
 void EnemyState::StumbGaugeIncrease(int damage) {
 	if (!isStumb_) {
-		stumbGauge_ += static_cast<float>(damage);
+		stumbGauge_ += static_cast<float>(damage) * 0.8f;
 		if (stumbGauge_ > stumbGaugeMax_) {
 			enemy_->TransitionTo(new EnemyStumb);
 			isStumb_ = true;

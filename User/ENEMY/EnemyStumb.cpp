@@ -36,7 +36,10 @@ void EnemyStumb::Update(Vector3 playerPos) {
 	}else {
 		//設置しているなら
 		timer--;
+		stumbGauge_ -= 200.0f / static_cast<float>(limit_);
 		if (timer < 0) {
+			isStumb_ = false;
+			stumbGauge_ = 0;
 			enemy_->TransitionTo(new Standby);
 		}
 	}
