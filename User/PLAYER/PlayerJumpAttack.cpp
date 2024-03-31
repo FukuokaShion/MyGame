@@ -57,7 +57,7 @@ void PlayerJumpAttack::Update() {
 		//パーティクル
 		player_->CreateParticle();
 		//攻撃判定
-		sowrd_->SetCenter(player_->GetSwordPos());
+		sowrd_->SetCenter(player_->GetSwordPos(0.3f));
 		isAttack_ = true;
 		power_ = power_;
 
