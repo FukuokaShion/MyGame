@@ -23,6 +23,7 @@ PlayerJumpAttack::PlayerJumpAttack() {
 
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	sowrd_->SetRad(0.3f);
 	sowrd_->SetPower(power_);
 	CollisionManager::GetInstance()->AddCollider(sowrd_);
 
@@ -39,6 +40,11 @@ void PlayerJumpAttack::ApplyGlobalVariables() {
 	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
+PlayerJumpAttack::~PlayerJumpAttack() {
+	isAttack_ = false;
+	CollisionManager::GetInstance()->RemoveCollider(sowrd_);
+}
+
 //攻撃
 void PlayerJumpAttack::Update() {
 	Vector3 velocity;
@@ -51,7 +57,7 @@ void PlayerJumpAttack::Update() {
 		//パーティクル
 		player_->CreateParticle();
 		//攻撃判定
-		sowrd_->SetCenter(player_->GetSwordPos());
+		sowrd_->SetCenter(player_->GetSwordPos(0.3f));
 		isAttack_ = true;
 		power_ = power_;
 

@@ -57,7 +57,7 @@ void TitleScene::Initialize() {
 	fbxObject3d_ = std::make_unique<FBXObject3d>();
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_.get());
-	fbxObject3d_->PlayAnimation(5, 1.0f);
+	fbxObject3d_->PlayAnimation(4, 1.0f);
 	fbxObject3d_->wtf.position = { -5,0,8 };
 }
 

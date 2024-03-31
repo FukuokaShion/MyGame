@@ -32,6 +32,7 @@ void PlayerAvoid::ApplyGlobalVariables() {
 
 //待機
 void PlayerAvoid::Update() {
+	stamina_->Update();
 	timer_--;
 
 	float t = static_cast<float>(timer_) / static_cast<float>(limit_);

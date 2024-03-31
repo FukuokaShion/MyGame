@@ -367,6 +367,12 @@
     <ClCompile Include="Engine\3D\LightGroup.cpp">
       <Filter>Engine\ソースファイル\3D</Filter>
     </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerStumb.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerStamina.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -614,6 +620,12 @@
     </ClInclude>
     <ClInclude Include="Engine\3D\LightGroup.h">
       <Filter>Engine\ヘッダーファイル\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerStumb.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerStamina.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

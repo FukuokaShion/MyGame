@@ -21,6 +21,7 @@ PlayerJump::PlayerJump() {
 	groundPos = 0;
 	up_ = true;
 	player_->PlayWav("jump.wav");
+	isPushRB_ = false;
 }
 
 void PlayerJump::ApplyGlobalVariables() {
@@ -30,6 +31,7 @@ void PlayerJump::ApplyGlobalVariables() {
 }
 
 void PlayerJump::Update() {
+	stamina_->Update();
 	if (up_ == true) {
 		timer_++;
 		if (timer_ > limit_) {
@@ -38,6 +40,10 @@ void PlayerJump::Update() {
 	}
 	else {
 		timer_--;
+	}
+
+	if (Input::GetInstance()->ButtonInput(RB)) {
+		isPushRB_ = true;
 	}
 
 	float t = static_cast<float>(timer_) / static_cast<float>(limit_);
@@ -89,8 +95,8 @@ void PlayerJump::StateTransition() {
 		player_->SetPosY(0);
 		player_->TransitionTo(new PlayerStandby);
 	}else {
-		if (up_ == false) {
-			if (Input::GetInstance()->ButtonInput(RB)) {
+		if (up_ == false && isPushRB_ == true) {
+			if (stamina_->Use(staminaCost::JUMPATTACK)) {
 				player_->TransitionTo(new PlayerJumpAttack);
 			}
 		}

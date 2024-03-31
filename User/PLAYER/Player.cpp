@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "FbxLoader.h"
 #include"PlayerStandby.h"
+#include"PlayerStumb.h"
 #include"CollisionManager.h"
 
 Player::Player() {
@@ -38,6 +39,7 @@ void Player::Initialize() {
 	audio->LoadWave("run.wav");
 
 	hp_->Initialize();
+
 	fbxObject3d_->Initialize();
 	fbxObject3d_->wtf.Initialize();
 	fbxObject3d_->wtf.scale = { 0.8f,0.8f,0.8f };
@@ -49,20 +51,27 @@ void Player::Initialize() {
 
 	ui_.Initialize();
 
-	boneNum[0] = 0;
-	boneNum[1] = 0;
-	boneNum[2] = 5;
-	boneNum[3] = 9;
-	boneNum[4] = 33;
-	boneNum[5] = 55;
-	boneNum[6] = 56;
+	boneNum[0] = fbxModel_->GetBoneNum("mixamorig:Hips");
+	boneNum[1] = fbxModel_->GetBoneNum("mixamorig:Spine2");
+	boneNum[2] = fbxModel_->GetBoneNum("mixamorig:Head");
+	boneNum[3] = fbxModel_->GetBoneNum("mixamorig:RightForeArm");
+	boneNum[4] = fbxModel_->GetBoneNum("mixamorig:LeftForeArm");
+
+	sowrdRootNum_ = fbxModel_->GetBoneNum("Sword");
+	sowrdTipNum_ = fbxModel_->GetBoneNum("Sword_end");
 
 	for (int i = 0; i < maxColliderNum; i++) {
 		colliders_[i] = new BaseCollider;
 		colliders_[i]->SetAttribute(Attribute::PlyerBody);
-		colliders_[i]->SetRad(rad_);
 		CollisionManager::GetInstance()->AddCollider(colliders_[i]);
 	}
+	colliders_[0]->SetRad(0.3f);
+	colliders_[1]->SetRad(0.3f);
+	colliders_[2]->SetRad(0.3f);
+	colliders_[3]->SetRad(0.15f);
+	colliders_[4]->SetRad(0.15f);
+	colliders_[5]->SetRad(0.4f);
+
 	isRockOn_ = false;
 
 	particle_ = std::make_unique<ParticleManager>();
@@ -85,8 +94,8 @@ void Player::Update(){
 		}
 	}
 
-	oldSowrdRootPos_ = fbxObject3d_->GetBonWorldPos(boneNum[5]);
-	oldSowrdTipPos_ = fbxObject3d_->GetBonWorldPos(boneNum[6]);
+	oldSowrdRootPos_ = fbxObject3d_->GetBonWorldPos(sowrdRootNum_);
+	oldSowrdTipPos_ = fbxObject3d_->GetBonWorldPos(sowrdTipNum_);
 	fbxObject3d_->wtf.UpdateMat();
 	fbxObject3d_->Update();
 
@@ -100,11 +109,14 @@ void Player::Update(){
 		gaugeTimer_--;
 	}
 
-	ui_.Update(GetDamage(), GetHp());
+	ui_.Update(GetDamage(), GetHp(), state_->GetStamina());
 
-	colliders_[0]->SetCenter(fbxObject3d_->wtf.position + Vector3{ 0,rad_,0 });
-	for (int i = 1; i < maxColliderNum; i++) {
-		colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum[i]));
+	for (int i = 0; i < maxColliderNum; i++) {
+		if (i < maxBonesNum) {
+			colliders_[i]->SetCenter(fbxObject3d_->GetBonWorldPos(boneNum[i]));
+		}else {
+			colliders_[i]->SetCenter(fbxObject3d_->wtf.position + Vector3{ 0,rad_,0 });
+		}
 	}
 	particle_->Update();
 }
@@ -118,12 +130,14 @@ void Player::OnCollision() {
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
 				isHitNow_ = true;
+				TransitionTo(new PlayerStumb);
 			}else if (colliders_[i]->GetIsHit().enemyBullet == true) {
 				PlayWav("col.wav");
 				hp_->Damage(colliders_[i]->GetDamage());
 				gaugeTimer_ = gaugeLimit_;
 				damageGauge_ = hp_->GetOldHp();
 				isHitNow_ = true;
+				TransitionTo(new PlayerStumb);
 			}
 		}
 		colliders_[i]->RemoveHit(Attribute::EnemyAttack);
@@ -205,6 +219,8 @@ bool Player::Damage(int damage) {
 	if (isInvincible_ == false) {
 		if (fbxObject3d_->wtf.position.y < 0.5f) {
 			hp_->Damage(damage);
+			isHitNow_ = true;
+			TransitionTo(new PlayerStumb);
 			return true;
 		}
 	}
@@ -212,8 +228,8 @@ bool Player::Damage(int damage) {
 };
 
 Vector3 Player::GetSwordPos(float bias){
-	Vector3 result = fbxObject3d_->GetBonWorldPos(boneNum[6]);
-	result += (fbxObject3d_->GetBonWorldPos(boneNum[5]) - fbxObject3d_->GetBonWorldPos(boneNum[6])) * bias;
+	Vector3 result = fbxObject3d_->GetBonWorldPos(sowrdTipNum_);
+	result += (fbxObject3d_->GetBonWorldPos(sowrdRootNum_) - fbxObject3d_->GetBonWorldPos(sowrdTipNum_)) * bias;
 	return result;
 };
 

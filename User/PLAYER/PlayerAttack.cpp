@@ -26,6 +26,7 @@ PlayerAttack::PlayerAttack() {
 	
 	sowrd_ = new BaseCollider;
 	sowrd_->SetAttribute(Attribute::PlayerAttack);
+	sowrd_->SetRad(0.3f);
 	sowrd_->SetPower(sowrdPower_);
 }
 
@@ -39,8 +40,14 @@ void PlayerAttack::ApplyGlobalVariables() {
 	animationSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "animationSpeed");
 }
 
+PlayerAttack::~PlayerAttack() {
+	isAttack_ = false;
+	CollisionManager::GetInstance()->RemoveCollider(sowrd_);
+}
+
 //攻撃
 void PlayerAttack::Update() {
+	stamina_->Update();
 	timer_++;
 	Transform playerWtf = player_->GetWtf();
 	float camAngle = atan2f(player_->GetCamViewVec().x, player_->GetCamViewVec().z);
@@ -72,7 +79,7 @@ void PlayerAttack::Update() {
 		player_->CreateParticle();
 
 		//攻撃判定
-		sowrd_->SetCenter(player_->GetSwordPos());
+		sowrd_->SetCenter(player_->GetSwordPos(0.3f));
 		isAttack_ = true;
 		power_ = sowrdPower_;
 

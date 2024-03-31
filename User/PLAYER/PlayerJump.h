@@ -45,4 +45,6 @@ private:
 
 	float maxPos_;
 	float groundPos;
+
+	bool isPushRB_;
 };

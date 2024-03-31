@@ -24,27 +24,35 @@ void PlayerUI::Initialize() {
 	damageGauge_->SetSize({ hpGaugeSize_ });
 	damageGauge_->SetColor(damageColor_);
 
+	staminaGauge_ = new Sprite();
+	staminaGauge_->Initialize(SpriteCommon::GetInstance());
+	staminaGauge_->SetPozition(staminaGaugePos_);
+	staminaGauge_->SetSize({ staminaGaugeSize_ });
+	staminaGauge_->SetColor(staminaColor_);
+
 	base_->SetTextureIndex(SpriteLoader::PLAYERUI);
 	hpGauge_->SetTextureIndex(SpriteLoader::WHITE);
 	damageGauge_->SetTextureIndex(SpriteLoader::WHITE);
+	staminaGauge_->SetTextureIndex(SpriteLoader::WHITE);
 }
 
 PlayerUI::~PlayerUI() {
-	
 	delete hpGauge_;
 	delete damageGauge_;
 	delete base_;
+	delete staminaGauge_;
 }
 
-void PlayerUI::Update(int damage, int hp) {
+void PlayerUI::Update(int damage, int hp,int stamina) {
 	base_->Update();
 	damageGauge_->SetSize({ static_cast<float>(hpGaugeOneSize_ * damage), hpGaugeSize_.y });
 	hpGauge_->SetSize({ static_cast<float>(hpGaugeOneSize_ * hp), hpGaugeSize_.y });
-
+	staminaGauge_->SetSize({ static_cast<float>(staminaGaugeOneSize_ * stamina), staminaGaugeSize_.y });
 }
 
 void PlayerUI::Draw() {
 	base_->Draw();
 	damageGauge_->Draw();
 	hpGauge_->Draw();
+	staminaGauge_->Draw();
 }

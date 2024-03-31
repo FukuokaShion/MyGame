@@ -141,3 +141,14 @@ void FBXModel::Draw(ID3D12GraphicsCommandList* cmdList)
     // 描画コマンド
     cmdList->DrawIndexedInstanced((UINT)indices.size(), 1, 0, 0, 0);
 }
+
+int FBXModel::GetBoneNum(const std::string& boneName) {
+    int result = NULL;
+    for (int i = 0; i < bones.size(); i++) {
+        if (bones[i].name == boneName) {
+            result = i;
+            break;
+        }
+    }
+    return result;
+}

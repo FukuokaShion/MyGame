@@ -38,22 +38,32 @@ void PlayerMove::ApplyGlobalVariables() {
 
 
 void PlayerMove::Update() {
+	stamina_->Update();
 	Move();
 	Rota();
 	StateTransition();
 }
 
 void PlayerMove::Move() {
-	if (Input::GetInstance()->ButtonInput(B)) {
-		pushBTimer_++;
+	stamina_->Update();
+
+	if (Input::GetInstance()->PButtonTrigger(B)) {
 		isDash_ = true;
 	}
-	else {
-		if (pushBTimer_ > 0 && pushBTimer_ <= avoidSwitchTime_) {
-			isChangeAvoid_ = true;
+
+	if (isDash_) {
+		pushBTimer_++;
+		if (stamina_->Use(staminaCost::DASH) == false) {
+			isDash_ = false;
+			pushBTimer_ = 0;
 		}
-		pushBTimer_ = 0;
-		isDash_ = false;
+		if (Input::GetInstance()->ButtonInput(B) == false) {
+			isDash_ = false;
+			if (pushBTimer_ <= avoidSwitchTime_) {
+				isChangeAvoid_ = true;
+			}
+			pushBTimer_ = 0;
+		}
 	}
 
 	timer_++;
@@ -107,14 +117,20 @@ void PlayerMove::StateTransition() {
 	}
 	//ジャンプ
 	if (Input::GetInstance()->PButtonTrigger(A)) {
-		player_->TransitionTo(new PlayerJump);
+		if (stamina_->Use(staminaCost::JUMP)) {
+			player_->TransitionTo(new PlayerJump);
+		}
 	}
 	//回避
 	if (isChangeAvoid_ == true) {
-		player_->TransitionTo(new PlayerAvoid);
+		if (stamina_->Use(staminaCost::AVOID)) {
+			player_->TransitionTo(new PlayerAvoid);
+		}
 	}
 	//攻撃
 	if (Input::GetInstance()->PButtonTrigger(RB)) {
-		player_->TransitionTo(new PlayerAttack);
+		if (stamina_->Use(staminaCost::ATTACK)) {
+			player_->TransitionTo(new PlayerAttack);
+		}
 	}
 }

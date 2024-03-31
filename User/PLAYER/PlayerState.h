@@ -7,6 +7,7 @@
 #include"Transform.h"
 #include"Input.h"
 #include"GlobalVariables.h"
+#include"PlayerStamina.h"
 
 class Player;
 
@@ -25,7 +26,7 @@ public:
 	*/
 	bool GetIsAttack() { return isAttack_; };
 	int GetPower() { return power_; };
-
+	int GetStamina() { return stamina_->GetStamina(); };
 	/**
 	 * @brief 更新
 	*/
@@ -43,8 +44,18 @@ protected:
 
 protected:
 	static Player* player_;
+	static PlayerStamina* stamina_;
 
 	//攻撃判定
 	bool isAttack_;
 	int power_;
+
+	//スタミナ消費量
+	enum staminaCost {
+		AVOID = 300,
+		ATTACK = 100,
+		DASH = 1,
+		JUMP = 100,
+		JUMPATTACK = 150,
+	};
 };

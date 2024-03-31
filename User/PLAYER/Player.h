@@ -21,13 +21,15 @@ class Player {
 public:
 	//アニメーション番号
 	enum Animation {
-		DASH,
 		AVOID,
 		ATTACK,
 		JUMP,
 		JUMPATTACK,
 		STAND,
+		STUMB,
+		DASH,
 	};
+
 
 	//攻撃力
 	enum Power {
@@ -185,9 +187,12 @@ private:
 
 	//当たり判定
 	const float rad_ = 0.4f;
-	const int maxColliderNum = 5;
-	BaseCollider* colliders_[5];
-	uint32_t boneNum[7];
+	const int maxColliderNum = 6;
+	BaseCollider* colliders_[6];
+	const int maxBonesNum = 5;
+	uint32_t boneNum[5];
+	uint32_t sowrdTipNum_;
+	uint32_t sowrdRootNum_;
 
 	bool isInvincible_;
 

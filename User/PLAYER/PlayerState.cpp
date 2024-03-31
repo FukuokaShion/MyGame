@@ -7,6 +7,7 @@
 #include"Player.h"
 
 Player* PlayerState::player_ = nullptr;
+PlayerStamina* PlayerState::stamina_ = new PlayerStamina;
 
 PlayerState::PlayerState() {
 	isAttack_ = false;
