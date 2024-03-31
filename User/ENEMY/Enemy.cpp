@@ -23,6 +23,7 @@ Enemy::Enemy() {
 	power_ = 0;
 
 	state_->SetEnemy(this);
+	EnemyState::ResetStumbGauge();
 
 	particle_ = new EnemyParticle;
 	bulletCreateParticle_ = new EnemyShootingParticle;
@@ -148,7 +149,7 @@ void Enemy::Update(Vector3 playerPos) {
 		}
 	}
 	//ui
-	ui_.Update(GetHp());
+	ui_.Update(GetHp(), state_->GetStumbGauge());
 }
 
 void Enemy::OnCollision() {

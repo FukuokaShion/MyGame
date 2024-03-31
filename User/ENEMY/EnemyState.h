@@ -24,6 +24,9 @@ public:
 
 	void StumbGaugeIncrease(int damage);
 
+	static void ResetStumbGauge() { stumbGauge_ = 0; };
+	float GetStumbGauge() { return stumbGauge_; };
+
 public:
 	/**
 	 * @brief 更新

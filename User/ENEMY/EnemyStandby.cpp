@@ -34,31 +34,38 @@ Standby::~Standby() {}
 
 //待機
 void Standby::Update(Vector3 playerPos) {
-	timer++;
-	playerPos;
-	//状態切り替え
-	if (timer > limit_) {
-		int randNum = rand() % 100 + 1;//1から100の範囲になる
-		//遠い場合
-		if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
-			if (0 < randNum && randNum <= 20) {
-				enemy_->TransitionTo(new Approach);
-			}else if (20 < randNum && randNum <= 55) {
-				enemy_->TransitionTo(new EnemyShooting);
-			}else if(55 < randNum && randNum <= 75) {
-				enemy_->TransitionTo(new EnemyRoundShooting);
-			}else {
-				enemy_->TransitionTo(new EnemyBombShooting);
+	if (playerPos != Vector3{0,0,0}) {
+		timer++;
+		playerPos;
+		//状態切り替え
+		if (timer > limit_) {
+			int randNum = rand() % 100 + 1;//1から100の範囲になる
+			//遠い場合
+			if (Vector3::Distance(enemy_->GetWtf().position, playerPos) > approachDistance_) {
+				if (0 < randNum && randNum <= 20) {
+					enemy_->TransitionTo(new Approach);
+				}
+				else if (20 < randNum && randNum <= 55) {
+					enemy_->TransitionTo(new EnemyShooting);
+				}
+				else if (55 < randNum && randNum <= 75) {
+					enemy_->TransitionTo(new EnemyRoundShooting);
+				}
+				else {
+					enemy_->TransitionTo(new EnemyBombShooting);
+				}
 			}
-		}
-		//近い場合
-		else {
-			if (0 < randNum && randNum <= 37) {
-				enemy_->TransitionTo(new Attack);
-			}else if (37 < randNum && randNum <= 74) {
-				enemy_->TransitionTo(new EnemyEarthquakeAttack);
-			}else {
-				enemy_->TransitionTo(new Leave);
+			//近い場合
+			else {
+				if (0 < randNum && randNum <= 37) {
+					enemy_->TransitionTo(new Attack);
+				}
+				else if (37 < randNum && randNum <= 74) {
+					enemy_->TransitionTo(new EnemyEarthquakeAttack);
+				}
+				else {
+					enemy_->TransitionTo(new Leave);
+				}
 			}
 		}
 	}

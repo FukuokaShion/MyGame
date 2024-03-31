@@ -143,3 +143,17 @@ const Vector3  MyEngine::operator/(const Vector3& v, float s) {
 	temp.z /= s;
 	return temp;
 }
+
+const bool MyEngine::operator==(const Vector3& v1, const Vector3& v2) {
+	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z) {
+		return true;
+	}
+	return false;
+}
+
+const bool MyEngine::operator!=(const Vector3& v1, const Vector3& v2) {
+	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z) {
+		return false;
+	}
+	return true;
+}
