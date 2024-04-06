@@ -10,6 +10,7 @@
 TitleScene::TitleScene() {}
 
 void TitleScene::Initialize() {
+	LightGroup::GetInstance()->ClearCircleShadow();
 	//サウンド
 	audio_ = new Audio();
 	audio_->Initialize();
@@ -58,7 +59,11 @@ void TitleScene::Initialize() {
 	fbxObject3d_->Initialize();
 	fbxObject3d_->SetModel(fbxModel_.get());
 	fbxObject3d_->PlayAnimation(4, 1.0f);
-	fbxObject3d_->wtf.position = { -5,0,8 };
+	fbxObject3d_->wtf.position = { -5,-0.35f,8 };
+	circleShadow_ = new CircleShadow();
+	circleShadow_->SetActive(true);
+	circleShadow_->SetCasterPos(fbxObject3d_->wtf.position);
+	LightGroup::GetInstance()->SetCircleShadow(circleShadow_);
 }
 
 TitleScene::~TitleScene() {
