@@ -62,7 +62,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER;$(SolutionDir)User\COLLISION;$(SolutionDir)Engine\Loader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\Scene;$(SolutionDir)Engine\ImGui;$(SolutionDir)Engine\2d;$(SolutionDir)Engine\3d\Particle;$(SolutionDir)Engine\3d;$(SolutionDir)Engine\Collision;$(SolutionDir)Engine\Audio;$(SolutionDir)Engine\Input;$(SolutionDir)Engine\Math;$(SolutionDir)Engine\Base;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\Player;$(SolutionDir)Engine\Camera;$(SolutionDir)User\Enemy;$(SolutionDir)User\Field;$(SolutionDir)User\Loader;$(SolutionDir)User\Collision;$(SolutionDir)Engine\Loader;$(SolutionDir)User\Player\State;$(SolutionDir)User\Enemy\State;$(SolutionDir)User\Enemy\Particle;$(SolutionDir)Engine\3d\Light;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -84,7 +84,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)User\SCENE;$(SolutionDir)Engine\IMGUI;$(SolutionDir)Engine\2D;$(SolutionDir)Engine\3D\Particle;$(SolutionDir)Engine\3D;$(SolutionDir)Engine\COLLISION;$(SolutionDir)Engine\AUDIO;$(SolutionDir)Engine\INPUT;$(SolutionDir)Engine\MATH;$(SolutionDir)Engine\BASE;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\PLAYER;$(SolutionDir)Engine\CAMERA;$(SolutionDir)User\ENEMY;$(SolutionDir)User\FIELD;$(SolutionDir)User\LOADER;$(SolutionDir)User\COLLISION;$(SolutionDir)Engine\Loader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)User\Scene;$(SolutionDir)Engine\ImGui;$(SolutionDir)Engine\2d;$(SolutionDir)Engine\3d\Particle;$(SolutionDir)Engine\3d;$(SolutionDir)Engine\Collision;$(SolutionDir)Engine\Audio;$(SolutionDir)Engine\Input;$(SolutionDir)Engine\Math;$(SolutionDir)Engine\Base;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(SolutionDir)User;$(SolutionDir)User\Player;$(SolutionDir)Engine\Camera;$(SolutionDir)User\Enemy;$(SolutionDir)User\Field;$(SolutionDir)User\Loader;$(SolutionDir)User\Collision;$(SolutionDir)Engine\Loader;$(SolutionDir)User\Player\State;$(SolutionDir)User\Enemy\State;$(SolutionDir)User\Enemy\Particle;$(SolutionDir)Engine\3d\Light;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -103,15 +103,15 @@
   <ItemGroup>
     <ClCompile Include="Engine\2D\Sprite.cpp" />
     <ClCompile Include="Engine\2D\SpriteCommon.cpp" />
-    <ClCompile Include="Engine\3D\FbxLoader.cpp" />
-    <ClCompile Include="Engine\3D\FBXModel.cpp" />
-    <ClCompile Include="Engine\3D\FBXObject3d.cpp" />
-    <ClCompile Include="Engine\3D\DirectionalLight.cpp" />
-    <ClCompile Include="Engine\3D\LightGroup.cpp" />
-    <ClCompile Include="Engine\3D\Model.cpp" />
-    <ClCompile Include="Engine\3D\Object3d.cpp" />
-    <ClCompile Include="Engine\3D\Particle\ParticleManager.cpp" />
-    <ClCompile Include="Engine\3D\Transform.cpp" />
+    <ClCompile Include="Engine\3d\FbxLoader.cpp" />
+    <ClCompile Include="Engine\3d\FBXModel.cpp" />
+    <ClCompile Include="Engine\3d\FBXObject3d.cpp" />
+    <ClCompile Include="Engine\3d\Light\DirectionalLight.cpp" />
+    <ClCompile Include="Engine\3d\Light\LightGroup.cpp" />
+    <ClCompile Include="Engine\3d\Model.cpp" />
+    <ClCompile Include="Engine\3d\Object3d.cpp" />
+    <ClCompile Include="Engine\3d\Particle\ParticleManager.cpp" />
+    <ClCompile Include="Engine\3d\Transform.cpp" />
     <ClCompile Include="Engine\AUDIO\Audio.cpp" />
     <ClCompile Include="Engine\BASE\DirectXCommon.cpp" />
     <ClCompile Include="Engine\BASE\FPS.cpp" />
@@ -135,49 +135,49 @@
     <ClCompile Include="Engine\MATH\Vector4.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="User\COLLISION\CollisionManager.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyBomb.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyBombShooting.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyEarthquake.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyEarthquakeAttack.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyStumb.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyUI.cpp" />
+    <ClCompile Include="User\Enemy\EnemyBomb.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyBombShooting.cpp" />
+    <ClCompile Include="User\Enemy\Particle\EnemyDeathParticle.cpp" />
+    <ClCompile Include="User\Enemy\EnemyEarthquake.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyEarthquakeAttack.cpp" />
+    <ClCompile Include="User\Enemy\Particle\EnemyShootingParticle.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyStrongBodyBlow.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyStumb.cpp" />
+    <ClCompile Include="User\Enemy\EnemyUI.cpp" />
     <ClCompile Include="User\FIELD\Scarecrow.cpp" />
     <ClCompile Include="User\FIELD\Ship.cpp" />
     <ClCompile Include="User\FIELD\Signboard.cpp" />
     <ClCompile Include="User\FIELD\TitleField.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyApproach.cpp" />
-    <ClCompile Include="User\ENEMY\Enemy.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyAttack.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyBullet.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyHp.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyLeave.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyParticle.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyRoundShooting.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyShooting.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyState.cpp" />
-    <ClCompile Include="User\ENEMY\EnemyStandby.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyApproach.cpp" />
+    <ClCompile Include="User\Enemy\Enemy.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyAttack.cpp" />
+    <ClCompile Include="User\Enemy\EnemyBullet.cpp" />
+    <ClCompile Include="User\Enemy\EnemyHp.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyLeave.cpp" />
+    <ClCompile Include="User\Enemy\Particle\EnemyParticle.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyRoundShooting.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyShooting.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyState.cpp" />
+    <ClCompile Include="User\Enemy\State\EnemyStandby.cpp" />
     <ClCompile Include="User\FIELD\Field.cpp" />
     <ClCompile Include="User\FIELD\TutorialField.cpp" />
     <ClCompile Include="User\GameMain.cpp" />
     <ClCompile Include="User\LOADER\LoaderManager.cpp" />
     <ClCompile Include="User\LOADER\ObjModelLoader.cpp" />
     <ClCompile Include="User\LOADER\SpriteLoader.cpp" />
-    <ClCompile Include="User\PLAYER\Player.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerAvoid.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerDust.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerHp.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerJump.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerMove.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerStamina.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerStandby.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerState.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerJumpAttack.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerStumb.cpp" />
-    <ClCompile Include="User\PLAYER\PlayerUI.cpp" />
+    <ClCompile Include="User\Player\Player.cpp" />
+    <ClCompile Include="User\Player\State\PlayerAttack.cpp" />
+    <ClCompile Include="User\Player\State\PlayerAvoid.cpp" />
+    <ClCompile Include="User\Player\PlayerDust.cpp" />
+    <ClCompile Include="User\Player\PlayerHp.cpp" />
+    <ClCompile Include="User\Player\State\PlayerJump.cpp" />
+    <ClCompile Include="User\Player\State\PlayerMove.cpp" />
+    <ClCompile Include="User\Player\PlayerStamina.cpp" />
+    <ClCompile Include="User\Player\State\PlayerStandby.cpp" />
+    <ClCompile Include="User\Player\State\PlayerState.cpp" />
+    <ClCompile Include="User\Player\State\PlayerJumpAttack.cpp" />
+    <ClCompile Include="User\Player\State\PlayerStumb.cpp" />
+    <ClCompile Include="User\Player\PlayerUI.cpp" />
     <ClCompile Include="User\SCENE\GameScene.cpp" />
     <ClCompile Include="User\SCENE\Option.cpp" />
     <ClCompile Include="User\SCENE\SceneChange.cpp" />
