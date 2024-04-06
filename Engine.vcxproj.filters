@@ -373,6 +373,9 @@
     <ClCompile Include="User\PLAYER\PlayerStamina.cpp">
       <Filter>user\ソース\PLAYER</Filter>
     </ClCompile>
+    <ClCompile Include="User\PLAYER\PlayerDust.cpp">
+      <Filter>user\ソース\PLAYER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BASE\FPS.h">
@@ -625,6 +628,9 @@
       <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
     <ClInclude Include="User\PLAYER\PlayerStamina.h">
+      <Filter>user\ヘッダー\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="User\PLAYER\PlayerDust.h">
       <Filter>user\ヘッダー\PLAYER</Filter>
     </ClInclude>
   </ItemGroup>

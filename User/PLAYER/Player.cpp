@@ -75,7 +75,8 @@ void Player::Initialize() {
 	isRockOn_ = false;
 
 	particle_ = std::make_unique<ParticleManager>();
-	particle_.get()->Initialize();
+	particle_->Initialize();
+	dust_ = std::make_unique<PlayerDust>();
 
 	circleShadow_ = new CircleShadow();
 	circleShadow_->SetActive(true);
@@ -119,6 +120,7 @@ void Player::Update(){
 		}
 	}
 	particle_->Update();
+	dust_->Update();
 }
 
 void Player::OnCollision() {
@@ -154,6 +156,7 @@ void Player::Draw() {
 void Player::DrawSprite() {
 	ui_.Draw();
 	particle_->Draw();
+	dust_->Draw();
 }
 
 //状態を変更する

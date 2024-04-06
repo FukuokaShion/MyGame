@@ -10,6 +10,7 @@
 class PlayerMove : public PlayerState {
 public:
 	PlayerMove();
+	~PlayerMove();
 	/**
 	 * @brief 更新
 	*/

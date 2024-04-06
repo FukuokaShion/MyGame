@@ -29,6 +29,10 @@ PlayerMove::PlayerMove() {
 	ApplyGlobalVariables();
 }
 
+PlayerMove::~PlayerMove() {
+	player_->StopWav();
+}
+
 void PlayerMove::ApplyGlobalVariables() {
 	walkMaxSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "walkMaxSpeed");
 	dashMaxSpeed_ = GlobalVariables::GetInstance()->GetFloatValue(groupName_, "dashMaxSpeed");
@@ -46,6 +50,7 @@ void PlayerMove::Update() {
 
 void PlayerMove::Move() {
 	stamina_->Update();
+	player_->AccrualDust(player_->GetWtf().position);
 
 	if (Input::GetInstance()->PButtonTrigger(B)) {
 		isDash_ = true;

@@ -61,6 +61,7 @@ private:
 	//キャラ
 	std::unique_ptr<FBXModel> fbxModel_ = nullptr;
 	std::unique_ptr<FBXObject3d> fbxObject3d_ = nullptr;
+	CircleShadow* circleShadow_;
 	//操作
 	Vector2 startSelect_;
 	Vector2 optionSelect_;
