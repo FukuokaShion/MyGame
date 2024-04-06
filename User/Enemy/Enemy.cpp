@@ -61,8 +61,8 @@ void Enemy::Initialize() {
 	boneNum_[6] = ARM2_R;
 	boneNum_[7] = ARM1_L;
 	boneNum_[8] = ARM2_L;
-	boneNum_[9] = LEG_R;
-	boneNum_[10] = LEG_L;
+	boneNum_[9] = LEG1_R;
+	boneNum_[10] = LEG1_L;
 
 	for (int i = 0; i < MaxColliderNum; i++) {
 		colliders_[i] = new BaseCollider;
@@ -200,10 +200,13 @@ void Enemy::CreatBullet(Vector3 pos, Vector3 velocity, int liveLimit, int stayTi
 	bullets_.push_back(std::move(newBullet));
 }
 
-void Enemy::CreateBulletParticle() {
-	bulletCreateParticle_->Create(GetRightHandPos());
+void Enemy::CreateBulletParticle(uint32_t boneName,int num) {
+	bulletCreateParticle_->Create(fbxObject3d_->GetBonWorldPos(boneName), num);
 }
 
+void Enemy::CreateBulletParticle(uint32_t startBoneName, uint32_t endBoneName,int num) {
+	bulletCreateParticle_->Create(fbxObject3d_->GetBonWorldPos(startBoneName), fbxObject3d_->GetBonWorldPos(endBoneName), num);
+}
 
 void Enemy::CreateBomb() {
 	std::unique_ptr<EnemyBomb> newBomb = std::make_unique<EnemyBomb>();

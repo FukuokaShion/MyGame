@@ -38,7 +38,7 @@ void EnemyRoundShooting::Update(Vector3 playerPos) {
 	angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 	enemy_->RotaY(angle);
 
-	enemy_->CreateBulletParticle();
+	enemy_->CreateBulletParticle(Enemy::HAND_R, Enemy::ARM2_R, 16);
 
 	shotTimer_--;
 	if (shotTimer_ < 0) {

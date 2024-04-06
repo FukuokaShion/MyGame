@@ -33,17 +33,32 @@ public:
 	};
 
 	enum : uint32_t {
-		SPINE1 = 3,
-		SPINE2 = 4,
-		HEAD = 6,
-		ARM1_R = 9,
-		ARM2_R = 10,
-		HAND_R = 11,
-		LEG_R = 18,
-		ARM1_L = 14,
-		ARM2_L = 15,
-		HAND_L = 16,
-		LEG_L = 22,
+		ROOT,
+		ROOTupper,
+		hip,
+		SPINE1,
+		SPINE2,
+		neck,
+		HEAD,
+		head_end,
+		shoulder_R,
+		ARM1_R,
+		ARM2_R,
+		HAND_R,
+		HAND_R_END,
+		shoulder_L,
+		ARM1_L,
+		ARM2_L,
+		HAND_L,
+		HAND_L_END,
+		LEG1_R,
+		LEG2_R,
+		footR,
+		footR_end,
+		LEG1_L,
+		LEG2_L,
+		footL,
+		footL_end,
 	};
 
 public:
@@ -146,7 +161,8 @@ public:
 	/**
 	 * @brief 弾生成時パーティクル
 	 */
-	void CreateBulletParticle();
+	void CreateBulletParticle(uint32_t boneName, int num);
+	void CreateBulletParticle(uint32_t startBoneName, uint32_t endBoneName, int num);
 	/**
 	 * @brief 爆弾登録
 	 */
