@@ -184,13 +184,13 @@
     <ClCompile Include="Engine\AUDIO\Audio.cpp">
       <Filter>Engine\Source\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\Model.cpp">
+    <ClCompile Include="Engine\3d\Model.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\Object3d.cpp">
+    <ClCompile Include="Engine\3d\Object3d.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\Transform.cpp">
+    <ClCompile Include="Engine\3d\Transform.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
     <ClCompile Include="Engine\2D\Sprite.cpp">
@@ -205,7 +205,7 @@
     <ClCompile Include="Engine\IMGUI\ImGuiManager.cpp">
       <Filter>Engine\Source\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\Particle\ParticleManager.cpp">
+    <ClCompile Include="Engine\3d\Particle\ParticleManager.cpp">
       <Filter>Engine\Source\3d\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Engine\COLLISION\Collision.cpp">
@@ -217,28 +217,28 @@
     <ClCompile Include="Engine\input\Controller.cpp">
       <Filter>Engine\Source\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\FbxLoader.cpp">
+    <ClCompile Include="Engine\3d\FbxLoader.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\FBXModel.cpp">
+    <ClCompile Include="Engine\3d\FBXModel.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\FBXObject3d.cpp">
+    <ClCompile Include="Engine\3d\FBXObject3d.cpp">
       <Filter>Engine\Source\3d</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\Player.cpp">
+    <ClCompile Include="User\Player\Player.cpp">
       <Filter>User\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\Enemy.cpp">
+    <ClCompile Include="User\Enemy\Enemy.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="User\FIELD\Field.cpp">
       <Filter>User\Source\Field</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerHp.cpp">
+    <ClCompile Include="User\Player\PlayerHp.cpp">
       <Filter>User\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyHp.cpp">
+    <ClCompile Include="User\Enemy\EnemyHp.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Engine\MATH\Easing.cpp">
@@ -259,7 +259,7 @@
     <ClCompile Include="User\GameMain.cpp">
       <Filter>User\Source</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyBullet.cpp">
+    <ClCompile Include="User\Enemy\EnemyBullet.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="User\FIELD\TitleField.cpp">
@@ -274,10 +274,10 @@
     <ClCompile Include="User\LOADER\LoaderManager.cpp">
       <Filter>User\Source\Loader</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerUI.cpp">
+    <ClCompile Include="User\Player\PlayerUI.cpp">
       <Filter>User\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyUI.cpp">
+    <ClCompile Include="User\Enemy\EnemyUI.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="User\LOADER\SpriteLoader.cpp">
@@ -295,10 +295,10 @@
     <ClCompile Include="User\COLLISION\CollisionManager.cpp">
       <Filter>User\Source</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyBomb.cpp">
+    <ClCompile Include="User\Enemy\EnemyBomb.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyEarthquake.cpp">
+    <ClCompile Include="User\Enemy\EnemyEarthquake.cpp">
       <Filter>User\Source\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="User\SCENE\TutorialScene.cpp">
@@ -316,82 +316,82 @@
     <ClCompile Include="Engine\Loader\GlobalVariables.cpp">
       <Filter>Engine\Source\Loader</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerStamina.cpp">
+    <ClCompile Include="User\Player\PlayerStamina.cpp">
       <Filter>User\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerDust.cpp">
+    <ClCompile Include="User\Player\PlayerDust.cpp">
       <Filter>User\Source\Player</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyApproach.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyApproach.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyAttack.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyAttack.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyBombShooting.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyBombShooting.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyEarthquakeAttack.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyEarthquakeAttack.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyLeave.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyLeave.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyRoundShooting.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyRoundShooting.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyShooting.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyShooting.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyStandby.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyStandby.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyState.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyState.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyStrongBodyBlow.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyStrongBodyBlow.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyStumb.cpp">
+    <ClCompile Include="User\Enemy\State\EnemyStumb.cpp">
       <Filter>User\Source\Enemy\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyDeathParticle.cpp">
+    <ClCompile Include="User\Enemy\Particle\EnemyDeathParticle.cpp">
       <Filter>User\Source\Enemy\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyParticle.cpp">
+    <ClCompile Include="User\Enemy\Particle\EnemyParticle.cpp">
       <Filter>User\Source\Enemy\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="User\ENEMY\EnemyShootingParticle.cpp">
+    <ClCompile Include="User\Enemy\Particle\EnemyShootingParticle.cpp">
       <Filter>User\Source\Enemy\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerAttack.cpp">
+    <ClCompile Include="User\Player\State\PlayerAttack.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerAvoid.cpp">
+    <ClCompile Include="User\Player\State\PlayerAvoid.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerJump.cpp">
+    <ClCompile Include="User\Player\State\PlayerJump.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerJumpAttack.cpp">
+    <ClCompile Include="User\Player\State\PlayerJumpAttack.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerMove.cpp">
+    <ClCompile Include="User\Player\State\PlayerMove.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerStandby.cpp">
+    <ClCompile Include="User\Player\State\PlayerStandby.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerState.cpp">
+    <ClCompile Include="User\Player\State\PlayerState.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="User\PLAYER\PlayerStumb.cpp">
+    <ClCompile Include="User\Player\State\PlayerStumb.cpp">
       <Filter>User\Source\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\DirectionalLight.cpp">
+    <ClCompile Include="Engine\3d\Light\DirectionalLight.cpp">
       <Filter>Engine\Source\3d\Light</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\3D\LightGroup.cpp">
+    <ClCompile Include="Engine\3d\Light\LightGroup.cpp">
       <Filter>Engine\Source\3d\Light</Filter>
     </ClCompile>
   </ItemGroup>
