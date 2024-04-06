@@ -287,7 +287,7 @@ void ParticleManager::LoadTexture()
 	ScratchImage scratchImg{};
 
 	// WICテクスチャのロード
-	result = LoadFromWICFile(L"Resources/particle.png", WIC_FLAGS_NONE, &metadata, scratchImg);
+	result = LoadFromWICFile(L"Resources/Sprite/particle.png", WIC_FLAGS_NONE, &metadata, scratchImg);
 	assert(SUCCEEDED(result));
 
 	ScratchImage mipChain{};
@@ -351,7 +351,7 @@ void ParticleManager::LoadTexture()
 
 }
 
-std::string kDefaultTextureDirectoryPath = "Resources/";
+std::string kDefaultTextureDirectoryPath = "Resources/Sprite/";
 void ParticleManager::LoadTexture(const std::string& fileName)
 {
 	HRESULT result = S_FALSE;

@@ -11,7 +11,7 @@
 using namespace MyEngine;
 
 //デフォルトテクスチャ格納ディレクトリ
-std::string SpriteCommon::kDefaultTextureDirectoryPath = "Resources/";
+std::string SpriteCommon::kDefaultTextureDirectoryPath = "Resources/Sprite/";
 DirectXCommon* SpriteCommon::dxcommon_ = nullptr;
 
 void SpriteCommon::Initialize()
