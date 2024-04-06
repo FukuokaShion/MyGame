@@ -168,6 +168,7 @@
     <ClCompile Include="User\PLAYER\Player.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAttack.cpp" />
     <ClCompile Include="User\PLAYER\PlayerAvoid.cpp" />
+    <ClCompile Include="User\PLAYER\PlayerDust.cpp" />
     <ClCompile Include="User\PLAYER\PlayerHp.cpp" />
     <ClCompile Include="User\PLAYER\PlayerJump.cpp" />
     <ClCompile Include="User\PLAYER\PlayerMove.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="User\PLAYER\Player.h" />
     <ClInclude Include="User\PLAYER\PlayerAttack.h" />
     <ClInclude Include="User\PLAYER\PlayerAvoid.h" />
+    <ClInclude Include="User\PLAYER\PlayerDust.h" />
     <ClInclude Include="User\PLAYER\PlayerHp.h" />
     <ClInclude Include="User\PLAYER\PlayerJump.h" />
     <ClInclude Include="User\PLAYER\PlayerJumpAttack.h" />

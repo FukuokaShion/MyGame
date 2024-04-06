@@ -14,6 +14,7 @@
 #include"PlayerHp.h"
 #include"PlayerState.h"
 #include"PlayerUI.h"
+#include "PlayerDust.h"
 
 #include "Object3d.h"
 
@@ -174,6 +175,8 @@ public:
 	void CreateParticle();
 
 	bool CameShake();
+
+	void AccrualDust(Vector3 pos) { dust_->Accrual(pos); };
 private:
 	Vector3 camViewVec_;
 	//入力
@@ -217,6 +220,7 @@ private:
 	std::unique_ptr<ParticleManager> particle_;
 	Vector3 oldSowrdTipPos_;
 	Vector3 oldSowrdRootPos_;
+	std::unique_ptr<PlayerDust> dust_;
 
 	CircleShadow* circleShadow_;
 
