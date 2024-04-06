@@ -14,7 +14,7 @@ using namespace MyEngine;
 /// <summary>
 /// 静的メンバ変数の実体
 /// </summary>
-const std::string FbxLoader::baseDirectory = "Resources/";
+const std::string FbxLoader::baseDirectory = "Resources/Model/";
 const std::string FbxLoader::defaultTextureFileName = "white1x1.png";
 
 FbxLoader* FbxLoader::GetInstance()

@@ -108,7 +108,7 @@ void ParticleManager::InitializeGraphicsPipeline()
 
 	// 頂点シェーダの読み込みとコンパイル
 	result = D3DCompileFromFile(
-		L"Resources/SHADER/ParticleVS.hlsl",	// シェーダファイル名
+		L"Resources/Shader/ParticleVS.hlsl",	// シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, // インクルード可能にする
 		"main", "vs_5_0",	// エントリーポイント名、シェーダーモデル指定
@@ -131,7 +131,7 @@ void ParticleManager::InitializeGraphicsPipeline()
 
 	//ジオメトリシェーダーの読み込みとコンパイル
 	result = D3DCompileFromFile(
-		L"Resources/SHADER/ParticleGS.hlsl",	// シェーダファイル名
+		L"Resources/Shader/ParticleGS.hlsl",	// シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, // インクルード可能にする
 		"main", "gs_5_0",	// エントリーポイント名、シェーダーモデル指定
@@ -154,7 +154,7 @@ void ParticleManager::InitializeGraphicsPipeline()
 
 	// ピクセルシェーダの読み込みとコンパイル
 	result = D3DCompileFromFile(
-		L"Resources/SHADER/ParticlePS.hlsl",	// シェーダファイル名
+		L"Resources/Shader/ParticlePS.hlsl",	// シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, // インクルード可能にする
 		"main", "ps_5_0",	// エントリーポイント名、シェーダーモデル指定
@@ -287,7 +287,7 @@ void ParticleManager::LoadTexture()
 	ScratchImage scratchImg{};
 
 	// WICテクスチャのロード
-	result = LoadFromWICFile(L"Resources/particle.png", WIC_FLAGS_NONE, &metadata, scratchImg);
+	result = LoadFromWICFile(L"Resources/Sprite/particle.png", WIC_FLAGS_NONE, &metadata, scratchImg);
 	assert(SUCCEEDED(result));
 
 	ScratchImage mipChain{};
@@ -351,7 +351,7 @@ void ParticleManager::LoadTexture()
 
 }
 
-std::string kDefaultTextureDirectoryPath = "Resources/";
+std::string kDefaultTextureDirectoryPath = "Resources/Sprite/";
 void ParticleManager::LoadTexture(const std::string& fileName)
 {
 	HRESULT result = S_FALSE;

@@ -58,7 +58,7 @@ namespace MyEngine {
 		/// <summary>
 		/// 初期化
 		/// </summary>
-		void Initialize(const std::string& directoryPath = "Resources/SOUND/");
+		void Initialize(const std::string& directoryPath = "Resources/Sound/");
 
 		/// <summary>
 		/// 終了処理
