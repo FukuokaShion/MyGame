@@ -163,6 +163,7 @@ public:
 	 */
 	void CreateBulletParticle(uint32_t boneName, int num);
 	void CreateBulletParticle(uint32_t startBoneName, uint32_t endBoneName, int num);
+	void CreateEarthquakeParticle(int num);
 	/**
 	 * @brief 爆弾登録
 	 */

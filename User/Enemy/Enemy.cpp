@@ -221,6 +221,10 @@ void Enemy::CreateEarthquake() {
 	JISIN = true;
 }
 
+void Enemy::CreateEarthquakeParticle(int num) {
+	bulletCreateParticle_->EarthquakeCreate(fbxObject3d_->wtf.position, num);
+}
+
 //状態を変更する
 void Enemy::TransitionTo(EnemyState* state) {
 	//削除
