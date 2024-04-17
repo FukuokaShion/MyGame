@@ -24,6 +24,7 @@ void EnemyBombShooting::ApplyGlobalVariables() {
 EnemyBombShooting::~EnemyBombShooting() {}
 
 void EnemyBombShooting::Update(Vector3 playerPos) {
+	enemy_->CreateBulletParticle(Enemy::HAND_R,7);
 	timer++;
 	//プレイヤーの方を向く
 	float angle;

@@ -30,9 +30,11 @@ void EnemyEarthquakeAttack::Update(Vector3 playerPos) {
 	if (timer < attackTime_) {
 		angle = Vector3::Angle(playerPos, enemy_->GetWtf().position);
 		enemy_->RotaY(angle);
+		enemy_->CreateBulletParticle(Enemy::footL, Enemy::LEG2_L, 8);
 	}
 	else if (timer == attackTime_) {
 		enemy_->CreateEarthquake();
+		enemy_->CreateEarthquakeParticle(100);
 	}else if (timer == finTime_) {
 		//状態移行
 		enemy_->TransitionTo(new Standby);

@@ -474,7 +474,7 @@
     <ClInclude Include="User\PLAYER\Player.h">
       <Filter>User\Header\Player</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\Enemy.h">
+    <ClInclude Include="User\Enemy\Enemy.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="User\FIELD\Field.h">
@@ -483,7 +483,7 @@
     <ClInclude Include="User\PLAYER\PlayerHp.h">
       <Filter>User\Header\Player</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyHp.h">
+    <ClInclude Include="User\Enemy\EnemyHp.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Engine\MATH\Easing.h">
@@ -507,7 +507,7 @@
     <ClInclude Include="User\GameMain.h">
       <Filter>User\Header</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyBullet.h">
+    <ClInclude Include="User\Enemy\EnemyBullet.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Engine\COLLISION\CollisionAttribute.h">
@@ -528,7 +528,7 @@
     <ClInclude Include="User\PLAYER\PlayerUI.h">
       <Filter>User\Header\Player</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyUI.h">
+    <ClInclude Include="User\Enemy\EnemyUI.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="User\LOADER\SpriteLoader.h">
@@ -549,10 +549,10 @@
     <ClInclude Include="Engine\COLLISION\CollisionPrimitive.h">
       <Filter>Engine\Header\Collsion</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyBomb.h">
+    <ClInclude Include="User\Enemy\EnemyBomb.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyEarthquake.h">
+    <ClInclude Include="User\Enemy\EnemyEarthquake.h">
       <Filter>User\Header\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="User\SCENE\TutorialScene.h">
@@ -579,46 +579,46 @@
     <ClInclude Include="User\PLAYER\PlayerDust.h">
       <Filter>User\Header\Player</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyApproach.h">
+    <ClInclude Include="User\Enemy\State\EnemyApproach.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyAttack.h">
+    <ClInclude Include="User\Enemy\State\EnemyAttack.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyBombShooting.h">
+    <ClInclude Include="User\Enemy\State\EnemyBombShooting.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyEarthquakeAttack.h">
+    <ClInclude Include="User\Enemy\State\EnemyEarthquakeAttack.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyLeave.h">
+    <ClInclude Include="User\Enemy\State\EnemyLeave.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyRoundShooting.h">
+    <ClInclude Include="User\Enemy\State\EnemyRoundShooting.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyShooting.h">
+    <ClInclude Include="User\Enemy\State\EnemyShooting.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyStandby.h">
+    <ClInclude Include="User\Enemy\State\EnemyStandby.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyState.h">
+    <ClInclude Include="User\Enemy\State\EnemyState.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyStrongBodyBlow.h">
+    <ClInclude Include="User\Enemy\State\EnemyStrongBodyBlow.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyStumb.h">
+    <ClInclude Include="User\Enemy\State\EnemyStumb.h">
       <Filter>User\Header\Enemy\State</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyDeathParticle.h">
+    <ClInclude Include="User\Enemy\Particle\EnemyDeathParticle.h">
       <Filter>User\Header\Enemy\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyParticle.h">
+    <ClInclude Include="User\Enemy\Particle\EnemyParticle.h">
       <Filter>User\Header\Enemy\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="User\ENEMY\EnemyShootingParticle.h">
+    <ClInclude Include="User\Enemy\Particle\EnemyShootingParticle.h">
       <Filter>User\Header\Enemy\Particle</Filter>
     </ClInclude>
     <ClInclude Include="User\PLAYER\PlayerAttack.h">

@@ -16,7 +16,9 @@ public:
 	/**
 	 * @brief 発生
 	*/
-	void Create(Vector3 createPos);
+	void Create(Vector3 centerPos, int num);
+	void Create(Vector3 startPos, Vector3 endPos, int num);
+	void EarthquakeCreate(Vector3 centerPos, int num);
 
 	/**
 	 * @brief 更新
