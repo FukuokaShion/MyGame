@@ -27,5 +27,7 @@ void SpriteLoader::Load() {
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_CAMERA, "tutorialCamera.png");
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_NEXT, "tutorialNext.png");
 	SpriteCommon::GetInstance()->LoadTexture(TUTORIAL_MOVE, "tutorialMove.png");
+	SpriteCommon::GetInstance()->LoadTexture(PLAYAERUIOUT, "playerUiOut.png");
+	SpriteCommon::GetInstance()->LoadTexture(ENEMYUIOUT, "enemyUiOut.png");
 
 }

@@ -28,6 +28,7 @@ private:
 	Sprite* enemyHpGauge_;
 	Sprite* stumbGauge_;
 	Sprite* base_;
+	Sprite* out_;
 
 	const Vector2 hpGaugeSize = { 671,11 };
 	const float hpGaugeOneSize = 0.671f;
