@@ -28,6 +28,7 @@ private:
 	Sprite* hpGauge_;
 	Sprite* damageGauge_;
 	Sprite* base_;
+	Sprite* out_;
 	Sprite* staminaGauge_;
 
 	const Vector4 hpColor_ = { 106.0f / 255.0f,190.0f / 255.0f,48.0f / 255.0f,1.0f };

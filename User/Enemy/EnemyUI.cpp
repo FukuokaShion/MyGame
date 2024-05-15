@@ -12,6 +12,10 @@ void EnemyUI::Initialize() {
 	base_->Initialize(SpriteCommon::GetInstance());
 	base_->SetSize({ 1280,720 });
 
+	out_ = new Sprite();
+	out_->Initialize(SpriteCommon::GetInstance());
+	out_->SetSize({ 1280,720 });
+
 	enemyHpGauge_ = new Sprite();
 	enemyHpGauge_->Initialize(SpriteCommon::GetInstance());
 	enemyHpGauge_->SetPozition({ 309,576 });
@@ -27,17 +31,20 @@ void EnemyUI::Initialize() {
 	stumbGauge_->SetColor({ 255.0f,255.0f,0.0f,1.0f });
 
 	base_->SetTextureIndex(SpriteLoader::ENEMYUI);
+	out_->SetTextureIndex(SpriteLoader::ENEMYUIOUT);
 	enemyHpGauge_->SetTextureIndex(SpriteLoader::WHITE);
 }
 
 EnemyUI::~EnemyUI() {
 	delete base_;
+	delete out_;
 	delete stumbGauge_;
 	delete enemyHpGauge_;
 }
 
 void EnemyUI::Update(int hp,float stumb) {
 	base_->Update();
+	out_->Update();
 	enemyHpGauge_->SetSize({ static_cast<float>(hpGaugeOneSize * hp),hpGaugeSize.y });
 	stumbGauge_->SetSize({ static_cast<float>(stumbGaugeOneSize * stumb),stumbGaugeSize.y });
 }
@@ -46,4 +53,5 @@ void EnemyUI::Draw() {
 	base_->Draw();
 	enemyHpGauge_->Draw();
 	stumbGauge_->Draw();
+	out_->Draw();
 }
